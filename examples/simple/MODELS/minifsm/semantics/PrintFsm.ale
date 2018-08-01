@@ -17,7 +17,7 @@ open class State {
 
 open class FinalState {
 	override String print() {
-		return "* " + alg.state(obj).print();
+		return "* " + alg.minifsm__State(obj).print();
 	}
 }
 

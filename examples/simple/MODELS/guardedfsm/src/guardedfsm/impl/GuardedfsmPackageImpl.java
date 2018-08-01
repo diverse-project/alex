@@ -4,6 +4,7 @@ package guardedfsm.impl;
 
 import boolexp.BoolexpPackage;
 
+import boolexp.impl.BoolexpPackageImpl;
 import guardedfsm.Guarded;
 import guardedfsm.GuardedfsmFactory;
 import guardedfsm.GuardedfsmPackage;
@@ -58,7 +59,7 @@ public class GuardedfsmPackageImpl extends EPackageImpl implements GuardedfsmPac
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link GuardedfsmPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -72,24 +73,29 @@ public class GuardedfsmPackageImpl extends EPackageImpl implements GuardedfsmPac
 		if (isInited) return (GuardedfsmPackage)EPackage.Registry.INSTANCE.getEPackage(GuardedfsmPackage.eNS_URI);
 
 		// Obtain or create and register package
-		GuardedfsmPackageImpl theGuardedfsmPackage = (GuardedfsmPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof GuardedfsmPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new GuardedfsmPackageImpl());
+		Object registeredGuardedfsmPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		GuardedfsmPackageImpl theGuardedfsmPackage = registeredGuardedfsmPackage instanceof GuardedfsmPackageImpl ? (GuardedfsmPackageImpl)registeredGuardedfsmPackage : new GuardedfsmPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
-		BoolexpPackage.eINSTANCE.eClass();
 		MinifsmPackage.eINSTANCE.eClass();
+
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BoolexpPackage.eNS_URI);
+		BoolexpPackageImpl theBoolexpPackage = (BoolexpPackageImpl)(registeredPackage instanceof BoolexpPackageImpl ? registeredPackage : BoolexpPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGuardedfsmPackage.createPackageContents();
+		theBoolexpPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGuardedfsmPackage.initializePackageContents();
+		theBoolexpPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theGuardedfsmPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(GuardedfsmPackage.eNS_URI, theGuardedfsmPackage);
 		return theGuardedfsmPackage;

@@ -102,7 +102,7 @@ public class BoolexpPackageImpl extends EPackageImpl implements BoolexpPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link BoolexpPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -116,7 +116,8 @@ public class BoolexpPackageImpl extends EPackageImpl implements BoolexpPackage {
 		if (isInited) return (BoolexpPackage)EPackage.Registry.INSTANCE.getEPackage(BoolexpPackage.eNS_URI);
 
 		// Obtain or create and register package
-		BoolexpPackageImpl theBoolexpPackage = (BoolexpPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BoolexpPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new BoolexpPackageImpl());
+		Object registeredBoolexpPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		BoolexpPackageImpl theBoolexpPackage = registeredBoolexpPackage instanceof BoolexpPackageImpl ? (BoolexpPackageImpl)registeredBoolexpPackage : new BoolexpPackageImpl();
 
 		isInited = true;
 
@@ -129,7 +130,6 @@ public class BoolexpPackageImpl extends EPackageImpl implements BoolexpPackage {
 		// Mark meta-data to indicate it can't be changed
 		theBoolexpPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BoolexpPackage.eNS_URI, theBoolexpPackage);
 		return theBoolexpPackage;

@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: boolexp;singleton:=true
+Automatic-Module-Name: boolexp
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
@@ -17,9 +18,9 @@ Export-Package: boolexp,
  boolexp.main,
  boolexp.revisitor,
  boolexp.util,
- evalexp.revisitor,
- evalexp.revisitor.operations,
- evalexp.revisitor.operations.impl,
- printexp.revisitor,
- printexp.revisitor.operations,
- printexp.revisitor.operations.impl
+ evalexp.revisitor.impl,
+ evalexp.revisitor.operations.evalexp,
+ evalexp.revisitor.operations.evalexp.impl,
+ printexp.revisitor.impl,
+ printexp.revisitor.operations.printexp,
+ printexp.revisitor.operations.printexp.impl

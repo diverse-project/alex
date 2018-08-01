@@ -79,7 +79,7 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link MinifsmPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -93,7 +93,8 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		if (isInited) return (MinifsmPackage)EPackage.Registry.INSTANCE.getEPackage(MinifsmPackage.eNS_URI);
 
 		// Obtain or create and register package
-		MinifsmPackageImpl theMinifsmPackage = (MinifsmPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MinifsmPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MinifsmPackageImpl());
+		Object registeredMinifsmPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		MinifsmPackageImpl theMinifsmPackage = registeredMinifsmPackage instanceof MinifsmPackageImpl ? (MinifsmPackageImpl)registeredMinifsmPackage : new MinifsmPackageImpl();
 
 		isInited = true;
 
@@ -106,7 +107,6 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		// Mark meta-data to indicate it can't be changed
 		theMinifsmPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(MinifsmPackage.eNS_URI, theMinifsmPackage);
 		return theMinifsmPackage;

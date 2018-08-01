@@ -7,16 +7,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import fsmprinting.revisitor.operations.MachineOperation;
 import minifsm.Machine;
-import tfsmprinting.revisitor.TfsmprintingRevisitor;
+import tfsmprinting.revisitor.impl.TfsmprintingRevisitor;
+import tfsmprinting.revisitor.operations.tfsmprinting.MachineOperation;
 import timedminifsm.TimedminifsmPackage;
 
 public class Main {
 	public static void main(String[] args) {
 		Machine m = loadModel();
-		MachineOperation sem = new TfsmprintingRevisitor(){}.$(m);
-		
+		MachineOperation sem = new TfsmprintingRevisitor() {
+		}.$(m);
+
 		System.out.println("Printing TimedMiniFsm:");
 		System.out.println(sem.print());
 	}

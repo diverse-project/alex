@@ -56,7 +56,7 @@ public class TimedminifsmPackageImpl extends EPackageImpl implements Timedminifs
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link TimedminifsmPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -70,7 +70,8 @@ public class TimedminifsmPackageImpl extends EPackageImpl implements Timedminifs
 		if (isInited) return (TimedminifsmPackage)EPackage.Registry.INSTANCE.getEPackage(TimedminifsmPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TimedminifsmPackageImpl theTimedminifsmPackage = (TimedminifsmPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TimedminifsmPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TimedminifsmPackageImpl());
+		Object registeredTimedminifsmPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		TimedminifsmPackageImpl theTimedminifsmPackage = registeredTimedminifsmPackage instanceof TimedminifsmPackageImpl ? (TimedminifsmPackageImpl)registeredTimedminifsmPackage : new TimedminifsmPackageImpl();
 
 		isInited = true;
 
@@ -86,7 +87,6 @@ public class TimedminifsmPackageImpl extends EPackageImpl implements Timedminifs
 		// Mark meta-data to indicate it can't be changed
 		theTimedminifsmPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TimedminifsmPackage.eNS_URI, theTimedminifsmPackage);
 		return theTimedminifsmPackage;
