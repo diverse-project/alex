@@ -1,0 +1,8 @@
+site_name: Alex Language
+remote_name: manuelleduc
+theme: readthedocs
+nav:
+  - 'index.md'
+  - 'installation.md'
+  - 'getting-started.md'
+  - 'updates/index.md'
