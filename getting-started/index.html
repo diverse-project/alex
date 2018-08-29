@@ -66,12 +66,32 @@
     <li class="toctree-l2"><a href="#introduction">Introduction</a></li>
     
 
+    <li class="toctree-l2"><a href="#tel0">TEL0</a></li>
+    
+
+    <li class="toctree-l2"><a href="#abstract-syntax">Abstract Syntax</a></li>
+    
+
+    <li class="toctree-l2"><a href="#revisitor">Revisitor</a></li>
+    
+
+    <li class="toctree-l2"><a href="#semantics">Semantics</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#a-pretty-printer">A pretty printer</a></li>
+        
+            <li><a class="toctree-l3" href="#conclusion">Conclusion</a></li>
+        
+        </ul>
+    
+
     </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../updates/">Update Site</a>
+    <a class="" href="../revisitor/">Revisitor</a>
 	    </li>
           
         </ul>
@@ -107,6 +127,97 @@
             <div class="section">
               
                 <h1 id="introduction">Introduction</h1>
+<p>This page introduces the main concepts of Alex by following the development of a small expression language.</p>
+<p>For more details about the language see TODO.</p>
+<h1 id="tel0">TEL0</h1>
+<p>Tiny Expression Language 0 (TEL0) is a toy expression language with two concepts:</p>
+<ul>
+<li>Integer Literal (e.g. 0, 1...)</li>
+<li>Sum operation (e.g. +)</li>
+</ul>
+<h1 id="abstract-syntax">Abstract Syntax</h1>
+<p>We define the abstract syntax using ecore.
+This <a href="https://eclipsesource.com/blogs/tutorials/emf-tutorial/">tutorial</a> explains in details how to use ecore to define a metamodel.</p>
+<p>In order to understand the rest of this introduction, you only need to understand that ecore is a formalism to define metamodels and allows the generation of Java code that conforms to this definition.</p>
+<p>From the definition of TEL0, we define the following ecore model:
+<img alt="" src="../tel0.svg" /></p>
+<p>We introduce the <code>Exp</code> abstract class in order to allow the recursive definition of sums (e.g.  1 + 2 + 3 + 4).</p>
+<p>From this metamodel definition we generate, using EMF, a set of java classes.</p>
+<h1 id="revisitor">Revisitor</h1>
+<p>In addition to the set of java class, Alex offers the generation of a abstract, visitor-like, interface called a <em>Revisitor</em>.</p>
+<p>To understand this tutorial, and to use Alex, it is not required to understand the Revisitor mechanism.
+Just know that it's generation is required in order to be able to define a semantics on top of the abstract syntax.</p>
+<p>The interested reader can consult the <a href="../revisitor/">revisitor</a> page to understand the internal details.</p>
+<h1 id="semantics">Semantics</h1>
+<p>Once we have defined the abstract syntax of our language, we want to give it some meaning.</p>
+<p>The good news is, using Alex it is easy to define multiple meanings to a single abstract syntax in a modular way.</p>
+<p>We will show how to add a pretty printer and an evaluation semantics for TEL0.</p>
+<h2 id="a-pretty-printer">A pretty printer</h2>
+<p>The pretty printer is a simple way to transform the object graph of an instance of the abstract syntax to a user readable string.</p>
+<p>For instance <code>Add (LitVal(1), Add(LitVal(2), LitVal(3)))</code> will be pretty printed to "1 + 2 + 3".</p>
+<p>The following Alex program is the definition of the pretty print semantics for TEL0.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">behavior</span> <span class="n">prettyprint</span>
+
+<span class="kn">import</span> <span class="nn">ecore</span> <span class="s2">&quot;platform:/resource/tel0.model/model/tel0.ecore&quot;</span>
+
+<span class="nb">open</span> <span class="n">abstract</span> <span class="k">class</span> <span class="nc">Exp</span> <span class="p">{</span>
+    <span class="n">abstract</span> <span class="k">def</span> <span class="nf">String</span> <span class="k">print</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="nb">open</span> <span class="k">class</span> <span class="nc">LitVal</span> <span class="p">{</span>
+    <span class="n">override</span> <span class="n">String</span> <span class="k">print</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">toString</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">open</span> <span class="k">class</span> <span class="nc">Sum</span> <span class="p">{</span>
+    <span class="n">override</span> <span class="n">String</span> <span class="k">print</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">rev</span><span class="o">.</span><span class="err">$</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">lhs</span><span class="p">)</span><span class="o">.</span><span class="k">print</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; + &#39;</span> <span class="o">+</span> <span class="n">rev</span><span class="o">.</span><span class="err">$</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="k">print</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>This definition requires a few explanations.</p>
+<p><strong>Line 1:</strong> Definition of the name of the semantics.
+Pretty much similar to a package definition.</p>
+<p><strong>Line 3:</strong> Import of the abstract syntax.
+It defines the set of class on which we are able to define operations.</p>
+<p><strong>Lines 5-7:</strong> Definition of the print operation on the Exp abstract class.
+As with every object-oriented language, it enforce that each child of <code>Exp</code> must provide a concrete implementation of the print method.</p>
+<p><strong>Lines 9-13:</strong> Definition of the print operation for the LitVal class.<br />
+We want use the toString operation to convert the long value to a string.<br />
+But we are defining the pretty print semantics externally, consequently we don't have a direct access to the value field of the syntax.<br />
+To have access to the syntactic values from the semantics, we must use the <code>obj</code> field provided by Alex for every open class, before being able to convert it to a string.</p>
+<p><strong>Lines 15-19:</strong> Definition of the print operation for the Sum class.
+To pretty print a sum, we need to obtains the result of the print method for the left hand side (lhs) and right hand side (rhs) fields of the Sum class.</p>
+<p>But what we have currently is the <code>obj</code> field which gives use access to the syntactic part of the Sum class, which contains the lhs and rhs Exp expressions.</p>
+<p>Consequently, we don't have access to the print operation on the field so far.</p>
+<p>To do so, we fist needs to converts the syntactic value to semantics operations, using the <code>alg</code> field, also provided by Alex for each open class.
+This alg fields contains an instance of the currently defined semantics, in the form of a revisitor.</p>
+<p>The revisitor provides a methods called <code>$</code> which take a syntactic object (e.g. Exp, Sum, LitVal) and returns a semantic operation, with all the operations defined in the Alex semantics.</p>
+<p>For instance alg.$(obj.lhs) returns an semantic operation with a print method.</p>
+<p>The good thing is, since obj.lhs is an abstract Exp object, we don't know statically if the returned semantic object will be for a Sum or a LitVal object, still we know that the returned value will be a string that we will be able to concatenate before returning the resulting string.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>So far we have defined a first semantics for TEL0, which allow to pretty print arbitrary instances of TEL0 abstract syntax.</p>
               
             </div>
           </div>
@@ -114,7 +225,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../updates/" class="btn btn-neutral float-right" title="Update Site">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../revisitor/" class="btn btn-neutral float-right" title="Revisitor">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../installation/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -146,7 +257,7 @@
         <span><a href="../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../updates/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../revisitor/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
