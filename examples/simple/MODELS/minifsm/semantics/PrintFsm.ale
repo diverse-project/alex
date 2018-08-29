@@ -9,7 +9,6 @@ open class Machine {
 }
 
 open class State {
-
 	def String print() {
 		return "State " + obj.name + "\n" + obj.out.map[t|"\t" + alg.$(t).print()].join("\n")
 	}
@@ -17,7 +16,11 @@ open class State {
 
 open class FinalState {
 	override String print() {
+<<<<<<< HEAD
 		return "* " + alg.minifsm__State(obj).print();
+=======
+		return "* " + alg.minifsm__State(obj).print()
+>>>>>>> 3f6de93c322367fd78b1d4d23b20a24edba268d3
 	}
 }
 

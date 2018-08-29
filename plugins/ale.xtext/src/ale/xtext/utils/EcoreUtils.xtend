@@ -20,11 +20,11 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1
 
 class EcoreUtils {
 	@Inject XtextResourceSet rs
-	
+
 	def void resetResourceSet() {
 		rs = new XtextResourceSet
 	}
-	
+
 	def buildExtendedFactoryNames(List<EClass> classes) {
 		val List<Pair<EClass, Iterable<EClass>>> a = classes.map [
 			val st = newArrayList()
@@ -77,13 +77,12 @@ class EcoreUtils {
 			]
 			o.key != cls && isSuperType && (o.value == cls || o.value === null)
 		]
-		
-		return tmp.map[key].toSet.map[k|
+
+		return tmp.map[key].toSet.map [ k |
 			val matched = tmp.filter[it.key == k]
-			if(matched.size == 1) matched.head
-			else matched.filter[it.value !== null].head
+			if(matched.size == 1) matched.head else matched.filter[it.value !== null].head
 		].toList
-				
+
 	}
 
 	def List<EClass> getAllClasses(EPackage pkg) {
@@ -189,11 +188,11 @@ class EcoreUtils {
 		val ret = classes?.findFirst [
 			name == cls.name
 		]
-		
-		if(ret === null) {
+
+		if (ret === null) {
 			println('''Nothing found for «cls» in «gm»''')
 		}
-		
+
 		ret
 
 	}
@@ -235,20 +234,22 @@ class EcoreUtils {
 		}
 		rs.resourceFactoryRegistry.extensionToFactoryMap.put("ecore", new XMIResourceFactoryImpl)
 		try {
-			
-			if(rs.resources.exists[it.URI.toString == path]) {
+
+			if (rs.resources.exists[it.URI.toString == path]) {
 				val r = rs.resources.findFirst[it.URI.toString == path]
 				val ret = r.contents.head as EPackage
 				return ret
 			}
-			
+
 			val resource = if (path.startsWith("platform:/"))
 					rs.getResource(URI.createURI(path), true)
 				else if (path.startsWith("/"))
 					rs.getResource(URI::createPlatformResourceURI(path, true), true)
 				else
 					rs.getResource(URI::createFileURI(path), true)
-			return resource.contents.head as EPackage
+
+			val ret = resource.contents.head as EPackage
+			return ret
 		} catch (Exception e) {
 			return null
 		}
