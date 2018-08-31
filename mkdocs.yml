@@ -1,5 +1,5 @@
 site_name: Alex Language
-remote_name: manuelleduc
+remote_name: diverse-project
 theme: readthedocs
 nav:
   - 'index.md'
