@@ -13,3 +13,6 @@ nav:
 markdown_extensions:
   - codehilite:
       linenums: true
+  - toc:
+      baselevel: 1
+      permalink: "#"

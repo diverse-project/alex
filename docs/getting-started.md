@@ -129,7 +129,7 @@ We simply have to create a new alex file, give it a new behavior name, and impor
 
 Of course the signature of the open class methods and will be different.
 
- ```alex
+```alex
 behavior evaluate
 
 import ecore "platform:/resource/tel0.model/model/tel0.ecore"
@@ -149,13 +149,101 @@ open class Sum {
 		alg.$(obj.lhs).eval() + alg.$(obj.rhs).eval()
 	}
 }
- ```
+```
 
 We can observe that the structure is quite close to the pretty printer, the main different is the return type of eval, a long instead of a String.
 
 Consequently, if we execute the same `Add (LitVal(1), Add(LitVal(2), LitVal(3)))` program we obtains `6` instead of  `"1 + 2 + 3"`.
 
 A working implementation of TEL0 pretty printing is available in [github](https://github.com/manuelleduc/alex/tree/master/examples/tel0.evaluate).
+
+## Execution
+
+So far we have defined two semantics for TEL0. But the interesting part is to be able to use our language to execute programs.
+
+The `tel0.tests` project, available on [github](https://github.com/manuelleduc/alex/tree/master/examples/tel0.tests), contains a single test class `tel0.tests.Tel0Test` which showcase how to use our language.
+
+The source Below is a commented version of the `Tel0Test` class.
+
+```java
+package tel0.tests;
+
+// JUnit 5 imports.
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+// imports of the two semantics, in the form of the revisitor 
+// generated from the *.ale semantics definition.
+import evaluate.revisitor.impl.EvaluateRevisitor;
+import prettyprint.revisitor.impl.PrettyprintRevisitor;
+
+// import of the abstract syntax concepts.
+import tel0.model.tel0.Exp;
+import tel0.model.tel0.LitVal;
+import tel0.model.tel0.Sum;
+// and the EMF factory used to instantiate the concepts.
+import tel0.model.tel0.Tel0Factory;
+
+public class Tel0Test {
+
+	/**
+	 * Instantiation of the revisitors. The imported revisitors are 
+	 * Java 8 interfaces with default methods. We define anonymous 
+	 * classes from the interfaces in order to be able to 
+	 * instantiate them (cf. https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html).
+	 */
+	private final EvaluateRevisitor revExec
+		= new EvaluateRevisitor() {};
+	private final PrettyprintRevisitor revPrint
+		= new PrettyprintRevisitor() {};
+
+	/**
+	 * Creation of a simple TEL0 program by metamodel manipulation.
+	 * 
+	 * @return 1 + 2
+	 */
+	private Exp createModel0() {
+
+		// Creation of a sum operation.
+		final Sum exp = Tel0Factory.eINSTANCE.createSum();
+		// Creation a literal value with the value 1.
+		final LitVal x = Tel0Factory.eINSTANCE.createLitVal();
+		x.setValue(1L);
+		// Affectation of the value 1 to the left-hand side of 
+		// the sum.
+		exp.setLhs(x);
+
+		// Creation and affectation of the value 2 to the right
+		// hand side of the sum.
+		final LitVal y = Tel0Factory.eINSTANCE.createLitVal();
+		y.setValue(2L);
+		exp.setRhs(y);
+
+		return exp;
+	}
+
+	/**
+	 * Execution test.
+	 */
+	@Test
+	void test0Exec() {
+		final Exp exp = createModel0();
+		Assertions.assertEquals(3L, revExec.$(exp).eval());
+	}
+
+	/**
+	 * Pretty print test.
+	 */
+	@Test
+	void test0Print() {
+		final Exp exp = createModel0();
+		Assertions.assertEquals("1 + 2", revPrint.$(exp).print());
+	}
+}
+
+```
+
+
 
 # Conclusion
 
