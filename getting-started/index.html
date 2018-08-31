@@ -179,7 +179,7 @@ This <a href="https://eclipsesource.com/blogs/tutorials/emf-tutorial/">tutorial<
 <img alt="" src="../tel0.svg" /></p>
 <p>We introduce the <code>Exp</code> abstract class in order to allow the recursive definition of sums (e.g.  1 + 2 + 3 + 4).</p>
 <p>From this metamodel definition we generate, using EMF, a set of java classes.</p>
-<p>You can find the implementation of TEL0 abstract syntax in <a href="https://github.com/manuelleduc/alex/tree/master/examples/tel0.model">github</a>.</p>
+<p>You can find the implementation of TEL0 abstract syntax in <a href="https://github.com/diverse-project/alex/tree/master/examples/tel0.model">github</a>.</p>
 <h1 id="revisitor">Revisitor<a class="headerlink" href="#revisitor" title="Permanent link">#</a></h1>
 <p>In addition to the set of java class, Alex offers the generation of a abstract, visitor-like, interface called a <em>Revisitor</em>.</p>
 <p>To understand this tutorial, and to use Alex, it is not required to understand the Revisitor mechanism.
@@ -255,7 +255,7 @@ This alg fields contains an instance of the currently defined semantics, in the 
 <p>The good thing is, since obj.lhs is an abstract Exp object, we don't know statically if the returned semantic object will be for a Sum or a LitVal object, still we know that the returned value will be a string that we will be able to concatenate before returning the resulting string.</p>
 <p><strong>Summary</strong></p>
 <p>So far we have defined a first semantics for TEL0, which allow to pretty print arbitrary instances of TEL0 abstract syntax.</p>
-<p>A working implementation of TEL0 pretty printing is available in <a href="https://github.com/manuelleduc/alex/tree/master/examples/tel0.prettyprint">github</a></p>
+<p>A working implementation of TEL0 pretty printing is available in <a href="https://github.com/diverse-project/alex/tree/master/examples/tel0.prettyprint">github</a></p>
 <h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">#</a></h2>
 <p>Most of the useful concept of Alex are already covered by the definition of the pretty printing semantics.</p>
 <p>To highlight the ability of define new semantics modularily (i.e. without having to impact previously defined source code) for a single abstract syntax, we will show how to implement a evaluation semantics for TEL0.</p>
@@ -303,10 +303,10 @@ This alg fields contains an instance of the currently defined semantics, in the 
 
 <p>We can observe that the structure is quite close to the pretty printer, the main different is the return type of eval, a long instead of a String.</p>
 <p>Consequently, if we execute the same <code>Add (LitVal(1), Add(LitVal(2), LitVal(3)))</code> program we obtains <code>6</code> instead of  <code>"1 + 2 + 3"</code>.</p>
-<p>A working implementation of TEL0 pretty printing is available in <a href="https://github.com/manuelleduc/alex/tree/master/examples/tel0.evaluate">github</a>.</p>
+<p>A working implementation of TEL0 pretty printing is available in <a href="https://github.com/diverse-project/alex/tree/master/examples/tel0.evaluate">github</a>.</p>
 <h2 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">#</a></h2>
 <p>So far we have defined two semantics for TEL0. But the interesting part is to be able to use our language to execute programs.</p>
-<p>The <code>tel0.tests</code> project, available on <a href="https://github.com/manuelleduc/alex/tree/master/examples/tel0.tests">github</a>, contains a single test class <code>tel0.tests.Tel0Test</code> which showcase how to use our language.</p>
+<p>The <code>tel0.tests</code> project, available on <a href="https://github.com/diverse-project/alex/tree/master/examples/tel0.tests">github</a>, contains a single test class <code>tel0.tests.Tel0Test</code> which showcase how to use our language.</p>
 <p>The source Below is a commented version of the <code>Tel0Test</code> class.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -387,7 +387,7 @@ This alg fields contains an instance of the currently defined semantics, in the 
 <span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Assertions</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
 
-<span class="c1">// imports of the two semantics, in the form of the revisitor </span>
+<span class="c1">// imports of the two semantics, in the form of the revisitor</span>
 <span class="c1">// generated from the *.ale semantics definition.</span>
 <span class="kn">import</span> <span class="nn">evaluate.revisitor.impl.EvaluateRevisitor</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">prettyprint.revisitor.impl.PrettyprintRevisitor</span><span class="o">;</span>
@@ -402,9 +402,9 @@ This alg fields contains an instance of the currently defined semantics, in the 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tel0Test</span> <span class="o">{</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Instantiation of the revisitors. The imported revisitors are </span>
-<span class="cm">     * Java 8 interfaces with default methods. We define anonymous </span>
-<span class="cm">     * classes from the interfaces in order to be able to </span>
+<span class="cm">     * Instantiation of the revisitors. The imported revisitors are</span>
+<span class="cm">     * Java 8 interfaces with default methods. We define anonymous</span>
+<span class="cm">     * classes from the interfaces in order to be able to</span>
 <span class="cm">     * instantiate them (cf. https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html).</span>
 <span class="cm">     */</span>
     <span class="kd">private</span> <span class="kd">final</span> <span class="n">EvaluateRevisitor</span> <span class="n">revExec</span>
@@ -414,7 +414,7 @@ This alg fields contains an instance of the currently defined semantics, in the 
 
     <span class="cm">/**</span>
 <span class="cm">     * Creation of a simple TEL0 program by metamodel manipulation.</span>
-<span class="cm">     * </span>
+<span class="cm">     *</span>
 <span class="cm">     * @return 1 + 2</span>
 <span class="cm">     */</span>
     <span class="kd">private</span> <span class="n">Exp</span> <span class="nf">createModel0</span><span class="o">()</span> <span class="o">{</span>
@@ -424,7 +424,7 @@ This alg fields contains an instance of the currently defined semantics, in the 
         <span class="c1">// Creation a literal value with the value 1.</span>
         <span class="kd">final</span> <span class="n">LitVal</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Tel0Factory</span><span class="o">.</span><span class="na">eINSTANCE</span><span class="o">.</span><span class="na">createLitVal</span><span class="o">();</span>
         <span class="n">x</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
-        <span class="c1">// Affectation of the value 1 to the left-hand side of </span>
+        <span class="c1">// Affectation of the value 1 to the left-hand side of</span>
         <span class="c1">// the sum.</span>
         <span class="n">exp</span><span class="o">.</span><span class="na">setLhs</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
 
