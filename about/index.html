@@ -7,16 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="shortcut icon" href="./img/favicon.ico">
-  <title>Alex Language</title>
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>About - Alex Language</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
-  <script src="./js/jquery-2.1.1.min.js" defer></script>
-  <script src="./js/modernizr-2.8.3.min.js" defer></script>
+  <script>
+    // Current page data
+    var mkdocs_page_name = "About";
+    var mkdocs_page_input_path = "about.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -29,9 +36,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="./." class="icon icon-home"> Alex Language</a>
+        <a href=".." class="icon icon-home"> Alex Language</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -43,42 +50,51 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="./.">Alex Language</a>
+    <a class="" href="..">Alex Language</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="./installation/">Installation</a>
+    <a class="" href="../installation/">Installation</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="./getting-started/">Getting Started</a>
+    <a class="" href="../getting-started/">Getting Started</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="./extension/">Extension</a>
+    <a class="" href="../extension/">Extension</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="./composition/">Composition</a>
+    <a class="" href="../composition/">Composition</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="./revisitor/">Revisitor</a>
+    <a class="" href="../revisitor/">Revisitor</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="./publications/">Publications</a>
+    <a class="" href="../publications/">Publications</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="./about/">About</a>
+    <a class="current" href="./">About</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#team">Team</a></li>
+    
+
+    <li class="toctree-l2"><a href="#core-contributors">Core contributors</a></li>
+    
+
+    </ul>
 	    </li>
           
         </ul>
@@ -91,7 +107,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="./.">Alex Language</a>
+        <a href="..">Alex Language</a>
       </nav>
 
       
@@ -99,9 +115,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="./.">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
+      
     
+    <li>About</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -111,22 +129,27 @@
           <div role="main">
             <div class="section">
               
-
-  <h1 id="search">Search Results</h1>
-
-  <form id="content_search" action="search.html">
-    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-    <input name="q" id="mkdocs-search-query" type="text" class="search_input search-query ui-autocomplete-input" placeholder="Search the Docs" autocomplete="off" autofocus title="Type search term here">
-  </form>
-
-  <div id="mkdocs-search-results" class="search-results">
-    Searching...
-  </div>
-
-
+                <h1 id="team">Team</h1>
+<p>The Alex language have been developed a part of the <a href="http://gemoc.org/ale/">ALE</a>, a research associate teem between the <a href="http://diverse.irisa.fr/">DiverSE team</a> at <a href="https://www.inria.fr/">Inria</a> (France) and the <a href="https://www.cwi.nl/research-groups/software-analysis-and-transformation">SWAT team</a> at <a href="https://www.cwi.nl">CWI</a> (The Netherlands).</p>
+<h1 id="core-contributors">Core contributors</h1>
+<p>Listing of the main engineering and scientific efforts leading to the creation of the Alex language.</p>
+<ul>
+<li><a href="http://mleduc.xyz/">Manuel Leduc</a></li>
+<li><a href="https://tdegueul.github.io/">Thomas Degueule</a></li>
+<li><a href="combemale.fr">Benoit Combemale</a></li>
+<li><a href="http://www.cwi.nl/~storm/">Tijs van der Storm</a></li>
+</ul>
+              
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../publications/" class="btn btn-neutral" title="Publications"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -150,12 +173,14 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../publications/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
       
     </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="./js/theme.js" defer></script>
-      <script src="./search/main.js" defer></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>
