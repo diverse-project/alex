@@ -30,6 +30,10 @@ We introduce the `Exp` abstract class in order to allow the recursive definition
 
 From this metamodel definition we generate, using EMF, a set of java classes.
 
+
+
+You can find the implementation of TEL0 abstract syntax in [github](https://github.com/manuelleduc/alex/tree/master/examples/tel0.model).
+
 # Revisitor
 
 In addition to the set of java class, Alex offers the generation of a abstract, visitor-like, interface called a *Revisitor*.
@@ -45,13 +49,13 @@ Once we have defined the abstract syntax of our language, we want to give it som
 
 The good news is, using Alex it is easy to define multiple meanings to a single abstract syntax in a modular way.
 
-We will show how to add a pretty printer and an evaluation semantics for TEL0.
+We will show how to add a pretty printer and an evaluation semantics for TEL0, in a modular way.
 
 ## Pretty Printing
 
 The pretty printer is a simple way to transform the object graph of an instance of the abstract syntax to a user readable string.
 
-For instance `Add (LitVal(1), Add(LitVal(2), LitVal(3)))` will be pretty printed to "1 + 2 + 3".
+For instance `Add (LitVal(1), Add(LitVal(2), LitVal(3)))` will be pretty printed to `"1 + 2 + 3"`.
 
 The following Alex program is the definition of the pretty print semantics for TEL0.
 
@@ -72,7 +76,7 @@ open class LitVal {
 
 open class Sum {
 	override String print() {
-		rev.$(obj.lhs).print() + ' + ' + rev.$(obj.rhs).print()
+		alg.$(obj.lhs).print() + ' + ' + alg.$(obj.rhs).print()
 	}
 }
 ```
@@ -113,8 +117,63 @@ The good thing is, since obj.lhs is an abstract Exp object, we don't know static
 
 So far we have defined a first semantics for TEL0, which allow to pretty print arbitrary instances of TEL0 abstract syntax.
 
-# Evaluation
+A working implementation of TEL0 pretty printing is available in [github](https://github.com/manuelleduc/alex/tree/master/examples/tel0.prettyprint)
+
+## Evaluation
 
 Most of the useful concept of Alex are already covered by the definition of the pretty printing semantics.
 
-To highlight the ability of define new semantics modularly for a single abstract syntax, we will show how to implement a evaluation semantics for TEL0.
+To highlight the ability of define new semantics modularily (i.e. without having to impact previously defined source code) for a single abstract syntax, we will show how to implement a evaluation semantics for TEL0.
+
+We simply have to create a new alex file, give it a new behavior name, and import the same ecore metamodel.
+
+Of course the signature of the open class methods and will be different.
+
+ ```alex
+behavior evaluate
+
+import ecore "platform:/resource/tel0.model/model/tel0.ecore"
+
+open abstract class Exp {
+	abstract def long eval()
+}
+
+open class LitVal {
+	override long eval() {
+		obj.value
+	}
+}
+
+open class Sum {
+	override long eval() {
+		alg.$(obj.lhs).eval() + alg.$(obj.rhs).eval()
+	}
+}
+ ```
+
+We can observe that the structure is quite close to the pretty printer, the main different is the return type of eval, a long instead of a String.
+
+Consequently, if we execute the same `Add (LitVal(1), Add(LitVal(2), LitVal(3)))` program we obtains `6` instead of  `"1 + 2 + 3"`.
+
+A working implementation of TEL0 pretty printing is available in [github](https://github.com/manuelleduc/alex/tree/master/examples/tel0.evaluate).
+
+# Conclusion
+
+So far we have implemented an abstract syntax and two semantics for the TEL0 toy language.
+
+It can look deceiving, but doing so we learned most of the main concepts required to build larger languages.
+
+# Next
+
+## Using Alex
+
+The main point of Alex not covered by this introduction is the language [extension](./extension.md) and [composition](./composition.md) mechanisms.
+
+In addition, the code generation mechanisms underlying Alex are covered in the [Revisitor](./revisitor.md) page.
+
+## EMF Ecosystem
+
+Once a language have been defined using EMF, our language can be improved in several ways:
+
+- A textual grammar with [Xtext](https://www.eclipse.org/Xtext/).
+- A graphical representation with [Sirius](https://www.obeo.fr/fr/produits/eclipse-sirius).
