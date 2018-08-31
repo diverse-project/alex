@@ -9,7 +9,7 @@ The Alex language have been developed a part of the [ALE](http://gemoc.org/ale/)
 
 # Core contributors
 
-Listing of the main engineering and scientific efforts leading to the creation of the Alex language.
+Listing of the people which contributed to the main engineering and scientific efforts leading to the creation of the Alex language.
 
 - [Manuel Leduc](http://mleduc.xyz/);
 - [Thomas Degueule](https://tdegueul.github.io/);
