@@ -32,7 +32,7 @@ From this metamodel definition we generate, using EMF, a set of java classes.
 
 
 
-You can find the implementation of TEL0 abstract syntax in [github](https://github.com/manuelleduc/alex/tree/master/examples/tel0.model).
+You can find the implementation of TEL0 abstract syntax in [github](https://github.com/diverse-project/alex/tree/master/examples/tel0.model).
 
 # Revisitor
 
@@ -117,7 +117,7 @@ The good thing is, since obj.lhs is an abstract Exp object, we don't know static
 
 So far we have defined a first semantics for TEL0, which allow to pretty print arbitrary instances of TEL0 abstract syntax.
 
-A working implementation of TEL0 pretty printing is available in [github](https://github.com/manuelleduc/alex/tree/master/examples/tel0.prettyprint)
+A working implementation of TEL0 pretty printing is available in [github](https://github.com/diverse-project/alex/tree/master/examples/tel0.prettyprint)
 
 ## Evaluation
 
@@ -155,13 +155,13 @@ We can observe that the structure is quite close to the pretty printer, the main
 
 Consequently, if we execute the same `Add (LitVal(1), Add(LitVal(2), LitVal(3)))` program we obtains `6` instead of  `"1 + 2 + 3"`.
 
-A working implementation of TEL0 pretty printing is available in [github](https://github.com/manuelleduc/alex/tree/master/examples/tel0.evaluate).
+A working implementation of TEL0 pretty printing is available in [github](https://github.com/diverse-project/alex/tree/master/examples/tel0.evaluate).
 
 ## Execution
 
 So far we have defined two semantics for TEL0. But the interesting part is to be able to use our language to execute programs.
 
-The `tel0.tests` project, available on [github](https://github.com/manuelleduc/alex/tree/master/examples/tel0.tests), contains a single test class `tel0.tests.Tel0Test` which showcase how to use our language.
+The `tel0.tests` project, available on [github](https://github.com/diverse-project/alex/tree/master/examples/tel0.tests), contains a single test class `tel0.tests.Tel0Test` which showcase how to use our language.
 
 The source Below is a commented version of the `Tel0Test` class.
 
@@ -172,7 +172,7 @@ package tel0.tests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-// imports of the two semantics, in the form of the revisitor 
+// imports of the two semantics, in the form of the revisitor
 // generated from the *.ale semantics definition.
 import evaluate.revisitor.impl.EvaluateRevisitor;
 import prettyprint.revisitor.impl.PrettyprintRevisitor;
@@ -187,9 +187,9 @@ import tel0.model.tel0.Tel0Factory;
 public class Tel0Test {
 
 	/**
-	 * Instantiation of the revisitors. The imported revisitors are 
-	 * Java 8 interfaces with default methods. We define anonymous 
-	 * classes from the interfaces in order to be able to 
+	 * Instantiation of the revisitors. The imported revisitors are
+	 * Java 8 interfaces with default methods. We define anonymous
+	 * classes from the interfaces in order to be able to
 	 * instantiate them (cf. https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html).
 	 */
 	private final EvaluateRevisitor revExec
@@ -199,7 +199,7 @@ public class Tel0Test {
 
 	/**
 	 * Creation of a simple TEL0 program by metamodel manipulation.
-	 * 
+	 *
 	 * @return 1 + 2
 	 */
 	private Exp createModel0() {
@@ -209,7 +209,7 @@ public class Tel0Test {
 		// Creation a literal value with the value 1.
 		final LitVal x = Tel0Factory.eINSTANCE.createLitVal();
 		x.setValue(1L);
-		// Affectation of the value 1 to the left-hand side of 
+		// Affectation of the value 1 to the left-hand side of
 		// the sum.
 		exp.setLhs(x);
 

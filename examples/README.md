@@ -7,8 +7,8 @@ This repository is structured as follows:
 
 ## Playing with the examples
 
-1. Setup an ALE environment following the [installation instructions](https://github.com/manuelleduc/ale-compiler)
-1. Clone this repository locally, eg. `git clone https://github.com/manuelleduc/ale-compiler-benchmarks`
+1. Setup an ALE environment following the [installation instructions](https://github.com/diverse-project/ale-compiler)
+1. Clone this repository locally, eg. `git clone https://github.com/diverse-project/ale-compiler-benchmarks`
 1. Import all the projects contained in the `simple` directory in Eclipse
 ..* `File -> Import -> Existing Projects into Workspace`
 ..* Select the `simple` directory as root directory in the dialog
