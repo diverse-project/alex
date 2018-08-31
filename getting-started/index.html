@@ -261,23 +261,46 @@ This alg fields contains an instance of the currently defined semantics, in the 
 <p>To highlight the ability of define new semantics modularily (i.e. without having to impact previously defined source code) for a single abstract syntax, we will show how to implement a evaluation semantics for TEL0.</p>
 <p>We simply have to create a new alex file, give it a new behavior name, and import the same ecore metamodel.</p>
 <p>Of course the signature of the open class methods and will be different.</p>
-<p>```alex
-behavior evaluate</p>
-<p>import ecore "platform:/resource/tel0.model/model/tel0.ecore"</p>
-<p>open abstract class Exp {
-    abstract def long eval()
-}</p>
-<p>open class LitVal {
-    override long eval() {
-        obj.value
-    }
-}</p>
-<p>open class Sum {
-    override long eval() {
-        alg.$(obj.lhs).eval() + alg.$(obj.rhs).eval()
-    }
-}
- ```</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">behavior</span> <span class="n">evaluate</span>
+
+<span class="kn">import</span> <span class="nn">ecore</span> <span class="s2">&quot;platform:/resource/tel0.model/model/tel0.ecore&quot;</span>
+
+<span class="nb">open</span> <span class="n">abstract</span> <span class="k">class</span> <span class="nc">Exp</span> <span class="p">{</span>
+    <span class="n">abstract</span> <span class="k">def</span> <span class="nf">long</span> <span class="nb">eval</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="nb">open</span> <span class="k">class</span> <span class="nc">LitVal</span> <span class="p">{</span>
+    <span class="n">override</span> <span class="nb">long</span> <span class="nb">eval</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">value</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">open</span> <span class="k">class</span> <span class="nc">Sum</span> <span class="p">{</span>
+    <span class="n">override</span> <span class="nb">long</span> <span class="nb">eval</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">alg</span><span class="o">.</span><span class="err">$</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">lhs</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="o">+</span> <span class="n">alg</span><span class="o">.</span><span class="err">$</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
 <p>We can observe that the structure is quite close to the pretty printer, the main different is the return type of eval, a long instead of a String.</p>
 <p>Consequently, if we execute the same <code>Add (LitVal(1), Add(LitVal(2), LitVal(3)))</code> program we obtains <code>6</code> instead of  <code>"1 + 2 + 3"</code>.</p>
 <p>A working implementation of TEL0 pretty printing is available in <a href="https://github.com/manuelleduc/alex/tree/master/examples/tel0.evaluate">github</a>.</p>
