@@ -1,0 +1,19 @@
+behavior prettyprint
+
+import ecore "platform:/resource/tel0.model/model/tel0.ecore"
+
+open abstract class Exp {
+	abstract def String print()
+}
+
+open class LitVal {
+	override String print() {
+		obj.value.toString
+	}
+}
+
+open class Sum {
+	override String print() {
+		alg.$(obj.lhs).print() + ' + ' + alg.$(obj.rhs).print() 
+	}
+}

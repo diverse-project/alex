@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/tel0.model/src-gen" creationIcons="false" editDirectory="/tel0.model.edit/src-gen"
+    editorDirectory="/tel0.model.editor/src-gen" modelPluginID="tel0.model" modelName="Tel0"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="10.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>tel0.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Tel0" basePackage="tel0.model" disposableProviderFactory="true"
+      ecorePackage="tel0.ecore#/">
+    <genClasses ecoreClass="tel0.ecore#//Exp"/>
+    <genClasses ecoreClass="tel0.ecore#//LitVal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tel0.ecore#//LitVal/value"/>
+    </genClasses>
+    <genClasses ecoreClass="tel0.ecore#//Sum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tel0.ecore#//Sum/lhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tel0.ecore#//Sum/rhs"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

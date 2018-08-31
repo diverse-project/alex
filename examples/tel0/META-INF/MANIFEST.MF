@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: tel0.model;singleton:=true
+Automatic-Module-Name: tel0.model
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-10
+Export-Package: tel0.model.tel0,
+ tel0.model.tel0.impl,
+ tel0.model.tel0.util
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.core.runtime,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0"
+Bundle-ActivationPolicy: lazy
