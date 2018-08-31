@@ -5,7 +5,11 @@ nav:
   - 'index.md'
   - 'installation.md'
   - 'getting-started.md'
+  - 'extension.md'
+  - 'composition.md'
   - 'revisitor.md'
+  - 'publications.md'
+  - 'about.md'
 markdown_extensions:
   - codehilite:
       linenums: true
