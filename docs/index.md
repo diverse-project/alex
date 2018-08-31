@@ -11,3 +11,8 @@ Alex is a language that provides a modular approach for defining external visito
 
 - Java-like language;
 - Seamlessly integrated with the eclipse ecosystem.
+
+## Sources
+
+The sources of the project are available on [github](https://diverse-project.github.io/alex/).
+
