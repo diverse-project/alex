@@ -10,7 +10,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-10
 Export-Package: tel0.model.tel0,
  tel0.model.tel0.impl,
- tel0.model.tel0.util
+ tel0.model.tel0.util,
+ tel0.revisitor
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.core.runtime,
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0"

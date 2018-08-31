@@ -3,7 +3,6 @@
   <viewpoint:DAnalysis xmi:id="_uZwr4KuFEeil6qN00ENNZA" selectedViews="_unN5EKuFEeil6qN00ENNZA" version="13.0.0.201804031646">
     <semanticResources>tel0.ecore</semanticResources>
     <semanticResources>tel0.genmodel</semanticResources>
-    <semanticResources>../src/prettyprint.ale</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_unN5EKuFEeil6qN00ENNZA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_usFK8KuFEeil6qN00ENNZA" name="tel0" repPath="#_uo4tAKuFEeil6qN00ENNZA">

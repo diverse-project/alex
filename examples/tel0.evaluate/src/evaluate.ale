@@ -1,0 +1,19 @@
+behavior evaluate
+
+import ecore "platform:/resource/tel0.model/model/tel0.ecore"
+
+open abstract class Exp {
+	abstract def long eval()
+}
+
+open class LitVal {
+	override long eval() {
+		obj.value
+	}
+}
+
+open class Sum {
+	override long eval() {
+		alg.$(obj.lhs).eval() + alg.$(obj.rhs).eval()
+	}
+}

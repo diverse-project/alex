@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Evaluate
+Bundle-SymbolicName: tel0.evaluate
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: tel0.evaluate
+Bundle-RequiredExecutionEnvironment: JavaSE-10
+Require-Bundle: tel0.model;bundle-version="0.1.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0"
