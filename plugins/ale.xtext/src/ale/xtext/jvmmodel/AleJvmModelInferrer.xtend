@@ -11,13 +11,14 @@ import ale.xtext.utils.NamingUtils
 import com.google.inject.Inject
 import java.util.Comparator
 import java.util.List
+import org.eclipse.e4.core.services.log.Logger
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.ui.PlatformUI
 import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtext.common.types.JvmTypeReference
-import org.eclipse.xtext.util.IResourceScopeCache
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
@@ -33,6 +34,7 @@ class AleJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension EcoreUtils
 	@Inject extension NamingUtils
 	@Inject extension AleUtils
+	Logger logger = PlatformUI.getWorkbench().getService(typeof(Logger));
 
 	@Data
 	public static class ResolvedClass {
@@ -105,20 +107,24 @@ class AleJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def dispatch void infer(AleRoot modelRoot, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		root = modelRoot
+		try {
+			root = modelRoot
 
-		preProcess()
-		
-		inferRevisitorImplementation(acceptor)
+			preProcess()
 
-		resolved
-			.forEach[
-				inferOperationInterface(acceptor)
+			inferRevisitorImplementation(acceptor)
 
-				// Don't infer implementation for @Required classes
-				if (!key.eCls.hasRequiredAnnotation)
-					inferOperationImplementation(acceptor)
-			]
+			resolved
+				.forEach[
+					inferOperationInterface(acceptor)
+
+					// Don't infer implementation for @Required classes
+					if (!key.eCls.hasRequiredAnnotation)
+						inferOperationImplementation(acceptor)
+				]
+		} catch (Exception e) {
+			logger.error(e, e.message)
+		}
 	}
 
 	private def void inferRevisitorImplementation(IJvmDeclaredTypeAcceptor acceptor) {

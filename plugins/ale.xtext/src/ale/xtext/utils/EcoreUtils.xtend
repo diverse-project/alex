@@ -189,12 +189,10 @@ class EcoreUtils {
 			name == cls.name
 		]
 
-		if (ret === null) {
-			println('''Nothing found for «cls» in «gm»''')
-		}
+		if (ret === null)
+			throw new AlexException('''No GenClass for «cls.EPackage.name».«cls.name» in «gm»''')
 
-		ret
-
+		return ret
 	}
 
 	def List<GenPackage> getAllGenPkgs(List<GenModel> gms) {
