@@ -116,11 +116,11 @@ class AleJvmModelInferrer extends AbstractModelInferrer {
 
 			resolved
 				.forEach[
-					inferOperationInterface(acceptor)
+					key.inferOperationInterface(acceptor)
 
 					// Don't infer implementation for @Required classes
-					if (!key.eCls.hasRequiredAnnotation)
-						inferOperationImplementation(acceptor)
+					if (!key.eCls.hasRequiredAnnotation && value?.aleCls === null)
+						key.inferOperationImplementation(acceptor)
 				]
 		} catch (Exception e) {
 			logger.error(e, e.message)
@@ -160,16 +160,16 @@ class AleJvmModelInferrer extends AbstractModelInferrer {
 			'''«cls.denotationName»__AS__«pcls.value.eCls.denotationName»'''
 	}
 
-	private def void inferOperationInterface(Pair<ResolvedClass, ResolvedClass> r, IJvmDeclaredTypeAcceptor acceptor) {
-		acceptor.accept(r.key.aleCls.toClass(r.key.aleCls.operationInterfaceFqn))[
+	private def void inferOperationInterface(ResolvedClass resolved, IJvmDeclaredTypeAcceptor acceptor) {
+		acceptor.accept(resolved.aleCls.toClass(resolved.aleCls.operationInterfaceFqn))[
 			interface = true
 
 			superTypes +=
-				r.key.eCls.getAllAleClasses(root)
-				.filter[it != r.key.aleCls && generated]
+				resolved.eCls.getAllAleClasses(root)
+				.filter[it != resolved.aleCls && generated]
 				.map[operationInterfaceFqn.typeRef]
 
-			members += r.key.aleCls.methods.map[m |
+			members +=resolved.aleCls.methods.map[m |
 				m.toMethod(m.name, m.type)[
 					abstract = true
 					parameters += m.params.map[cloneWithProxies]
@@ -178,38 +178,38 @@ class AleJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 
-	private def void inferOperationImplementation(Pair<ResolvedClass, ResolvedClass> r, IJvmDeclaredTypeAcceptor acceptor) {
-		acceptor.accept(r.key.aleCls.toClass(r.key.aleCls.operationImplFqn))[
-			val superOp = r.key.aleCls.findNearestGeneratedParent
+	private def void inferOperationImplementation(ResolvedClass resolved, IJvmDeclaredTypeAcceptor acceptor) {
+		acceptor.accept(resolved.aleCls.toClass(resolved.aleCls.operationImplFqn))[
+			val superOp = resolved.aleCls.findNearestGeneratedParent
 
-			abstract = r.key.aleCls.abstract
+			abstract = resolved.aleCls.abstract
 
-			superTypes += r.key.aleCls.operationInterfaceFqn.typeRef
+			superTypes += resolved.aleCls.operationInterfaceFqn.typeRef
 
 			// In case of multiple-inheritance, we should
 			// use some kind of delegate instead
-			if (superOp !== null && !(superOp.abstract || r.key.eCls.ESuperTypes.exists[hasRequiredAnnotation]))
+			if (superOp !== null && !(superOp.abstract || resolved.eCls.ESuperTypes.exists[hasRequiredAnnotation]))
 				superTypes += superOp.operationImplFqn.typeRef
 
 			val asig = algSignature
 
-			members += r.key.aleCls.toField("obj", r.key.genCls.qualifiedInterfaceName.typeRef)
-			members += r.key.aleCls.toField("alg", asig)
+			members += resolved.aleCls.toField("obj", resolved.genCls.qualifiedInterfaceName.typeRef)
+			members += resolved.aleCls.toField("alg", asig)
 
-			members += r.key.aleCls.toConstructor()[
-				parameters += r.key.aleCls.toParameter("obj", r.key.genCls.qualifiedInterfaceName.typeRef)
-				parameters += r.key.aleCls.toParameter("alg", asig)
+			members += resolved.aleCls.toConstructor()[
+				parameters += resolved.aleCls.toParameter("obj", resolved.genCls.qualifiedInterfaceName.typeRef)
+				parameters += resolved.aleCls.toParameter("alg", asig)
 
 				body = '''
 «««					«IF superOp !== null»super(obj, alg);«ENDIF»
-					«IF superOp !== null && !(superOp.abstract || r.key.eCls.ESuperTypes.exists[hasRequiredAnnotation])»super(obj, alg);«ENDIF»
+					«IF superOp !== null && !(superOp.abstract || resolved.eCls.ESuperTypes.exists[hasRequiredAnnotation])»super(obj, alg);«ENDIF»
 					this.obj = obj;
 					this.alg = alg;
 				'''
 			]
 
 
-			val methods = r.key.aleCls.methods
+			val methods = resolved.aleCls.methods
 			members += methods.filter[it instanceof ConcreteMethod].map [ m |
 				m.toMethod(m.name, m.type) [
 					abstract = m instanceof AbstractMethod
@@ -217,7 +217,7 @@ class AleJvmModelInferrer extends AbstractModelInferrer {
 					parameters += m.params.map[cloneWithProxies]
 
 					if (m instanceof ConcreteMethod)
-						if (r.key.aleCls.methods.contains(m))
+						if (resolved.aleCls.methods.contains(m))
 							body = m.block
 				]
 			]
