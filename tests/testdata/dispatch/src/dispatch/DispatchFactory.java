@@ -94,6 +94,33 @@ public interface DispatchFactory extends EFactory {
 	Container createContainer();
 
 	/**
+	 * Returns a new object of class '<em>H</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>H</em>'.
+	 * @generated
+	 */
+	H createH();
+
+	/**
+	 * Returns a new object of class '<em>I</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>I</em>'.
+	 * @generated
+	 */
+	I createI();
+
+	/**
+	 * Returns a new object of class '<em>J</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>J</em>'.
+	 * @generated
+	 */
+	J createJ();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

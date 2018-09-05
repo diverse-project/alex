@@ -64,6 +64,9 @@ public class DispatchFactoryImpl extends EFactoryImpl implements DispatchFactory
 			case DispatchPackage.F: return createF();
 			case DispatchPackage.G: return createG();
 			case DispatchPackage.CONTAINER: return createContainer();
+			case DispatchPackage.H: return createH();
+			case DispatchPackage.I: return createI();
+			case DispatchPackage.J: return createJ();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -147,6 +150,36 @@ public class DispatchFactoryImpl extends EFactoryImpl implements DispatchFactory
 	public dispatch.Container createContainer() {
 		ContainerImpl container = new ContainerImpl();
 		return container;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public H createH() {
+		HImpl h = new HImpl();
+		return h;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public I createI() {
+		IImpl i = new IImpl();
+		return i;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public J createJ() {
+		JImpl j = new JImpl();
+		return j;
 	}
 
 	/**

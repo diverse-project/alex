@@ -12,6 +12,9 @@
     <genClasses ecoreClass="../testdata/dispatch/model/Dispatch.ecore#//E"/>
     <genClasses ecoreClass="../testdata/dispatch/model/Dispatch.ecore#//F"/>
     <genClasses ecoreClass="../testdata/dispatch/model/Dispatch.ecore#//G"/>
+    <genClasses ecoreClass="../testdata/dispatch/model/Dispatch.ecore#//H"/>
+    <genClasses ecoreClass="../testdata/dispatch/model/Dispatch.ecore#//I"/>
+    <genClasses ecoreClass="../testdata/dispatch/model/Dispatch.ecore#//J"/>
     <genClasses ecoreClass="../testdata/dispatch/model/Dispatch.ecore#//Container">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../testdata/dispatch/model/Dispatch.ecore#//Container/objs"/>
     </genClasses>

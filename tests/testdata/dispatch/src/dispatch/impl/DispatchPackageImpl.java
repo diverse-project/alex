@@ -75,6 +75,27 @@ public class DispatchPackageImpl extends EPackageImpl implements DispatchPackage
 	private EClass containerEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass hEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass jEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -102,7 +123,7 @@ public class DispatchPackageImpl extends EPackageImpl implements DispatchPackage
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link DispatchPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -116,7 +137,8 @@ public class DispatchPackageImpl extends EPackageImpl implements DispatchPackage
 		if (isInited) return (DispatchPackage)EPackage.Registry.INSTANCE.getEPackage(DispatchPackage.eNS_URI);
 
 		// Obtain or create and register package
-		DispatchPackageImpl theDispatchPackage = (DispatchPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DispatchPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DispatchPackageImpl());
+		Object registeredDispatchPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		DispatchPackageImpl theDispatchPackage = registeredDispatchPackage instanceof DispatchPackageImpl ? (DispatchPackageImpl)registeredDispatchPackage : new DispatchPackageImpl();
 
 		isInited = true;
 
@@ -129,7 +151,6 @@ public class DispatchPackageImpl extends EPackageImpl implements DispatchPackage
 		// Mark meta-data to indicate it can't be changed
 		theDispatchPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(DispatchPackage.eNS_URI, theDispatchPackage);
 		return theDispatchPackage;
@@ -221,6 +242,33 @@ public class DispatchPackageImpl extends EPackageImpl implements DispatchPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getH() {
+		return hEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getI() {
+		return iEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getJ() {
+		return jEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DispatchFactory getDispatchFactory() {
 		return (DispatchFactory)getEFactoryInstance();
 	}
@@ -260,6 +308,12 @@ public class DispatchPackageImpl extends EPackageImpl implements DispatchPackage
 
 		containerEClass = createEClass(CONTAINER);
 		createEReference(containerEClass, CONTAINER__OBJS);
+
+		hEClass = createEClass(H);
+
+		iEClass = createEClass(I);
+
+		jEClass = createEClass(J);
 	}
 
 	/**
@@ -296,6 +350,12 @@ public class DispatchPackageImpl extends EPackageImpl implements DispatchPackage
 		eEClass.getESuperTypes().add(this.getB());
 		fEClass.getESuperTypes().add(this.getC());
 		gEClass.getESuperTypes().add(this.getC());
+		hEClass.getESuperTypes().add(this.getD());
+		hEClass.getESuperTypes().add(this.getE());
+		iEClass.getESuperTypes().add(this.getF());
+		iEClass.getESuperTypes().add(this.getG());
+		jEClass.getESuperTypes().add(this.getH());
+		jEClass.getESuperTypes().add(this.getI());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(aEClass, dispatch.A.class, "A", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -314,6 +374,12 @@ public class DispatchPackageImpl extends EPackageImpl implements DispatchPackage
 
 		initEClass(containerEClass, dispatch.Container.class, "Container", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getContainer_Objs(), this.getA(), null, "objs", null, 0, -1, dispatch.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(hEClass, dispatch.H.class, "H", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(iEClass, dispatch.I.class, "I", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(jEClass, dispatch.J.class, "J", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
