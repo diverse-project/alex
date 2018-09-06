@@ -9,6 +9,6 @@ open class B {
 	}
 }
 
-open class RB {
+open abstract class RB {
 	abstract def void rbPrint()
 }

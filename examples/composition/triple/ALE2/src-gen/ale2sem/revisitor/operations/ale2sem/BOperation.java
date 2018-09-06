@@ -1,4 +1,4 @@
-package ale2sem.revisitor.operations;
+package ale2sem.revisitor.operations.ale2sem;
 
 @SuppressWarnings("all")
 public interface BOperation {

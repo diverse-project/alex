@@ -1,10 +1,10 @@
-package ale2sem.revisitor.operations.impl;
+package ale2sem.revisitor.operations.ale2sem.impl;
 
 import ale2.B;
 import ale2.RB;
 import ale2.revisitor.Ale2Revisitor;
-import ale2sem.revisitor.operations.BOperation;
-import ale2sem.revisitor.operations.RBOperation;
+import ale2sem.revisitor.operations.ale2sem.BOperation;
+import ale2sem.revisitor.operations.ale2sem.RBOperation;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 
@@ -12,9 +12,9 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 public class BOperationImpl implements BOperation {
   private B obj;
   
-  private Ale2Revisitor<BOperation, RBOperation> alg;
+  private Ale2Revisitor<? extends BOperation, ? extends RBOperation> alg;
   
-  public BOperationImpl(final B obj, final Ale2Revisitor<BOperation, RBOperation> alg) {
+  public BOperationImpl(final B obj, final Ale2Revisitor<? extends BOperation, ? extends RBOperation> alg) {
     this.obj = obj;
     this.alg = alg;
   }

@@ -1,12 +1,12 @@
-package ale1sem.revisitor.operations.impl;
+package ale1sem.revisitor.operations.ale1sem.impl;
 
 import ale1.A1;
 import ale1.RA1;
 import ale1.RA2;
 import ale1.revisitor.Ale1Revisitor;
-import ale1sem.revisitor.operations.A1Operation;
-import ale1sem.revisitor.operations.RA1Operation;
-import ale1sem.revisitor.operations.RA2Operation;
+import ale1sem.revisitor.operations.ale1sem.A1Operation;
+import ale1sem.revisitor.operations.ale1sem.RA1Operation;
+import ale1sem.revisitor.operations.ale1sem.RA2Operation;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 
@@ -14,9 +14,9 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 public class A1OperationImpl implements A1Operation {
   private A1 obj;
   
-  private Ale1Revisitor<A1Operation, RA1Operation, RA2Operation> alg;
+  private Ale1Revisitor<? extends A1Operation, ? extends RA1Operation, ? extends RA2Operation> alg;
   
-  public A1OperationImpl(final A1 obj, final Ale1Revisitor<A1Operation, RA1Operation, RA2Operation> alg) {
+  public A1OperationImpl(final A1 obj, final Ale1Revisitor<? extends A1Operation, ? extends RA1Operation, ? extends RA2Operation> alg) {
     this.obj = obj;
     this.alg = alg;
   }

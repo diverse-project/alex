@@ -10,10 +10,10 @@ open class A1{
 	}
 }
 
-open class RA1 {
+open abstract class RA1 {
 	abstract def void ra1Print()
 }
 
-open class RA2 {
+open abstract class RA2 {
 	abstract def void ra2Print()
 }

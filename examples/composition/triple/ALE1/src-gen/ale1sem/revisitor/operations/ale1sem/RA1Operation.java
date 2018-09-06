@@ -1,4 +1,4 @@
-package ale1sem.revisitor.operations;
+package ale1sem.revisitor.operations.ale1sem;
 
 @SuppressWarnings("all")
 public interface RA1Operation {
