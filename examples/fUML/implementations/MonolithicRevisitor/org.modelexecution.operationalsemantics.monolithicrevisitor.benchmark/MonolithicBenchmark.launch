@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/org.modelexecution.operationalsemantics.monolithicrevisitor.benchmark/src/org/modelexecution/operationalsemantics/monolithicrevisitor/benchmark/BenchmarkGeneric.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.modelexecution.operationalsemantics.monolithicrevisitor.benchmark.BenchmarkGeneric"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="../../../benchmarks/xmi/ testperformance_variant1 monolithic_"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.modelexecution.operationalsemantics.monolithicrevisitor.benchmark"/>
+</launchConfiguration>
