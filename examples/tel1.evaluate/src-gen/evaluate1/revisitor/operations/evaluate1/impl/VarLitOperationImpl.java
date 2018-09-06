@@ -1,10 +1,10 @@
 package evaluate1.revisitor.operations.evaluate1.impl;
 
-import evaluate.revisitor.operations.evaluate.impl.ExpOperationImpl;
 import evaluate1.revisitor.operations.evaluate1.ExpOperation;
 import evaluate1.revisitor.operations.evaluate1.LitValOperation;
 import evaluate1.revisitor.operations.evaluate1.SumOperation;
 import evaluate1.revisitor.operations.evaluate1.VarLitOperation;
+import evaluate1.revisitor.operations.evaluate1.impl.ExpOperationImpl;
 import tel1.evaluate.Ctx;
 import tel1.model.tel1.VarLit;
 import tel1.revisitor.Tel1Revisitor;

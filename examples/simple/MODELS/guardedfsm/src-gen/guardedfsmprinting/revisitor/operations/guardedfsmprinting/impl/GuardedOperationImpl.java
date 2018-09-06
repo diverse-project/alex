@@ -1,5 +1,6 @@
 package guardedfsmprinting.revisitor.operations.guardedfsmprinting.impl;
 
+import fsmprinting.revisitor.operations.fsmprinting.impl.TransitionOperationImpl;
 import guardedfsm.Guarded;
 import guardedfsm.revisitor.GuardedfsmRevisitor;
 import guardedfsmprinting.revisitor.operations.guardedfsmprinting.AndOperation;
@@ -14,7 +15,6 @@ import guardedfsmprinting.revisitor.operations.guardedfsmprinting.OrOperation;
 import guardedfsmprinting.revisitor.operations.guardedfsmprinting.StateOperation;
 import guardedfsmprinting.revisitor.operations.guardedfsmprinting.TransitionOperation;
 import guardedfsmprinting.revisitor.operations.guardedfsmprinting.TruOperation;
-import guardedfsmprinting.revisitor.operations.guardedfsmprinting.impl.TransitionOperationImpl;
 
 @SuppressWarnings("all")
 public class GuardedOperationImpl extends TransitionOperationImpl implements GuardedOperation {

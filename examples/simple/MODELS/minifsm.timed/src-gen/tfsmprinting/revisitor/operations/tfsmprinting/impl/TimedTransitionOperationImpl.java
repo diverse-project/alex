@@ -1,11 +1,11 @@
 package tfsmprinting.revisitor.operations.tfsmprinting.impl;
 
-import fsmprinting.revisitor.operations.fsmprinting.impl.TransitionOperationImpl;
 import tfsmprinting.revisitor.operations.tfsmprinting.FinalStateOperation;
 import tfsmprinting.revisitor.operations.tfsmprinting.MachineOperation;
 import tfsmprinting.revisitor.operations.tfsmprinting.StateOperation;
 import tfsmprinting.revisitor.operations.tfsmprinting.TimedTransitionOperation;
 import tfsmprinting.revisitor.operations.tfsmprinting.TransitionOperation;
+import tfsmprinting.revisitor.operations.tfsmprinting.impl.TransitionOperationImpl;
 import timedminifsm.TimedTransition;
 import timedminifsm.revisitor.TimedminifsmRevisitor;
 
