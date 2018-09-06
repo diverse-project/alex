@@ -1,6 +1,6 @@
 behavior gfsmprint
 
-import ecore "platform:/resource/GFSM/model/gfsm.ecore"
+import ecore "platform:/resource/GFSM/model/gfsm.genmodel"
 
 
 open class Machine {

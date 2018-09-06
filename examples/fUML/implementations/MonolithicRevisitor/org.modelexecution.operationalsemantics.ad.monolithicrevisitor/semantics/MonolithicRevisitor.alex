@@ -12,7 +12,7 @@ import activitydiagram.Value
 import activitydiagram.Variable
 import activitydiagram.ActivitydiagramFactory
 
-import ecore "platform:/resource/org.modelexecution.operationalsemantics.ad.clean/model/activitydiagram.ecore"
+import ecore "platform:/resource/org.modelexecution.operationalsemantics.ad.clean/model/activitydiagram.genmodel"
 
 open class Activity {
 	def void main(List<InputValue> inputValues) {

@@ -1,6 +1,6 @@
 behavior printsimplea
 
-import ecore "platform:/resource/simplea/model/simplea.ecore"
+import ecore "platform:/resource/simplea/model/simplea.genmodel"
 
 open class A {
 	def void main() {

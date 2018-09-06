@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter
 import java.io.FileOutputStream
 import java.io.File
 
-import ecore "platform:/resource/org.xtext.activitydiagram.model/model/activitydiagram.ecore" 
+import ecore "platform:/resource/org.xtext.activitydiagram.model/model/activitydiagram.genmodel" 
 open class ForkNode {
 	override void execute(Context c) {
 		c.output.executedNodes.add(obj)

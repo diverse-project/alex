@@ -1,6 +1,6 @@
 behavior tfsmprinting
 
-import ecore "platform:/resource/minifsm.timed/model/TimedMiniFsm.ecore"
+import ecore "platform:/resource/minifsm.timed/model/TimedMiniFsm.genmodel"
 
 import ale fsmprinting
 

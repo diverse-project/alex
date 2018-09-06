@@ -2,7 +2,7 @@ behavior simpleexpressions_exec
 
 import simpleexpressions.*
 
-import ecore "platform:/resource/simpleexpressions.model/model/simpleexpressions.ecore"
+import ecore "platform:/resource/simpleexpressions.model/model/simpleexpressions.genmodel"
 
 open class SEIntegerComparisonExpression {
 	override Object execute() {

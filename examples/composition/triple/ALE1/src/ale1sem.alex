@@ -1,6 +1,6 @@
 behavior ale1sem
 
-import ecore "platform:/resource/ALE1/model/ale1.ecore"
+import ecore "platform:/resource/ALE1/model/ale1.genmodel"
 
 open class A1{
 	def void a1Print() {

@@ -1,6 +1,6 @@
 behavior test
 
-import ecore "platform:/resource/dispatch/model/Dispatch.ecore"
+import ecore "platform:/resource/dispatch/model/Dispatch.genmodel"
 
 open class A {}
 open class B {}

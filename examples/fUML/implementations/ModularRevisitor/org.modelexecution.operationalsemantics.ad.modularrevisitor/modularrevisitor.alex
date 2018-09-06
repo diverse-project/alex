@@ -1,6 +1,6 @@
 behavior modularactivitydiagram
 
-import ecore "platform:/resource/org.modelexecution.operationalsemantics.adruntime/model/adruntime.ecore"
+import ecore "platform:/resource/org.modelexecution.operationalsemantics.adruntime/model/adruntime.genmodel"
 
 open class Expression {
 	def void execute() {}

@@ -3,7 +3,7 @@ behavior evalhierarchicalfsm
 import basicFsmEnv.runtime.Context
 import basicFsmEnv.InitialState
 
-import ecore "platform:/resource/HierarchicalFsmEnv/model/hierarchicalFsmEnv.ecore"
+import ecore "platform:/resource/HierarchicalFsmEnv/model/hierarchicalFsmEnv.genmodel"
 
 import ale evalbasicfsm
 

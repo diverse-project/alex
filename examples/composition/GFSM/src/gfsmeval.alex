@@ -3,7 +3,7 @@ behavior gfsmeval
 import gfsm.dyn.Context
 import gfsm.InitialState
 
-import ecore "platform:/resource/GFSM/model/gfsm.ecore"
+import ecore "platform:/resource/GFSM/model/gfsm.genmodel"
 
 open class Machine {
 	def void execute(String[] events, Context ctx) {
