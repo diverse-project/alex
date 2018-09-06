@@ -28,7 +28,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 	EPackage pkg
 	GenModel gm
 	List<Pair<ResolvedClass, ResolvedClass>> resolved = newArrayList
-	private JvmTypeReference cachedRevSignature = null
+	JvmTypeReference cachedRevSignature = null
 	
 	@Inject extension JvmTypesBuilder
 	@Inject extension EcoreUtils
@@ -37,7 +37,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 	Logger logger = PlatformUI.getWorkbench().getService(typeof(Logger));
 
 	@Data
-	public static class ResolvedClass {
+	static class ResolvedClass {
 		AlexClass alexCls
 		public EClass eCls
 		GenClass genCls
@@ -116,11 +116,11 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 
 			resolved
 				.forEach[
-					inferOperationInterface(acceptor)
+					key.inferOperationInterface(acceptor)
 
 					// Don't infer implementation for @Required classes
-					if (!key.eCls.hasRequiredAnnotation)
-						inferOperationImplementation(acceptor)
+					if (!key.eCls.hasRequiredAnnotation && value?.alexCls === null)
+						key.inferOperationImplementation(acceptor)
 				]
 		} catch (Exception e) {
 			logger.error(e, e.message)
@@ -160,16 +160,16 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 			'''«cls.denotationName»__AS__«pcls.value.eCls.denotationName»'''
 	}
 
-	private def void inferOperationInterface(Pair<ResolvedClass, ResolvedClass> r, IJvmDeclaredTypeAcceptor acceptor) {
-		acceptor.accept(r.key.alexCls.toClass(r.key.alexCls.operationInterfaceFqn))[
+	private def void inferOperationInterface(ResolvedClass resolved, IJvmDeclaredTypeAcceptor acceptor) {
+		acceptor.accept(resolved.alexCls.toClass(resolved.alexCls.operationInterfaceFqn))[
 			interface = true
 
 			superTypes +=
-				r.key.eCls.getAllAlexClasses(root)
-				.filter[it != r.key.alexCls && generated]
+				resolved.eCls.getAllAlexClasses(root)
+				.filter[it != resolved.alexCls && generated]
 				.map[operationInterfaceFqn.typeRef]
 
-			members += r.key.alexCls.methods.map[m |
+			members += resolved.alexCls.methods.map[m |
 				m.toMethod(m.name, m.type)[
 					abstract = true
 					parameters += m.params.map[cloneWithProxies]
@@ -178,38 +178,38 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 
-	private def void inferOperationImplementation(Pair<ResolvedClass, ResolvedClass> r, IJvmDeclaredTypeAcceptor acceptor) {
-		acceptor.accept(r.key.alexCls.toClass(r.key.alexCls.operationImplFqn))[
-			val superOp = r.key.alexCls.findNearestGeneratedParent
+	private def void inferOperationImplementation(ResolvedClass resolved, IJvmDeclaredTypeAcceptor acceptor) {
+		acceptor.accept(resolved.alexCls.toClass(resolved.alexCls.operationImplFqn))[
+			val superOp = resolved.alexCls.findNearestGeneratedParent
 
-			abstract = r.key.alexCls.abstract
+			abstract = resolved.alexCls.abstract
 
-			superTypes += r.key.alexCls.operationInterfaceFqn.typeRef
+			superTypes += resolved.alexCls.operationInterfaceFqn.typeRef
 
 			// In case of multiple-inheritance, we should
 			// use some kind of delegate instead
-			if (superOp !== null && !(superOp.abstract || r.key.eCls.ESuperTypes.exists[hasRequiredAnnotation]))
+			if (superOp !== null && !(superOp.abstract || resolved.eCls.ESuperTypes.exists[hasRequiredAnnotation]))
 				superTypes += superOp.operationImplFqn.typeRef
 
 			val asig = algSignature
 
-			members += r.key.alexCls.toField("obj", r.key.genCls.qualifiedInterfaceName.typeRef)
-			members += r.key.alexCls.toField("alg", asig)
+			members += resolved.alexCls.toField("obj", resolved.genCls.qualifiedInterfaceName.typeRef)
+			members += resolved.alexCls.toField("alg", asig)
 
-			members += r.key.alexCls.toConstructor()[
-				parameters += r.key.alexCls.toParameter("obj", r.key.genCls.qualifiedInterfaceName.typeRef)
-				parameters += r.key.alexCls.toParameter("alg", asig)
+			members += resolved.alexCls.toConstructor()[
+				parameters += resolved.alexCls.toParameter("obj", resolved.genCls.qualifiedInterfaceName.typeRef)
+				parameters += resolved.alexCls.toParameter("alg", asig)
 
 				body = '''
 «««					«IF superOp !== null»super(obj, alg);«ENDIF»
-					«IF superOp !== null && !(superOp.abstract || r.key.eCls.ESuperTypes.exists[hasRequiredAnnotation])»super(obj, alg);«ENDIF»
+					«IF superOp !== null && !(superOp.abstract || resolved.eCls.ESuperTypes.exists[hasRequiredAnnotation])»super(obj, alg);«ENDIF»
 					this.obj = obj;
 					this.alg = alg;
 				'''
 			]
 
 
-			val methods = r.key.alexCls.methods
+			val methods = resolved.alexCls.methods
 			members += methods.filter[it instanceof ConcreteMethod].map [ m |
 				m.toMethod(m.name, m.type) [
 					abstract = m instanceof AbstractMethod
@@ -217,7 +217,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 					parameters += m.params.map[cloneWithProxies]
 
 					if (m instanceof ConcreteMethod)
-						if (r.key.alexCls.methods.contains(m))
+						if (resolved.alexCls.methods.contains(m))
 							body = m.block
 				]
 			]
@@ -251,37 +251,4 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 			else
 				Object.typeRef
 	}
-	
-//	def JvmTypeReference typeRef(Class<?> clazz, JvmTypeReference... typeArgs) {
-//		val key = typeArgs + #[clazz]
-//		if (!typecache.containsKey(key)) {
-//			println('CACHE MISS ' + key)
-//			return typecache.put(key, _typeReferenceBuilder.typeRef(clazz, typeArgs))
-//		} else {
-//			println('CACHE HIT')
-//			return typecache.get(key)
-//		}
-//	}
-//
-//	def JvmTypeReference typeRef(String typeName, JvmTypeReference... typeArgs) {
-//		val key = typeArgs + #[typeName]
-//		if (!typecache.containsKey(key)) {
-//			println('CACHE MISS ' + key)
-//			return typecache.put(key, _typeReferenceBuilder.typeRef(typeName, typeArgs))
-//		} else {
-//			println('CACHE HIT')
-//			return typecache.get(key)
-//		}
-//	}
-//
-//	def JvmTypeReference typeRef(JvmType type, JvmTypeReference... typeArgs) {
-//		val key = typeArgs + #[type]
-//		if (!typecache.containsKey(key)) {
-//			println('CACHE MISS ' + key)
-//			return typecache.put(key, _typeReferenceBuilder.typeRef(type, typeArgs))
-//		} else {
-//			println('CACHE HIT')
-//			return typecache.get(key)
-//		}
-//	}
 }

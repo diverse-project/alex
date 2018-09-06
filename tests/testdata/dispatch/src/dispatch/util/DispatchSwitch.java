@@ -124,6 +124,41 @@ public class DispatchSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DispatchPackage.H: {
+				H h = (H)theEObject;
+				T result = caseH(h);
+				if (result == null) result = caseD(h);
+				if (result == null) result = caseE(h);
+				if (result == null) result = caseB(h);
+				if (result == null) result = caseA(h);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DispatchPackage.I: {
+				I i = (I)theEObject;
+				T result = caseI(i);
+				if (result == null) result = caseF(i);
+				if (result == null) result = caseG(i);
+				if (result == null) result = caseC(i);
+				if (result == null) result = caseA(i);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DispatchPackage.J: {
+				J j = (J)theEObject;
+				T result = caseJ(j);
+				if (result == null) result = caseH(j);
+				if (result == null) result = caseI(j);
+				if (result == null) result = caseD(j);
+				if (result == null) result = caseE(j);
+				if (result == null) result = caseF(j);
+				if (result == null) result = caseG(j);
+				if (result == null) result = caseB(j);
+				if (result == null) result = caseC(j);
+				if (result == null) result = caseA(j);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -245,6 +280,51 @@ public class DispatchSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseContainer(Container object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>H</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>H</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseH(H object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>I</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>I</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseI(I object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>J</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>J</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJ(J object) {
 		return null;
 	}
 

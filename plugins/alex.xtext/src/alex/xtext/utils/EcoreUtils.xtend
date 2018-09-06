@@ -75,7 +75,7 @@ class EcoreUtils {
 			val isSuperType = o.key.EAllSuperTypes.exists [
 				it.name == cls.name && it.EPackage.name == cls.EPackage.name
 			]
-			o.key != cls && isSuperType && (o.value == cls || o.value === null)
+			o.key != cls && isSuperType && (o.value === null || o.value == cls || o.value.EAllSuperTypes.contains(cls))
 		]
 
 		return tmp.map[key].toSet.map [ k |
