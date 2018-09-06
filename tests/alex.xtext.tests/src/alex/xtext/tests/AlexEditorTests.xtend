@@ -26,7 +26,7 @@ class AlexEditorTests {
 	private static final String header =
 		'''
 			behavior test
-			import ecore "../testdata/boolexp/model/BoolExp.ecore"
+			import ecore "../testdata/boolexp/model/BoolExp.genmodel"
 		'''
 	
 	@Before
@@ -39,7 +39,7 @@ class AlexEditorTests {
 	def void testInvalidEcore() {
 		'''
 			behavior test
-			import ecore "data/metamodels/404.ecore"
+			import ecore "data/metamodels/404.genmodel"
 		'''.parse.ecoreImport.assertError(
 			AlexPackage.Literals::ECORE_IMPORT,
 			AlexValidator::SYNTAX_NOT_FOUND

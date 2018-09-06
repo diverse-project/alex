@@ -34,17 +34,17 @@ class GenerateRevisitorInterface implements IObjectActionDelegate {
 	}
 
 	override void run(IAction action) {
-		val ecorePath = selectedIFile.fullPath.toString
-		val pkg = loadEPackage(ecorePath)
-		val gm = loadCorrespondingGenmodel(ecorePath)
+		val gmPath = selectedIFile.fullPath.toString
+		val gm = loadGenmodel(gmPath)
+		val pkg = gm?.getEPackage
 
-		if (pkg === null) {
-			MessageDialog.openError(shell, "Error", "Cannot find EPackage for " + ecorePath);
+		if (gm === null) {
+			MessageDialog.openError(shell, "Error", "Cannot find GenModel for " + gmPath);
 			return
 		}
 
-		if (gm === null) {
-			MessageDialog.openError(shell, "Error", "Cannot find genmodel for " + ecorePath);
+		if (pkg === null) {
+			MessageDialog.openError(shell, "Error", "Cannot find EPackage for " + gmPath);
 			return
 		}
 

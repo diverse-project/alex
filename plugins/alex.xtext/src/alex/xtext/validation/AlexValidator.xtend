@@ -31,9 +31,18 @@ class AlexValidator extends AbstractAlexValidator {
 
 	@Check
 	def void checkValidSyntax(EcoreImport syntax) {
-		if (syntax.uri.loadEPackage === null) {
+		if (syntax.uri.loadGenmodel === null) {
 			error(
-				"Couldn't not find an EPackage at the URI " + syntax.uri,
+				"Couldn't not find a GenModel at URI " + syntax.uri,
+				syntax,
+				AlexPackage.Literals.ECORE_IMPORT__URI,
+				SYNTAX_NOT_FOUND
+			)
+		}
+
+		if (syntax.uri.loadGenmodel.getEPackage === null) {
+			error(
+				"Couldn't not find an EPackage for GenModel at URI " + syntax.uri,
 				syntax,
 				AlexPackage.Literals.ECORE_IMPORT__URI,
 				SYNTAX_NOT_FOUND

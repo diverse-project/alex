@@ -5,12 +5,14 @@ import alex.xtext.alex.AlexClass
 import alex.xtext.alex.AlexFactory
 import alex.xtext.alex.AlexRoot
 import alex.xtext.alex.ConcreteMethod
+import alex.xtext.utils.AlexException
 import alex.xtext.utils.AlexUtils
 import alex.xtext.utils.EcoreUtils
 import alex.xtext.utils.NamingUtils
 import com.google.inject.Inject
 import java.util.Comparator
 import java.util.List
+import org.eclipse.core.runtime.Platform
 import org.eclipse.e4.core.services.log.Logger
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
@@ -22,7 +24,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.core.runtime.Platform
 
 class AlexJvmModelInferrer extends AbstractModelInferrer {
 	AlexRoot root
@@ -44,11 +45,11 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	private def preProcess() {
-		pkg = root.ecoreImport.uri.loadEPackage
-		gm = root.ecoreImport.uri.loadCorrespondingGenmodel
-
+		gm = root.ecoreImport.uri.loadGenmodel
+		pkg = gm?.EPackage
+		
 		if (pkg === null || gm === null)
-			return false
+			throw new AlexException("Cannot load Ecore/GenModel for URI " + root.ecoreImport.uri)
 
 		// Create missing AlexClasses
 		pkg.allClasses.forEach[eCls |

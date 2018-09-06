@@ -25,7 +25,7 @@ class DispatchTests {
 	def void testNoOverride() {
 		'''
 			behavior testNoOverride
-			import ecore "../testdata/dispatch/model/Dispatch.ecore"
+			import ecore "../testdata/dispatch/model/Dispatch.genmodel"
 			open class A {
 				def String foo() { return "A::foo()" }
 			}
@@ -63,7 +63,7 @@ class DispatchTests {
 	def void testAllOverride() {
 		'''
 			behavior testAllOverride
-			import ecore "../testdata/dispatch/model/Dispatch.ecore"
+			import ecore "../testdata/dispatch/model/Dispatch.genmodel"
 			open class A { def String foo() { return "A::foo()" } }
 			open class B { override String foo() { return "B::foo()" } }
 			open class C { override String foo() { return "C::foo()" } }
@@ -109,7 +109,7 @@ class DispatchTests {
 	def void testImplicitSuperCall1() {
 		'''
 			behavior testImplicitSuperCall1
-			import ecore "../testdata/dispatch/model/Dispatch.ecore"
+			import ecore "../testdata/dispatch/model/Dispatch.genmodel"
 			open class A {
 				def String foo() { return "A::foo()" }
 			}
@@ -128,7 +128,7 @@ class DispatchTests {
 	def void testImplicitSuperCall2() {
 		'''
 			behavior testImplicitSuperCall2
-			import ecore "../testdata/dispatch/model/Dispatch.ecore"
+			import ecore "../testdata/dispatch/model/Dispatch.genmodel"
 			open class A {
 				def String foo() { return "A::foo()" }
 			}
@@ -144,7 +144,7 @@ class DispatchTests {
 	def void testImplicitSuperCallMulti1() {
 		'''
 			behavior testImplicitSuperCallMulti1
-			import ecore "../testdata/dispatch/model/Dispatch.ecore"
+			import ecore "../testdata/dispatch/model/Dispatch.genmodel"
 			open class A {
 				def String foo() { return "A::foo()" }
 			}
@@ -183,7 +183,7 @@ class DispatchTests {
 	def void testImplicitSuperCallMulti2() {
 		'''
 			behavior testImplicitSuperCallMulti2
-			import ecore "../testdata/dispatch/model/Dispatch.ecore"
+			import ecore "../testdata/dispatch/model/Dispatch.genmodel"
 			open class A {
 				def String foo() { return "A::foo()" }
 			}
@@ -226,7 +226,7 @@ class DispatchTests {
 	def void testExplicitSuperCall() {
 		'''
 			behavior testExplicitSuperCall
-			import ecore "../testdata/dispatch/model/Dispatch.ecore"
+			import ecore "../testdata/dispatch/model/Dispatch.genmodel"
 			open class A {
 				def String foo() { return "A::foo()" }
 			}
@@ -245,7 +245,7 @@ class DispatchTests {
 	def void testExplicitSuperCallMulti() {
 		'''
 			behavior testExplicitSuperCallMulti
-			import ecore "../testdata/dispatch/model/Dispatch.ecore"
+			import ecore "../testdata/dispatch/model/Dispatch.genmodel"
 			open class A {
 				def String foo() { return "A::foo()" }
 			}

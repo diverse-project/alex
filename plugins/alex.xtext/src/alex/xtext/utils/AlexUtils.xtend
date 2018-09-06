@@ -52,7 +52,7 @@ class AlexUtils {
 
 	def List<EPackage> getAllEPackages(AlexRoot root) {
 		val roots = root.getAllParents(true)
-		return roots.filter[it !== null].map[ecoreImport?.uri].filterNull.map[loadEPackage].toList
+		return roots.filterNull.map[ecoreImport?.uri].filterNull.map[loadGenmodel.getEPackage].toList
 	}
 
 	def List<EClass> getAllEClasses(AlexRoot root) {
