@@ -19,14 +19,16 @@ import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEInte
 import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEIntegerVariableOperation;
 import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEValueOperation;
 import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEVariableOperation;
+import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.impl.SEIntegerExpressionOperationImpl;
 
 @SuppressWarnings("all")
-public class SEIntegerComparisonExpressionOperationImpl implements SEIntegerComparisonExpressionOperation {
+public class SEIntegerComparisonExpressionOperationImpl extends SEIntegerExpressionOperationImpl implements SEIntegerComparisonExpressionOperation {
   private SEIntegerComparisonExpression obj;
   
   private SimpleexpressionsRevisitor<? extends SEBooleanBinaryExpressionOperation, ? extends SEBooleanExpressionOperation, ? extends SEBooleanUnaryExpressionOperation, ? extends SEBooleanValueOperation, ? extends SEBooleanVariableOperation, ? extends SEExpressionOperation, ? extends SEIntegerCalculationExpressionOperation, ? extends SEIntegerComparisonExpressionOperation, ? extends SEIntegerExpressionOperation, ? extends SEIntegerValueOperation, ? extends SEIntegerVariableOperation, ? extends SEValueOperation, ? extends SEVariableOperation> alg;
   
   public SEIntegerComparisonExpressionOperationImpl(final SEIntegerComparisonExpression obj, final SimpleexpressionsRevisitor<? extends SEBooleanBinaryExpressionOperation, ? extends SEBooleanExpressionOperation, ? extends SEBooleanUnaryExpressionOperation, ? extends SEBooleanValueOperation, ? extends SEBooleanVariableOperation, ? extends SEExpressionOperation, ? extends SEIntegerCalculationExpressionOperation, ? extends SEIntegerComparisonExpressionOperation, ? extends SEIntegerExpressionOperation, ? extends SEIntegerValueOperation, ? extends SEIntegerVariableOperation, ? extends SEValueOperation, ? extends SEVariableOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }

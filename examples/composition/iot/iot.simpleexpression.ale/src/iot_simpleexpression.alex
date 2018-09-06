@@ -17,7 +17,6 @@ open class ExpressionBindSEExpression {
 	}
 }
 
-
 open class BooleanVariableBindSEBooleanVariable {
 	override Value execute(Context c) {
 		ActivitydiagramFactory.eINSTANCE.createBooleanValue => [

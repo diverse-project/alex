@@ -1,7 +1,7 @@
 package activitydiagramruntime.revisitor;
 
-public interface ActivitydiagramruntimeRevisitor<Activitydiagram__ActionT extends Activitydiagram__ExecutableNodeT, Activitydiagram__ActivityT extends Activitydiagram__NamedActivityT, Activitydiagram__ActivityEdgeT extends Activitydiagram__NamedActivityT, Activitydiagram__ActivityFinalNodeT extends Activitydiagram__FinalNodeT, Activitydiagram__ActivityNodeT extends Activitydiagram__NamedActivityT, Activitydiagram__BooleanValueT extends Activitydiagram__ValueT, Activitydiagram__BooleanVariableT extends Activitydiagram__VariableT, Activitydiagramruntime__ContextT, Activitydiagram__ControlFlowT extends Activitydiagram__ActivityEdgeT, Activitydiagram__ControlNodeT extends Activitydiagram__ActivityNodeT, Activitydiagramruntime__ControlTokenT extends Activitydiagramruntime__TokenT, Activitydiagram__DecisionNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__ExecutableNodeT extends Activitydiagram__ActivityNodeT, Activitydiagram__ExpT, Activitydiagram__FinalNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__ForkNodeT extends Activitydiagram__ControlNodeT, Activitydiagramruntime__ForkedTokenT extends Activitydiagramruntime__TokenT, Activitydiagram__InitialNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__InputT, Activitydiagram__InputValueT, Activitydiagram__IntegerValueT extends Activitydiagram__ValueT, Activitydiagram__IntegerVariableT extends Activitydiagram__VariableT, Activitydiagram__JoinNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__MergeNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__NamedActivityT, Activitydiagramruntime__OfferT, Activitydiagram__OpaqueActionT extends Activitydiagram__ActionT, Activitydiagramruntime__TokenT, Activitydiagramruntime__TraceT, Activitydiagram__ValueT, Activitydiagram__VariableT>
-	extends activitydiagram.revisitor.ActivitydiagramRevisitor<Activitydiagram__ActionT, Activitydiagram__ActivityT, Activitydiagram__ActivityEdgeT, Activitydiagram__ActivityFinalNodeT, Activitydiagram__ActivityNodeT, Activitydiagram__BooleanValueT, Activitydiagram__BooleanVariableT, Activitydiagram__ControlFlowT, Activitydiagram__ControlNodeT, Activitydiagram__DecisionNodeT, Activitydiagram__ExecutableNodeT, Activitydiagram__ExpT, Activitydiagram__FinalNodeT, Activitydiagram__ForkNodeT, Activitydiagram__InitialNodeT, Activitydiagram__InputT, Activitydiagram__InputValueT, Activitydiagram__IntegerValueT, Activitydiagram__IntegerVariableT, Activitydiagram__JoinNodeT, Activitydiagram__MergeNodeT, Activitydiagram__NamedActivityT, Activitydiagram__OpaqueActionT, Activitydiagram__ValueT, Activitydiagram__VariableT> {
+public interface ActivitydiagramruntimeRevisitor<Activitydiagram__ActionT extends Activitydiagram__ExecutableNodeT, Activitydiagram__ActivityT extends Activitydiagram__NamedActivityT, Activitydiagram__ActivityEdgeT extends Activitydiagram__NamedActivityT, Activitydiagram__ActivityFinalNodeT extends Activitydiagram__FinalNodeT, Activitydiagram__ActivityNodeT extends Activitydiagram__NamedActivityT, Activitydiagram__BooleanValueT extends Activitydiagram__ValueT, Activitydiagram__BooleanVariableT extends Activitydiagram__VariableT, Activitydiagram__ContextT, Activitydiagramruntime__ContextT, Activitydiagram__ControlFlowT extends Activitydiagram__ActivityEdgeT, Activitydiagram__ControlNodeT extends Activitydiagram__ActivityNodeT, Activitydiagram__ControlTokenT extends Activitydiagram__TokenT, Activitydiagramruntime__ControlTokenT extends Activitydiagramruntime__TokenT, Activitydiagram__DecisionNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__ExecutableNodeT extends Activitydiagram__ActivityNodeT, Activitydiagram__ExpT, Activitydiagram__FinalNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__ForkNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__ForkedTokenT extends Activitydiagram__TokenT, Activitydiagramruntime__ForkedTokenT extends Activitydiagramruntime__TokenT, Activitydiagram__InitialNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__InputT, Activitydiagram__InputValueT, Activitydiagram__IntegerValueT extends Activitydiagram__ValueT, Activitydiagram__IntegerVariableT extends Activitydiagram__VariableT, Activitydiagram__JoinNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__MergeNodeT extends Activitydiagram__ControlNodeT, Activitydiagram__NamedActivityT, Activitydiagram__OfferT, Activitydiagramruntime__OfferT, Activitydiagram__OpaqueActionT extends Activitydiagram__ActionT, Activitydiagram__TokenT, Activitydiagramruntime__TokenT, Activitydiagram__TraceT, Activitydiagramruntime__TraceT, Activitydiagram__ValueT, Activitydiagram__VariableT>
+	extends activitydiagram.revisitor.ActivitydiagramRevisitor<Activitydiagram__ActionT, Activitydiagram__ActivityT, Activitydiagram__ActivityEdgeT, Activitydiagram__ActivityFinalNodeT, Activitydiagram__ActivityNodeT, Activitydiagram__BooleanValueT, Activitydiagram__BooleanVariableT, Activitydiagram__ContextT, Activitydiagram__ControlFlowT, Activitydiagram__ControlNodeT, Activitydiagram__ControlTokenT, Activitydiagram__DecisionNodeT, Activitydiagram__ExecutableNodeT, Activitydiagram__ExpT, Activitydiagram__FinalNodeT, Activitydiagram__ForkNodeT, Activitydiagram__ForkedTokenT, Activitydiagram__InitialNodeT, Activitydiagram__InputT, Activitydiagram__InputValueT, Activitydiagram__IntegerValueT, Activitydiagram__IntegerVariableT, Activitydiagram__JoinNodeT, Activitydiagram__MergeNodeT, Activitydiagram__NamedActivityT, Activitydiagram__OfferT, Activitydiagram__OpaqueActionT, Activitydiagram__TokenT, Activitydiagram__TraceT, Activitydiagram__ValueT, Activitydiagram__VariableT> {
 	Activitydiagramruntime__ContextT activitydiagramruntime__Context(final activitydiagramruntime.Context it);
 	Activitydiagramruntime__ControlTokenT activitydiagramruntime__ControlToken(final activitydiagramruntime.ControlToken it);
 	Activitydiagramruntime__ForkedTokenT activitydiagramruntime__ForkedToken(final activitydiagramruntime.ForkedToken it);
@@ -45,6 +45,9 @@ public interface ActivitydiagramruntimeRevisitor<Activitydiagram__ActionT extend
 		return activitydiagram__BooleanValue(it);
 	}
 	Activitydiagram__BooleanVariableT $(final activitydiagram.BooleanVariable it);
+	default Activitydiagram__ContextT $(final activitydiagram.Context it) {
+		return activitydiagram__Context(it);
+	}
 	default Activitydiagramruntime__ContextT $(final activitydiagramruntime.Context it) {
 		return activitydiagramruntime__Context(it);
 	}
@@ -66,6 +69,9 @@ public interface ActivitydiagramruntimeRevisitor<Activitydiagram__ActionT extend
 			return activitydiagram__MergeNode((activitydiagram.MergeNode) it);
 		return null;
 	}
+	default Activitydiagram__ControlTokenT $(final activitydiagram.ControlToken it) {
+		return activitydiagram__ControlToken(it);
+	}
 	default Activitydiagramruntime__ControlTokenT $(final activitydiagramruntime.ControlToken it) {
 		return activitydiagramruntime__ControlToken(it);
 	}
@@ -85,6 +91,9 @@ public interface ActivitydiagramruntimeRevisitor<Activitydiagram__ActionT extend
 	}
 	default Activitydiagram__ForkNodeT $(final activitydiagram.ForkNode it) {
 		return activitydiagram__ForkNode(it);
+	}
+	default Activitydiagram__ForkedTokenT $(final activitydiagram.ForkedToken it) {
+		return activitydiagram__ForkedToken(it);
 	}
 	default Activitydiagramruntime__ForkedTokenT $(final activitydiagramruntime.ForkedToken it) {
 		return activitydiagramruntime__ForkedToken(it);
@@ -129,11 +138,21 @@ public interface ActivitydiagramruntimeRevisitor<Activitydiagram__ActionT extend
 			return activitydiagram__OpaqueAction((activitydiagram.OpaqueAction) it);
 		return null;
 	}
+	default Activitydiagram__OfferT $(final activitydiagram.Offer it) {
+		return activitydiagram__Offer(it);
+	}
 	default Activitydiagramruntime__OfferT $(final activitydiagramruntime.Offer it) {
 		return activitydiagramruntime__Offer(it);
 	}
 	default Activitydiagram__OpaqueActionT $(final activitydiagram.OpaqueAction it) {
 		return activitydiagram__OpaqueAction(it);
+	}
+	default Activitydiagram__TokenT $(final activitydiagram.Token it) {
+		if (it.getClass() == activitydiagram.impl.ControlTokenImpl.class)
+			return activitydiagram__ControlToken((activitydiagram.ControlToken) it);
+		if (it.getClass() == activitydiagram.impl.ForkedTokenImpl.class)
+			return activitydiagram__ForkedToken((activitydiagram.ForkedToken) it);
+		return activitydiagram__Token(it);
 	}
 	default Activitydiagramruntime__TokenT $(final activitydiagramruntime.Token it) {
 		if (it.getClass() == activitydiagramruntime.impl.ControlTokenImpl.class)
@@ -141,6 +160,9 @@ public interface ActivitydiagramruntimeRevisitor<Activitydiagram__ActionT extend
 		if (it.getClass() == activitydiagramruntime.impl.ForkedTokenImpl.class)
 			return activitydiagramruntime__ForkedToken((activitydiagramruntime.ForkedToken) it);
 		return null;
+	}
+	default Activitydiagram__TraceT $(final activitydiagram.Trace it) {
+		return activitydiagram__Trace(it);
 	}
 	default Activitydiagramruntime__TraceT $(final activitydiagramruntime.Trace it) {
 		return activitydiagramruntime__Trace(it);

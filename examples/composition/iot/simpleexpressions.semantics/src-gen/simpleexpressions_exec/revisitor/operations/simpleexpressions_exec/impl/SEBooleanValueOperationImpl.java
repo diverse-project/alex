@@ -15,14 +15,16 @@ import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEInte
 import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEIntegerVariableOperation;
 import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEValueOperation;
 import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEVariableOperation;
+import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.impl.SEValueOperationImpl;
 
 @SuppressWarnings("all")
-public class SEBooleanValueOperationImpl implements SEBooleanValueOperation {
+public class SEBooleanValueOperationImpl extends SEValueOperationImpl implements SEBooleanValueOperation {
   private SEBooleanValue obj;
   
   private SimpleexpressionsRevisitor<? extends SEBooleanBinaryExpressionOperation, ? extends SEBooleanExpressionOperation, ? extends SEBooleanUnaryExpressionOperation, ? extends SEBooleanValueOperation, ? extends SEBooleanVariableOperation, ? extends SEExpressionOperation, ? extends SEIntegerCalculationExpressionOperation, ? extends SEIntegerComparisonExpressionOperation, ? extends SEIntegerExpressionOperation, ? extends SEIntegerValueOperation, ? extends SEIntegerVariableOperation, ? extends SEValueOperation, ? extends SEVariableOperation> alg;
   
   public SEBooleanValueOperationImpl(final SEBooleanValue obj, final SimpleexpressionsRevisitor<? extends SEBooleanBinaryExpressionOperation, ? extends SEBooleanExpressionOperation, ? extends SEBooleanUnaryExpressionOperation, ? extends SEBooleanValueOperation, ? extends SEBooleanVariableOperation, ? extends SEExpressionOperation, ? extends SEIntegerCalculationExpressionOperation, ? extends SEIntegerComparisonExpressionOperation, ? extends SEIntegerExpressionOperation, ? extends SEIntegerValueOperation, ? extends SEIntegerVariableOperation, ? extends SEValueOperation, ? extends SEVariableOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }
