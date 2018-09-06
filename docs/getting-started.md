@@ -13,8 +13,8 @@ For more details about the language see TODO.
 
 Tiny Expression Language 0 (TEL0) is a toy expression language with two concepts:
 
-- Integer Literal (e.g. 0, 1...)
-- Sum operation (e.g. +)
+- Integer Literal (e.g. 0, 1...);
+- Sum operation (e.g. +).
 
 # Abstract Syntax
 

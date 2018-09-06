@@ -1,0 +1,34 @@
+behavior evaluate1
+
+import tel1.evaluate.Ctx
+
+import ecore "platform:/resource/tel1.model/model/tel1.ecore"
+
+import ale evaluate
+
+open abstract class Exp {
+	abstract def long eval(Ctx ctx)
+}
+
+open class LitVal {
+	override long eval(Ctx ctx) {
+		eval()
+	}
+}
+
+open class Sum {
+	override long eval(Ctx ctx) {
+		// no reuse, have to be redefined again :(
+		alg.$(obj.lhs).eval(ctx) + alg.$(obj.rhs).eval(ctx)
+	}
+}
+
+open class VarLit {
+	override long eval(Ctx ctx) {
+		ctx.ctx.get(obj.name)
+	}
+	
+	override long eval() {
+		throw new RuntimeException("Cannot be called without a context")
+	}
+}

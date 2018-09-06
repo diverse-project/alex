@@ -1,0 +1,11 @@
+behavior prettyprint1
+
+import ecore "platform:/resource/tel1.model/model/tel1.ecore"
+
+import ale prettyprint
+
+open class VarLit {
+	override String print() {
+		obj.name
+	}
+}

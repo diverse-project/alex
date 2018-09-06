@@ -8,4 +8,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-10
 Require-Bundle: tel0.model;bundle-version="0.1.0",
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0"
 Export-Package: prettyprint.revisitor.impl,
- prettyprint.revisitor.operations.prettyprint
+ prettyprint.revisitor.operations.prettyprint,
+ prettyprint.revisitor.operations.prettyprint.impl
