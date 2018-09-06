@@ -5,7 +5,7 @@ import basicFsmEnv.InitialState
 
 import ecore "platform:/resource/HierarchicalFsmEnv/model/hierarchicalFsmEnv.genmodel"
 
-import ale evalbasicfsm
+import alex evalbasicfsm
 
 open class CompositeState {
 	override void step(String event, Context ctx) {

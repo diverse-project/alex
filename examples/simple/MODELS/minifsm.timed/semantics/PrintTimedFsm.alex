@@ -2,7 +2,7 @@ behavior tfsmprinting
 
 import ecore "platform:/resource/minifsm.timed/model/TimedMiniFsm.genmodel"
 
-import ale fsmprinting
+import alex fsmprinting
 
 open class TimedTransition {
 	override String print() {

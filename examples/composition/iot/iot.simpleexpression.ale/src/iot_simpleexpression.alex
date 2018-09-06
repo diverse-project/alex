@@ -7,9 +7,9 @@ import idlmm.*
 
 import ecore "platform:/resource/iot.simpleexpression.model/model/model.genmodel"
 
-import ale evalsimpleal
-import ale activitydiagram_exec
-import ale simpleexpressions_exec
+import alex evalsimpleal
+import alex activitydiagram_exec
+import alex simpleexpressions_exec
 
 open class ExpressionBindSEExpression {
 	override void execute(Context c) {

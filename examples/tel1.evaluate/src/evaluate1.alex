@@ -4,7 +4,7 @@ import tel1.evaluate.Ctx
 
 import ecore "platform:/resource/tel1.model/model/tel1.genmodel"
 
-import ale evaluate
+import alex evaluate
 
 open abstract class Exp {
 	abstract def long eval(Ctx ctx)
