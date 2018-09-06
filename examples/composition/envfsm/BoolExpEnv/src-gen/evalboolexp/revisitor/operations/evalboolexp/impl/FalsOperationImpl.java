@@ -12,14 +12,16 @@ import evalboolexp.revisitor.operations.evalboolexp.NotOperation;
 import evalboolexp.revisitor.operations.evalboolexp.OrOperation;
 import evalboolexp.revisitor.operations.evalboolexp.TruOperation;
 import evalboolexp.revisitor.operations.evalboolexp.VarRefOperation;
+import evalboolexp.revisitor.operations.evalboolexp.impl.LitOperationImpl;
 
 @SuppressWarnings("all")
-public class FalsOperationImpl implements FalsOperation {
+public class FalsOperationImpl extends LitOperationImpl implements FalsOperation {
   private Fals obj;
   
   private BoolExpEnvRevisitor<? extends AndOperation, ? extends BinExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends LitOperation, ? extends NotOperation, ? extends OrOperation, ? extends TruOperation, ? extends VarRefOperation> alg;
   
   public FalsOperationImpl(final Fals obj, final BoolExpEnvRevisitor<? extends AndOperation, ? extends BinExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends LitOperation, ? extends NotOperation, ? extends OrOperation, ? extends TruOperation, ? extends VarRefOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }

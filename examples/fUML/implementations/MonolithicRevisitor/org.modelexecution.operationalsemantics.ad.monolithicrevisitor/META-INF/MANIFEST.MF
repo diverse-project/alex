@@ -8,7 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: execad.revisitor,
- execad.revisitor.operations,
- execad.revisitor.operations.impl
+Export-Package: execad.revisitor.impl,
+ execad.revisitor.operations.execad,
+ execad.revisitor.operations.execad.impl
 Require-Bundle: org.modelexecution.operationalsemantics.ad.clean;bundle-version="1.0.0"

@@ -16,12 +16,13 @@ import guardedfsmprinting.revisitor.operations.guardedfsmprinting.TransitionOper
 import guardedfsmprinting.revisitor.operations.guardedfsmprinting.TruOperation;
 
 @SuppressWarnings("all")
-public abstract class BinaryExpOperationImpl implements BinaryExpOperation {
+public abstract class BinaryExpOperationImpl extends printexp.revisitor.operations.printexp.impl.BinaryExpOperationImpl implements BinaryExpOperation {
   private BinaryExp obj;
   
   private GuardedfsmRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends FinalStateOperation, ? extends GuardedOperation, ? extends LitOperation, ? extends MachineOperation, ? extends OrOperation, ? extends StateOperation, ? extends TransitionOperation, ? extends TruOperation> alg;
   
   public BinaryExpOperationImpl(final BinaryExp obj, final GuardedfsmRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends FinalStateOperation, ? extends GuardedOperation, ? extends LitOperation, ? extends MachineOperation, ? extends OrOperation, ? extends StateOperation, ? extends TransitionOperation, ? extends TruOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }

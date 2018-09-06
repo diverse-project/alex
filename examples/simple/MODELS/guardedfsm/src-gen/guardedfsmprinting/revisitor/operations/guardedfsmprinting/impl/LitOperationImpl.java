@@ -16,12 +16,13 @@ import guardedfsmprinting.revisitor.operations.guardedfsmprinting.TransitionOper
 import guardedfsmprinting.revisitor.operations.guardedfsmprinting.TruOperation;
 
 @SuppressWarnings("all")
-public abstract class LitOperationImpl implements LitOperation {
+public abstract class LitOperationImpl extends printexp.revisitor.operations.printexp.impl.LitOperationImpl implements LitOperation {
   private Lit obj;
   
   private GuardedfsmRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends FinalStateOperation, ? extends GuardedOperation, ? extends LitOperation, ? extends MachineOperation, ? extends OrOperation, ? extends StateOperation, ? extends TransitionOperation, ? extends TruOperation> alg;
   
   public LitOperationImpl(final Lit obj, final GuardedfsmRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends FinalStateOperation, ? extends GuardedOperation, ? extends LitOperation, ? extends MachineOperation, ? extends OrOperation, ? extends StateOperation, ? extends TransitionOperation, ? extends TruOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }

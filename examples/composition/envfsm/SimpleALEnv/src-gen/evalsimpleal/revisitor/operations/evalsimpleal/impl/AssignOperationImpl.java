@@ -13,17 +13,19 @@ import evalsimpleal.revisitor.operations.evalsimpleal.IfStmtOperation;
 import evalsimpleal.revisitor.operations.evalsimpleal.PrintOperation;
 import evalsimpleal.revisitor.operations.evalsimpleal.RandRangeOperation;
 import evalsimpleal.revisitor.operations.evalsimpleal.StmtOperation;
+import evalsimpleal.revisitor.operations.evalsimpleal.impl.StmtOperationImpl;
 import simpleALEnv.Assign;
 import simpleALEnv.revisitor.SimpleALEnvRevisitor;
 import simpleALEnv.runtime.Env;
 
 @SuppressWarnings("all")
-public class AssignOperationImpl implements AssignOperation {
+public class AssignOperationImpl extends StmtOperationImpl implements AssignOperation {
   private Assign obj;
   
   private SimpleALEnvRevisitor<? extends ALVarRefOperation, ? extends ArithOperation, ? extends ArithLitOperation, ? extends ArithMinusOperation, ? extends ArithOpOperation, ? extends ArithPlusOperation, ? extends AssignOperation, ? extends BlockOperation, ? extends EqualityTestOperation, ? extends IfStmtOperation, ? extends PrintOperation, ? extends RandRangeOperation, ? extends StmtOperation> alg;
   
   public AssignOperationImpl(final Assign obj, final SimpleALEnvRevisitor<? extends ALVarRefOperation, ? extends ArithOperation, ? extends ArithLitOperation, ? extends ArithMinusOperation, ? extends ArithOpOperation, ? extends ArithPlusOperation, ? extends AssignOperation, ? extends BlockOperation, ? extends EqualityTestOperation, ? extends IfStmtOperation, ? extends PrintOperation, ? extends RandRangeOperation, ? extends StmtOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }

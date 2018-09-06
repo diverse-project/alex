@@ -194,7 +194,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 
 			// In case of multiple-inheritance, we should
 			// use some kind of delegate instead
-			if (superOp !== null && !(superOp.abstract || resolved.eCls.ESuperTypes.exists[hasRequiredAnnotation]))
+			if (superOp !== null && !resolved.eCls.ESuperTypes.exists[hasRequiredAnnotation])
 				superTypes += superOp.operationImplFqn.typeRef
 
 			val asig = algSignature
@@ -208,7 +208,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 
 				body = '''
 «««					«IF superOp !== null»super(obj, alg);«ENDIF»
-					«IF superOp !== null && !(superOp.abstract || resolved.eCls.ESuperTypes.exists[hasRequiredAnnotation])»super(obj, alg);«ENDIF»
+					«IF superOp !== null && !resolved.eCls.ESuperTypes.exists[hasRequiredAnnotation]»super(obj, alg);«ENDIF»
 					this.obj = obj;
 					this.alg = alg;
 				'''

@@ -1,7 +1,7 @@
 package tfsmprinting.revisitor.operations.tfsmprinting;
 
-import tfsmprinting.revisitor.operations.tfsmprinting.StateOperation;
+import fsmprinting.revisitor.operations.fsmprinting.StateOperation;
 
 @SuppressWarnings("all")
-public interface FinalStateOperation extends fsmprinting.revisitor.operations.fsmprinting.FinalStateOperation, StateOperation, fsmprinting.revisitor.operations.fsmprinting.StateOperation {
+public interface FinalStateOperation extends fsmprinting.revisitor.operations.fsmprinting.FinalStateOperation, StateOperation, tfsmprinting.revisitor.operations.tfsmprinting.StateOperation {
 }

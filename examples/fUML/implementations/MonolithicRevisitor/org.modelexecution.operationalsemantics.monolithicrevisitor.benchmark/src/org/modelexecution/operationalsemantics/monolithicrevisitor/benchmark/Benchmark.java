@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import activitydiagram.Activity;
 import activitydiagram.ActivitydiagramFactory;
 import activitydiagram.ActivitydiagramPackage;
-import execad.revisitor.ExecadRevisitor;
-import execad.revisitor.operations.ActivityOperation;
+import execad.revisitor.impl.ExecadRevisitor;
+import execad.revisitor.operations.execad.ActivityOperation;
 
 public class Benchmark {
 
