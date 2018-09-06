@@ -22,6 +22,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.core.runtime.Platform
 
 class AlexJvmModelInferrer extends AbstractModelInferrer {
 	AlexRoot root
@@ -34,7 +35,6 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension EcoreUtils
 	@Inject extension NamingUtils
 	@Inject extension AlexUtils
-	Logger logger = PlatformUI.getWorkbench().getService(typeof(Logger));
 
 	@Data
 	static class ResolvedClass {
@@ -123,7 +123,12 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 						key.inferOperationImplementation(acceptor)
 				]
 		} catch (Exception e) {
-			logger.error(e, e.message)
+			if (Platform::running) {
+				val logger = PlatformUI.getWorkbench().getService(typeof(Logger));
+				logger.error(e, e.message)
+			} else {
+				e.printStackTrace
+			}
 		}
 	}
 
