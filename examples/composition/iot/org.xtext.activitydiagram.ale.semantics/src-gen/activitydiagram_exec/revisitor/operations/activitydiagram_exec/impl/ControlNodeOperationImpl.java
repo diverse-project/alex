@@ -36,7 +36,7 @@ import activitydiagram_exec.revisitor.operations.activitydiagram_exec.VariableOp
 import activitydiagram_exec.revisitor.operations.activitydiagram_exec.impl.ActivityNodeOperationImpl;
 
 @SuppressWarnings("all")
-public class ControlNodeOperationImpl extends ActivityNodeOperationImpl implements ControlNodeOperation {
+public abstract class ControlNodeOperationImpl extends ActivityNodeOperationImpl implements ControlNodeOperation {
   private ControlNode obj;
   
   private ActivitydiagramRevisitor<? extends ActionOperation, ? extends ActivityOperation, ? extends ActivityEdgeOperation, ? extends ActivityFinalNodeOperation, ? extends ActivityNodeOperation, ? extends BooleanValueOperation, ? extends BooleanVariableOperation, ? extends ContextOperation, ? extends ControlFlowOperation, ? extends ControlNodeOperation, ? extends ControlTokenOperation, ? extends DecisionNodeOperation, ? extends ExecutableNodeOperation, ? extends ExpOperation, ? extends FinalNodeOperation, ? extends ForkNodeOperation, ? extends ForkedTokenOperation, ? extends InitialNodeOperation, ? extends InputOperation, ? extends InputValueOperation, ? extends IntegerValueOperation, ? extends IntegerVariableOperation, ? extends JoinNodeOperation, ? extends MergeNodeOperation, ? extends NamedActivityOperation, ? extends OfferOperation, ? extends OpaqueActionOperation, ? extends TokenOperation, ? extends TraceOperation, ? extends ValueOperation, ? extends VariableOperation> alg;

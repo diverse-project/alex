@@ -105,17 +105,6 @@ open class IdlStmtBindBlock {
 		alg.$(obj.delegate).execute(e)
 	}
 }
-open class IDLType {}
-open class OperationDef {}
-open class FieldI {}
-open class Contained {}
-open class IotOperationDefBindOperationDef {}
-open abstract class HWComp {}
-open class Sensor {}
-open class Actuator {}
-open class System {}
-open class Board {}
-open class Sketch {}
 open abstract class IotActivity {
 	abstract def long main()	
 }
@@ -127,5 +116,3 @@ open class IotActivityBindActivity {
 		return stop - start
 	}
 }
-
-open abstract class IotOperationDef {}

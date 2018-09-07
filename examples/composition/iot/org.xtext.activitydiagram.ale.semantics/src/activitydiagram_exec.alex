@@ -1,7 +1,19 @@
 behavior activitydiagram_exec
 import java.util.List
 import java.io.IOException
-import activitydiagram.*
+import activitydiagram.Context
+import activitydiagram.Token
+import activitydiagram.ActivityEdge
+import activitydiagram.ActivitydiagramFactory
+import activitydiagram.ControlFlow
+import activitydiagram.Value
+import activitydiagram.BooleanValue
+import activitydiagram.InputValue
+import activitydiagram.InitialNode
+import activitydiagram.IntegerValue
+import activitydiagram.Variable
+import activitydiagram.ForkedToken
+import activitydiagram.ActivityNode
 import java.io.BufferedWriter
 import java.io.OutputStreamWriter
 import java.io.FileOutputStream
@@ -48,8 +60,6 @@ open class DecisionNode {
 		}
 	}
 }
-open class FinalNode {
-}
 open class InitialNode {
 	override void execute(Context c) {
 		var r = ActivitydiagramFactory.eINSTANCE.createControlToken
@@ -63,12 +73,6 @@ open class InitialNode {
 		return false
 	}
 }
-open class ControlFlow {
-}
-open class Action {
-}
-open class ControlNode {
-}
 open class OpaqueAction {
 	override void execute(Context c) {
 		c.output.executedNodes.add(obj)
@@ -77,8 +81,6 @@ open class OpaqueAction {
 		]
 		alg.$(obj).sendOffers(alg.$(obj).takeOfferdTokens)
 	}
-}
-open class Input {
 }
 open class ActivityEdge {
 
@@ -113,8 +115,6 @@ open class MergeNode {
 	override boolean hasOffers() {
 		obj.incoming.exists[alg.$(it).hasOffer]
 	}
-}
-open class NamedActivity {
 }
 open class ActivityNode {
 	def void execute(Context c) {
@@ -291,16 +291,6 @@ open class Offer {
 		return obj.holder === null
 	}
 }
-open class ForkedToken {
-}
-open class ControlToken {
-}
-open class InputValue {
-}
-open class Trace {
-}
-open class Context {
-}
 open abstract class Value {
 	abstract def Object value()
 	abstract def void setValue(Object value)
@@ -323,5 +313,3 @@ open class IntegerValue {
 		else obj.value = value as Double
 	}
 }
-open class IntegerVariable {}
-open class BooleanVariable {}
