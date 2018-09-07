@@ -4,49 +4,49 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-        class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+        class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
         contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
         default="true"
         extensions="alex"
         icon="icons/alex.png"
-        id="alex.xtext.Alex"
+        id="fr.inria.diverse.alex.xtext.Alex"
         name="Alex Editor">
 		</editor>
 	</extension>
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
 			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
 			<activeWhen>
 				<reference
-					definitionId="alex.xtext.Alex.Editor.opened">
+					definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<handler
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-			commandId="alex.xtext.Alex.validate">
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="fr.inria.diverse.alex.xtext.Alex.validate">
 		<activeWhen>
 			<reference
-					definitionId="alex.xtext.Alex.Editor.opened">
+					definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened">
 			</reference>
 		</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
 			<activeWhen>
-				<reference definitionId="alex.xtext.Alex.Editor.opened" />
+				<reference definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened" />
 			</activeWhen>
 		</handler>
 		<handler
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
 			<activeWhen>
 				<and>
-					<reference definitionId="alex.xtext.Alex.XtextEditor.opened" />
+					<reference definitionId="fr.inria.diverse.alex.xtext.Alex.XtextEditor.opened" />
 					<iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -55,22 +55,22 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
-		<definition id="alex.xtext.Alex.Editor.opened">
+		<definition id="fr.inria.diverse.alex.xtext.Alex.Editor.opened">
 			<and>
 				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="alex.xtext.Alex" 
+						value="fr.inria.diverse.alex.xtext.Alex" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
 		</definition>
-		<definition id="alex.xtext.Alex.XtextEditor.opened">
+		<definition id="fr.inria.diverse.alex.xtext.Alex.XtextEditor.opened">
 			<and>
 				<reference definitionId="isXtextEditorActive"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="alex.xtext.Alex" 
+						value="fr.inria.diverse.alex.xtext.Alex" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
@@ -79,33 +79,33 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="alex.xtext.Alex"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="fr.inria.diverse.alex.xtext.Alex"
 			name="Alex">
-			<keywordReference id="alex.xtext.ui.keyword_Alex"/>
+			<keywordReference id="fr.inria.diverse.alex.xtext.ui.keyword_Alex"/>
 		</page>
 		<page
-			category="alex.xtext.Alex"
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-			id="alex.xtext.Alex.coloring"
+			category="fr.inria.diverse.alex.xtext.Alex"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="fr.inria.diverse.alex.xtext.Alex.coloring"
 			name="Syntax Coloring">
-			<keywordReference id="alex.xtext.ui.keyword_Alex"/>
+			<keywordReference id="fr.inria.diverse.alex.xtext.ui.keyword_Alex"/>
 		</page>
 		<page
-			category="alex.xtext.Alex"
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-			id="alex.xtext.Alex.templates"
+			category="fr.inria.diverse.alex.xtext.Alex"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="fr.inria.diverse.alex.xtext.Alex.templates"
 			name="Templates">
-			<keywordReference id="alex.xtext.ui.keyword_Alex"/>
+			<keywordReference id="fr.inria.diverse.alex.xtext.ui.keyword_Alex"/>
 		</page>
 	</extension>
 	<extension
 			point="org.eclipse.ui.propertyPages">
 		<page
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="alex.xtext.Alex"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="fr.inria.diverse.alex.xtext.Alex"
 			name="Alex">
-			<keywordReference id="alex.xtext.ui.keyword_Alex"/>
+			<keywordReference id="fr.inria.diverse.alex.xtext.ui.keyword_Alex"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -115,14 +115,14 @@
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
-			id="alex.xtext.ui.keyword_Alex"
+			id="fr.inria.diverse.alex.xtext.ui.keyword_Alex"
 			label="Alex"/>
 	</extension>
 	<extension
 		point="org.eclipse.ui.commands">
 	<command
 			description="Trigger expensive validation"
-			id="alex.xtext.Alex.validate"
+			id="fr.inria.diverse.alex.xtext.Alex.validate"
 			name="Validate">
 	</command>
 	<!-- copy qualified name -->
@@ -143,12 +143,12 @@
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
 			 <command
-				 commandId="alex.xtext.Alex.validate"
+				 commandId="fr.inria.diverse.alex.xtext.Alex.validate"
 				 style="push"
 				 tooltip="Trigger expensive validation">
 			<visibleWhen checkEnabled="false">
 				<reference
-					definitionId="alex.xtext.Alex.Editor.opened">
+					definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened">
 				</reference>
 			</visibleWhen>
 		</command>
@@ -158,7 +158,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="alex.xtext.Alex.Editor.opened" />
+					<reference definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -166,7 +166,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="alex.xtext.Alex.Editor.opened" />
+					<reference definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -175,7 +175,7 @@
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
 					<and>
-						<reference definitionId="alex.xtext.Alex.XtextEditor.opened" />
+						<reference definitionId="fr.inria.diverse.alex.xtext.Alex.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -188,7 +188,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="alex.xtext.Alex.Editor.opened">
+					<reference definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -196,11 +196,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
 			commandId="org.eclipse.xtext.ui.editor.FindReferences">
 			<activeWhen>
 				<reference
-					definitionId="alex.xtext.Alex.Editor.opened">
+					definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -209,33 +209,33 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="alex">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
 			uriExtension="alex">
 		</resourceServiceProvider>
 	</extension>
 	<!-- marker definitions for alex.xtext.Alex -->
 	<extension
-			id="alex.check.fast"
+			id="fr.inria.diverse.alex.check.fast"
 			name="Alex Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.fast"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="alex.check.normal"
+			id="fr.inria.diverse.alex.check.normal"
 			name="Alex Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.normal"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="alex.check.expensive"
+			id="fr.inria.diverse.alex.check.expensive"
 			name="Alex Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.expensive"/>
@@ -243,25 +243,25 @@
 	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
 			fileExtensions="alex"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="alex.xtext.Alex"
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="alex.xtext.Alex.compiler.preferencePage"
+			category="fr.inria.diverse.alex.xtext.Alex"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="fr.inria.diverse.alex.xtext.Alex.compiler.preferencePage"
 			name="Compiler">
-			<keywordReference id="alex.xtext.ui.keyword_Alex"/>
+			<keywordReference id="fr.inria.diverse.alex.xtext.ui.keyword_Alex"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
 		<page
-			category="alex.xtext.Alex"
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="alex.xtext.Alex.compiler.propertyPage"
+			category="fr.inria.diverse.alex.xtext.Alex"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="fr.inria.diverse.alex.xtext.Alex.compiler.propertyPage"
 			name="Compiler">
-			<keywordReference id="alex.xtext.ui.keyword_Alex"/>
+			<keywordReference id="fr.inria.diverse.alex.xtext.ui.keyword_Alex"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -272,20 +272,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="alex.xtext.Alex.OpenGeneratedCode"
+				id="fr.inria.diverse.alex.xtext.Alex.OpenGeneratedCode"
 				style="push">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="alex.xtext.Alex.Editor.opened" />
+					<reference definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 			<activeWhen>
-				<reference definitionId="alex.xtext.Alex.Editor.opened" />
+				<reference definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened" />
 			</activeWhen>
 		</handler>
 	</extension>
@@ -293,11 +293,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="alex.xtext.Alex.Editor.opened">
+					definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -317,7 +317,7 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="alex.xtext.Alex.Editor.opened"/>
+					<reference definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -326,24 +326,24 @@
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="alex.xtext.ui.alex.check.fast">
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="fr.inria.diverse.alex.xtext.ui.alex.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="alex.xtext.ui.alex.check.normal">
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="fr.inria.diverse.alex.xtext.ui.alex.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="alex.xtext.ui.alex.check.expensive">
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="fr.inria.diverse.alex.xtext.ui.alex.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
@@ -353,11 +353,11 @@
 	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="alex.xtext.Alex.Editor.opened">
+					definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -369,7 +369,7 @@
 				style="push">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="alex.xtext.Alex.Editor.opened">
+						definitionId="fr.inria.diverse.alex.xtext.Alex.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -377,28 +377,28 @@
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="alex.xtext.Alex"
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="alex.xtext.Alex.refactoring"
+			category="fr.inria.diverse.alex.xtext.Alex"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="fr.inria.diverse.alex.xtext.Alex.refactoring"
 			name="Refactoring">
-			<keywordReference id="alex.xtext.ui.keyword_Alex"/>
+			<keywordReference id="fr.inria.diverse.alex.xtext.ui.keyword_Alex"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
-		<viewer id="alex.xtext.Alex.compare.contentViewers"
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="fr.inria.diverse.alex.xtext.Alex.compare.contentViewers"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="alex">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
-		<viewer id="alex.xtext.Alex.compare.contentMergeViewers"
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="fr.inria.diverse.alex.xtext.Alex.compare.contentMergeViewers"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="alex" label="Alex Compare">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
-		<provider id="alex.xtext.Alex.editors.documentProviders"
-			class="alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+		<provider id="fr.inria.diverse.alex.xtext.Alex.editors.documentProviders"
+			class="fr.inria.diverse.alex.xtext.ui.AlexExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
 			extensions="alex">
 		</provider>
 	</extension>
@@ -411,11 +411,11 @@
  <extension
        point="org.eclipse.ui.popupMenus">
     <objectContribution
-          id="alex.compiler.ui.contribution1"
+          id="fr.inria.diverse.alex.compiler.ui.contribution1"
           nameFilter="*.genmodel"
           objectClass="org.eclipse.core.resources.IFile">
        <menu
-             id="alex.compiler.ui.menu1"
+             id="fr.inria.diverse.alex.compiler.ui.menu1"
              label="Alex"
              path="additions">
           <separator
@@ -423,11 +423,11 @@
           </separator>
        </menu>
        <action
-             class="alex.xtext.ui.menus.GenerateRevisitorInterface"
+             class="fr.inria.diverse.alex.xtext.ui.menus.GenerateRevisitorInterface"
              enablesFor="1"
-             id="alex.compiler.ui.newAction"
+             id="fr.inria.diverse.alex.compiler.ui.newAction"
              label="Generate Revisitor Interface"
-             menubarPath="alex.compiler.ui.menu1/group1">
+             menubarPath="fr.inria.diverse.alex.compiler.ui.menu1/group1">
        </action>
     </objectContribution>
  </extension>
