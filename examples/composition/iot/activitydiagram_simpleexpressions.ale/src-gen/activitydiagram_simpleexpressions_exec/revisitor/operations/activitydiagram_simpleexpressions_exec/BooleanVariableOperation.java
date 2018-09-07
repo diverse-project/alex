@@ -1,7 +1,0 @@
-package activitydiagram_simpleexpressions_exec.revisitor.operations.activitydiagram_simpleexpressions_exec;
-
-import activitydiagram_simpleexpressions_exec.revisitor.operations.activitydiagram_simpleexpressions_exec.VariableOperation;
-
-@SuppressWarnings("all")
-public interface BooleanVariableOperation extends activitydiagram_exec.revisitor.operations.activitydiagram_exec.BooleanVariableOperation, VariableOperation, activitydiagram_exec.revisitor.operations.activitydiagram_exec.VariableOperation {
-}

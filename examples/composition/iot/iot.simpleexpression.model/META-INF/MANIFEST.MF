@@ -3,14 +3,13 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: iot.simpleexpression.model;singleton:=true
 Automatic-Module-Name: iot.simpleexpression.model
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: model,
  model.impl,
- model.revisitor,
  model.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

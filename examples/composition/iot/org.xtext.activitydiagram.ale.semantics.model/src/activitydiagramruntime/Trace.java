@@ -3,7 +3,9 @@
 package activitydiagramruntime;
 
 import activitydiagram.ActivityNode;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -23,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Trace extends EObject {
-
 	/**
 	 * Returns the value of the '<em><b>Executed Nodes</b></em>' reference list.
 	 * The list contents are of type {@link activitydiagram.ActivityNode}.
@@ -39,4 +40,5 @@ public interface Trace extends EObject {
 	 * @generated
 	 */
 	EList<ActivityNode> getExecutedNodes();
+
 } // Trace

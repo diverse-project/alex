@@ -1,7 +1,0 @@
-package activitydiagram_simpleexpressions_exec.revisitor.operations.activitydiagram_simpleexpressions_exec;
-
-import activitydiagram_simpleexpressions_exec.revisitor.operations.activitydiagram_simpleexpressions_exec.VariableOperation;
-
-@SuppressWarnings("all")
-public interface IntegerVariableOperation extends activitydiagram_exec.revisitor.operations.activitydiagram_exec.IntegerVariableOperation, VariableOperation, activitydiagram_exec.revisitor.operations.activitydiagram_exec.VariableOperation {
-}

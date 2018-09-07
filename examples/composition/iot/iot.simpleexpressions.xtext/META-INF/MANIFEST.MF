@@ -6,11 +6,11 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: iot.simpleexpressions.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: iot.model,
- org.csu.idl.idlmm,
+ idl.model,
  SimpleALEnv,
- org.xtext.activitydiagram.model,
+ activitydiagram.model,
  simpleexpressions.model,
- iot.simpleexpression.model,
+ iot.simpleexpressions.model,
  org.eclipse.xtext,
  org.eclipse.xtext.xbase,
  org.eclipse.equinox.common;bundle-version="3.5.0",

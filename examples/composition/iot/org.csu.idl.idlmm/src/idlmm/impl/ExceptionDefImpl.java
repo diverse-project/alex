@@ -211,7 +211,7 @@ public class ExceptionDefImpl extends ContainedImpl implements ExceptionDef {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (typeCode: ");
 		result.append(typeCode);
 		result.append(')');

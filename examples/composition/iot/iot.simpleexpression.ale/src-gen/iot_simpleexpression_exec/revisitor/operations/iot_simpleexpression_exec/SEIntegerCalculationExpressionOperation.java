@@ -1,8 +1,0 @@
-package iot_simpleexpression_exec.revisitor.operations.iot_simpleexpression_exec;
-
-import iot_simpleexpression_exec.revisitor.operations.iot_simpleexpression_exec.SEExpressionOperation;
-import iot_simpleexpression_exec.revisitor.operations.iot_simpleexpression_exec.SEIntegerExpressionOperation;
-
-@SuppressWarnings("all")
-public interface SEIntegerCalculationExpressionOperation extends simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEIntegerCalculationExpressionOperation, SEIntegerExpressionOperation, simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEIntegerExpressionOperation, SEExpressionOperation, simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEExpressionOperation {
-}

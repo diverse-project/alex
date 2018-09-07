@@ -10,8 +10,7 @@
       <!-- @generated model -->
       <package
             uri="http://www.example.org/model"
-            class="model.ModelPackage"
-            genModel="model/model.genmodel"/>
+            class="model.ModelPackage"/>
    </extension>
 
 </plugin>

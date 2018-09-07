@@ -12,10 +12,13 @@ Export-Package: iot_lua,
  iot_lua.impl,
  iot_lua.revisitor,
  iot_lua.util
-Require-Bundle: org.xtext.lua;bundle-version="1.0.0";visibility:=reexport,
+Require-Bundle: lua.xtext;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.xtext.activitydiagram.model;bundle-version="0.2.0";visibility:=reexport,
+ org.xtext.activitydiagram.model;visibility:=reexport,
  org.csu.idl.idlmm;visibility:=reexport,
- iot.model;visibility:=reexport
+ activitydiagram.model;bundle-version="0.2.0";visibility:=reexport,
+ idl.model;visibility:=reexport,
+ iot.model;visibility:=reexport,
+ org.xtext.lua;visibility:=reexport
 Bundle-ActivationPolicy: lazy

@@ -151,7 +151,7 @@ public class IdlmmPackageImpl extends EPackageImpl implements IdlmmPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link IdlmmPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -165,7 +165,8 @@ public class IdlmmPackageImpl extends EPackageImpl implements IdlmmPackage {
 		if (isInited) return (IdlmmPackage)EPackage.Registry.INSTANCE.getEPackage(IdlmmPackage.eNS_URI);
 
 		// Obtain or create and register package
-		IdlmmPackageImpl theIdlmmPackage = (IdlmmPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof IdlmmPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new IdlmmPackageImpl());
+		Object registeredIdlmmPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		IdlmmPackageImpl theIdlmmPackage = registeredIdlmmPackage instanceof IdlmmPackageImpl ? (IdlmmPackageImpl)registeredIdlmmPackage : new IdlmmPackageImpl();
 
 		isInited = true;
 
@@ -178,7 +179,6 @@ public class IdlmmPackageImpl extends EPackageImpl implements IdlmmPackage {
 		// Mark meta-data to indicate it can't be changed
 		theIdlmmPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(IdlmmPackage.eNS_URI, theIdlmmPackage);
 		return theIdlmmPackage;
@@ -659,10 +659,10 @@ public class IdlmmPackageImpl extends EPackageImpl implements IdlmmPackage {
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
 		addAnnotation
-		  (getNamedElement_Identifier(), 
-		   source, 
+		  (getNamedElement_Identifier(),
+		   source,
 		   new String[] {
 		   });
 	}
@@ -674,10 +674,10 @@ public class IdlmmPackageImpl extends EPackageImpl implements IdlmmPackage {
 	 * @generated
 	 */
 	protected void create_RequiredAnnotations() {
-		String source = "@Required";	
+		String source = "@Required";
 		addAnnotation
-		  (idlStmtEClass, 
-		   source, 
+		  (idlStmtEClass,
+		   source,
 		   new String[] {
 		   });
 	}

@@ -2,18 +2,21 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
   <viewpoint:DAnalysis xmi:id="_lqduwHhnEeiy0v--j_NfxA" selectedViews="_ls4JkHhnEeiy0v--j_NfxA _PJ-KQHicEeiU8aWzHI3f3Q" version="13.0.0.201804031646">
     <semanticResources>iot_lua.ecore</semanticResources>
-    <semanticResources>platform:/resource/org.xtext.lua/model/generated/Lua.ecore</semanticResources>
     <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
-    <semanticResources>platform:/resource/org.xtext.activitydiagram.model/model/activitydiagram.ecore</semanticResources>
     <semanticResources>platform:/resource/org.xtext.activitydiagram.model/model/activitydiagram.genmodel</semanticResources>
     <semanticResources>platform:/resource/org.xtext.lua/model/generated/Lua.genmodel</semanticResources>
-    <semanticResources>platform:/resource/org.csu.idl.idlmm/model/IDLMM.ecore</semanticResources>
     <semanticResources>platform:/resource/org.csu.idl.idlmm/model/IDLMM.genmodel</semanticResources>
     <semanticResources>platform:/resource/iot.model/model/iot.ecore</semanticResources>
     <semanticResources>platform:/resource/iot.model/model/iot.genmodel</semanticResources>
     <semanticResources>iot_lua.genmodel</semanticResources>
     <semanticResources>platform:/resource/org.xtext.activitydiagram.ale.semantics.model/model/activitydiagramruntime.ecore</semanticResources>
     <semanticResources>platform:/resource/org.xtext.activitydiagram.ale.semantics.model/model/activitydiagramruntime.genmodel</semanticResources>
+    <semanticResources>platform:/resource/activitydiagram.model/model/activitydiagram.ecore</semanticResources>
+    <semanticResources>platform:/resource/lua.xtext/model/generated/Lua.ecore</semanticResources>
+    <semanticResources>platform:/resource/idl.model/model/IDLMM.ecore</semanticResources>
+    <semanticResources>platform:/resource/activitydiagram.model/model/activitydiagram.genmodel</semanticResources>
+    <semanticResources>platform:/resource/idl.model/model/IDLMM.genmodel</semanticResources>
+    <semanticResources>platform:/resource/lua.xtext/model/generated/Lua.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ls4JkHhnEeiy0v--j_NfxA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_lt6EUHhnEeiy0v--j_NfxA" name="iot_lua" repPath="#_lthCwHhnEeiy0v--j_NfxA">

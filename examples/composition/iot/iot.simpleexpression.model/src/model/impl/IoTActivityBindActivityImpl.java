@@ -8,8 +8,8 @@ import model.IoTActivityBindActivity;
 import model.ModelPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -39,6 +39,7 @@ public class IoTActivityBindActivityImpl extends MinimalEObjectImpl.Container im
 	 * @ordered
 	 */
 	protected Activity delegate;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -295,7 +295,7 @@ public class ActivitydiagramPackageImpl extends EPackageImpl implements Activity
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link ActivitydiagramPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -309,7 +309,8 @@ public class ActivitydiagramPackageImpl extends EPackageImpl implements Activity
 		if (isInited) return (ActivitydiagramPackage)EPackage.Registry.INSTANCE.getEPackage(ActivitydiagramPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ActivitydiagramPackageImpl theActivitydiagramPackage = (ActivitydiagramPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ActivitydiagramPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ActivitydiagramPackageImpl());
+		Object registeredActivitydiagramPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ActivitydiagramPackageImpl theActivitydiagramPackage = registeredActivitydiagramPackage instanceof ActivitydiagramPackageImpl ? (ActivitydiagramPackageImpl)registeredActivitydiagramPackage : new ActivitydiagramPackageImpl();
 
 		isInited = true;
 
@@ -322,7 +323,6 @@ public class ActivitydiagramPackageImpl extends EPackageImpl implements Activity
 		// Mark meta-data to indicate it can't be changed
 		theActivitydiagramPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ActivitydiagramPackage.eNS_URI, theActivitydiagramPackage);
 		return theActivitydiagramPackage;
@@ -1169,12 +1169,12 @@ public class ActivitydiagramPackageImpl extends EPackageImpl implements Activity
 	 * @generated
 	 */
 	protected void createImportAnnotations() {
-		String source = "http://www.eclipse.org/OCL/Import";	
+		String source = "http://www.eclipse.org/OCL/Import";
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "ecore", "http://www.eclipse.org/emf/2002/Ecore"
+			   "ecore", "http://www.eclipse.org/emf/2002/Ecore"
 		   });
 	}
 
@@ -1185,20 +1185,20 @@ public class ActivitydiagramPackageImpl extends EPackageImpl implements Activity
 	 * @generated
 	 */
 	protected void create_RequiredAnnotations() {
-		String source = "@Required";	
+		String source = "@Required";
 		addAnnotation
-		  (expEClass, 
-		   source, 
+		  (expEClass,
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (booleanVariableEClass, 
-		   source, 
+		  (booleanVariableEClass,
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (integerVariableEClass, 
-		   source, 
+		  (integerVariableEClass,
+		   source,
 		   new String[] {
 		   });
 	}

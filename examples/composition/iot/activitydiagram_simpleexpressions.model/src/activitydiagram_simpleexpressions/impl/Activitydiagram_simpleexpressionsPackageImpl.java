@@ -74,7 +74,7 @@ public class Activitydiagram_simpleexpressionsPackageImpl extends EPackageImpl i
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link Activitydiagram_simpleexpressionsPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -88,7 +88,8 @@ public class Activitydiagram_simpleexpressionsPackageImpl extends EPackageImpl i
 		if (isInited) return (Activitydiagram_simpleexpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(Activitydiagram_simpleexpressionsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		Activitydiagram_simpleexpressionsPackageImpl theActivitydiagram_simpleexpressionsPackage = (Activitydiagram_simpleexpressionsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof Activitydiagram_simpleexpressionsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new Activitydiagram_simpleexpressionsPackageImpl());
+		Object registeredActivitydiagram_simpleexpressionsPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		Activitydiagram_simpleexpressionsPackageImpl theActivitydiagram_simpleexpressionsPackage = registeredActivitydiagram_simpleexpressionsPackage instanceof Activitydiagram_simpleexpressionsPackageImpl ? (Activitydiagram_simpleexpressionsPackageImpl)registeredActivitydiagram_simpleexpressionsPackage : new Activitydiagram_simpleexpressionsPackageImpl();
 
 		isInited = true;
 
@@ -105,7 +106,6 @@ public class Activitydiagram_simpleexpressionsPackageImpl extends EPackageImpl i
 		// Mark meta-data to indicate it can't be changed
 		theActivitydiagram_simpleexpressionsPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(Activitydiagram_simpleexpressionsPackage.eNS_URI, theActivitydiagram_simpleexpressionsPackage);
 		return theActivitydiagram_simpleexpressionsPackage;

@@ -38,6 +38,7 @@ public class ExpressionBindOperationDefImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected OperationDef delegate;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -10,8 +10,7 @@
       <!-- @generated activitydiagram_simpleexpressions -->
       <package
             uri="http://www.example.org/activitydiagram_simpleexpressions"
-            class="activitydiagram_simpleexpressions.Activitydiagram_simpleexpressionsPackage"
-            genModel="model/activitydiagram_simpleexpressions.genmodel"/>
+            class="activitydiagram_simpleexpressions.Activitydiagram_simpleexpressionsPackage"/>
    </extension>
 
 </plugin>

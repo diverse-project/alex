@@ -3,6 +3,7 @@
 package activitydiagramruntime.impl;
 
 import activitydiagram.ActivityEdge;
+
 import activitydiagramruntime.ActivitydiagramruntimePackage;
 import activitydiagramruntime.Offer;
 import activitydiagramruntime.Token;

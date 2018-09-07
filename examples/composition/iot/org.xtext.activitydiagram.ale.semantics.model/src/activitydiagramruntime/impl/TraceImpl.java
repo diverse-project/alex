@@ -3,14 +3,18 @@
 package activitydiagramruntime.impl;
 
 import activitydiagram.ActivityNode;
+
 import activitydiagramruntime.ActivitydiagramruntimePackage;
 import activitydiagramruntime.Trace;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**

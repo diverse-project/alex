@@ -1,7 +1,0 @@
-package iot_simpleexpression_exec.revisitor.operations.iot_simpleexpression_exec;
-
-import iot_simpleexpression_exec.revisitor.operations.iot_simpleexpression_exec.IotOperationDefOperation;
-
-@SuppressWarnings("all")
-public interface IotOperationDefBindOperationDefOperation extends IotOperationDefOperation {
-}

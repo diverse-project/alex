@@ -3,6 +3,9 @@
 package activitydiagramruntime.impl;
 
 import activitydiagram.ActivitydiagramPackage;
+
+import activitydiagram.impl.ActivitydiagramPackageImpl;
+
 import activitydiagramruntime.ActivitydiagramruntimeFactory;
 import activitydiagramruntime.ActivitydiagramruntimePackage;
 import activitydiagramruntime.Context;
@@ -10,13 +13,13 @@ import activitydiagramruntime.ControlToken;
 import activitydiagramruntime.ForkedToken;
 import activitydiagramruntime.Offer;
 import activitydiagramruntime.Token;
-
 import activitydiagramruntime.Trace;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -96,7 +99,7 @@ public class ActivitydiagramruntimePackageImpl extends EPackageImpl implements A
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link ActivitydiagramruntimePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -110,23 +113,26 @@ public class ActivitydiagramruntimePackageImpl extends EPackageImpl implements A
 		if (isInited) return (ActivitydiagramruntimePackage)EPackage.Registry.INSTANCE.getEPackage(ActivitydiagramruntimePackage.eNS_URI);
 
 		// Obtain or create and register package
-		ActivitydiagramruntimePackageImpl theActivitydiagramruntimePackage = (ActivitydiagramruntimePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ActivitydiagramruntimePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ActivitydiagramruntimePackageImpl());
+		Object registeredActivitydiagramruntimePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ActivitydiagramruntimePackageImpl theActivitydiagramruntimePackage = registeredActivitydiagramruntimePackage instanceof ActivitydiagramruntimePackageImpl ? (ActivitydiagramruntimePackageImpl)registeredActivitydiagramruntimePackage : new ActivitydiagramruntimePackageImpl();
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		ActivitydiagramPackage.eINSTANCE.eClass();
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ActivitydiagramPackage.eNS_URI);
+		ActivitydiagramPackageImpl theActivitydiagramPackage = (ActivitydiagramPackageImpl)(registeredPackage instanceof ActivitydiagramPackageImpl ? registeredPackage : ActivitydiagramPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theActivitydiagramruntimePackage.createPackageContents();
+		theActivitydiagramPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theActivitydiagramruntimePackage.initializePackageContents();
+		theActivitydiagramPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theActivitydiagramruntimePackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ActivitydiagramruntimePackage.eNS_URI, theActivitydiagramruntimePackage);
 		return theActivitydiagramruntimePackage;

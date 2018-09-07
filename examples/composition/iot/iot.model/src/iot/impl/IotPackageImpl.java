@@ -119,7 +119,7 @@ public class IotPackageImpl extends EPackageImpl implements IotPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link IotPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -133,7 +133,8 @@ public class IotPackageImpl extends EPackageImpl implements IotPackage {
 		if (isInited) return (IotPackage)EPackage.Registry.INSTANCE.getEPackage(IotPackage.eNS_URI);
 
 		// Obtain or create and register package
-		IotPackageImpl theIotPackage = (IotPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof IotPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new IotPackageImpl());
+		Object registeredIotPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		IotPackageImpl theIotPackage = registeredIotPackage instanceof IotPackageImpl ? (IotPackageImpl)registeredIotPackage : new IotPackageImpl();
 
 		isInited = true;
 
@@ -146,7 +147,6 @@ public class IotPackageImpl extends EPackageImpl implements IotPackage {
 		// Mark meta-data to indicate it can't be changed
 		theIotPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(IotPackage.eNS_URI, theIotPackage);
 		return theIotPackage;
@@ -460,15 +460,15 @@ public class IotPackageImpl extends EPackageImpl implements IotPackage {
 	 * @generated
 	 */
 	protected void create_RequiredAnnotations() {
-		String source = "@Required";	
+		String source = "@Required";
 		addAnnotation
-		  (iotOperationDefEClass, 
-		   source, 
+		  (iotOperationDefEClass,
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (iotActivityEClass, 
-		   source, 
+		  (iotActivityEClass,
+		   source,
 		   new String[] {
 		   });
 	}

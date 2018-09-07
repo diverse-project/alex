@@ -7,11 +7,11 @@ Bundle-SymbolicName: iot.simpleexpressions.xtext.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: iot.simpleexpressions.xtext,
  iot.model,
- org.csu.idl.idlmm,
+ idl.model,
  SimpleALEnv,
- org.xtext.activitydiagram.model,
+ activitydiagram.model,
  simpleexpressions.model,
- iot.simpleexpression.model,
+ iot.simpleexpressions.model,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide,
  org.antlr.runtime

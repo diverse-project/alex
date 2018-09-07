@@ -3,6 +3,7 @@
 package activitydiagramruntime;
 
 import activitydiagram.ActivityNode;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -22,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Token extends EObject {
-
 	/**
 	 * Returns the value of the '<em><b>Holder</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -48,4 +48,5 @@ public interface Token extends EObject {
 	 * @generated
 	 */
 	void setHolder(ActivityNode value);
+
 } // Token

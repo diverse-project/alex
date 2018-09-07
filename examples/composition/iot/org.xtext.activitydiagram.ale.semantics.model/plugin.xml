@@ -10,8 +10,14 @@
       <!-- @generated activitydiagramruntime -->
       <package
             uri="http://www.example.org/activitydiagramruntime"
-            class="activitydiagramruntime.ActivitydiagramruntimePackage"
-            genModel="model/activitydiagramruntime.genmodel"/>
+            class="activitydiagramruntime.ActivitydiagramruntimePackage"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated activitydiagramruntime -->
+      <package
+            uri="http://activitydiagram/1.0"
+            class="activitydiagram.ActivitydiagramPackage"/>
    </extension>
 
 </plugin>

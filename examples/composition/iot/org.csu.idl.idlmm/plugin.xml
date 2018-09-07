@@ -2,27 +2,15 @@
 <?eclipse version="3.0"?>
 
 <!--
- <copyright>
- </copyright>
-
- $Id$
 -->
 
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://idlmm/1.0"
-            class="org.csu.idl.idlmm.IdlmmPackage"
-            genModel="model/IDLMM.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated IDLMM -->
       <package
             uri="http://idlmm/1.0"
-            class="idlmm.IdlmmPackage"
-            genModel="model/IDLMM.genmodel"/>
+            class="idlmm.IdlmmPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -31,4 +19,5 @@
             type="idlmm"
             class="idlmm.util.IdlmmResourceFactoryImpl"/>
    </extension>
+
 </plugin>

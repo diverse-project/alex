@@ -4,11 +4,13 @@ package activitydiagramruntime.impl;
 
 import activitydiagramruntime.ActivitydiagramruntimePackage;
 import activitydiagramruntime.ForkedToken;
-
 import activitydiagramruntime.Token;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -35,6 +37,7 @@ public class ForkedTokenImpl extends TokenImpl implements ForkedToken {
 	 * @ordered
 	 */
 	protected Token baseToken;
+
 	/**
 	 * The default value of the '{@link #getRemainingOffersCount() <em>Remaining Offers Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -44,6 +47,7 @@ public class ForkedTokenImpl extends TokenImpl implements ForkedToken {
 	 * @ordered
 	 */
 	protected static final int REMAINING_OFFERS_COUNT_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getRemainingOffersCount() <em>Remaining Offers Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -210,7 +214,7 @@ public class ForkedTokenImpl extends TokenImpl implements ForkedToken {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (remainingOffersCount: ");
 		result.append(remainingOffersCount);
 		result.append(')');

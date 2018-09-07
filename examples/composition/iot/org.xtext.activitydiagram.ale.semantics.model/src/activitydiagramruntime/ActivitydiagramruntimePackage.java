@@ -93,7 +93,6 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 	 */
 	int TOKEN_OPERATION_COUNT = 0;
 
-
 	/**
 	 * The meta object id for the '{@link activitydiagramruntime.impl.OfferImpl <em>Offer</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -139,7 +138,6 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 	 * @ordered
 	 */
 	int OFFER_OPERATION_COUNT = 0;
-
 
 	/**
 	 * The meta object id for the '{@link activitydiagramruntime.impl.ContextImpl <em>Context</em>}' class.
@@ -250,7 +248,6 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 	 * @ordered
 	 */
 	int TRACE_OPERATION_COUNT = 0;
-
 
 	/**
 	 * The meta object id for the '{@link activitydiagramruntime.impl.ControlTokenImpl <em>Control Token</em>}' class.
@@ -558,6 +555,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EClass TOKEN = eINSTANCE.getToken();
+
 		/**
 		 * The meta object literal for the '<em><b>Holder</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -565,6 +563,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TOKEN__HOLDER = eINSTANCE.getToken_Holder();
+
 		/**
 		 * The meta object literal for the '{@link activitydiagramruntime.impl.OfferImpl <em>Offer</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -574,6 +573,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EClass OFFER = eINSTANCE.getOffer();
+
 		/**
 		 * The meta object literal for the '<em><b>Offered Tokens</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -581,6 +581,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference OFFER__OFFERED_TOKENS = eINSTANCE.getOffer_OfferedTokens();
+
 		/**
 		 * The meta object literal for the '<em><b>Owned</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -588,6 +589,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference OFFER__OWNED = eINSTANCE.getOffer_Owned();
+
 		/**
 		 * The meta object literal for the '{@link activitydiagramruntime.impl.ContextImpl <em>Context</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -597,6 +599,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONTEXT = eINSTANCE.getContext();
+
 		/**
 		 * The meta object literal for the '<em><b>Output</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -604,6 +607,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXT__OUTPUT = eINSTANCE.getContext_Output();
+
 		/**
 		 * The meta object literal for the '<em><b>Activity</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -611,6 +615,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXT__ACTIVITY = eINSTANCE.getContext_Activity();
+
 		/**
 		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -618,6 +623,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXT__PARENT = eINSTANCE.getContext_Parent();
+
 		/**
 		 * The meta object literal for the '<em><b>Input Values</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -625,6 +631,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXT__INPUT_VALUES = eINSTANCE.getContext_InputValues();
+
 		/**
 		 * The meta object literal for the '<em><b>Node</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -632,6 +639,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXT__NODE = eINSTANCE.getContext_Node();
+
 		/**
 		 * The meta object literal for the '{@link activitydiagramruntime.impl.TraceImpl <em>Trace</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -641,6 +649,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EClass TRACE = eINSTANCE.getTrace();
+
 		/**
 		 * The meta object literal for the '<em><b>Executed Nodes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -648,6 +657,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRACE__EXECUTED_NODES = eINSTANCE.getTrace_ExecutedNodes();
+
 		/**
 		 * The meta object literal for the '{@link activitydiagramruntime.impl.ControlTokenImpl <em>Control Token</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -657,6 +667,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONTROL_TOKEN = eINSTANCE.getControlToken();
+
 		/**
 		 * The meta object literal for the '{@link activitydiagramruntime.impl.ForkedTokenImpl <em>Forked Token</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -666,6 +677,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EClass FORKED_TOKEN = eINSTANCE.getForkedToken();
+
 		/**
 		 * The meta object literal for the '<em><b>Base Token</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -673,6 +685,7 @@ public interface ActivitydiagramruntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FORKED_TOKEN__BASE_TOKEN = eINSTANCE.getForkedToken_BaseToken();
+
 		/**
 		 * The meta object literal for the '<em><b>Remaining Offers Count</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->

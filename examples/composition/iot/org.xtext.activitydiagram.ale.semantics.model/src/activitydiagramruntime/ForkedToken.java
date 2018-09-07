@@ -21,7 +21,6 @@ package activitydiagramruntime;
  * @generated
  */
 public interface ForkedToken extends Token {
-
 	/**
 	 * Returns the value of the '<em><b>Base Token</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -73,4 +72,5 @@ public interface ForkedToken extends Token {
 	 * @generated
 	 */
 	void setRemainingOffersCount(int value);
+
 } // ForkedToken

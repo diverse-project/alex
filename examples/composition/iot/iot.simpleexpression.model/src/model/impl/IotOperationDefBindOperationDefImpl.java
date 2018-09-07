@@ -8,8 +8,8 @@ import model.IotOperationDefBindOperationDef;
 import model.ModelPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -39,6 +39,7 @@ public class IotOperationDefBindOperationDefImpl extends MinimalEObjectImpl.Cont
 	 * @ordered
 	 */
 	protected OperationDef delegate;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

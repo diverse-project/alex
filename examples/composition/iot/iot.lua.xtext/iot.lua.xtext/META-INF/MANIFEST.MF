@@ -6,8 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: iot.lua.xtext;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: iot.model,
- org.xtext.lua,
- org.xtext.activitydiagram.model,
+ lua.xtext,
+ activitydiagram.model,
  iot.lua.model,
  org.eclipse.xtext,
  org.eclipse.xtext.xbase,
