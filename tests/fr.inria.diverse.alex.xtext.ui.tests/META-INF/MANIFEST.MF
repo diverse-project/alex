@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: fr.inria.diverse.alex.xtext.ui.tests
 Bundle-Vendor: ALE Team
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.1.0.qualifier
 Bundle-SymbolicName: fr.inria.diverse.alex.xtext.ui.tests;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: fr.inria.diverse.alex.xtext.ui,
