@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/fr.inria.diverse.alex.feature_0.1.0.qualifier.jar" id="fr.inria.diverse.alex.feature" version="0.1.0.qualifier">
+      <category name="alex"/>
+   </feature>
+   <category-def name="alex" label="Alex"/>
+</site>

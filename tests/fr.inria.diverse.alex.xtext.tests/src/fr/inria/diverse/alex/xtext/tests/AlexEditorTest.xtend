@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
 @InjectWith(AlexInjectorProvider)
-class AlexEditorTests {
+class AlexEditorTest {
 	@Inject extension ParseHelper<AlexRoot>
 	@Inject extension CompilationTestHelper compilationHelper
 	@Inject extension ValidationTestHelper

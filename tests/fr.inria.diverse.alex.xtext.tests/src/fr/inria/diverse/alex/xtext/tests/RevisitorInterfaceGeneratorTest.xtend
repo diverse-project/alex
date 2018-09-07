@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.junit.Assert
 import org.junit.Test
 
-class RevisitorInterfaceGeneratorTests {
+class RevisitorInterfaceGeneratorTest {
 	val rig = new RevisitorInterfaceGenerator
 
 	private def String generate(String ecore, String genmodel) {

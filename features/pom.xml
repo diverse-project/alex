@@ -1,0 +1,17 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fr.inria.diverse.alex</groupId>
+  <artifactId>fr.inria.diverse.alex.features</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>fr.inria.diverse.alex</groupId>
+    <artifactId>fr.inria.diverse.alex.root</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+
+  <modules>
+    <module>fr.inria.diverse.alex.feature</module>
+  </modules>
+</project>
