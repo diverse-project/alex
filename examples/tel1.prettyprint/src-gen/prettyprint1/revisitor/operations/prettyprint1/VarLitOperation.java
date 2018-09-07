@@ -1,8 +1,8 @@
 package prettyprint1.revisitor.operations.prettyprint1;
 
-import prettyprint1.revisitor.operations.prettyprint1.ExpOperation;
+import prettyprint.revisitor.operations.prettyprint.ExpOperation;
 
 @SuppressWarnings("all")
-public interface VarLitOperation extends ExpOperation, prettyprint.revisitor.operations.prettyprint.ExpOperation {
+public interface VarLitOperation extends ExpOperation, prettyprint1.revisitor.operations.prettyprint1.ExpOperation {
   public abstract String print();
 }

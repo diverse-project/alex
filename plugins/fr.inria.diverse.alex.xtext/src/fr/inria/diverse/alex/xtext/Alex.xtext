@@ -1,0 +1,50 @@
+grammar fr.inria.diverse.alex.xtext.Alex with org.eclipse.xtext.xbase.Xbase
+
+generate alex "http://alex.diverse.inria.fr/Alex"
+
+AlexRoot:
+	'behavior' name = ValidID
+	javaImports = XImportSection?
+	ecoreImport = EcoreImport
+	alexImports += AlexImport*
+	classes += AlexClass*
+;
+
+EcoreImport:
+	'import' 'ecore' uri = STRING
+;
+
+AlexImport:
+	'import' 'alex' ref = [AlexRoot]
+;
+
+AlexClass:
+	'open' (abstract?='abstract')? 'class' name = ValidID '{'
+		methods += AlexMethod*
+	'}'
+;
+
+AlexMethod:
+	AbstractMethod | ConcreteMethod
+;
+	
+ConcreteMethod:
+	DefMethod | OverrideMethod
+;
+
+AbstractMethod:
+	'abstract' 'def' type = JvmTypeReference name = ValidID
+	'(' (params += FullJvmFormalParameter (',' params += FullJvmFormalParameter)*)? ')'
+;
+
+DefMethod:
+	'def' type = JvmTypeReference name = ValidID
+	'(' (params += FullJvmFormalParameter (',' params += FullJvmFormalParameter)*)? ')'
+	block = XBlockExpression
+;
+
+OverrideMethod:
+	'override' type = JvmTypeReference name = ValidID
+	'(' (params += FullJvmFormalParameter (',' params += FullJvmFormalParameter)*)? ')'
+	block = XBlockExpression
+;
