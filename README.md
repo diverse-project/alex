@@ -1,6 +1,9 @@
-# ALE-Xbase
+# Alex Language
 
-This is an experimentation of incorporating Xbase into ALE.
+## Documentation
 
-The original ALE repository is located https://github.com/diverse-project/ale-compiler.
+For more information about the usage of Alex: https://diverse-project.github.io/alex/
 
+## Contribution
+
+TODO
