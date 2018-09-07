@@ -13,6 +13,7 @@ Workflow {
 				baseName = "alex.xtext"
 				rootPath = rootPath
 				runtimeTest = {
+					root = "../../tests/alex.xtext.tests"
 					enabled = true
 				}
 				eclipsePlugin = {
@@ -20,6 +21,7 @@ Workflow {
 				}
 				eclipsePluginTest = {
 					enabled = true
+					root = "../../tests/alex.xtext.ui.tests"
 				}
 				createEclipseMetaData = true
 			}

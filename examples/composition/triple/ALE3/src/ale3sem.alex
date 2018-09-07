@@ -1,6 +1,6 @@
 behavior ale3sem
 
-import ecore "platform:/resource/ALE3/model/ale3.ecore"
+import ecore "platform:/resource/ALE3/model/ale3.genmodel"
 
 open class C1 {
 	def void printC() {

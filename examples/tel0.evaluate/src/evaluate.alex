@@ -1,6 +1,6 @@
 behavior evaluate
 
-import ecore "platform:/resource/tel0.model/model/tel0.ecore"
+import ecore "platform:/resource/tel0.model/model/tel0.genmodel"
 
 open abstract class Exp {
 	abstract def long eval()

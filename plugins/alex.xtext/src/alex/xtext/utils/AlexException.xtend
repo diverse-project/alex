@@ -10,4 +10,12 @@ class AlexException extends Exception {
 	new(String s) {
 		super(s)
 	}
+	
+	new(Throwable t) {
+		super(t)
+	}
+	
+	new (String s, Throwable t) {
+		super(s, t)
+	}
 }

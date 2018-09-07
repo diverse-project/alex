@@ -3,7 +3,7 @@ behavior evalbasicfsm
 import basicFsmEnv.runtime.Context
 import basicFsmEnv.InitialState
 
-import ecore "platform:/resource/BasicFsmEnv/model/basicFsmEnv.ecore"
+import ecore "platform:/resource/BasicFsmEnv/model/basicFsmEnv.genmodel"
 
 
 open class Machine {

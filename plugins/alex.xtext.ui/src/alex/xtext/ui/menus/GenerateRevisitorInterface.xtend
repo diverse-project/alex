@@ -4,13 +4,12 @@ import alex.xtext.generator.RevisitorInterfaceGenerator
 import alex.xtext.utils.EcoreUtils
 import alex.xtext.utils.NamingUtils
 import java.io.FileWriter
-import java.io.IOException
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IResource
-import org.eclipse.core.runtime.CoreException
 import org.eclipse.core.runtime.IAdaptable
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
+import org.eclipse.e4.core.services.log.Logger
 import org.eclipse.jface.action.IAction
 import org.eclipse.jface.dialogs.MessageDialog
 import org.eclipse.jface.viewers.ISelection
@@ -18,6 +17,10 @@ import org.eclipse.jface.viewers.IStructuredSelection
 import org.eclipse.swt.widgets.Shell
 import org.eclipse.ui.IObjectActionDelegate
 import org.eclipse.ui.IWorkbenchPart
+import org.eclipse.ui.PlatformUI
+import alex.xtext.utils.AlexException
+import java.io.IOException
+import org.eclipse.core.runtime.CoreException
 
 class GenerateRevisitorInterface implements IObjectActionDelegate {
 	extension EcoreUtils = new EcoreUtils()
@@ -31,17 +34,17 @@ class GenerateRevisitorInterface implements IObjectActionDelegate {
 	}
 
 	override void run(IAction action) {
-		val ecorePath = selectedIFile.fullPath.toString
-		val pkg = loadEPackage(ecorePath)
-		val gm = loadCorrespondingGenmodel(ecorePath)
+		val gmPath = selectedIFile.fullPath.toString
+		val gm = loadGenmodel(gmPath)
+		val pkg = gm?.getEPackage
 
-		if (pkg === null) {
-			MessageDialog.openError(shell, "Error", "Cannot find EPackage for " + ecorePath);
+		if (gm === null) {
+			MessageDialog.openError(shell, "Error", "Cannot find GenModel for " + gmPath);
 			return
 		}
 
-		if (gm === null) {
-			MessageDialog.openError(shell, "Error", "Cannot find genmodel for " + ecorePath);
+		if (pkg === null) {
+			MessageDialog.openError(shell, "Error", "Cannot find EPackage for " + gmPath);
 			return
 		}
 
@@ -50,17 +53,16 @@ class GenerateRevisitorInterface implements IObjectActionDelegate {
 		path.toFile().mkdirs()
 		val file = path.append(new Path(pkg.revisitorInterfaceName)).addFileExtension("java")
 
-		val content = generator.generateInterface(pkg, gm)
-
 		try {
+			val content = generator.generateInterface(pkg, gm)
 			val fileWriter = new FileWriter(file.toFile())
 			fileWriter.write(content)
 			fileWriter.close()
 			project.refreshLocal(IResource::DEPTH_INFINITE, new NullProgressMonitor())
-		} catch (IOException e) {
-			e.printStackTrace()
-		} catch (CoreException e) {
-			e.printStackTrace()
+		} catch (AlexException | IOException | CoreException e) {
+			MessageDialog.openError(shell, "Error", "Couldn't generate Revisitor interface. Check Error Log for details.");
+			val logger = PlatformUI.getWorkbench().getService(typeof(Logger));
+			logger.error(e, e.message)
 		}
 	}
 

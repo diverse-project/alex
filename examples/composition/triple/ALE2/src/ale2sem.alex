@@ -1,6 +1,6 @@
 behavior ale2sem
 
-import ecore "platform:/resource/ALE2/model/ale2.ecore"
+import ecore "platform:/resource/ALE2/model/ale2.genmodel"
 
 open class B {
 	def void printB() {
@@ -9,6 +9,6 @@ open class B {
 	}
 }
 
-open class RB {
+open abstract class RB {
 	abstract def void rbPrint()
 }

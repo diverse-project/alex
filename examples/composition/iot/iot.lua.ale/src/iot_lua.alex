@@ -4,7 +4,7 @@ import org.xtext.lua.semantics.model.Environment
 import activitydiagram.*
 import org.xtext.lua.lua.*
 import idlmm.*
-import ecore "platform:/resource/iot.lua.model/model/iot_lua.ecore"
+import ecore "platform:/resource/iot.lua.model/model/iot_lua.genmodel"
 import alex activitydiagram_exec
 import alex lua_exec
 open class ExpressionBindStatement {

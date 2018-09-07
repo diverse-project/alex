@@ -412,11 +412,11 @@
        point="org.eclipse.ui.popupMenus">
     <objectContribution
           id="alex.compiler.ui.contribution1"
-          nameFilter="*.ecore"
+          nameFilter="*.genmodel"
           objectClass="org.eclipse.core.resources.IFile">
        <menu
              id="alex.compiler.ui.menu1"
-             label="ALEX"
+             label="Alex"
              path="additions">
           <separator
                 name="group1">

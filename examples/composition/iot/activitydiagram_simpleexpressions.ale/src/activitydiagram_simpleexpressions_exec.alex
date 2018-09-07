@@ -3,7 +3,7 @@ behavior activitydiagram_simpleexpressions_exec
 import activitydiagram.Context
 import activitydiagram.Value
 
-import ecore "platform:/resource/activitydiagram_simpleexpressions.model/model/activitydiagram_simpleexpressions.ecore"
+import ecore "platform:/resource/activitydiagram_simpleexpressions.model/model/activitydiagram_simpleexpressions.genmodel"
 
 import alex activitydiagram_exec
 import alex simpleexpressions_exec

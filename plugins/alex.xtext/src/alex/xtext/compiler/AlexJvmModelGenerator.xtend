@@ -35,87 +35,87 @@ class AlexJvmModelGenerator extends JvmModelGenerator {
 
 	}
 
-	def generateGenmodel(Resource input, EPackage mainPackage, AlexRoot alexRoot) {
-		val projectName = input.URI.segmentsList.get(1)
-		val ecoreFileUri = URI.createPlatformResourceURI('''/«projectName»/model/«alexRoot.name».genmodel''', true)
-
-		val resourceSet = new ResourceSetImpl
-		resourceSet.resourceFactoryRegistry.extensionToFactoryMap.put("genmodel", new XMIResourceFactoryImpl)
-		val resource = resourceSet.createResource(ecoreFileUri)
-
-		(resource as XMIResource).defaultSaveOptions.put(XMLResource.OPTION_ENCODING, 'UTF-8')
-
-		val ugp = alexRoot.alexImports.map[it.ref.ecoreImport].map[it.uri.loadCorrespondingGenmodel].map [
-			genPackages.toList
-		].flatten.toSet
-
-		if(alexRoot.ecoreImport !== null) ugp.addAll(alexRoot.ecoreImport.uri.loadCorrespondingGenmodel.genPackages)
-
-		val genModel = GenModelFactory.eINSTANCE.createGenModel => [
-			modelDirectory = '''/«projectName»/src-gen'''
-			modelPluginID = projectName
-			modelName = alexRoot.name.toFirstUpper
-			complianceLevel = GenJDKLevel.JDK80_LITERAL
-			copyrightFields = false
-			usedGenPackages += ugp
-			operationReflection = true
-			importOrganizing = true
-			foreignModel += '''«alexRoot.name».ecore'''
-			genPackages += GenModelFactory.eINSTANCE.createGenPackage => [
-				prefix = alexRoot.name.toFirstUpper
-				disposableProviderFactory = true
-				ecorePackage = mainPackage
-				genClasses += mainPackage.EClassifiers.filter(EClass).map [ eClass |
-					GenModelFactory.eINSTANCE.createGenClass => [
-						ecoreClass = eClass
-					]
-				]
-			]
-		]
-
-		resource.contents.add(genModel)
-
-		resource.save(null)
-
-		genModel
-	}
-
-	def EPackage generateEcore(Resource input, AlexRoot alexRoot) {
-
-		val extension factory = EcoreFactory.eINSTANCE
-
-		val ecoreFileUri = URI.
-			createPlatformResourceURI('''/«input.URI.segmentsList.get(1)»/model/«alexRoot.name».ecore''', true)
-
-		val resourceSet = new ResourceSetImpl
-		resourceSet.resourceFactoryRegistry.extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl)
-		val resource = resourceSet.createResource(ecoreFileUri)
-
-		val ecorePackage = createEPackage => [
-			name = alexRoot.name
-			nsPrefix = alexRoot.name
-			nsURI = '''http://«alexRoot.name»'''
-		]
-
-//		alexRoot.bindings.forEach [ classBind |
-//			if (!classBind.nothing) {
-//				ecorePackage.EClassifiers += createEClass => [
-//					name = classBind.bindClassName
-//					ESuperTypes += classBind.requiredCls.getMatchingEClass
-//					EStructuralFeatures += createEReference => [
-//						lowerBound = 1
-//						upperBound = 1
-//						EType = classBind.providedCls.matchingEClass
-//						name = 'delegate'
+//	def generateGenmodel(Resource input, EPackage mainPackage, AlexRoot alexRoot) {
+//		val projectName = input.URI.segmentsList.get(1)
+//		val ecoreFileUri = URI.createPlatformResourceURI('''/«projectName»/model/«alexRoot.name».genmodel''', true)
+//
+//		val resourceSet = new ResourceSetImpl
+//		resourceSet.resourceFactoryRegistry.extensionToFactoryMap.put("genmodel", new XMIResourceFactoryImpl)
+//		val resource = resourceSet.createResource(ecoreFileUri)
+//
+//		(resource as XMIResource).defaultSaveOptions.put(XMLResource.OPTION_ENCODING, 'UTF-8')
+//
+//		val ugp = alexRoot.alexImports.map[it.ref.ecoreImport].map[it.uri.loadCorrespondingGenmodel].map [
+//			genPackages.toList
+//		].flatten.toSet
+//
+//		if(alexRoot.ecoreImport !== null) ugp.addAll(alexRoot.ecoreImport.uri.loadCorrespondingGenmodel.genPackages)
+//
+//		val genModel = GenModelFactory.eINSTANCE.createGenModel => [
+//			modelDirectory = '''/«projectName»/src-gen'''
+//			modelPluginID = projectName
+//			modelName = alexRoot.name.toFirstUpper
+//			complianceLevel = GenJDKLevel.JDK80_LITERAL
+//			copyrightFields = false
+//			usedGenPackages += ugp
+//			operationReflection = true
+//			importOrganizing = true
+//			foreignModel += '''«alexRoot.name».ecore'''
+//			genPackages += GenModelFactory.eINSTANCE.createGenPackage => [
+//				prefix = alexRoot.name.toFirstUpper
+//				disposableProviderFactory = true
+//				ecorePackage = mainPackage
+//				genClasses += mainPackage.EClassifiers.filter(EClass).map [ eClass |
+//					GenModelFactory.eINSTANCE.createGenClass => [
+//						ecoreClass = eClass
 //					]
 //				]
-//			}
+//			]
 //		]
+//
+//		resource.contents.add(genModel)
+//
+//		resource.save(null)
+//
+//		genModel
+//	}
 
-		resource.contents.add(ecorePackage)
-		resource.save(null)
-
-		ecorePackage
-	}
+//	def EPackage generateEcore(Resource input, AlexRoot alexRoot) {
+//
+//		val extension factory = EcoreFactory.eINSTANCE
+//
+//		val ecoreFileUri = URI.
+//			createPlatformResourceURI('''/«input.URI.segmentsList.get(1)»/model/«alexRoot.name».ecore''', true)
+//
+//		val resourceSet = new ResourceSetImpl
+//		resourceSet.resourceFactoryRegistry.extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl)
+//		val resource = resourceSet.createResource(ecoreFileUri)
+//
+//		val ecorePackage = createEPackage => [
+//			name = alexRoot.name
+//			nsPrefix = alexRoot.name
+//			nsURI = '''http://«alexRoot.name»'''
+//		]
+//
+////		alexRoot.bindings.forEach [ classBind |
+////			if (!classBind.nothing) {
+////				ecorePackage.EClassifiers += createEClass => [
+////					name = classBind.bindClassName
+////					ESuperTypes += classBind.requiredCls.getMatchingEClass
+////					EStructuralFeatures += createEReference => [
+////						lowerBound = 1
+////						upperBound = 1
+////						EType = classBind.providedCls.matchingEClass
+////						name = 'delegate'
+////					]
+////				]
+////			}
+////		]
+//
+//		resource.contents.add(ecorePackage)
+//		resource.save(null)
+//
+//		ecorePackage
+//	}
 
 }

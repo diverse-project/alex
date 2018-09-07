@@ -2,7 +2,7 @@ behavior evalboolexp
 
 import boolExpEnv.runtime.Env
 
-import ecore "platform:/resource/BoolExpEnv/model/boolExpEnv.ecore"
+import ecore "platform:/resource/BoolExpEnv/model/boolExpEnv.genmodel"
 
 open abstract class BinExp {}
 open abstract class Lit {}

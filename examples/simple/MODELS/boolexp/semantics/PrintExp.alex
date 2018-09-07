@@ -1,6 +1,6 @@
 behavior printexp
 
-import ecore "platform:/resource/boolexp/model/BoolExp.ecore"
+import ecore "platform:/resource/boolexp/model/BoolExp.genmodel"
 
 open abstract class Exp {
 	abstract def String print()

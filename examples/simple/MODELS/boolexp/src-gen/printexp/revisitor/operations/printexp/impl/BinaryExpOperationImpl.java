@@ -9,14 +9,16 @@ import printexp.revisitor.operations.printexp.FalsOperation;
 import printexp.revisitor.operations.printexp.LitOperation;
 import printexp.revisitor.operations.printexp.OrOperation;
 import printexp.revisitor.operations.printexp.TruOperation;
+import printexp.revisitor.operations.printexp.impl.ExpOperationImpl;
 
 @SuppressWarnings("all")
-public abstract class BinaryExpOperationImpl implements BinaryExpOperation {
+public abstract class BinaryExpOperationImpl extends ExpOperationImpl implements BinaryExpOperation {
   private BinaryExp obj;
   
   private BoolexpRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends LitOperation, ? extends OrOperation, ? extends TruOperation> alg;
   
   public BinaryExpOperationImpl(final BinaryExp obj, final BoolexpRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends LitOperation, ? extends OrOperation, ? extends TruOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }

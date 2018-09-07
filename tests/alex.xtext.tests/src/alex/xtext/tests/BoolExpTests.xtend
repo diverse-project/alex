@@ -25,7 +25,7 @@ class BoolExpTests {
 	def void testPrintRevisitor() {
 		'''
 			behavior testPrintRevisitor
-			import ecore "../testdata/boolexp/model/BoolExp.ecore"
+			import ecore "../testdata/boolexp/model/BoolExp.genmodel"
 			open abstract class Exp {
 				abstract def String print()
 			}
@@ -75,7 +75,7 @@ class BoolExpTests {
 	def void testEvalRevisitor() {
 		'''
 			behavior testEvalRevisitor
-			import ecore "../testdata/boolexp/model/BoolExp.ecore"
+			import ecore "../testdata/boolexp/model/BoolExp.genmodel"
 			open abstract class Exp {
 				abstract def boolean eval()
 			}

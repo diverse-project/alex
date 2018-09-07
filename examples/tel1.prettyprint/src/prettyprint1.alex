@@ -1,6 +1,6 @@
 behavior prettyprint1
 
-import ecore "platform:/resource/tel1.model/model/tel1.ecore"
+import ecore "platform:/resource/tel1.model/model/tel1.genmodel"
 
 import alex prettyprint
 

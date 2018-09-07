@@ -2,7 +2,7 @@ behavior evalsimpleal
 
 import simpleALEnv.runtime.Env
 
-import ecore "platform:/resource/SimpleALEnv/model/simpleALEnv.ecore"
+import ecore "platform:/resource/SimpleALEnv/model/simpleALEnv.genmodel"
 
 open class Block {
 	def void eval(Env env) {

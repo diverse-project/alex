@@ -1,6 +1,6 @@
 behavior fsmprinting
 
-import ecore "platform:/resource/minifsm/model/MiniFsm.ecore"
+import ecore "platform:/resource/minifsm/model/MiniFsm.genmodel"
 
 open class Machine {
 	def String print() {
@@ -16,11 +16,7 @@ open class State {
 
 open class FinalState {
 	override String print() {
-<<<<<<< HEAD
-		return "* " + alg.minifsm__State(obj).print();
-=======
 		return "* " + alg.minifsm__State(obj).print()
->>>>>>> 3f6de93c322367fd78b1d4d23b20a24edba268d3
 	}
 }
 

@@ -23,7 +23,7 @@ class AlexParsingTest {
 		val result = parseHelper.parse('''
 			behavior fsmprinting
 			
-			import ecore "platform:/resource/minifsm/model/MiniFsm.ecore"
+			import ecore "platform:/resource/minifsm/model/MiniFsm.genmodel"
 			
 			open class Machine {
 				def String print() {

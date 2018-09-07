@@ -12,7 +12,7 @@ import activitydiagram.Value
 import activitydiagram.Variable
 import activitydiagram.ActivitydiagramFactory
 
-import ecore "platform:/resource/org.modelexecution.operationalsemantics.ad.clean/model/activitydiagram.ecore"
+import ecore "platform:/resource/org.modelexecution.operationalsemantics.ad.clean/model/activitydiagram.genmodel"
 
 open class Activity {
 	def void main(List<InputValue> inputValues) {
@@ -64,7 +64,7 @@ open class Activity {
 	}
 }
 
-open class ActivityNode {
+open abstract class ActivityNode {
 	def void run() {
 		obj.running = true
 	}
@@ -109,11 +109,11 @@ open class ActivityNode {
 	abstract def void fire(List<Token> tokens)
 }
 
-open class Action {
+open abstract class Action {
 	abstract def void doAction()
 
 	override boolean isReady() {
-		return super.isReady() && alg.$(obj).hasOffers()
+		return obj.running && alg.$(obj).hasOffers()
 	}
 
 	def void sendOffers() {
@@ -203,7 +203,7 @@ open class ControlNode {
 	}
 
 	override boolean isReady() {
-		return super.isReady() && alg.$(obj).hasOffers()
+		return obj.running && alg.$(obj).hasOffers()
 	}
 }
 
@@ -275,11 +275,11 @@ open class ForkedToken {
 	}
 }
 
-open class Expression {
+open abstract class Expression {
 	abstract def void execute()
 }
 
-open class BooleanExpression {
+open abstract class BooleanExpression {
 	def boolean getCurrentValue(Variable variable) {
 		var boolean currentValue = false
 		val value = variable.currentValue
@@ -296,7 +296,7 @@ open class BooleanExpression {
 	}
 }
 
-open class IntegerExpression {
+open abstract class IntegerExpression {
 	def int getCurrentValue(Variable variable) {
 		var int currentValue = 0
 		val value = variable.currentValue
@@ -366,7 +366,7 @@ open class IntegerCalculationExpression {
 	}
 }
 
-open class Variable {
+open abstract class Variable {
 	abstract def Value getCurrentValue()
 	abstract def void setCurrentValue(Value value)
 }

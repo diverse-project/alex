@@ -3,7 +3,7 @@ import org.xtext.lua.lua.Expression_VariableName
 import java.util.concurrent.ThreadLocalRandom
 import org.xtext.lua.semantics.model.Environment
 import java.util.Scanner
-import ecore "platform:/resource/org.xtext.lua/model/generated/Lua.ecore"
+import ecore "platform:/resource/org.xtext.lua/model/generated/Lua.genmodel"
 open class Chunk {
 	def void execute(Environment c) {}
 }

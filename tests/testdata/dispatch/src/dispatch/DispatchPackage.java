@@ -292,6 +292,91 @@ public interface DispatchPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link dispatch.impl.HImpl <em>H</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see dispatch.impl.HImpl
+	 * @see dispatch.impl.DispatchPackageImpl#getH()
+	 * @generated
+	 */
+	int H = 8;
+
+	/**
+	 * The number of structural features of the '<em>H</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int H_FEATURE_COUNT = D_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>H</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int H_OPERATION_COUNT = D_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link dispatch.impl.IImpl <em>I</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see dispatch.impl.IImpl
+	 * @see dispatch.impl.DispatchPackageImpl#getI()
+	 * @generated
+	 */
+	int I = 9;
+
+	/**
+	 * The number of structural features of the '<em>I</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int I_FEATURE_COUNT = F_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>I</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int I_OPERATION_COUNT = F_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link dispatch.impl.JImpl <em>J</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see dispatch.impl.JImpl
+	 * @see dispatch.impl.DispatchPackageImpl#getJ()
+	 * @generated
+	 */
+	int J = 10;
+
+	/**
+	 * The number of structural features of the '<em>J</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int J_FEATURE_COUNT = H_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>J</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int J_OPERATION_COUNT = H_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link dispatch.A <em>A</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -381,6 +466,36 @@ public interface DispatchPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getContainer_Objs();
+
+	/**
+	 * Returns the meta object for class '{@link dispatch.H <em>H</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>H</em>'.
+	 * @see dispatch.H
+	 * @generated
+	 */
+	EClass getH();
+
+	/**
+	 * Returns the meta object for class '{@link dispatch.I <em>I</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>I</em>'.
+	 * @see dispatch.I
+	 * @generated
+	 */
+	EClass getI();
+
+	/**
+	 * Returns the meta object for class '{@link dispatch.J <em>J</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>J</em>'.
+	 * @see dispatch.J
+	 * @generated
+	 */
+	EClass getJ();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -492,6 +607,36 @@ public interface DispatchPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTAINER__OBJS = eINSTANCE.getContainer_Objs();
+
+		/**
+		 * The meta object literal for the '{@link dispatch.impl.HImpl <em>H</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see dispatch.impl.HImpl
+		 * @see dispatch.impl.DispatchPackageImpl#getH()
+		 * @generated
+		 */
+		EClass H = eINSTANCE.getH();
+
+		/**
+		 * The meta object literal for the '{@link dispatch.impl.IImpl <em>I</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see dispatch.impl.IImpl
+		 * @see dispatch.impl.DispatchPackageImpl#getI()
+		 * @generated
+		 */
+		EClass I = eINSTANCE.getI();
+
+		/**
+		 * The meta object literal for the '{@link dispatch.impl.JImpl <em>J</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see dispatch.impl.JImpl
+		 * @see dispatch.impl.DispatchPackageImpl#getJ()
+		 * @generated
+		 */
+		EClass J = eINSTANCE.getJ();
 
 	}
 

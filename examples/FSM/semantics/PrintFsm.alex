@@ -1,6 +1,6 @@
 behavior printfsm
 
-import ecore "platform:/resource/FSM/model/FSM.ecore"
+import ecore "platform:/resource/FSM/model/FSM.genmodel"
 
 open class Machine {
 	def String print() {

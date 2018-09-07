@@ -1,7 +1,7 @@
 behavior sorting
 
 
-import ecore "platform:/resource/SortingAlgorithm/model/sortingAlgorithm.ecore"
+import ecore "platform:/resource/SortingAlgorithm/model/sortingAlgorithm.genmodel"
 
 open abstract class Sortable {
 	def sortingAlgorithm.Sortable max(java.util.List<sortingAlgorithm.Sortable> lst) {

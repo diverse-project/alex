@@ -3,7 +3,7 @@ behavior evalfsm
 import fsm.dyn.Context
 import fsm.InitialState
 
-import ecore "platform:/resource/FSM/model/FSM.ecore"
+import ecore "platform:/resource/FSM/model/FSM.genmodel"
 
 open class Machine {
 	def void execute(String[] events, Context ctx) {

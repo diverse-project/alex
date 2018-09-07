@@ -18,14 +18,16 @@ import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEInte
 import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEIntegerVariableOperation;
 import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEValueOperation;
 import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.SEVariableOperation;
+import simpleexpressions_exec.revisitor.operations.simpleexpressions_exec.impl.SEBooleanExpressionOperationImpl;
 
 @SuppressWarnings("all")
-public class SEBooleanUnaryExpressionOperationImpl implements SEBooleanUnaryExpressionOperation {
+public class SEBooleanUnaryExpressionOperationImpl extends SEBooleanExpressionOperationImpl implements SEBooleanUnaryExpressionOperation {
   private SEBooleanUnaryExpression obj;
   
   private SimpleexpressionsRevisitor<? extends SEBooleanBinaryExpressionOperation, ? extends SEBooleanExpressionOperation, ? extends SEBooleanUnaryExpressionOperation, ? extends SEBooleanValueOperation, ? extends SEBooleanVariableOperation, ? extends SEExpressionOperation, ? extends SEIntegerCalculationExpressionOperation, ? extends SEIntegerComparisonExpressionOperation, ? extends SEIntegerExpressionOperation, ? extends SEIntegerValueOperation, ? extends SEIntegerVariableOperation, ? extends SEValueOperation, ? extends SEVariableOperation> alg;
   
   public SEBooleanUnaryExpressionOperationImpl(final SEBooleanUnaryExpression obj, final SimpleexpressionsRevisitor<? extends SEBooleanBinaryExpressionOperation, ? extends SEBooleanExpressionOperation, ? extends SEBooleanUnaryExpressionOperation, ? extends SEBooleanValueOperation, ? extends SEBooleanVariableOperation, ? extends SEExpressionOperation, ? extends SEIntegerCalculationExpressionOperation, ? extends SEIntegerComparisonExpressionOperation, ? extends SEIntegerExpressionOperation, ? extends SEIntegerValueOperation, ? extends SEIntegerVariableOperation, ? extends SEValueOperation, ? extends SEVariableOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }

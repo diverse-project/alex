@@ -1,6 +1,6 @@
 behavior multi_print
 
-import ecore "platform:/resource/multi/model/multi.ecore"
+import ecore "platform:/resource/multi/model/multi.genmodel"
 
 open class A {
 	def String fromA() {

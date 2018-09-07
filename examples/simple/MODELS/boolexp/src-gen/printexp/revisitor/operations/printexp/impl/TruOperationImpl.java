@@ -9,14 +9,16 @@ import printexp.revisitor.operations.printexp.FalsOperation;
 import printexp.revisitor.operations.printexp.LitOperation;
 import printexp.revisitor.operations.printexp.OrOperation;
 import printexp.revisitor.operations.printexp.TruOperation;
+import printexp.revisitor.operations.printexp.impl.LitOperationImpl;
 
 @SuppressWarnings("all")
-public class TruOperationImpl implements TruOperation {
+public class TruOperationImpl extends LitOperationImpl implements TruOperation {
   private Tru obj;
   
   private BoolexpRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends LitOperation, ? extends OrOperation, ? extends TruOperation> alg;
   
   public TruOperationImpl(final Tru obj, final BoolexpRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends LitOperation, ? extends OrOperation, ? extends TruOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }

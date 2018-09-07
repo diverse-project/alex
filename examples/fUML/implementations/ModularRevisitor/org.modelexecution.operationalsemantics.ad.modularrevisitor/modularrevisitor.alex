@@ -1,6 +1,10 @@
 behavior modularactivitydiagram
 
-import ecore "platform:/resource/org.modelexecution.operationalsemantics.adruntime/model/adruntime.ecore"
+import activitydiagram.ControlFlow
+import activitydiagram.Token
+import java.util.List
+
+import ecore "platform:/resource/org.modelexecution.operationalsemantics.adruntime/model/adruntime.genmodel"
 
 open class Expression {
 	def void execute() {}
@@ -15,7 +19,7 @@ open class ActivityEdge_Aspect {
 		return null;
 	}
 	
-	def void sendOffer(Sequence(Token) tokens) {
+	def void sendOffer(List<Token> tokens) {
 		Offer offer = new Offer();
 		for(Token token in tokens) {
 			offer.getOfferedTokens().add(token);

@@ -100,6 +100,18 @@ public class DispatchAdapterFactory extends AdapterFactoryImpl {
 				return createContainerAdapter();
 			}
 			@Override
+			public Adapter caseH(H object) {
+				return createHAdapter();
+			}
+			@Override
+			public Adapter caseI(I object) {
+				return createIAdapter();
+			}
+			@Override
+			public Adapter caseJ(J object) {
+				return createJAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -228,6 +240,48 @@ public class DispatchAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createContainerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link dispatch.H <em>H</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see dispatch.H
+	 * @generated
+	 */
+	public Adapter createHAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link dispatch.I <em>I</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see dispatch.I
+	 * @generated
+	 */
+	public Adapter createIAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link dispatch.J <em>J</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see dispatch.J
+	 * @generated
+	 */
+	public Adapter createJAdapter() {
 		return null;
 	}
 

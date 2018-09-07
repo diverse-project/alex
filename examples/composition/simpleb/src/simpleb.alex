@@ -1,6 +1,6 @@
 behavior printsimpleb
 
-import ecore "platform:/resource/simpleb/model/simpleb.ecore"
+import ecore "platform:/resource/simpleb/model/simpleb.genmodel"
 
 open class B1 {
 	def void name() {

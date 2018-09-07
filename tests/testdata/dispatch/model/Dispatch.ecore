@@ -12,4 +12,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="objs" upperBound="-1" eType="#//A"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="H" eSuperTypes="#//D #//E"/>
+  <eClassifiers xsi:type="ecore:EClass" name="I" eSuperTypes="#//F #//G"/>
+  <eClassifiers xsi:type="ecore:EClass" name="J" eSuperTypes="#//H #//I"/>
 </ecore:EPackage>

@@ -5,7 +5,7 @@ import model.*
 import simpleALEnv.runtime.Env
 import idlmm.*
 
-import ecore "platform:/resource/iot.simpleexpression.model/model/model.ecore"
+import ecore "platform:/resource/iot.simpleexpression.model/model/model.genmodel"
 
 import alex evalsimpleal
 import alex activitydiagram_exec
@@ -16,7 +16,6 @@ open class ExpressionBindSEExpression {
 		alg.$(obj.delegate).execute()
 	}
 }
-
 
 open class BooleanVariableBindSEBooleanVariable {
 	override Value execute(Context c) {

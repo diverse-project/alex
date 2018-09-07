@@ -9,14 +9,16 @@ import evalexp.revisitor.operations.evalexp.FalsOperation;
 import evalexp.revisitor.operations.evalexp.LitOperation;
 import evalexp.revisitor.operations.evalexp.OrOperation;
 import evalexp.revisitor.operations.evalexp.TruOperation;
+import evalexp.revisitor.operations.evalexp.impl.ExpOperationImpl;
 
 @SuppressWarnings("all")
-public abstract class LitOperationImpl implements LitOperation {
+public abstract class LitOperationImpl extends ExpOperationImpl implements LitOperation {
   private Lit obj;
   
   private BoolexpRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends LitOperation, ? extends OrOperation, ? extends TruOperation> alg;
   
   public LitOperationImpl(final Lit obj, final BoolexpRevisitor<? extends AndOperation, ? extends BinaryExpOperation, ? extends ExpOperation, ? extends FalsOperation, ? extends LitOperation, ? extends OrOperation, ? extends TruOperation> alg) {
+    super(obj, alg);
     this.obj = obj;
     this.alg = alg;
   }

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.xbase.lib.Functions.Function1
@@ -75,7 +76,7 @@ class EcoreUtils {
 			val isSuperType = o.key.EAllSuperTypes.exists [
 				it.name == cls.name && it.EPackage.name == cls.EPackage.name
 			]
-			o.key != cls && isSuperType && (o.value == cls || o.value === null)
+			o.key != cls && isSuperType && (o.value === null || o.value == cls || o.value.EAllSuperTypes.contains(cls))
 		]
 
 		return tmp.map[key].toSet.map [ k |
@@ -226,46 +227,57 @@ class EcoreUtils {
 		]
 	}
 
+	// Assuming there's one EPackage per GenModel
+	def EPackage getEPackage(GenModel gm) {
+		return gm.genPackages.head.getEcorePackage
+	}
+
 	def EPackage loadEPackage(String path) {
 		if (rs === null) {
 			rs = new XtextResourceSet
 		}
-		rs.resourceFactoryRegistry.extensionToFactoryMap.put("ecore", new XMIResourceFactoryImpl)
+		rs.resourceFactoryRegistry.extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl)
 		try {
 
-			if (rs.resources.exists[it.URI.toString == path]) {
-				val r = rs.resources.findFirst[it.URI.toString == path]
-				val ret = r.contents.head as EPackage
-				return ret
+			if (rs.resources.exists[URI.toString == path]) {
+				val r = rs.resources.findFirst[URI.toString == path]
+				return r.contents.head as EPackage
 			}
 
-			val resource = if (path.startsWith("platform:/"))
+			val resource =
+				if (path.startsWith("platform:/"))
 					rs.getResource(URI.createURI(path), true)
 				else if (path.startsWith("/"))
 					rs.getResource(URI::createPlatformResourceURI(path, true), true)
 				else
 					rs.getResource(URI::createFileURI(path), true)
 
-			val ret = resource.contents.head as EPackage
-			return ret
+			return resource.contents.head as EPackage
 		} catch (Exception e) {
 			return null
 		}
 	}
 
-	def GenModel loadCorrespondingGenmodel(String path) {
-		if (rs === null)
+	def GenModel loadGenmodel(String path) {
+		if (rs === null) {
 			rs = new XtextResourceSet
+		}
 		rs.resourceFactoryRegistry.extensionToFactoryMap.put("genmodel", new XMIResourceFactoryImpl)
-		// FIXME: jajaja, ugly af
 		try {
-			val resource = if (path.startsWith("platform:/"))
-					rs.getResource(URI.createURI('''«path.substring(0, path.length() - 5)»genmodel'''), true)
+
+			if (rs.resources.exists[URI.toString == path]) {
+				val r = rs.resources.findFirst[URI.toString == path]
+				return r.contents.head as GenModel
+			}
+
+			val resource =
+				if (path.startsWith("platform:/"))
+					rs.getResource(URI.createURI(path), true)
 				else if (path.startsWith("/"))
-					rs.getResource(
-						URI.createPlatformResourceURI('''«path.substring(0, path.length() - 5)»genmodel''', true), true)
+					rs.getResource(URI::createPlatformResourceURI(path, true), true)
 				else
-					rs.getResource(URI.createFileURI('''«path.substring(0, path.length() - 5)»genmodel'''), true)
+					rs.getResource(URI::createFileURI(path), true)
+
 			return resource.contents.head as GenModel
 		} catch (Exception e) {
 			return null
