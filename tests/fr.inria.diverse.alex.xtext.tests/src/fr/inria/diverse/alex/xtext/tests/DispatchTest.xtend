@@ -12,7 +12,7 @@ import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
 @InjectWith(AlexInjectorProvider)
-class DispatchTests {
+class DispatchTest {
 	@Inject extension AlexTestHelper
 	val fact = DispatchFactory::eINSTANCE
 

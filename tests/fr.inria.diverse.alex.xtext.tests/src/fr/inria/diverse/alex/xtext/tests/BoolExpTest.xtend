@@ -12,7 +12,7 @@ import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
 @InjectWith(AlexInjectorProvider)
-class BoolExpTests {
+class BoolExpTest {
 	@Inject extension AlexTestHelper
 	val fact = BoolexpFactory::eINSTANCE
 
