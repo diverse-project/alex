@@ -5,8 +5,8 @@ import activitydiagram.Value
 
 import ecore "platform:/resource/activitydiagram_simpleexpressions.model/model/activitydiagram_simpleexpressions.ecore"
 
-import ale activitydiagram_exec
-import ale simpleexpressions_exec
+import alex activitydiagram_exec
+import alex simpleexpressions_exec
 
 //open abstract class SEBooleanExpression {}
 //open abstract class SEExpression {}

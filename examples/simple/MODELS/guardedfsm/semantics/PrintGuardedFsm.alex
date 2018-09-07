@@ -2,8 +2,8 @@ behavior guardedfsmprinting
 
 import ecore "platform:/resource/guardedfsm/model/GuardedFsm.ecore"
 
-import ale fsmprinting
-import ale printexp
+import alex fsmprinting
+import alex printexp
 
 open class Guarded {
 	override String print() {

@@ -2,7 +2,7 @@ behavior prettyprint1
 
 import ecore "platform:/resource/tel1.model/model/tel1.ecore"
 
-import ale prettyprint
+import alex prettyprint
 
 open class VarLit {
 	override String print() {

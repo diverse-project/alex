@@ -5,8 +5,8 @@ import activitydiagram.*
 import org.xtext.lua.lua.*
 import idlmm.*
 import ecore "platform:/resource/iot.lua.model/model/iot_lua.ecore"
-import ale activitydiagram_exec
-import ale lua_exec
+import alex activitydiagram_exec
+import alex lua_exec
 open class ExpressionBindStatement {
 	override void execute(Context c) {
 		val e = new Environment
