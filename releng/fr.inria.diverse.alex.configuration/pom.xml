@@ -10,16 +10,7 @@
     <xtext.version>2.14.0</xtext.version>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <eclipse-repo.url>http://download.eclipse.org/releases/photon</eclipse-repo.url>
   </properties>
-
-  <repositories>
-    <repository>
-      <id>eclipse-release</id>
-      <url>${eclipse-repo.url}</url>
-      <layout>p2</layout>
-    </repository>
-  </repositories>
 
   <build>
     <plugins>
@@ -43,6 +34,13 @@
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho.version}</version>
         <configuration>
+          <target>
+            <artifact>
+              <groupId>fr.inria.diverse.alex</groupId>
+              <artifactId>fr.inria.diverse.alex.target</artifactId>
+              <version>0.1.0-SNAPSHOT</version>
+            </artifact>
+          </target>
           <environments>
             <environment>
               <os>linux</os>
@@ -72,29 +70,33 @@
           </environments>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.eclipse.xtend</groupId>
-        <artifactId>xtend-maven-plugin</artifactId>
-        <version>${xtext.version}</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.eclipse.jdt</groupId>
-            <artifactId>org.eclipse.jdt.core</artifactId>
-            <version>3.13.102</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-              <goal>testCompile</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <outputDirectory>xtend-gen</outputDirectory>
-        </configuration>
-      </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.xtend</groupId>
+          <artifactId>xtend-maven-plugin</artifactId>
+          <version>${xtext.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.jdt</groupId>
+              <artifactId>org.eclipse.jdt.core</artifactId>
+              <version>3.13.102</version>
+            </dependency>
+          </dependencies>
+          <executions>
+            <execution>
+              <goals>
+                <goal>compile</goal>
+                <goal>testCompile</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <outputDirectory>xtend-gen</outputDirectory>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 </project>

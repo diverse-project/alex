@@ -168,7 +168,7 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (uri: ");
     result.append(uri);
     result.append(')');

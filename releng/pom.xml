@@ -12,6 +12,7 @@
   </parent>
 
   <modules>
+    <module>fr.inria.diverse.alex.target</module>
     <module>fr.inria.diverse.alex.updatesite</module>
   </modules>
 </project>

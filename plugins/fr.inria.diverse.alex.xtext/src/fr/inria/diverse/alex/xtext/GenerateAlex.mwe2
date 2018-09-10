@@ -13,7 +13,7 @@ Workflow {
 				baseName = "fr.inria.diverse.alex.xtext"
 				rootPath = rootPath
 				runtimeTest = {
-					root = "../../tests/fr.inria.diverse.alex.xtext.tests"
+					root = "${rootPath}/../tests/fr.inria.diverse.alex.xtext.tests"
 					enabled = true
 				}
 				eclipsePlugin = {
@@ -21,7 +21,7 @@ Workflow {
 				}
 				eclipsePluginTest = {
 					enabled = true
-					root = "../../tests/fr.inria.diverse.alex.xtext.ui.tests"
+					root = "${rootPath}/../tests/fr.inria.diverse.alex.xtext.ui.tests"
 				}
 				createEclipseMetaData = true
 			}
