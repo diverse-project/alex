@@ -26,7 +26,7 @@ public class StateOperationImpl implements StateOperation {
   @Override
   public String print() {
     String _name = this.obj.getName();
-    String _plus = ("  State " + _name);
+    String _plus = (" State " + _name);
     String _plus_1 = (_plus + "\n");
     final Function1<Transition, String> _function = (Transition t) -> {
       return this.alg.$(t).print();

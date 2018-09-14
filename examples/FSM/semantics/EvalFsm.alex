@@ -23,12 +23,14 @@ open class State {
 	def void step(String event, Context ctx) {
 		ctx.visit(obj)
 
-		val next = obj.outgoing.filter[t | t.event == event].head
+		val next = obj.outgoing.filter[t | t.event == event]
 
-		if (next === null)
+		if (next.empty)
 			throw new RuntimeException("Locked in " + obj.name + " with " + event)
+		if (next.size > 1)
+			throw new RuntimeException("Indeterminacy in " + obj.name + " with " + event)
 
-		alg.$(next).fire(ctx) 
+		alg.$(next.head).fire(ctx) 
 	}
 }
 

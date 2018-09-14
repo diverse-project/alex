@@ -22,7 +22,7 @@ public class TransitionOperationImpl implements TransitionOperation {
   @Override
   public String print() {
     String _event = this.obj.getEvent();
-    String _plus = ("    " + _event);
+    String _plus = ("  " + _event);
     String _plus_1 = (_plus + " -> ");
     String _name = this.obj.getTarget().getName();
     return (_plus_1 + _name);

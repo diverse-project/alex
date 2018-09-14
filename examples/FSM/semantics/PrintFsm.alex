@@ -13,19 +13,19 @@ open class Machine {
 open class State {
 	def String print() {
 		return
-			"  State " + obj.name + "\n" +
+			" State " + obj.name + "\n" +
 			obj.outgoing.map[t | alg.$(t).print()].join("\n");
 	}
 }
 
 open class InitialState {
 	override String print() {
-		return "INITIAL"
+		return "[I]" + super.print()
 	}
 }
 
 open class Transition {
 	def String print() {
-		return "    " + obj.event + " -> " + obj.target.name
+		return "  " + obj.event + " -> " + obj.target.name
 	}
 }

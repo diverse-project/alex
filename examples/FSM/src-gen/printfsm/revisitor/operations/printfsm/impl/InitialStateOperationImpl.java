@@ -23,6 +23,7 @@ public class InitialStateOperationImpl extends StateOperationImpl implements Ini
   
   @Override
   public String print() {
-    return "INITIAL";
+    String _print = super.print();
+    return ("[I]" + _print);
   }
 }
