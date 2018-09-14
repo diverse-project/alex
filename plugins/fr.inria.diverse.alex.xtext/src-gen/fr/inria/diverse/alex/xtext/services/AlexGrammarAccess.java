@@ -30,24 +30,28 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cBehaviorKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cJavaImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cJavaImportsXImportSectionParserRuleCall_2_0 = (RuleCall)cJavaImportsAssignment_2.eContents().get(0);
-		private final Assignment cEcoreImportAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cEcoreImportEcoreImportParserRuleCall_3_0 = (RuleCall)cEcoreImportAssignment_3.eContents().get(0);
-		private final Assignment cAlexImportsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cAlexImportsAlexImportParserRuleCall_4_0 = (RuleCall)cAlexImportsAssignment_4.eContents().get(0);
-		private final Assignment cClassesAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cClassesAlexClassParserRuleCall_5_0 = (RuleCall)cClassesAssignment_5.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCompileKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Keyword cAsKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cCompileTargetsAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cCompileTargetsCompileTargetParserRuleCall_2_2_0 = (RuleCall)cCompileTargetsAssignment_2_2.eContents().get(0);
+		private final Assignment cJavaImportsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cJavaImportsXImportSectionParserRuleCall_3_0 = (RuleCall)cJavaImportsAssignment_3.eContents().get(0);
+		private final Assignment cEcoreImportAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cEcoreImportEcoreImportParserRuleCall_4_0 = (RuleCall)cEcoreImportAssignment_4.eContents().get(0);
+		private final Assignment cAlexImportsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cAlexImportsAlexImportParserRuleCall_5_0 = (RuleCall)cAlexImportsAssignment_5.eContents().get(0);
+		private final Assignment cClassesAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cClassesAlexClassParserRuleCall_6_0 = (RuleCall)cClassesAssignment_6.eContents().get(0);
 		
 		//AlexRoot:
-		//	'behavior' name=ValidID
-		//	javaImports=XImportSection?
+		//	'behavior' name=ValidID ('compile' 'as' compileTargets+=CompileTarget)? javaImports=XImportSection?
 		//	ecoreImport=EcoreImport
-		//	alexImports+=AlexImport*
-		//	classes+=AlexClass*;
+		//	alexImports+=AlexImport* classes+=AlexClass*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'behavior' name=ValidID javaImports=XImportSection? ecoreImport=EcoreImport alexImports+=AlexImport* classes+=AlexClass*
+		//'behavior' name=ValidID ('compile' 'as' compileTargets+=CompileTarget)? javaImports=XImportSection?
+		//ecoreImport=EcoreImport alexImports+=AlexImport* classes+=AlexClass*
 		public Group getGroup() { return cGroup; }
 		
 		//'behavior'
@@ -59,29 +63,67 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
 		
+		//('compile' 'as' compileTargets+=CompileTarget)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'compile'
+		public Keyword getCompileKeyword_2_0() { return cCompileKeyword_2_0; }
+		
+		//'as'
+		public Keyword getAsKeyword_2_1() { return cAsKeyword_2_1; }
+		
+		//compileTargets+=CompileTarget
+		public Assignment getCompileTargetsAssignment_2_2() { return cCompileTargetsAssignment_2_2; }
+		
+		//CompileTarget
+		public RuleCall getCompileTargetsCompileTargetParserRuleCall_2_2_0() { return cCompileTargetsCompileTargetParserRuleCall_2_2_0; }
+		
 		//javaImports=XImportSection?
-		public Assignment getJavaImportsAssignment_2() { return cJavaImportsAssignment_2; }
+		public Assignment getJavaImportsAssignment_3() { return cJavaImportsAssignment_3; }
 		
 		//XImportSection
-		public RuleCall getJavaImportsXImportSectionParserRuleCall_2_0() { return cJavaImportsXImportSectionParserRuleCall_2_0; }
+		public RuleCall getJavaImportsXImportSectionParserRuleCall_3_0() { return cJavaImportsXImportSectionParserRuleCall_3_0; }
 		
 		//ecoreImport=EcoreImport
-		public Assignment getEcoreImportAssignment_3() { return cEcoreImportAssignment_3; }
+		public Assignment getEcoreImportAssignment_4() { return cEcoreImportAssignment_4; }
 		
 		//EcoreImport
-		public RuleCall getEcoreImportEcoreImportParserRuleCall_3_0() { return cEcoreImportEcoreImportParserRuleCall_3_0; }
+		public RuleCall getEcoreImportEcoreImportParserRuleCall_4_0() { return cEcoreImportEcoreImportParserRuleCall_4_0; }
 		
 		//alexImports+=AlexImport*
-		public Assignment getAlexImportsAssignment_4() { return cAlexImportsAssignment_4; }
+		public Assignment getAlexImportsAssignment_5() { return cAlexImportsAssignment_5; }
 		
 		//AlexImport
-		public RuleCall getAlexImportsAlexImportParserRuleCall_4_0() { return cAlexImportsAlexImportParserRuleCall_4_0; }
+		public RuleCall getAlexImportsAlexImportParserRuleCall_5_0() { return cAlexImportsAlexImportParserRuleCall_5_0; }
 		
 		//classes+=AlexClass*
-		public Assignment getClassesAssignment_5() { return cClassesAssignment_5; }
+		public Assignment getClassesAssignment_6() { return cClassesAssignment_6; }
 		
 		//AlexClass
-		public RuleCall getClassesAlexClassParserRuleCall_5_0() { return cClassesAlexClassParserRuleCall_5_0; }
+		public RuleCall getClassesAlexClassParserRuleCall_6_0() { return cClassesAlexClassParserRuleCall_6_0; }
+	}
+	public class CompileTargetElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.inria.diverse.alex.xtext.Alex.CompileTarget");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//CompileTarget:
+		//	name=ID ';';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=ID ';'
+		public Group getGroup() { return cGroup; }
+		
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 	public class EcoreImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.inria.diverse.alex.xtext.Alex.EcoreImport");
@@ -156,9 +198,7 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//AlexClass:
-		//	'open' abstract?='abstract'? 'class' name=ValidID '{'
-		//	methods+=AlexMethod*
-		//	'}';
+		//	'open' abstract?='abstract'? 'class' name=ValidID '{' methods+=AlexMethod* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'open' abstract?='abstract'? 'class' name=ValidID '{' methods+=AlexMethod* '}'
@@ -252,8 +292,8 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//AbstractMethod:
-		//	'abstract' 'def' type=JvmTypeReference name=ValidID
-		//	'(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)? ')';
+		//	'abstract' 'def' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (','
+		//	params+=FullJvmFormalParameter)*)? ')';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'abstract' 'def' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (','
@@ -326,9 +366,8 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockXBlockExpressionParserRuleCall_6_0 = (RuleCall)cBlockAssignment_6.eContents().get(0);
 		
 		//DefMethod:
-		//	'def' type=JvmTypeReference name=ValidID
-		//	'(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)? ')'
-		//	block=XBlockExpression;
+		//	'def' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)?
+		//	')' block=XBlockExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'def' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)? ')'
@@ -404,9 +443,8 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockXBlockExpressionParserRuleCall_6_0 = (RuleCall)cBlockAssignment_6.eContents().get(0);
 		
 		//OverrideMethod:
-		//	'override' type=JvmTypeReference name=ValidID
-		//	'(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)? ')'
-		//	block=XBlockExpression;
+		//	'override' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (','
+		//	params+=FullJvmFormalParameter)*)? ')' block=XBlockExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'override' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (','
@@ -464,6 +502,7 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private final AlexRootElements pAlexRoot;
+	private final CompileTargetElements pCompileTarget;
 	private final EcoreImportElements pEcoreImport;
 	private final AlexImportElements pAlexImport;
 	private final AlexClassElements pAlexClass;
@@ -487,6 +526,7 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaXbase = gaXbase;
 		this.gaXtype = gaXtype;
 		this.pAlexRoot = new AlexRootElements();
+		this.pCompileTarget = new CompileTargetElements();
 		this.pEcoreImport = new EcoreImportElements();
 		this.pAlexImport = new AlexImportElements();
 		this.pAlexClass = new AlexClassElements();
@@ -529,17 +569,25 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//AlexRoot:
-	//	'behavior' name=ValidID
-	//	javaImports=XImportSection?
+	//	'behavior' name=ValidID ('compile' 'as' compileTargets+=CompileTarget)? javaImports=XImportSection?
 	//	ecoreImport=EcoreImport
-	//	alexImports+=AlexImport*
-	//	classes+=AlexClass*;
+	//	alexImports+=AlexImport* classes+=AlexClass*;
 	public AlexRootElements getAlexRootAccess() {
 		return pAlexRoot;
 	}
 	
 	public ParserRule getAlexRootRule() {
 		return getAlexRootAccess().getRule();
+	}
+	
+	//CompileTarget:
+	//	name=ID ';';
+	public CompileTargetElements getCompileTargetAccess() {
+		return pCompileTarget;
+	}
+	
+	public ParserRule getCompileTargetRule() {
+		return getCompileTargetAccess().getRule();
 	}
 	
 	//EcoreImport:
@@ -563,9 +611,7 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AlexClass:
-	//	'open' abstract?='abstract'? 'class' name=ValidID '{'
-	//	methods+=AlexMethod*
-	//	'}';
+	//	'open' abstract?='abstract'? 'class' name=ValidID '{' methods+=AlexMethod* '}';
 	public AlexClassElements getAlexClassAccess() {
 		return pAlexClass;
 	}
@@ -595,8 +641,8 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AbstractMethod:
-	//	'abstract' 'def' type=JvmTypeReference name=ValidID
-	//	'(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)? ')';
+	//	'abstract' 'def' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (','
+	//	params+=FullJvmFormalParameter)*)? ')';
 	public AbstractMethodElements getAbstractMethodAccess() {
 		return pAbstractMethod;
 	}
@@ -606,9 +652,8 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DefMethod:
-	//	'def' type=JvmTypeReference name=ValidID
-	//	'(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)? ')'
-	//	block=XBlockExpression;
+	//	'def' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)?
+	//	')' block=XBlockExpression;
 	public DefMethodElements getDefMethodAccess() {
 		return pDefMethod;
 	}
@@ -618,9 +663,8 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//OverrideMethod:
-	//	'override' type=JvmTypeReference name=ValidID
-	//	'(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)? ')'
-	//	block=XBlockExpression;
+	//	'override' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (','
+	//	params+=FullJvmFormalParameter)*)? ')' block=XBlockExpression;
 	public OverrideMethodElements getOverrideMethodAccess() {
 		return pOverrideMethod;
 	}

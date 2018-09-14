@@ -80,6 +80,13 @@ public class AlexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AlexPackage.COMPILE_TARGET:
+      {
+        CompileTarget compileTarget = (CompileTarget)theEObject;
+        T result = caseCompileTarget(compileTarget);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AlexPackage.ECORE_IMPORT:
       {
         EcoreImport ecoreImport = (EcoreImport)theEObject;
@@ -158,6 +165,22 @@ public class AlexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAlexRoot(AlexRoot object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Compile Target</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Compile Target</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCompileTarget(CompileTarget object)
   {
     return null;
   }

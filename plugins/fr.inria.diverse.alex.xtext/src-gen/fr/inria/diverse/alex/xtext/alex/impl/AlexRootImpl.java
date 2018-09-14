@@ -7,6 +7,7 @@ import fr.inria.diverse.alex.xtext.alex.AlexClass;
 import fr.inria.diverse.alex.xtext.alex.AlexImport;
 import fr.inria.diverse.alex.xtext.alex.AlexPackage;
 import fr.inria.diverse.alex.xtext.alex.AlexRoot;
+import fr.inria.diverse.alex.xtext.alex.CompileTarget;
 import fr.inria.diverse.alex.xtext.alex.EcoreImport;
 
 import java.util.Collection;
@@ -36,6 +37,7 @@ import org.eclipse.xtext.xtype.XImportSection;
  * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getName <em>Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getCompileTargets <em>Compile Targets</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getJavaImports <em>Java Imports</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getEcoreImport <em>Ecore Import</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getAlexImports <em>Alex Imports</em>}</li>
@@ -65,6 +67,16 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getCompileTargets() <em>Compile Targets</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCompileTargets()
+   * @generated
+   * @ordered
+   */
+  protected EList<CompileTarget> compileTargets;
 
   /**
    * The cached value of the '{@link #getJavaImports() <em>Java Imports</em>}' containment reference.
@@ -148,6 +160,20 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AlexPackage.ALEX_ROOT__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<CompileTarget> getCompileTargets()
+  {
+    if (compileTargets == null)
+    {
+      compileTargets = new EObjectContainmentEList<CompileTarget>(CompileTarget.class, this, AlexPackage.ALEX_ROOT__COMPILE_TARGETS);
+    }
+    return compileTargets;
   }
 
   /**
@@ -284,6 +310,8 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
   {
     switch (featureID)
     {
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
+        return ((InternalEList<?>)getCompileTargets()).basicRemove(otherEnd, msgs);
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         return basicSetJavaImports(null, msgs);
       case AlexPackage.ALEX_ROOT__ECORE_IMPORT:
@@ -308,6 +336,8 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
     {
       case AlexPackage.ALEX_ROOT__NAME:
         return getName();
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
+        return getCompileTargets();
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         return getJavaImports();
       case AlexPackage.ALEX_ROOT__ECORE_IMPORT:
@@ -333,6 +363,10 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
     {
       case AlexPackage.ALEX_ROOT__NAME:
         setName((String)newValue);
+        return;
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
+        getCompileTargets().clear();
+        getCompileTargets().addAll((Collection<? extends CompileTarget>)newValue);
         return;
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         setJavaImports((XImportSection)newValue);
@@ -365,6 +399,9 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
       case AlexPackage.ALEX_ROOT__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
+        getCompileTargets().clear();
+        return;
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         setJavaImports((XImportSection)null);
         return;
@@ -393,6 +430,8 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
     {
       case AlexPackage.ALEX_ROOT__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
+        return compileTargets != null && !compileTargets.isEmpty();
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         return javaImports != null;
       case AlexPackage.ALEX_ROOT__ECORE_IMPORT:
@@ -415,7 +454,7 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
     result.append(')');

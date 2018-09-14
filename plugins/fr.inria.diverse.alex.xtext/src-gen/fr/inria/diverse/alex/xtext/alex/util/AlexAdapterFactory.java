@@ -81,6 +81,11 @@ public class AlexAdapterFactory extends AdapterFactoryImpl
         return createAlexRootAdapter();
       }
       @Override
+      public Adapter caseCompileTarget(CompileTarget object)
+      {
+        return createCompileTargetAdapter();
+      }
+      @Override
       public Adapter caseEcoreImport(EcoreImport object)
       {
         return createEcoreImportAdapter();
@@ -153,6 +158,21 @@ public class AlexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAlexRootAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link fr.inria.diverse.alex.xtext.alex.CompileTarget <em>Compile Target</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see fr.inria.diverse.alex.xtext.alex.CompileTarget
+   * @generated
+   */
+  public Adapter createCompileTargetAdapter()
   {
     return null;
   }

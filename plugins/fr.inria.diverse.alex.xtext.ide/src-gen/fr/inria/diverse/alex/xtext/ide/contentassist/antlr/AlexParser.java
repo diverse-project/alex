@@ -73,6 +73,8 @@ public class AlexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXImportDeclarationAccess().getAlternatives_1(), "rule__XImportDeclaration__Alternatives_1");
 			builder.put(grammarAccess.getXImportDeclarationAccess().getAlternatives_1_0_3(), "rule__XImportDeclaration__Alternatives_1_0_3");
 			builder.put(grammarAccess.getAlexRootAccess().getGroup(), "rule__AlexRoot__Group__0");
+			builder.put(grammarAccess.getAlexRootAccess().getGroup_2(), "rule__AlexRoot__Group_2__0");
+			builder.put(grammarAccess.getCompileTargetAccess().getGroup(), "rule__CompileTarget__Group__0");
 			builder.put(grammarAccess.getEcoreImportAccess().getGroup(), "rule__EcoreImport__Group__0");
 			builder.put(grammarAccess.getAlexImportAccess().getGroup(), "rule__AlexImport__Group__0");
 			builder.put(grammarAccess.getAlexClassAccess().getGroup(), "rule__AlexClass__Group__0");
@@ -265,10 +267,12 @@ public class AlexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 			builder.put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
 			builder.put(grammarAccess.getAlexRootAccess().getNameAssignment_1(), "rule__AlexRoot__NameAssignment_1");
-			builder.put(grammarAccess.getAlexRootAccess().getJavaImportsAssignment_2(), "rule__AlexRoot__JavaImportsAssignment_2");
-			builder.put(grammarAccess.getAlexRootAccess().getEcoreImportAssignment_3(), "rule__AlexRoot__EcoreImportAssignment_3");
-			builder.put(grammarAccess.getAlexRootAccess().getAlexImportsAssignment_4(), "rule__AlexRoot__AlexImportsAssignment_4");
-			builder.put(grammarAccess.getAlexRootAccess().getClassesAssignment_5(), "rule__AlexRoot__ClassesAssignment_5");
+			builder.put(grammarAccess.getAlexRootAccess().getCompileTargetsAssignment_2_2(), "rule__AlexRoot__CompileTargetsAssignment_2_2");
+			builder.put(grammarAccess.getAlexRootAccess().getJavaImportsAssignment_3(), "rule__AlexRoot__JavaImportsAssignment_3");
+			builder.put(grammarAccess.getAlexRootAccess().getEcoreImportAssignment_4(), "rule__AlexRoot__EcoreImportAssignment_4");
+			builder.put(grammarAccess.getAlexRootAccess().getAlexImportsAssignment_5(), "rule__AlexRoot__AlexImportsAssignment_5");
+			builder.put(grammarAccess.getAlexRootAccess().getClassesAssignment_6(), "rule__AlexRoot__ClassesAssignment_6");
+			builder.put(grammarAccess.getCompileTargetAccess().getNameAssignment_0(), "rule__CompileTarget__NameAssignment_0");
 			builder.put(grammarAccess.getEcoreImportAccess().getUriAssignment_2(), "rule__EcoreImport__UriAssignment_2");
 			builder.put(grammarAccess.getAlexImportAccess().getRefAssignment_2(), "rule__AlexImport__RefAssignment_2");
 			builder.put(grammarAccess.getAlexClassAccess().getAbstractAssignment_1(), "rule__AlexClass__AbstractAssignment_1");

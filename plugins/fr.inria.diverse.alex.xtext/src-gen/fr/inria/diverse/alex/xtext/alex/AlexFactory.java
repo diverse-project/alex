@@ -33,6 +33,15 @@ public interface AlexFactory extends EFactory
   AlexRoot createAlexRoot();
 
   /**
+   * Returns a new object of class '<em>Compile Target</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Compile Target</em>'.
+   * @generated
+   */
+  CompileTarget createCompileTarget();
+
+  /**
    * Returns a new object of class '<em>Ecore Import</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

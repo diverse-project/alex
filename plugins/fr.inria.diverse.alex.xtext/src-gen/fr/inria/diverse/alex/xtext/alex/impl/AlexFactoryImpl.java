@@ -66,6 +66,7 @@ public class AlexFactoryImpl extends EFactoryImpl implements AlexFactory
     switch (eClass.getClassifierID())
     {
       case AlexPackage.ALEX_ROOT: return createAlexRoot();
+      case AlexPackage.COMPILE_TARGET: return createCompileTarget();
       case AlexPackage.ECORE_IMPORT: return createEcoreImport();
       case AlexPackage.ALEX_IMPORT: return createAlexImport();
       case AlexPackage.ALEX_CLASS: return createAlexClass();
@@ -88,6 +89,17 @@ public class AlexFactoryImpl extends EFactoryImpl implements AlexFactory
   {
     AlexRootImpl alexRoot = new AlexRootImpl();
     return alexRoot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CompileTarget createCompileTarget()
+  {
+    CompileTargetImpl compileTarget = new CompileTargetImpl();
+    return compileTarget;
   }
 
   /**

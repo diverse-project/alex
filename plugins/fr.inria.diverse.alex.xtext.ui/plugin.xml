@@ -410,25 +410,5 @@
 	</extension>
  <extension
        point="org.eclipse.ui.popupMenus">
-    <objectContribution
-          id="fr.inria.diverse.alex.compiler.ui.contribution1"
-          nameFilter="*.genmodel"
-          objectClass="org.eclipse.core.resources.IFile">
-       <menu
-             id="fr.inria.diverse.alex.compiler.ui.menu1"
-             label="Alex"
-             path="additions">
-          <separator
-                name="group1">
-          </separator>
-       </menu>
-       <action
-             class="fr.inria.diverse.alex.xtext.ui.menus.GenerateRevisitorInterface"
-             enablesFor="1"
-             id="fr.inria.diverse.alex.compiler.ui.newAction"
-             label="Generate Revisitor Interface"
-             menubarPath="fr.inria.diverse.alex.compiler.ui.menu1/group1">
-       </action>
-    </objectContribution>
  </extension>
 </plugin>

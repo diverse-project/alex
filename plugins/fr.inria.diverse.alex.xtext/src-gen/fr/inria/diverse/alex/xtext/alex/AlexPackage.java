@@ -77,13 +77,22 @@ public interface AlexPackage extends EPackage
   int ALEX_ROOT__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Compile Targets</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ALEX_ROOT__COMPILE_TARGETS = 1;
+
+  /**
    * The feature id for the '<em><b>Java Imports</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ALEX_ROOT__JAVA_IMPORTS = 1;
+  int ALEX_ROOT__JAVA_IMPORTS = 2;
 
   /**
    * The feature id for the '<em><b>Ecore Import</b></em>' containment reference.
@@ -92,7 +101,7 @@ public interface AlexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ALEX_ROOT__ECORE_IMPORT = 2;
+  int ALEX_ROOT__ECORE_IMPORT = 3;
 
   /**
    * The feature id for the '<em><b>Alex Imports</b></em>' containment reference list.
@@ -101,7 +110,7 @@ public interface AlexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ALEX_ROOT__ALEX_IMPORTS = 3;
+  int ALEX_ROOT__ALEX_IMPORTS = 4;
 
   /**
    * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -110,7 +119,7 @@ public interface AlexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ALEX_ROOT__CLASSES = 4;
+  int ALEX_ROOT__CLASSES = 5;
 
   /**
    * The number of structural features of the '<em>Root</em>' class.
@@ -119,7 +128,35 @@ public interface AlexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ALEX_ROOT_FEATURE_COUNT = 5;
+  int ALEX_ROOT_FEATURE_COUNT = 6;
+
+  /**
+   * The meta object id for the '{@link fr.inria.diverse.alex.xtext.alex.impl.CompileTargetImpl <em>Compile Target</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see fr.inria.diverse.alex.xtext.alex.impl.CompileTargetImpl
+   * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getCompileTarget()
+   * @generated
+   */
+  int COMPILE_TARGET = 1;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPILE_TARGET__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Compile Target</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPILE_TARGET_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link fr.inria.diverse.alex.xtext.alex.impl.EcoreImportImpl <em>Ecore Import</em>}' class.
@@ -129,7 +166,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getEcoreImport()
    * @generated
    */
-  int ECORE_IMPORT = 1;
+  int ECORE_IMPORT = 2;
 
   /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -157,7 +194,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getAlexImport()
    * @generated
    */
-  int ALEX_IMPORT = 2;
+  int ALEX_IMPORT = 3;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -185,7 +222,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getAlexClass()
    * @generated
    */
-  int ALEX_CLASS = 3;
+  int ALEX_CLASS = 4;
 
   /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -231,7 +268,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getAlexMethod()
    * @generated
    */
-  int ALEX_METHOD = 4;
+  int ALEX_METHOD = 5;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -277,7 +314,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getConcreteMethod()
    * @generated
    */
-  int CONCRETE_METHOD = 5;
+  int CONCRETE_METHOD = 6;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -332,7 +369,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getAbstractMethod()
    * @generated
    */
-  int ABSTRACT_METHOD = 6;
+  int ABSTRACT_METHOD = 7;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -378,7 +415,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getDefMethod()
    * @generated
    */
-  int DEF_METHOD = 7;
+  int DEF_METHOD = 8;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -433,7 +470,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getOverrideMethod()
    * @generated
    */
-  int OVERRIDE_METHOD = 8;
+  int OVERRIDE_METHOD = 9;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -503,6 +540,17 @@ public interface AlexPackage extends EPackage
   EAttribute getAlexRoot_Name();
 
   /**
+   * Returns the meta object for the containment reference list '{@link fr.inria.diverse.alex.xtext.alex.AlexRoot#getCompileTargets <em>Compile Targets</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Compile Targets</em>'.
+   * @see fr.inria.diverse.alex.xtext.alex.AlexRoot#getCompileTargets()
+   * @see #getAlexRoot()
+   * @generated
+   */
+  EReference getAlexRoot_CompileTargets();
+
+  /**
    * Returns the meta object for the containment reference '{@link fr.inria.diverse.alex.xtext.alex.AlexRoot#getJavaImports <em>Java Imports</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -545,6 +593,27 @@ public interface AlexPackage extends EPackage
    * @generated
    */
   EReference getAlexRoot_Classes();
+
+  /**
+   * Returns the meta object for class '{@link fr.inria.diverse.alex.xtext.alex.CompileTarget <em>Compile Target</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Compile Target</em>'.
+   * @see fr.inria.diverse.alex.xtext.alex.CompileTarget
+   * @generated
+   */
+  EClass getCompileTarget();
+
+  /**
+   * Returns the meta object for the attribute '{@link fr.inria.diverse.alex.xtext.alex.CompileTarget#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see fr.inria.diverse.alex.xtext.alex.CompileTarget#getName()
+   * @see #getCompileTarget()
+   * @generated
+   */
+  EAttribute getCompileTarget_Name();
 
   /**
    * Returns the meta object for class '{@link fr.inria.diverse.alex.xtext.alex.EcoreImport <em>Ecore Import</em>}'.
@@ -767,6 +836,14 @@ public interface AlexPackage extends EPackage
     EAttribute ALEX_ROOT__NAME = eINSTANCE.getAlexRoot_Name();
 
     /**
+     * The meta object literal for the '<em><b>Compile Targets</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ALEX_ROOT__COMPILE_TARGETS = eINSTANCE.getAlexRoot_CompileTargets();
+
+    /**
      * The meta object literal for the '<em><b>Java Imports</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -797,6 +874,24 @@ public interface AlexPackage extends EPackage
      * @generated
      */
     EReference ALEX_ROOT__CLASSES = eINSTANCE.getAlexRoot_Classes();
+
+    /**
+     * The meta object literal for the '{@link fr.inria.diverse.alex.xtext.alex.impl.CompileTargetImpl <em>Compile Target</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see fr.inria.diverse.alex.xtext.alex.impl.CompileTargetImpl
+     * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getCompileTarget()
+     * @generated
+     */
+    EClass COMPILE_TARGET = eINSTANCE.getCompileTarget();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMPILE_TARGET__NAME = eINSTANCE.getCompileTarget_Name();
 
     /**
      * The meta object literal for the '{@link fr.inria.diverse.alex.xtext.alex.impl.EcoreImportImpl <em>Ecore Import</em>}' class.

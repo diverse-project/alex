@@ -4,7 +4,7 @@
 package fr.inria.diverse.alex.xtext.alex.impl;
 
 import fr.inria.diverse.alex.xtext.alex.AlexPackage;
-import fr.inria.diverse.alex.xtext.alex.EcoreImport;
+import fr.inria.diverse.alex.xtext.alex.CompileTarget;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -15,45 +15,45 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ecore Import</b></em>'.
+ * An implementation of the model object '<em><b>Compile Target</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.EcoreImportImpl#getUri <em>Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.CompileTargetImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EcoreImportImpl extends MinimalEObjectImpl.Container implements EcoreImport
+public class CompileTargetImpl extends MinimalEObjectImpl.Container implements CompileTarget
 {
   /**
-   * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getUri()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String URI_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getUri()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String uri = URI_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EcoreImportImpl()
+  protected CompileTargetImpl()
   {
     super();
   }
@@ -66,7 +66,7 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
   @Override
   protected EClass eStaticClass()
   {
-    return AlexPackage.Literals.ECORE_IMPORT;
+    return AlexPackage.Literals.COMPILE_TARGET;
   }
 
   /**
@@ -74,9 +74,9 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getUri()
+  public String getName()
   {
-    return uri;
+    return name;
   }
 
   /**
@@ -84,12 +84,12 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setUri(String newUri)
+  public void setName(String newName)
   {
-    String oldUri = uri;
-    uri = newUri;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AlexPackage.ECORE_IMPORT__URI, oldUri, uri));
+      eNotify(new ENotificationImpl(this, Notification.SET, AlexPackage.COMPILE_TARGET__NAME, oldName, name));
   }
 
   /**
@@ -102,8 +102,8 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
   {
     switch (featureID)
     {
-      case AlexPackage.ECORE_IMPORT__URI:
-        return getUri();
+      case AlexPackage.COMPILE_TARGET__NAME:
+        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -118,8 +118,8 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
   {
     switch (featureID)
     {
-      case AlexPackage.ECORE_IMPORT__URI:
-        setUri((String)newValue);
+      case AlexPackage.COMPILE_TARGET__NAME:
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,8 +135,8 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
   {
     switch (featureID)
     {
-      case AlexPackage.ECORE_IMPORT__URI:
-        setUri(URI_EDEFAULT);
+      case AlexPackage.COMPILE_TARGET__NAME:
+        setName(NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -152,8 +152,8 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
   {
     switch (featureID)
     {
-      case AlexPackage.ECORE_IMPORT__URI:
-        return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+      case AlexPackage.COMPILE_TARGET__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
   }
@@ -169,10 +169,10 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (uri: ");
-    result.append(uri);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }
 
-} //EcoreImportImpl
+} //CompileTargetImpl

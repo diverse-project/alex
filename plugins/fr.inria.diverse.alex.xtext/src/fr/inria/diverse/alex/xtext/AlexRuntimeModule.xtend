@@ -3,9 +3,10 @@
  */
 package fr.inria.diverse.alex.xtext
 
-import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer
 import fr.inria.diverse.alex.xtext.compiler.AlexJvmModelGenerator
+import fr.inria.diverse.alex.xtext.emf.EcoreFragmentProvider
 import fr.inria.diverse.alex.xtext.typesystem.computation.AlexTypeComputer
+import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -17,5 +18,11 @@ class AlexRuntimeModule extends AbstractAlexRuntimeModule {
 
 	override bindIGenerator() {
 		AlexJvmModelGenerator
+
 	}
+
+	override bindIFragmentProvider() {
+		EcoreFragmentProvider
+	}
+
 }

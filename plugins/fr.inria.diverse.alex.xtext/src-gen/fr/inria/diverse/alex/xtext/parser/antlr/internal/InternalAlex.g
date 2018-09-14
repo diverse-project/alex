@@ -100,11 +100,40 @@ ruleAlexRoot returns [EObject current=null]
 			)
 		)
 		(
+			otherlv_2='compile'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getAlexRootAccess().getCompileKeyword_2_0());
+			}
+			otherlv_3='as'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getAlexRootAccess().getAsKeyword_2_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAlexRootAccess().getCompileTargetsCompileTargetParserRuleCall_2_2_0());
+					}
+					lv_compileTargets_4_0=ruleCompileTarget
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAlexRootRule());
+						}
+						add(
+							$current,
+							"compileTargets",
+							lv_compileTargets_4_0,
+							"fr.inria.diverse.alex.xtext.Alex.CompileTarget");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAlexRootAccess().getJavaImportsXImportSectionParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getAlexRootAccess().getJavaImportsXImportSectionParserRuleCall_3_0());
 				}
-				lv_javaImports_2_0=ruleXImportSection
+				lv_javaImports_5_0=ruleXImportSection
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAlexRootRule());
@@ -112,7 +141,7 @@ ruleAlexRoot returns [EObject current=null]
 					set(
 						$current,
 						"javaImports",
-						lv_javaImports_2_0,
+						lv_javaImports_5_0,
 						"org.eclipse.xtext.xbase.Xtype.XImportSection");
 					afterParserOrEnumRuleCall();
 				}
@@ -121,9 +150,9 @@ ruleAlexRoot returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAlexRootAccess().getEcoreImportEcoreImportParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getAlexRootAccess().getEcoreImportEcoreImportParserRuleCall_4_0());
 				}
-				lv_ecoreImport_3_0=ruleEcoreImport
+				lv_ecoreImport_6_0=ruleEcoreImport
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAlexRootRule());
@@ -131,7 +160,7 @@ ruleAlexRoot returns [EObject current=null]
 					set(
 						$current,
 						"ecoreImport",
-						lv_ecoreImport_3_0,
+						lv_ecoreImport_6_0,
 						"fr.inria.diverse.alex.xtext.Alex.EcoreImport");
 					afterParserOrEnumRuleCall();
 				}
@@ -140,9 +169,9 @@ ruleAlexRoot returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAlexRootAccess().getAlexImportsAlexImportParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getAlexRootAccess().getAlexImportsAlexImportParserRuleCall_5_0());
 				}
-				lv_alexImports_4_0=ruleAlexImport
+				lv_alexImports_7_0=ruleAlexImport
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAlexRootRule());
@@ -150,7 +179,7 @@ ruleAlexRoot returns [EObject current=null]
 					add(
 						$current,
 						"alexImports",
-						lv_alexImports_4_0,
+						lv_alexImports_7_0,
 						"fr.inria.diverse.alex.xtext.Alex.AlexImport");
 					afterParserOrEnumRuleCall();
 				}
@@ -159,9 +188,9 @@ ruleAlexRoot returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAlexRootAccess().getClassesAlexClassParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getAlexRootAccess().getClassesAlexClassParserRuleCall_6_0());
 				}
-				lv_classes_5_0=ruleAlexClass
+				lv_classes_8_0=ruleAlexClass
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAlexRootRule());
@@ -169,12 +198,53 @@ ruleAlexRoot returns [EObject current=null]
 					add(
 						$current,
 						"classes",
-						lv_classes_5_0,
+						lv_classes_8_0,
 						"fr.inria.diverse.alex.xtext.Alex.AlexClass");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
+	)
+;
+
+// Entry rule entryRuleCompileTarget
+entryRuleCompileTarget returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getCompileTargetRule()); }
+	iv_ruleCompileTarget=ruleCompileTarget
+	{ $current=$iv_ruleCompileTarget.current; }
+	EOF;
+
+// Rule CompileTarget
+ruleCompileTarget returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_name_0_0=RULE_ID
+				{
+					newLeafNode(lv_name_0_0, grammarAccess.getCompileTargetAccess().getNameIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getCompileTargetRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.eclipse.xtext.xbase.Xtype.ID");
+				}
+			)
+		)
+		otherlv_1=';'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getCompileTargetAccess().getSemicolonKeyword_1());
+		}
 	)
 ;
 

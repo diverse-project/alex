@@ -22,7 +22,7 @@ class RevisitorInterfaceGenerator {
 
 	def String generateInterface(EPackage pkg, GenModel gm) {
 
-		resetResourceSet
+//		resetResourceSet
 
 		val Iterable<EClassifier> complementaryClassifiers = pkg.getComplementaryFromEPackage [ Map.Entry<String, String> z |
 			z.key.loadEPackage.EClassifiers

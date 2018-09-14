@@ -9,6 +9,7 @@ import fr.inria.diverse.alex.xtext.alex.AlexClass;
 import fr.inria.diverse.alex.xtext.alex.AlexImport;
 import fr.inria.diverse.alex.xtext.alex.AlexPackage;
 import fr.inria.diverse.alex.xtext.alex.AlexRoot;
+import fr.inria.diverse.alex.xtext.alex.CompileTarget;
 import fr.inria.diverse.alex.xtext.alex.DefMethod;
 import fr.inria.diverse.alex.xtext.alex.EcoreImport;
 import fr.inria.diverse.alex.xtext.alex.OverrideMethod;
@@ -94,6 +95,9 @@ public class AlexSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case AlexPackage.ALEX_ROOT:
 				sequence_AlexRoot(context, (AlexRoot) semanticObject); 
+				return; 
+			case AlexPackage.COMPILE_TARGET:
+				sequence_CompileTarget(context, (CompileTarget) semanticObject); 
 				return; 
 			case AlexPackage.DEF_METHOD:
 				sequence_DefMethod(context, (DefMethod) semanticObject); 
@@ -396,10 +400,35 @@ public class AlexSemanticSequencer extends XbaseSemanticSequencer {
 	 *     AlexRoot returns AlexRoot
 	 *
 	 * Constraint:
-	 *     (name=ValidID javaImports=XImportSection? ecoreImport=EcoreImport alexImports+=AlexImport* classes+=AlexClass*)
+	 *     (
+	 *         name=ValidID 
+	 *         compileTargets+=CompileTarget? 
+	 *         javaImports=XImportSection? 
+	 *         ecoreImport=EcoreImport 
+	 *         alexImports+=AlexImport* 
+	 *         classes+=AlexClass*
+	 *     )
 	 */
 	protected void sequence_AlexRoot(ISerializationContext context, AlexRoot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     CompileTarget returns CompileTarget
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_CompileTarget(ISerializationContext context, CompileTarget semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlexPackage.Literals.COMPILE_TARGET__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlexPackage.Literals.COMPILE_TARGET__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCompileTargetAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	

@@ -10,6 +10,7 @@ import fr.inria.diverse.alex.xtext.alex.AlexImport;
 import fr.inria.diverse.alex.xtext.alex.AlexMethod;
 import fr.inria.diverse.alex.xtext.alex.AlexPackage;
 import fr.inria.diverse.alex.xtext.alex.AlexRoot;
+import fr.inria.diverse.alex.xtext.alex.CompileTarget;
 import fr.inria.diverse.alex.xtext.alex.ConcreteMethod;
 import fr.inria.diverse.alex.xtext.alex.DefMethod;
 import fr.inria.diverse.alex.xtext.alex.EcoreImport;
@@ -42,6 +43,13 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
    * @generated
    */
   private EClass alexRootEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass compileTargetEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -128,7 +136,7 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
 
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-   * 
+   *
    * <p>This method is used to initialize {@link AlexPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
@@ -143,11 +151,13 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
     if (isInited) return (AlexPackage)EPackage.Registry.INSTANCE.getEPackage(AlexPackage.eNS_URI);
 
     // Obtain or create and register package
-    AlexPackageImpl theAlexPackage = (AlexPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AlexPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AlexPackageImpl());
+    Object registeredAlexPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+    AlexPackageImpl theAlexPackage = registeredAlexPackage instanceof AlexPackageImpl ? (AlexPackageImpl)registeredAlexPackage : new AlexPackageImpl();
 
     isInited = true;
 
     // Initialize simple dependencies
+    TypesPackage.eINSTANCE.eClass();
     XbasePackage.eINSTANCE.eClass();
     XtypePackage.eINSTANCE.eClass();
 
@@ -160,7 +170,6 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
     // Mark meta-data to indicate it can't be changed
     theAlexPackage.freeze();
 
-  
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(AlexPackage.eNS_URI, theAlexPackage);
     return theAlexPackage;
@@ -191,7 +200,7 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAlexRoot_JavaImports()
+  public EReference getAlexRoot_CompileTargets()
   {
     return (EReference)alexRootEClass.getEStructuralFeatures().get(1);
   }
@@ -201,7 +210,7 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAlexRoot_EcoreImport()
+  public EReference getAlexRoot_JavaImports()
   {
     return (EReference)alexRootEClass.getEStructuralFeatures().get(2);
   }
@@ -211,7 +220,7 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAlexRoot_AlexImports()
+  public EReference getAlexRoot_EcoreImport()
   {
     return (EReference)alexRootEClass.getEStructuralFeatures().get(3);
   }
@@ -221,9 +230,39 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAlexRoot_Classes()
+  public EReference getAlexRoot_AlexImports()
   {
     return (EReference)alexRootEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAlexRoot_Classes()
+  {
+    return (EReference)alexRootEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCompileTarget()
+  {
+    return compileTargetEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCompileTarget_Name()
+  {
+    return (EAttribute)compileTargetEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -428,10 +467,14 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
     // Create classes and their features
     alexRootEClass = createEClass(ALEX_ROOT);
     createEAttribute(alexRootEClass, ALEX_ROOT__NAME);
+    createEReference(alexRootEClass, ALEX_ROOT__COMPILE_TARGETS);
     createEReference(alexRootEClass, ALEX_ROOT__JAVA_IMPORTS);
     createEReference(alexRootEClass, ALEX_ROOT__ECORE_IMPORT);
     createEReference(alexRootEClass, ALEX_ROOT__ALEX_IMPORTS);
     createEReference(alexRootEClass, ALEX_ROOT__CLASSES);
+
+    compileTargetEClass = createEClass(COMPILE_TARGET);
+    createEAttribute(compileTargetEClass, COMPILE_TARGET__NAME);
 
     ecoreImportEClass = createEClass(ECORE_IMPORT);
     createEAttribute(ecoreImportEClass, ECORE_IMPORT__URI);
@@ -501,10 +544,14 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
     // Initialize classes and features; add operations and parameters
     initEClass(alexRootEClass, AlexRoot.class, "AlexRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAlexRoot_Name(), ecorePackage.getEString(), "name", null, 0, 1, AlexRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAlexRoot_CompileTargets(), this.getCompileTarget(), null, "compileTargets", null, 0, -1, AlexRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAlexRoot_JavaImports(), theXtypePackage.getXImportSection(), null, "javaImports", null, 0, 1, AlexRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAlexRoot_EcoreImport(), this.getEcoreImport(), null, "ecoreImport", null, 0, 1, AlexRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAlexRoot_AlexImports(), this.getAlexImport(), null, "alexImports", null, 0, -1, AlexRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAlexRoot_Classes(), this.getAlexClass(), null, "classes", null, 0, -1, AlexRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(compileTargetEClass, CompileTarget.class, "CompileTarget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCompileTarget_Name(), ecorePackage.getEString(), "name", null, 0, 1, CompileTarget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ecoreImportEClass, EcoreImport.class, "EcoreImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEcoreImport_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, EcoreImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -5,6 +5,7 @@ import java.util.Collection
 import java.util.Comparator
 import java.util.List
 import java.util.Map
+import javax.inject.Provider
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
@@ -20,11 +22,7 @@ import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.xbase.lib.Functions.Function1
 
 class EcoreUtils {
-	@Inject XtextResourceSet rs
-
-	def void resetResourceSet() {
-		rs = new XtextResourceSet
-	}
+	@Inject Provider<ResourceSet> rsp
 
 	def buildExtendedFactoryNames(List<EClass> classes) {
 		val List<Pair<EClass, Iterable<EClass>>> a = classes.map [
@@ -180,7 +178,6 @@ class EcoreUtils {
 
 		val allPkgs = gm.allGenPkgs
 		val fgm = allPkgs.findFirst [
-//			println('''«getEcorePackage.nsURI» == «cls.EPackage.nsURI»''')
 			getEcorePackage.nsURI == cls.EPackage.nsURI
 		]
 
@@ -233,9 +230,7 @@ class EcoreUtils {
 	}
 
 	def EPackage loadEPackage(String path) {
-		if (rs === null) {
-			rs = new XtextResourceSet
-		}
+		val rs = rsp.get
 		rs.resourceFactoryRegistry.extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl)
 		try {
 
@@ -244,8 +239,7 @@ class EcoreUtils {
 				return r.contents.head as EPackage
 			}
 
-			val resource =
-				if (path.startsWith("platform:/"))
+			val resource = if (path.startsWith("platform:/"))
 					rs.getResource(URI.createURI(path), true)
 				else if (path.startsWith("/"))
 					rs.getResource(URI::createPlatformResourceURI(path, true), true)
@@ -259,9 +253,10 @@ class EcoreUtils {
 	}
 
 	def GenModel loadGenmodel(String path) {
-		if (rs === null) {
-			rs = new XtextResourceSet
-		}
+//		if (rsp.get === null) {
+//			rs = new XtextResourceSet
+//		}
+		val rs = rsp.get
 		rs.resourceFactoryRegistry.extensionToFactoryMap.put("genmodel", new XMIResourceFactoryImpl)
 		try {
 
@@ -270,8 +265,7 @@ class EcoreUtils {
 				return r.contents.head as GenModel
 			}
 
-			val resource =
-				if (path.startsWith("platform:/"))
+			val resource = if (path.startsWith("platform:/"))
 					rs.getResource(URI.createURI(path), true)
 				else if (path.startsWith("/"))
 					rs.getResource(URI::createPlatformResourceURI(path, true), true)
