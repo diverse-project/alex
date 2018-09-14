@@ -26,8 +26,10 @@ public class OrOperationImpl extends BinaryExpOperationImpl implements OrOperati
   @Override
   public String print() {
     String _print = this.alg.$(this.obj.getLhs()).print();
-    String _plus = (_print + " || ");
+    String _plus = ("(" + _print);
+    String _plus_1 = (_plus + " \u2228 ");
     String _print_1 = this.alg.$(this.obj.getRhs()).print();
-    return (_plus + _print_1);
+    String _plus_2 = (_plus_1 + _print_1);
+    return (_plus_2 + ")");
   }
 }
