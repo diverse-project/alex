@@ -1,8 +1,10 @@
 package fr.inria.diverse.alex.xtext.jvmmodel
 
 import com.google.inject.Inject
+import fr.inria.diverse.alex.xtext.alex.AlexClass
 import fr.inria.diverse.alex.xtext.alex.AlexRoot
 import fr.inria.diverse.alex.xtext.alex.CompileTarget
+import fr.inria.diverse.alex.xtext.alex.ConcreteMethod
 import fr.inria.diverse.alex.xtext.utils.AlexUtils
 import fr.inria.diverse.alex.xtext.utils.EcoreUtils
 import fr.inria.diverse.alex.xtext.utils.NamingUtils
@@ -11,21 +13,20 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EFactory
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.impl.EFactoryImpl
 import org.eclipse.emf.ecore.impl.EPackageImpl
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl
+import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.EFactory
-import org.eclipse.emf.ecore.impl.EFactoryImpl
-import org.eclipse.emf.ecore.plugin.EcorePlugin
-import javax.xml.stream.events.EntityReference
 
 class AlexJvmModelInferrer extends AbstractModelInferrer {
 
@@ -114,8 +115,9 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 
 		abstractSyntax.allClasses.forEach [ clazz |
 
-			clazz.compileEClassInterface(acceptor, compileTarget, abstractSyntax)
-			clazz.compileEClassImplementation(acceptor, compileTarget, abstractSyntax)
+			val alexClass = alexRoot.allAlexClasses.filter[alexClass | alexClass.name == clazz.name].head
+			clazz.compileEClassInterface(acceptor, compileTarget, abstractSyntax, alexClass)
+			clazz.compileEClassImplementation(acceptor, compileTarget, abstractSyntax, alexClass)
 		]
 	}
 	
@@ -381,7 +383,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 	
-	def compileEClassInterface(EClass clazz, IJvmDeclaredTypeAcceptor acceptor, CompileTarget compileTarget, EPackage abstractSyntax) {
+	def compileEClassInterface(EClass clazz, IJvmDeclaredTypeAcceptor acceptor, CompileTarget compileTarget, EPackage abstractSyntax, AlexClass alexClass) {
 		val interfaceName = clazz.interfaceFQN(compileTarget)
 		acceptor.accept(clazz.toInterface(interfaceName) [
 				superTypes += EObject.typeRef
@@ -416,10 +418,15 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 						println(field)
 					}
 				]
+				
+				members += alexClass.methods.map[method | method.toMethod('''«method.name»''', method.type) [
+					body = null as XExpression
+					abstract = true
+				]]
 			])
 	}
 	
-	def compileEClassImplementation(EClass clazz, IJvmDeclaredTypeAcceptor acceptor, CompileTarget compileTarget, EPackage abstractSyntax) {
+	def compileEClassImplementation(EClass clazz, IJvmDeclaredTypeAcceptor acceptor, CompileTarget compileTarget, EPackage abstractSyntax, AlexClass alexClass) {
 		val interfaceName = clazz.interfaceFQN(compileTarget)
 		
 		acceptor.accept(clazz.toClass(clazz.classFQN(compileTarget))) [
@@ -544,6 +551,11 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 					return super.eIsSet(featureID);
 					'''
 				]
+				
+				members += alexClass.methods.filter[method | method instanceof ConcreteMethod].map[method | method.toMethod('''«method.name»''', method.type) [
+					body = (method as ConcreteMethod).block
+				]]
+				
 			]
 	}
 	
