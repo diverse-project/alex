@@ -10,3 +10,6 @@ script:
 notifications:
   slack: gemoc:pT5gfplhMK2hs5fz7bdWvtS4
 
+branches:
+  only:
+    - master
