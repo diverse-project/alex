@@ -402,7 +402,7 @@ public class AlexSemanticSequencer extends XbaseSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         name=ValidID 
-	 *         compileTargets+=CompileTarget? 
+	 *         compileTarget=CompileTarget? 
 	 *         javaImports=XImportSection? 
 	 *         ecoreImport=EcoreImport 
 	 *         alexImports+=AlexImport* 
@@ -419,16 +419,10 @@ public class AlexSemanticSequencer extends XbaseSemanticSequencer {
 	 *     CompileTarget returns CompileTarget
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     (name=ID truffle?='truffle'? child?='child'?)
 	 */
 	protected void sequence_CompileTarget(ISerializationContext context, CompileTarget semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AlexPackage.Literals.COMPILE_TARGET__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlexPackage.Literals.COMPILE_TARGET__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCompileTargetAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

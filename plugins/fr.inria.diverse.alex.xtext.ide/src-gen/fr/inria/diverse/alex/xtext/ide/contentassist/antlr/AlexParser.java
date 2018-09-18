@@ -267,12 +267,14 @@ public class AlexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 			builder.put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
 			builder.put(grammarAccess.getAlexRootAccess().getNameAssignment_1(), "rule__AlexRoot__NameAssignment_1");
-			builder.put(grammarAccess.getAlexRootAccess().getCompileTargetsAssignment_2_2(), "rule__AlexRoot__CompileTargetsAssignment_2_2");
+			builder.put(grammarAccess.getAlexRootAccess().getCompileTargetAssignment_2_2(), "rule__AlexRoot__CompileTargetAssignment_2_2");
 			builder.put(grammarAccess.getAlexRootAccess().getJavaImportsAssignment_3(), "rule__AlexRoot__JavaImportsAssignment_3");
 			builder.put(grammarAccess.getAlexRootAccess().getEcoreImportAssignment_4(), "rule__AlexRoot__EcoreImportAssignment_4");
 			builder.put(grammarAccess.getAlexRootAccess().getAlexImportsAssignment_5(), "rule__AlexRoot__AlexImportsAssignment_5");
 			builder.put(grammarAccess.getAlexRootAccess().getClassesAssignment_6(), "rule__AlexRoot__ClassesAssignment_6");
 			builder.put(grammarAccess.getCompileTargetAccess().getNameAssignment_0(), "rule__CompileTarget__NameAssignment_0");
+			builder.put(grammarAccess.getCompileTargetAccess().getTruffleAssignment_1(), "rule__CompileTarget__TruffleAssignment_1");
+			builder.put(grammarAccess.getCompileTargetAccess().getChildAssignment_2(), "rule__CompileTarget__ChildAssignment_2");
 			builder.put(grammarAccess.getEcoreImportAccess().getUriAssignment_2(), "rule__EcoreImport__UriAssignment_2");
 			builder.put(grammarAccess.getAlexImportAccess().getRefAssignment_2(), "rule__AlexImport__RefAssignment_2");
 			builder.put(grammarAccess.getAlexClassAccess().getAbstractAssignment_1(), "rule__AlexClass__AbstractAssignment_1");

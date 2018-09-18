@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.CompileTarget#getName <em>Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.CompileTarget#isTruffle <em>Truffle</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.CompileTarget#isChild <em>Child</em>}</li>
  * </ul>
  *
  * @see fr.inria.diverse.alex.xtext.alex.AlexPackage#getCompileTarget()
@@ -48,5 +50,57 @@ public interface CompileTarget extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Truffle</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Truffle</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Truffle</em>' attribute.
+   * @see #setTruffle(boolean)
+   * @see fr.inria.diverse.alex.xtext.alex.AlexPackage#getCompileTarget_Truffle()
+   * @model
+   * @generated
+   */
+  boolean isTruffle();
+
+  /**
+   * Sets the value of the '{@link fr.inria.diverse.alex.xtext.alex.CompileTarget#isTruffle <em>Truffle</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Truffle</em>' attribute.
+   * @see #isTruffle()
+   * @generated
+   */
+  void setTruffle(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Child</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Child</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Child</em>' attribute.
+   * @see #setChild(boolean)
+   * @see fr.inria.diverse.alex.xtext.alex.AlexPackage#getCompileTarget_Child()
+   * @model
+   * @generated
+   */
+  boolean isChild();
+
+  /**
+   * Sets the value of the '{@link fr.inria.diverse.alex.xtext.alex.CompileTarget#isChild <em>Child</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Child</em>' attribute.
+   * @see #isChild()
+   * @generated
+   */
+  void setChild(boolean value);
 
 } // CompileTarget

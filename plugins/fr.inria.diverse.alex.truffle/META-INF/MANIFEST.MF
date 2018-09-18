@@ -1,0 +1,110 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Truffle
+Bundle-SymbolicName: fr.inria.diverse.alex.truffle
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: fr.inria.diverse.alex.truffle
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: mvn/com.oracle.truffle.truffle-api-1.0.0-rc6.jar,
+ .
+Export-Package: com.oracle.truffle.api;
+  uses:="com.oracle.truffle.api.impl,
+   com.oracle.truffle.api.source,
+   org.graalvm.options,
+   com.oracle.truffle.api.frame,
+   com.oracle.truffle.api.nodes,
+   new com.oracle.truffle.api,
+   org.graalvm.polyglot.io",
+ com.oracle.truffle.api.debug;
+  uses:="org.graalvm.collections,
+   com.oracle.truffle.api.impl,
+   com.oracle.truffle.api.source,
+   com.oracle.truffle.api.interop,
+   com.oracle.truffle.api.frame,
+   com.oracle.truffle.api.debug.impl,
+   com.oracle.truffle.api.instrumentation,
+   org.graalvm.polyglot,
+   new com.oracle.truffle.api.debug,
+   com.oracle.truffle.api.nodes,
+   com.oracle.truffle.api",
+ com.oracle.truffle.api.debug.impl;uses:="com.oracle.truffle.api.instrumentation,com.oracle.truffle.api.debug",
+ com.oracle.truffle.api.dsl;uses:="com.oracle.truffle.api.nodes",
+ com.oracle.truffle.api.dsl.internal,
+ com.oracle.truffle.api.frame;
+  uses:="new com.oracle.truffle.api.frame,
+   org.graalvm.collections,
+   com.oracle.truffle.api.impl,
+   com.oracle.truffle.api.nodes,
+   com.oracle.truffle.api",
+ com.oracle.truffle.api.impl;
+  uses:="com.oracle.truffle.api.source,
+   org.graalvm.options,
+   com.oracle.truffle.api.frame,
+   org.graalvm.polyglot,
+   com.oracle.truffle.api.nodes,
+   org.graalvm.polyglot.io,
+   com.oracle.truffle.api",
+ com.oracle.truffle.api.instrumentation;
+  uses:="com.oracle.truffle.api.impl,
+   com.oracle.truffle.api.source,
+   org.graalvm.options,
+   com.oracle.truffle.api.frame,
+   org.graalvm.polyglot,
+   com.oracle.truffle.api.nodes,
+   com.oracle.truffle.api,
+   new com.oracle.truffle.api.instrumentation",
+ com.oracle.truffle.api.interop;
+  uses:="com.oracle.truffle.api.impl,
+   new com.oracle.truffle.api.interop,
+   com.oracle.truffle.api.nodes,
+   com.oracle.truffle.api,
+   com.oracle.truffle.api.frame",
+ com.oracle.truffle.api.interop.impl,
+ com.oracle.truffle.api.nodes;
+  uses:="com.oracle.truffle.api.impl,
+   new com.oracle.truffle.api.nodes,
+   com.oracle.truffle.api.source,
+   com.oracle.truffle.api.frame,
+   com.oracle.truffle.api,
+   sun.misc",
+ com.oracle.truffle.api.object;
+  uses:="com.oracle.truffle.api.nodes,
+   com.oracle.truffle.api,
+   com.oracle.truffle.api.interop,
+   new com.oracle.truffle.api.object",
+ com.oracle.truffle.api.object.dsl,
+ com.oracle.truffle.api.profiles;uses:="com.oracle.truffle.api.nodes",
+ com.oracle.truffle.api.source;
+  uses:="com.oracle.truffle.api.impl,
+   org.graalvm.polyglot,
+   org.graalvm.polyglot.io,
+   com.oracle.truffle.api,
+   new com.oracle.truffle.api.source",
+ com.oracle.truffle.api.utilities;
+  uses:="com.oracle.truffle.api.impl,
+   com.oracle.truffle.api.nodes,
+   com.oracle.truffle.api,
+   new com.oracle.truffle.api.utilities",
+ com.oracle.truffle.object;
+  uses:="com.oracle.truffle.api.object,
+   new com.oracle.truffle.object,
+   com.oracle.truffle.api.nodes,
+   com.oracle.truffle.api,
+   com.oracle.truffle.api.interop",
+ com.oracle.truffle.object.basic;uses:="com.oracle.truffle.object,com.oracle.truffle.api.object",
+ com.oracle.truffle.polyglot;
+  uses:="org.graalvm.polyglot.proxy,
+   com.oracle.truffle.api.source,
+   org.graalvm.options,
+   com.oracle.truffle.api.instrumentation,
+   org.graalvm.polyglot,
+   new com.oracle.truffle.polyglot,
+   com.oracle.truffle.api.impl,
+   org.graalvm.polyglot.impl,
+   org.graalvm.polyglot.management,
+   com.oracle.truffle.api.interop,
+   com.oracle.truffle.api.frame,
+   com.oracle.truffle.api.profiles,
+   com.oracle.truffle.api.nodes,
+   org.graalvm.polyglot.io,
+   com.oracle.truffle.api"

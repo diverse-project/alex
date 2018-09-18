@@ -3601,9 +3601,9 @@ rule__AlexRoot__Group_2__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAlexRootAccess().getCompileTargetsAssignment_2_2()); }
-	(rule__AlexRoot__CompileTargetsAssignment_2_2)
-	{ after(grammarAccess.getAlexRootAccess().getCompileTargetsAssignment_2_2()); }
+	{ before(grammarAccess.getAlexRootAccess().getCompileTargetAssignment_2_2()); }
+	(rule__AlexRoot__CompileTargetAssignment_2_2)
+	{ after(grammarAccess.getAlexRootAccess().getCompileTargetAssignment_2_2()); }
 )
 ;
 finally {
@@ -3644,6 +3644,7 @@ rule__CompileTarget__Group__1
 	}
 :
 	rule__CompileTarget__Group__1__Impl
+	rule__CompileTarget__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3655,9 +3656,62 @@ rule__CompileTarget__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getCompileTargetAccess().getSemicolonKeyword_1()); }
+	{ before(grammarAccess.getCompileTargetAccess().getTruffleAssignment_1()); }
+	(rule__CompileTarget__TruffleAssignment_1)?
+	{ after(grammarAccess.getCompileTargetAccess().getTruffleAssignment_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CompileTarget__Group__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__CompileTarget__Group__2__Impl
+	rule__CompileTarget__Group__3
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CompileTarget__Group__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getCompileTargetAccess().getChildAssignment_2()); }
+	(rule__CompileTarget__ChildAssignment_2)?
+	{ after(grammarAccess.getCompileTargetAccess().getChildAssignment_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CompileTarget__Group__3
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__CompileTarget__Group__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CompileTarget__Group__3__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getCompileTargetAccess().getSemicolonKeyword_3()); }
 	';'
-	{ after(grammarAccess.getCompileTargetAccess().getSemicolonKeyword_1()); }
+	{ after(grammarAccess.getCompileTargetAccess().getSemicolonKeyword_3()); }
 )
 ;
 finally {
@@ -16566,15 +16620,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__AlexRoot__CompileTargetsAssignment_2_2
+rule__AlexRoot__CompileTargetAssignment_2_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getAlexRootAccess().getCompileTargetsCompileTargetParserRuleCall_2_2_0()); }
+		{ before(grammarAccess.getAlexRootAccess().getCompileTargetCompileTargetParserRuleCall_2_2_0()); }
 		ruleCompileTarget
-		{ after(grammarAccess.getAlexRootAccess().getCompileTargetsCompileTargetParserRuleCall_2_2_0()); }
+		{ after(grammarAccess.getAlexRootAccess().getCompileTargetCompileTargetParserRuleCall_2_2_0()); }
 	)
 ;
 finally {
@@ -16650,6 +16704,44 @@ rule__CompileTarget__NameAssignment_0
 		{ before(grammarAccess.getCompileTargetAccess().getNameIDTerminalRuleCall_0_0()); }
 		RULE_ID
 		{ after(grammarAccess.getCompileTargetAccess().getNameIDTerminalRuleCall_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CompileTarget__TruffleAssignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getCompileTargetAccess().getTruffleTruffleKeyword_1_0()); }
+		(
+			{ before(grammarAccess.getCompileTargetAccess().getTruffleTruffleKeyword_1_0()); }
+			'truffle'
+			{ after(grammarAccess.getCompileTargetAccess().getTruffleTruffleKeyword_1_0()); }
+		)
+		{ after(grammarAccess.getCompileTargetAccess().getTruffleTruffleKeyword_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CompileTarget__ChildAssignment_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getCompileTargetAccess().getChildChildKeyword_2_0()); }
+		(
+			{ before(grammarAccess.getCompileTargetAccess().getChildChildKeyword_2_0()); }
+			'child'
+			{ after(grammarAccess.getCompileTargetAccess().getChildChildKeyword_2_0()); }
+		)
+		{ after(grammarAccess.getCompileTargetAccess().getChildChildKeyword_2_0()); }
 	)
 ;
 finally {

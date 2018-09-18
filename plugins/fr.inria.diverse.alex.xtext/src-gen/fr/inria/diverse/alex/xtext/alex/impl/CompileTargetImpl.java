@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.CompileTargetImpl#getName <em>Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.CompileTargetImpl#isTruffle <em>Truffle</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.CompileTargetImpl#isChild <em>Child</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +49,46 @@ public class CompileTargetImpl extends MinimalEObjectImpl.Container implements C
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isTruffle() <em>Truffle</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isTruffle()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean TRUFFLE_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isTruffle() <em>Truffle</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isTruffle()
+   * @generated
+   * @ordered
+   */
+  protected boolean truffle = TRUFFLE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isChild() <em>Child</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isChild()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean CHILD_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isChild() <em>Child</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isChild()
+   * @generated
+   * @ordered
+   */
+  protected boolean child = CHILD_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -97,6 +139,52 @@ public class CompileTargetImpl extends MinimalEObjectImpl.Container implements C
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isTruffle()
+  {
+    return truffle;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTruffle(boolean newTruffle)
+  {
+    boolean oldTruffle = truffle;
+    truffle = newTruffle;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AlexPackage.COMPILE_TARGET__TRUFFLE, oldTruffle, truffle));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isChild()
+  {
+    return child;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setChild(boolean newChild)
+  {
+    boolean oldChild = child;
+    child = newChild;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AlexPackage.COMPILE_TARGET__CHILD, oldChild, child));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -104,6 +192,10 @@ public class CompileTargetImpl extends MinimalEObjectImpl.Container implements C
     {
       case AlexPackage.COMPILE_TARGET__NAME:
         return getName();
+      case AlexPackage.COMPILE_TARGET__TRUFFLE:
+        return isTruffle();
+      case AlexPackage.COMPILE_TARGET__CHILD:
+        return isChild();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,6 +212,12 @@ public class CompileTargetImpl extends MinimalEObjectImpl.Container implements C
     {
       case AlexPackage.COMPILE_TARGET__NAME:
         setName((String)newValue);
+        return;
+      case AlexPackage.COMPILE_TARGET__TRUFFLE:
+        setTruffle((Boolean)newValue);
+        return;
+      case AlexPackage.COMPILE_TARGET__CHILD:
+        setChild((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -138,6 +236,12 @@ public class CompileTargetImpl extends MinimalEObjectImpl.Container implements C
       case AlexPackage.COMPILE_TARGET__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case AlexPackage.COMPILE_TARGET__TRUFFLE:
+        setTruffle(TRUFFLE_EDEFAULT);
+        return;
+      case AlexPackage.COMPILE_TARGET__CHILD:
+        setChild(CHILD_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -154,6 +258,10 @@ public class CompileTargetImpl extends MinimalEObjectImpl.Container implements C
     {
       case AlexPackage.COMPILE_TARGET__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AlexPackage.COMPILE_TARGET__TRUFFLE:
+        return truffle != TRUFFLE_EDEFAULT;
+      case AlexPackage.COMPILE_TARGET__CHILD:
+        return child != CHILD_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -171,6 +279,10 @@ public class CompileTargetImpl extends MinimalEObjectImpl.Container implements C
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", truffle: ");
+    result.append(truffle);
+    result.append(", child: ");
+    result.append(child);
     result.append(')');
     return result.toString();
   }

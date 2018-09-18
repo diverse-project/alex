@@ -2,6 +2,8 @@ package fr.inria.diverse.alex.xtext.utils
 
 import fr.inria.diverse.alex.xtext.alex.AlexClass
 import fr.inria.diverse.alex.xtext.alex.AlexRoot
+import fr.inria.diverse.alex.xtext.alex.CompileTarget
+import org.eclipse.emf.codegen.util.CodeGenUtil
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.EcoreUtil2
@@ -74,15 +76,53 @@ class NamingUtils {
 		'''it'''
 		
 		
-//	def String getBindClassName(AlexClass classBind) '''«classBind.requiredCls.name»Bind«classBind.providedCls.name»'''
+def String interfaceFQN(EClass clazz, CompileTarget compileTarget) {
+		'''«compileTarget.basePackage».«clazz.name»'''
+	}
+
+	def String classFQN(EClass clazz, CompileTarget compileTarget) {
+		'''«compileTarget.basePackage».impl.«clazz.name»Impl'''
+	}
+
+	def String basePackage(CompileTarget compileTarget) {
+		'''«compileTarget.name»'''
+	}
+
+	def String factoryInterfaceName(CompileTarget compileTarget) {
+		'''«compileTarget.basePackage».«compileTarget.name.toFirstUpper»Factory'''
+	}
+	
+	def String factoryImplementationName(CompileTarget compileTarget) {
+		'''«compileTarget.basePackage».impl.«compileTarget.name.toFirstUpper»FactoryImpl'''
+	}
+
+	def String packageInterfaceFQN(CompileTarget compileTarget) {
+		'''«compileTarget.basePackage».«compileTarget.name.toFirstUpper»Package'''
+	}
+
+	def String packageClassFQN(CompileTarget compileTarget) {
+		'''«compileTarget.basePackage».impl.«compileTarget.packageClassName»'''
+	}
+
+	def String packageClassName(CompileTarget abstractSyntax) {
+		'''«abstractSyntax.name.toFirstUpper»PackageImpl'''
+	}
+
+	def String packageInterfaceName(CompileTarget abstractSyntax) {
+		'''«abstractSyntax.name.toFirstUpper»Package'''
+	}
+
+	def String packageImplName(CompileTarget compileTarget) {
+		'''«compileTarget.basePackage».impl.«compileTarget.name.toFirstUpper»PackageImpl'''
+	}
 	
 	
-//	def dispatch String getAbstractClassName(AlexClass x) {
-//		x.bindClassName
-//	} 
-//	
-//	def dispatch String getAbstractClassName(AlexClass x) {
-//		x.name
-//	}
+	def String normalizeUpperField(String input, String className) {
+		'''«CodeGenUtil.format(className, '_', '', false, false)»__«CodeGenUtil.format(input, '_', '', false, false)»'''.toString.toUpperCase
+	}
+	
+	def String normalizeUpperMethod(String input, String className) {
+		'''«CodeGenUtil.format(className, '_', '', false, false).toLowerCase.toFirstUpper»_«CodeGenUtil.format(input, '_', '', false, false).toLowerCase.toFirstUpper»'''
+	}
 }
 	

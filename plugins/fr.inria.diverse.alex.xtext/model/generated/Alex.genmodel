@@ -8,7 +8,7 @@
       fileExtensions="alex" ecorePackage="Alex.ecore#/">
     <genClasses ecoreClass="Alex.ecore#//AlexRoot">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alex.ecore#//AlexRoot/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alex.ecore#//AlexRoot/compileTargets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alex.ecore#//AlexRoot/compileTarget"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alex.ecore#//AlexRoot/javaImports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alex.ecore#//AlexRoot/ecoreImport"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alex.ecore#//AlexRoot/alexImports"/>
@@ -16,6 +16,8 @@
     </genClasses>
     <genClasses ecoreClass="Alex.ecore#//CompileTarget">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alex.ecore#//CompileTarget/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alex.ecore#//CompileTarget/truffle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alex.ecore#//CompileTarget/child"/>
     </genClasses>
     <genClasses ecoreClass="Alex.ecore#//EcoreImport">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alex.ecore#//EcoreImport/uri"/>

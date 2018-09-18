@@ -111,17 +111,17 @@ ruleAlexRoot returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAlexRootAccess().getCompileTargetsCompileTargetParserRuleCall_2_2_0());
+						newCompositeNode(grammarAccess.getAlexRootAccess().getCompileTargetCompileTargetParserRuleCall_2_2_0());
 					}
-					lv_compileTargets_4_0=ruleCompileTarget
+					lv_compileTarget_4_0=ruleCompileTarget
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAlexRootRule());
 						}
-						add(
+						set(
 							$current,
-							"compileTargets",
-							lv_compileTargets_4_0,
+							"compileTarget",
+							lv_compileTarget_4_0,
 							"fr.inria.diverse.alex.xtext.Alex.CompileTarget");
 						afterParserOrEnumRuleCall();
 					}
@@ -241,9 +241,37 @@ ruleCompileTarget returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1=';'
+		(
+			(
+				lv_truffle_1_0='truffle'
+				{
+					newLeafNode(lv_truffle_1_0, grammarAccess.getCompileTargetAccess().getTruffleTruffleKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getCompileTargetRule());
+					}
+					setWithLastConsumed($current, "truffle", true, "truffle");
+				}
+			)
+		)?
+		(
+			(
+				lv_child_2_0='child'
+				{
+					newLeafNode(lv_child_2_0, grammarAccess.getCompileTargetAccess().getChildChildKeyword_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getCompileTargetRule());
+					}
+					setWithLastConsumed($current, "child", true, "child");
+				}
+			)
+		)?
+		otherlv_3=';'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getCompileTargetAccess().getSemicolonKeyword_1());
+			newLeafNode(otherlv_3, grammarAccess.getCompileTargetAccess().getSemicolonKeyword_3());
 		}
 	)
 ;

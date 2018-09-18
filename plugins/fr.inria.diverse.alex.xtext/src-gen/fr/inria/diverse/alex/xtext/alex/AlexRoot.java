@@ -19,7 +19,7 @@ import org.eclipse.xtext.xtype.XImportSection;
  * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexRoot#getName <em>Name</em>}</li>
- *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexRoot#getCompileTargets <em>Compile Targets</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexRoot#getCompileTarget <em>Compile Target</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexRoot#getJavaImports <em>Java Imports</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexRoot#getEcoreImport <em>Ecore Import</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexRoot#getAlexImports <em>Alex Imports</em>}</li>
@@ -59,20 +59,30 @@ public interface AlexRoot extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Compile Targets</b></em>' containment reference list.
-   * The list contents are of type {@link fr.inria.diverse.alex.xtext.alex.CompileTarget}.
+   * Returns the value of the '<em><b>Compile Target</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Compile Targets</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Compile Target</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Compile Targets</em>' containment reference list.
-   * @see fr.inria.diverse.alex.xtext.alex.AlexPackage#getAlexRoot_CompileTargets()
+   * @return the value of the '<em>Compile Target</em>' containment reference.
+   * @see #setCompileTarget(CompileTarget)
+   * @see fr.inria.diverse.alex.xtext.alex.AlexPackage#getAlexRoot_CompileTarget()
    * @model containment="true"
    * @generated
    */
-  EList<CompileTarget> getCompileTargets();
+  CompileTarget getCompileTarget();
+
+  /**
+   * Sets the value of the '{@link fr.inria.diverse.alex.xtext.alex.AlexRoot#getCompileTarget <em>Compile Target</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Compile Target</em>' containment reference.
+   * @see #getCompileTarget()
+   * @generated
+   */
+  void setCompileTarget(CompileTarget value);
 
   /**
    * Returns the value of the '<em><b>Java Imports</b></em>' containment reference.

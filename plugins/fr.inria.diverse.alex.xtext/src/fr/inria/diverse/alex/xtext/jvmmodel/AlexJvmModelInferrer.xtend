@@ -1,6 +1,8 @@
 package fr.inria.diverse.alex.xtext.jvmmodel
 
 import com.google.inject.Inject
+import com.oracle.truffle.api.nodes.Node
+import com.oracle.truffle.api.nodes.NodeInfo
 import fr.inria.diverse.alex.xtext.alex.AlexClass
 import fr.inria.diverse.alex.xtext.alex.AlexRoot
 import fr.inria.diverse.alex.xtext.alex.CompileTarget
@@ -8,7 +10,6 @@ import fr.inria.diverse.alex.xtext.alex.ConcreteMethod
 import fr.inria.diverse.alex.xtext.utils.AlexUtils
 import fr.inria.diverse.alex.xtext.utils.EcoreUtils
 import fr.inria.diverse.alex.xtext.utils.NamingUtils
-import org.eclipse.emf.codegen.util.CodeGenUtil
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
@@ -22,7 +23,9 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl
 import org.eclipse.emf.ecore.impl.EPackageImpl
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl
 import org.eclipse.emf.ecore.plugin.EcorePlugin
+import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmVisibility
+import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
@@ -38,13 +41,33 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 	override infer(EObject e, IJvmDeclaredTypeAcceptor acceptor, boolean preIndexingPhase) {
 		if (!preIndexingPhase) {
 			val alexRoot = e as AlexRoot
-			alexRoot.compileTargets.forEach[compile(alexRoot, acceptor)]
+			alexRoot.compileTarget.compile(alexRoot, acceptor)
 		}
 	}
 
+/**
+ * FIXME change generation order to have first the interfaces and the the implementations, should resolve some odd generation issues !
+ */
 	def compile(CompileTarget compileTarget, AlexRoot alexRoot, IJvmDeclaredTypeAcceptor acceptor) {
 		val abstractSyntax = alexRoot.ecoreImport.uri.loadGenmodel.EPackage
 
+		compileTarget.compileFactoryInterface(acceptor, abstractSyntax)
+		compileTarget.compilePackageInterface(acceptor, abstractSyntax, alexRoot)
+		abstractSyntax.allClasses.forEach [ clazz |
+			val alexClass = alexRoot.allAlexClasses.filter[alexClass | alexClass.name == clazz.name].head
+			clazz.compileEClassInterface(acceptor, compileTarget, abstractSyntax, alexClass)
+		]
+		
+		compileTarget.compileFactoryImplementation(acceptor, abstractSyntax)
+		compileTarget.compilePackageImplementation(acceptor, abstractSyntax, alexRoot)
+
+		abstractSyntax.allClasses.forEach [ clazz |
+			val alexClass = alexRoot.allAlexClasses.filter[alexClass | alexClass.name == clazz.name].head
+			clazz.compileEClassImplementation(acceptor, compileTarget, abstractSyntax, alexClass)
+		]
+	}
+	
+	def compileFactoryInterface(CompileTarget compileTarget, IJvmDeclaredTypeAcceptor acceptor, EPackage abstractSyntax) {
 		acceptor.accept(abstractSyntax.toInterface(compileTarget.factoryInterfaceName, [
 			
 			superTypes += EFactory.typeRef
@@ -54,7 +77,9 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 			]
 		]))
 		
-		
+	}
+	
+	def compileFactoryImplementation(CompileTarget compileTarget, IJvmDeclaredTypeAcceptor acceptor, EPackage abstractSyntax) {
 		acceptor.accept(abstractSyntax.toClass(compileTarget.factoryImplementationName) [
 			
 			superTypes += EFactoryImpl.typeRef
@@ -109,16 +134,6 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				
 			]
 		])
-
-		compileTarget.compilePackageInterface(acceptor, abstractSyntax, alexRoot)
-		compileTarget.compilePackageImplementation(acceptor, abstractSyntax, alexRoot)
-
-		abstractSyntax.allClasses.forEach [ clazz |
-
-			val alexClass = alexRoot.allAlexClasses.filter[alexClass | alexClass.name == clazz.name].head
-			clazz.compileEClassInterface(acceptor, compileTarget, abstractSyntax, alexClass)
-			clazz.compileEClassImplementation(acceptor, compileTarget, abstractSyntax, alexClass)
-		]
 	}
 	
 	def compilePackageInterface(CompileTarget compileTarget, IJvmDeclaredTypeAcceptor acceptor, EPackage abstractSyntax, AlexRoot alexRoot) {
@@ -235,6 +250,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 		val packageImplFQN = compileTarget.packageClassFQN
 		val packageInterfaceFQN = compileTarget.packageInterfaceFQN
 		acceptor.accept(abstractSyntax.toClass(packageImplFQN)) [
+			
 			superTypes += EPackageImpl.typeRef
 			superTypes += packageInterfaceFQN.typeRef
 
@@ -367,14 +383,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 					cptrI = cptrI + 1
 				}
 				ret
-				].flatten
-				
-//			members += abstractSyntax.allClasses.map[clazz | clazz.EAllAttributes.map[field|
-//				field.toGetter(field.name.normalizeUpperMethod(clazz.name), EAttribute.typeRef()) => [
-//					body = '''throw new «RuntimeException.typeRef»("Not implemented");'''
-//				]
-//			]].flatten
-			
+			].flatten
 			
 			members += abstractSyntax.toConstructor[
 				visibility = JvmVisibility.PRIVATE
@@ -430,133 +439,152 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 		val interfaceName = clazz.interfaceFQN(compileTarget)
 		
 		acceptor.accept(clazz.toClass(clazz.classFQN(compileTarget))) [
-				abstract = clazz.abstract
+			
+			if(compileTarget.isTruffle) {
+				annotations += NodeInfo.annotationRef() => [annot|
+					annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
+						values += clazz.name
+						val tmp = annot.annotation.members.filter(JvmOperation).filter[simpleName == "description"].head
+						operation = tmp
+					]
+				]
+			}
+			
+			abstract = clazz.abstract
 
-				if (!clazz.ESuperTypes.empty)
-					it.superTypes += clazz.ESuperTypes.head.scopedTypeRef(compileTarget, abstractSyntax)
-				else superTypes += MinimalEObjectImpl.Container.typeRef
+			if (!clazz.ESuperTypes.empty)
+				it.superTypes += clazz.ESuperTypes.head.scopedTypeRef(compileTarget, abstractSyntax)
+			else superTypes += MinimalEObjectImpl.Container.typeRef
 
-				it.superTypes += interfaceName.typeRef
+			it.superTypes += interfaceName.typeRef
 
-				clazz.EAllStructuralFeatures.forEach [ field |
-					if (field instanceof EAttribute) {
-						// EDataType
-						val type = field.EType.scopedTypeRef(compileTarget, abstractSyntax)
-						members += field.toField('''«field.name.toUpperCase»_EDEFAULT''', type) [
-							initializer = '''«field.defaultValue»'''
-						]
-						members += field.toField(field.name, type) [
-							initializer = '''«field.name.toUpperCase»_EDEFAULT'''
-						]
-						members += field.toSetter(field.name, type)
-						members += field.toGetter(field.name, type)
-					} else if (field instanceof EReference) {
-						val rt = field.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)
-						val type = if(field.upperBound > 1) EList.typeRef(rt) else rt
-						members += field.toField(field.name, type)
-						members += field.toSetter(field.name, type)
-						members += field.toGetter(field.name, type)
-					} else {
-						println(field)
-					}
-					
-				]
-				
-				members += clazz.toMethod('eStaticClass', EClass.typeRef) [
-					visibility=JvmVisibility.PROTECTED
-					body = '''return «compileTarget.packageInterfaceFQN.typeRef».Literals.«clazz.name.toUpperCase»;'''
-				]
-				
-				members += clazz.toMethod('eSet', void.typeRef) [
-					parameters += clazz.toParameter('featureID', int.typeRef)
-					parameters += clazz.toParameter('newValue', Object.typeRef)
-					visibility=JvmVisibility.PUBLIC
-					body = '''
-					switch (featureID) {
-					«FOR esf:clazz.EStructuralFeatures»
-					case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
-						«IF esf instanceof EAttribute»
-						set«esf.name.toFirstUpper»((«esf.EType.scopedTypeRef(compileTarget, abstractSyntax)») newValue);
-						«ELSE»
-						«IF esf.upperBound <= 1»
-						set«esf.name.toFirstUpper»((«esf.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)») newValue);
-						«ELSE»
-						throw new RuntimeException("Not Implemented");
-						«ENDIF»
-						«ENDIF»
-					return;
-					«ENDFOR»
-					}
-					super.eSet(featureID, newValue);
-					'''
-				]
-				
-				members += clazz.toMethod('eUnset', void.typeRef) [
-					parameters += clazz.toParameter('featureID', int.typeRef)
-					visibility=JvmVisibility.PUBLIC
-					body = '''
-					switch (featureID) {
-					«FOR esf:clazz.EStructuralFeatures»
-					case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
-						«IF esf instanceof EAttribute»
-						set«esf.name.toFirstUpper»(«esf.name.toUpperCase»_EDEFAULT);
-						«ELSE»
-						«IF esf.upperBound <= 1»
-						set«esf.name.toFirstUpper»((«esf.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)») null);
-						«ELSE»
-						throw new RuntimeException("Not Implemented");
-						«ENDIF»
-						«ENDIF»
-					return;
-					«ENDFOR»
-					}
-					super.eUnset(featureID);
-					'''
-				]
-				
-				members += clazz.toMethod('eGet', Object.typeRef) [
-					parameters += clazz.toParameter('featureID', int.typeRef)
-					parameters += clazz.toParameter('resolve', boolean.typeRef)
-					parameters += clazz.toParameter('coreType', boolean.typeRef)
-					visibility=JvmVisibility.PUBLIC
-					body = '''
-					switch (featureID) {
-					«FOR esf:clazz.EStructuralFeatures»
-					case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
-						return get«esf.name.toFirstUpper»();
-					«ENDFOR»
-					}
-					return super.eGet(featureID, resolve, coreType);
-					'''
-				]
-				
-				members += clazz.toMethod('eIsSet', boolean.typeRef) [
-					parameters += clazz.toParameter('featureID', int.typeRef)
-					visibility=JvmVisibility.PUBLIC
-					body = '''
-					switch (featureID) {
-					«FOR esf:clazz.EStructuralFeatures»
-					case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
-						«IF esf instanceof EAttribute»
-						return «esf.name» != «esf.name.toUpperCase»_EDEFAULT;
-						«ELSE»
-						«IF esf.upperBound <= 1»
-						return «esf.name» != null;
-						«ELSE»
-						throw new RuntimeException("Not Implemented");
-						«ENDIF»
-						«ENDIF»
-					«ENDFOR»
-					}
-					return super.eIsSet(featureID);
-					'''
-				]
-				
-				members += alexClass.methods.filter[method | method instanceof ConcreteMethod].map[method | method.toMethod('''«method.name»''', method.type) [
-					body = (method as ConcreteMethod).block
-				]]
+			clazz.EAllStructuralFeatures.forEach [ field |
+				if (field instanceof EAttribute) {
+					// EDataType
+					val type = field.EType.scopedTypeRef(compileTarget, abstractSyntax)
+					members += field.toField('''«field.name.toUpperCase»_EDEFAULT''', type) [
+						initializer = '''«field.defaultValue»'''
+					]
+					members += field.toField(field.name, type) [
+						initializer = '''«field.name.toUpperCase»_EDEFAULT'''
+
+						
+					]
+					members += field.toSetter(field.name, type)
+					members += field.toGetter(field.name, type)
+				} else if (field instanceof EReference) {
+					val rt = field.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)
+					val type = if(field.upperBound > 1) EList.typeRef(rt) else rt
+					members += field.toField(field.name, type) => [
+						if(compileTarget.child && field.containment) {
+							annotations += 'com.oracle.truffle.api.nodes.Node$Child'.annotationRef()
+						}
+					]
+					members += field.toSetter(field.name, type)
+					members += field.toGetter(field.name, type)
+				} else {
+					println(field)
+				}
 				
 			]
+			
+			members += clazz.toMethod('eStaticClass', EClass.typeRef) [
+				visibility=JvmVisibility.PROTECTED
+				body = '''return «compileTarget.packageInterfaceFQN.typeRef».Literals.«clazz.name.toUpperCase»;'''
+			]
+			
+			members += clazz.toMethod('eSet', void.typeRef) [
+				parameters += clazz.toParameter('featureID', int.typeRef)
+				parameters += clazz.toParameter('newValue', Object.typeRef)
+				visibility=JvmVisibility.PUBLIC
+				body = '''
+				switch (featureID) {
+				«FOR esf:clazz.EStructuralFeatures»
+				case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
+					«IF esf instanceof EAttribute»
+					set«esf.name.toFirstUpper»((«esf.EType.scopedTypeRef(compileTarget, abstractSyntax)») newValue);
+					«ELSE»
+					«IF esf.upperBound <= 1»
+					set«esf.name.toFirstUpper»((«esf.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)») newValue);
+					«ELSE»
+					throw new RuntimeException("Not Implemented");
+					«ENDIF»
+					«ENDIF»
+				return;
+				«ENDFOR»
+				}
+				super.eSet(featureID, newValue);
+				'''
+			]
+			
+			members += clazz.toMethod('eUnset', void.typeRef) [
+				parameters += clazz.toParameter('featureID', int.typeRef)
+				visibility=JvmVisibility.PUBLIC
+				body = '''
+				switch (featureID) {
+				«FOR esf:clazz.EStructuralFeatures»
+				case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
+					«IF esf instanceof EAttribute»
+					set«esf.name.toFirstUpper»(«esf.name.toUpperCase»_EDEFAULT);
+					«ELSE»
+					«IF esf.upperBound <= 1»
+					set«esf.name.toFirstUpper»((«esf.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)») null);
+					«ELSE»
+					throw new RuntimeException("Not Implemented");
+					«ENDIF»
+					«ENDIF»
+				return;
+				«ENDFOR»
+				}
+				super.eUnset(featureID);
+				'''
+			]
+			
+			members += clazz.toMethod('eGet', Object.typeRef) [
+				parameters += clazz.toParameter('featureID', int.typeRef)
+				parameters += clazz.toParameter('resolve', boolean.typeRef)
+				parameters += clazz.toParameter('coreType', boolean.typeRef)
+				visibility=JvmVisibility.PUBLIC
+				body = '''
+				switch (featureID) {
+				«FOR esf:clazz.EStructuralFeatures»
+				case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
+					return get«esf.name.toFirstUpper»();
+				«ENDFOR»
+				}
+				return super.eGet(featureID, resolve, coreType);
+				'''
+			]
+			
+			members += clazz.toMethod('eIsSet', boolean.typeRef) [
+				parameters += clazz.toParameter('featureID', int.typeRef)
+				visibility=JvmVisibility.PUBLIC
+				body = '''
+				switch (featureID) {
+				«FOR esf:clazz.EStructuralFeatures»
+				case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
+					«IF esf instanceof EAttribute»
+					return «esf.name» != «esf.name.toUpperCase»_EDEFAULT;
+					«ELSE»
+					«IF esf.upperBound <= 1»
+					return «esf.name» != null;
+					«ELSE»
+					throw new RuntimeException("Not Implemented");
+					«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+				}
+				return super.eIsSet(featureID);
+				'''
+			]
+			
+			members += alexClass.methods.filter[method | method instanceof ConcreteMethod].map[method | method.toMethod('''«method.name»''', method.type) [
+				val m = method as ConcreteMethod
+				val block = m.block
+				body = block
+			]]
+			
+		]
 	}
 	
 
@@ -568,53 +596,6 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 		clazz.classFQN(compileTarget).typeRef
 	}
 
-	def String interfaceFQN(EClass clazz, CompileTarget compileTarget) {
-		'''«compileTarget.basePackage».«clazz.name»'''
-	}
-
-	def String classFQN(EClass clazz, CompileTarget compileTarget) {
-		'''«compileTarget.basePackage».impl.«clazz.name»Impl'''
-	}
-
-	def String basePackage(CompileTarget compileTarget) {
-		'''«compileTarget.name»'''
-	}
-
-	def String factoryInterfaceName(CompileTarget compileTarget) {
-		'''«compileTarget.basePackage».«compileTarget.name.toFirstUpper»Factory'''
-	}
 	
-	def String factoryImplementationName(CompileTarget compileTarget) {
-		'''«compileTarget.basePackage».impl.«compileTarget.name.toFirstUpper»FactoryImpl'''
-	}
-
-	def String packageInterfaceFQN(CompileTarget compileTarget) {
-		'''«compileTarget.basePackage».«compileTarget.name.toFirstUpper»Package'''
-	}
-
-	def String packageClassFQN(CompileTarget compileTarget) {
-		'''«compileTarget.basePackage».impl.«compileTarget.packageClassName»'''
-	}
-
-	def String packageClassName(CompileTarget abstractSyntax) {
-		'''«abstractSyntax.name.toFirstUpper»PackageImpl'''
-	}
-
-	def String packageInterfaceName(CompileTarget abstractSyntax) {
-		'''«abstractSyntax.name.toFirstUpper»Package'''
-	}
-
-	def String packageImplName(CompileTarget compileTarget) {
-		'''«compileTarget.basePackage».impl.«compileTarget.name.toFirstUpper»PackageImpl'''
-	}
-	
-	
-	def String normalizeUpperField(String input, String className) {
-		'''«CodeGenUtil.format(className, '_', '', false, false)»__«CodeGenUtil.format(input, '_', '', false, false)»'''.toString.toUpperCase
-	}
-	
-	def String normalizeUpperMethod(String input, String className) {
-		'''«CodeGenUtil.format(className, '_', '', false, false).toLowerCase.toFirstUpper»_«CodeGenUtil.format(input, '_', '', false, false).toLowerCase.toFirstUpper»'''
-	}
 
 }

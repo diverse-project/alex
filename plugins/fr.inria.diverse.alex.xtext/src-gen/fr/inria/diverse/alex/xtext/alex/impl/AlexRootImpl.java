@@ -37,7 +37,7 @@ import org.eclipse.xtext.xtype.XImportSection;
  * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getName <em>Name</em>}</li>
- *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getCompileTargets <em>Compile Targets</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getCompileTarget <em>Compile Target</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getJavaImports <em>Java Imports</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getEcoreImport <em>Ecore Import</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexRootImpl#getAlexImports <em>Alex Imports</em>}</li>
@@ -69,14 +69,14 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getCompileTargets() <em>Compile Targets</em>}' containment reference list.
+   * The cached value of the '{@link #getCompileTarget() <em>Compile Target</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getCompileTargets()
+   * @see #getCompileTarget()
    * @generated
    * @ordered
    */
-  protected EList<CompileTarget> compileTargets;
+  protected CompileTarget compileTarget;
 
   /**
    * The cached value of the '{@link #getJavaImports() <em>Java Imports</em>}' containment reference.
@@ -167,13 +167,47 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<CompileTarget> getCompileTargets()
+  public CompileTarget getCompileTarget()
   {
-    if (compileTargets == null)
+    return compileTarget;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetCompileTarget(CompileTarget newCompileTarget, NotificationChain msgs)
+  {
+    CompileTarget oldCompileTarget = compileTarget;
+    compileTarget = newCompileTarget;
+    if (eNotificationRequired())
     {
-      compileTargets = new EObjectContainmentEList<CompileTarget>(CompileTarget.class, this, AlexPackage.ALEX_ROOT__COMPILE_TARGETS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AlexPackage.ALEX_ROOT__COMPILE_TARGET, oldCompileTarget, newCompileTarget);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return compileTargets;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCompileTarget(CompileTarget newCompileTarget)
+  {
+    if (newCompileTarget != compileTarget)
+    {
+      NotificationChain msgs = null;
+      if (compileTarget != null)
+        msgs = ((InternalEObject)compileTarget).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AlexPackage.ALEX_ROOT__COMPILE_TARGET, null, msgs);
+      if (newCompileTarget != null)
+        msgs = ((InternalEObject)newCompileTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AlexPackage.ALEX_ROOT__COMPILE_TARGET, null, msgs);
+      msgs = basicSetCompileTarget(newCompileTarget, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AlexPackage.ALEX_ROOT__COMPILE_TARGET, newCompileTarget, newCompileTarget));
   }
 
   /**
@@ -310,8 +344,8 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
   {
     switch (featureID)
     {
-      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
-        return ((InternalEList<?>)getCompileTargets()).basicRemove(otherEnd, msgs);
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGET:
+        return basicSetCompileTarget(null, msgs);
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         return basicSetJavaImports(null, msgs);
       case AlexPackage.ALEX_ROOT__ECORE_IMPORT:
@@ -336,8 +370,8 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
     {
       case AlexPackage.ALEX_ROOT__NAME:
         return getName();
-      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
-        return getCompileTargets();
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGET:
+        return getCompileTarget();
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         return getJavaImports();
       case AlexPackage.ALEX_ROOT__ECORE_IMPORT:
@@ -364,9 +398,8 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
       case AlexPackage.ALEX_ROOT__NAME:
         setName((String)newValue);
         return;
-      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
-        getCompileTargets().clear();
-        getCompileTargets().addAll((Collection<? extends CompileTarget>)newValue);
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGET:
+        setCompileTarget((CompileTarget)newValue);
         return;
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         setJavaImports((XImportSection)newValue);
@@ -399,8 +432,8 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
       case AlexPackage.ALEX_ROOT__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
-        getCompileTargets().clear();
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGET:
+        setCompileTarget((CompileTarget)null);
         return;
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         setJavaImports((XImportSection)null);
@@ -430,8 +463,8 @@ public class AlexRootImpl extends MinimalEObjectImpl.Container implements AlexRo
     {
       case AlexPackage.ALEX_ROOT__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case AlexPackage.ALEX_ROOT__COMPILE_TARGETS:
-        return compileTargets != null && !compileTargets.isEmpty();
+      case AlexPackage.ALEX_ROOT__COMPILE_TARGET:
+        return compileTarget != null;
       case AlexPackage.ALEX_ROOT__JAVA_IMPORTS:
         return javaImports != null;
       case AlexPackage.ALEX_ROOT__ECORE_IMPORT:
