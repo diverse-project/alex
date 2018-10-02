@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/mydsl2sem/src-gen" creationIcons="false" editDirectory="/mod.edit/src-gen"
+    editorDirectory="/mod.editor/src-gen" modelPluginID="mydsl2sem" modelName="CompilA"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="10.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>./compilA.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="CompilA" disposableProviderFactory="true" ecorePackage="compilA.ecore#/">
+    <genClasses image="false" ecoreClass="compilA.ecore#//Expression"/>
+    <genClasses ecoreClass="compilA.ecore#//Sum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compilA.ecore#//Sum/lhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compilA.ecore#//Sum/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="compilA.ecore#//Literal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute compilA.ecore#//Literal/value"/>
+    </genClasses>
+    <genClasses ecoreClass="compilA.ecore#//Mul">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compilA.ecore#//Mul/lhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compilA.ecore#//Mul/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="compilA.ecore#//Neg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compilA.ecore#//Neg/exp"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

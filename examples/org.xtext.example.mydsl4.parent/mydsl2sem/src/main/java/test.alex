@@ -1,0 +1,43 @@
+behavior test
+
+compile as compilA truffle child; 
+
+import ecore "platform:/resource/mod/model/mod.genmodel"
+
+open abstract class Expression {
+
+	def long main() {
+		val ret = eval()
+		println(ret)
+		ret
+	}
+	
+	abstract def long eval()
+	
+}
+
+open class Literal {
+	override long eval() {
+		value
+	}
+}
+
+open class Mul {
+	override long eval() {
+		lhs.eval() * rhs.eval()
+
+	}
+}
+
+open class Neg {
+	override long eval() {
+		-exp.eval()
+	}
+}
+
+open class Sum {
+	override long eval() {
+		lhs.eval() + rhs.eval()
+
+	}
+}
