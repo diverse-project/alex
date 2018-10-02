@@ -1,8 +1,7 @@
 package fr.inria.diverse.alex.xtext.jvmmodel
 
 import com.google.inject.Inject
-import com.oracle.truffle.api.nodes.Node
-import com.oracle.truffle.api.nodes.NodeInfo
+import fr.inria.diverse.alex.emf.truffle.MinimalTruffleEObjectImpl
 import fr.inria.diverse.alex.xtext.alex.AlexClass
 import fr.inria.diverse.alex.xtext.alex.AlexRoot
 import fr.inria.diverse.alex.xtext.alex.CompileTarget
@@ -21,7 +20,6 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.impl.EFactoryImpl
 import org.eclipse.emf.ecore.impl.EPackageImpl
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl
 import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmVisibility
@@ -65,6 +63,98 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 			val alexClass = alexRoot.allAlexClasses.filter[alexClass | alexClass.name == clazz.name].head
 			clazz.compileEClassImplementation(acceptor, compileTarget, abstractSyntax, alexClass)
 		]
+		
+//		acceptor.accept(compileTarget.toClass('''«compileTarget.name».impl.«compileTarget.name.toFirstUpper»Language''')) [clazz|
+//			clazz.superTypes += TruffleLanguage.typeRef(Void.typeRef)
+//			
+////			annotations += 'com.oracle.truffle.api.nodes.NodeInfo'.annotationRef => [annot|
+////					annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
+////						values += clazz.name
+////						val tmp = annot.annotation.members.filter(JvmOperation).filter[simpleName == "description"].head
+////						operation = tmp
+////					]
+////				]
+//			
+//			clazz.annotations += 'com.oracle.truffle.api.TruffleLanguage$Registration'.annotationRef => [annot|
+//				annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
+//					values += compileTarget.name
+//					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "id"].head
+//				]
+//				
+//				annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
+//					values += compileTarget.name
+//					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "name"].head
+//				]
+//				
+//				annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
+//					values += '''application/«compileTarget.name»'''
+//					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "defaultMimeType"].head
+//				]
+//				
+//				annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
+//					values += '''application/«compileTarget.name»'''
+//					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "characterMimeTypes"].head
+//				]
+//				
+////				annot.explicitValues += TypesFactory::eINSTANCE.createJvm => [
+////					values += '''com.oracle.truffle.api.TruffleLanguage.ContextPolicy.SHARED'''.typeRef
+////					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "contextPolicy"].head
+////				]
+//			] 
+//			
+//			clazz.members += compileTarget.toMethod('createContext', Void.typeRef) [
+//				parameters += compileTarget.toParameter('env', Env.typeRef)
+//				body = '''return null;'''
+//			]
+//			
+//			clazz.members += compileTarget.toMethod('isObjectOfLanguage', boolean.typeRef) [
+//				parameters += compileTarget.toParameter('object', Object.typeRef)
+//				body = '''
+//				if(object instanceof «EObject.typeRef») {
+//					«EObject.typeRef» eObject = («EObject.typeRef») object;
+//					return "http://«compileTarget.name».«alexRoot.name».«abstractSyntax.name»".equals(eObject.eClass().getEPackage().getNsURI());
+//				}
+//				
+//				return false;
+//				'''
+//			]
+//			
+//			/*
+//			 * import org.eclipse.emf.common.util.URI;
+//import org.eclipse.emf.ecore.EObject;
+//import org.eclipse.emf.ecore.resource.Resource;
+//import org.eclipse.xtext.resource.XtextResourceSet;
+//
+//import com.oracle.truffle.api.CallTarget;
+//import com.oracle.truffle.api.TruffleLanguage;
+//
+//import compilA.Expression;
+//			 */
+//			// protected CallTarget parse(ParsingRequest request) throws Exception {
+//			
+//			val rootEClass = abstractSyntax.allClasses.head
+//			
+//			clazz.members +=compileTarget.toMethod('parse', 'com.oracle.truffle.api.CallTarget'.typeRef) [
+//				parameters += compileTarget.toParameter('request', 'com.oracle.truffle.api.TruffleLanguage.ParsingRequest'.typeRef)
+//				exceptions += Exception.typeRef
+//				body = '''
+//				final «XtextResourceSet.typeRef» rs = new «XtextResourceSet.typeRef»();
+//				final «Resource.typeRef» resource = rs.createResource(«URI.typeRef()».createURI("dummy:/truffle.«compileTarget.name»"));
+//				final «InputStream.typeRef» in = request.getSource().getInputStream();
+//				resource.load(in, rs.getLoadOptions());
+//				final «compileTarget.name».«rootEClass.name» model = («compileTarget.name».«rootEClass.name») resource.getContents().get(0);
+//
+//				return new CallTarget() {
+//					@Override
+//					public Object call(Object... arguments) {
+//						return model.main(); // by convension
+//					}
+//				};
+//				'''
+//			] 
+//			
+//			
+//		]
 	}
 	
 	def compileFactoryInterface(CompileTarget compileTarget, IJvmDeclaredTypeAcceptor acceptor, EPackage abstractSyntax) {
@@ -403,7 +493,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				clazz.EAllStructuralFeatures.forEach [ field |
 					if (field instanceof EAttribute) {
 						// EDataType
-						val type = field.EType.scopedTypeRef(compileTarget, abstractSyntax)
+						val type = field.EType.scopedTypeRef(compileTarget, abstractSyntax, false)
 						members += field.toSetter(field.name, type) => [
 							body = null as XExpression
 							abstract = true
@@ -413,7 +503,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 							abstract = true
 						]
 					} else if (field instanceof EReference) {
-						val rt = field.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)
+						val rt = field.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax, false)
 						val type = if(field.upperBound > 1) EList.typeRef(rt) else rt
 						members += field.toSetter(field.name, type) => [
 							body = null as XExpression
@@ -438,10 +528,10 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 	def compileEClassImplementation(EClass clazz, IJvmDeclaredTypeAcceptor acceptor, CompileTarget compileTarget, EPackage abstractSyntax, AlexClass alexClass) {
 		val interfaceName = clazz.interfaceFQN(compileTarget)
 		
-		acceptor.accept(clazz.toClass(clazz.classFQN(compileTarget))) [
+		acceptor.accept(clazz.toClass(clazz.classFQN(compileTarget))) [createdClass|
 			
 			if(compileTarget.isTruffle) {
-				annotations += NodeInfo.annotationRef() => [annot|
+				createdClass.annotations += 'com.oracle.truffle.api.nodes.NodeInfo'.annotationRef => [annot|
 					annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
 						values += clazz.name
 						val tmp = annot.annotation.members.filter(JvmOperation).filter[simpleName == "description"].head
@@ -450,50 +540,51 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				]
 			}
 			
-			abstract = clazz.abstract
+			createdClass.abstract = clazz.abstract
 
 			if (!clazz.ESuperTypes.empty)
-				it.superTypes += clazz.ESuperTypes.head.scopedTypeRef(compileTarget, abstractSyntax)
-			else superTypes += MinimalEObjectImpl.Container.typeRef
+				createdClass.superTypes += clazz.ESuperTypes.head.scopedTypeRef(compileTarget, abstractSyntax, false)
+			else {
+				//extendedClass = 'fr.inria.diverse.alex.emf.truffle.MinimalTruffleEObjectImpl$TruffleContainer'.typeRef
+				createdClass.superTypes += 	MinimalTruffleEObjectImpl.TruffleContainer.typeRef
+			}
 
-			it.superTypes += interfaceName.typeRef
+			createdClass.superTypes += interfaceName.typeRef
 
 			clazz.EAllStructuralFeatures.forEach [ field |
 				if (field instanceof EAttribute) {
 					// EDataType
-					val type = field.EType.scopedTypeRef(compileTarget, abstractSyntax)
-					members += field.toField('''«field.name.toUpperCase»_EDEFAULT''', type) [
+					val type = field.EType.scopedTypeRef(compileTarget, abstractSyntax, false)
+					createdClass.members += field.toField('''«field.name.toUpperCase»_EDEFAULT''', type) [
 						initializer = '''«field.defaultValue»'''
 					]
-					members += field.toField(field.name, type) [
+					createdClass.members += field.toField(field.name, type) [
 						initializer = '''«field.name.toUpperCase»_EDEFAULT'''
-
-						
 					]
-					members += field.toSetter(field.name, type)
-					members += field.toGetter(field.name, type)
+					createdClass.members += field.toSetter(field.name, type)
+					createdClass.members += field.toGetter(field.name, type)
 				} else if (field instanceof EReference) {
-					val rt = field.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)
+					val rt = field.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax, false)
 					val type = if(field.upperBound > 1) EList.typeRef(rt) else rt
-					members += field.toField(field.name, type) => [
+					createdClass.members += field.toField(field.name, type) => [
 						if(compileTarget.child && field.containment) {
 							annotations += 'com.oracle.truffle.api.nodes.Node$Child'.annotationRef()
 						}
 					]
-					members += field.toSetter(field.name, type)
-					members += field.toGetter(field.name, type)
+					createdClass.members += field.toSetter(field.name, type)
+					createdClass.members += field.toGetter(field.name, type)
 				} else {
 					println(field)
 				}
 				
 			]
 			
-			members += clazz.toMethod('eStaticClass', EClass.typeRef) [
+			createdClass.members += clazz.toMethod('eStaticClass', EClass.typeRef) [
 				visibility=JvmVisibility.PROTECTED
 				body = '''return «compileTarget.packageInterfaceFQN.typeRef».Literals.«clazz.name.toUpperCase»;'''
 			]
 			
-			members += clazz.toMethod('eSet', void.typeRef) [
+			createdClass.members += clazz.toMethod('eSet', void.typeRef) [
 				parameters += clazz.toParameter('featureID', int.typeRef)
 				parameters += clazz.toParameter('newValue', Object.typeRef)
 				visibility=JvmVisibility.PUBLIC
@@ -502,10 +593,10 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				«FOR esf:clazz.EStructuralFeatures»
 				case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
 					«IF esf instanceof EAttribute»
-					set«esf.name.toFirstUpper»((«esf.EType.scopedTypeRef(compileTarget, abstractSyntax)») newValue);
+					set«esf.name.toFirstUpper»((«esf.EType.scopedTypeRef(compileTarget, abstractSyntax, true)») newValue);
 					«ELSE»
 					«IF esf.upperBound <= 1»
-					set«esf.name.toFirstUpper»((«esf.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)») newValue);
+					set«esf.name.toFirstUpper»((«esf.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax, false)») newValue);
 					«ELSE»
 					throw new RuntimeException("Not Implemented");
 					«ENDIF»
@@ -517,7 +608,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				'''
 			]
 			
-			members += clazz.toMethod('eUnset', void.typeRef) [
+			createdClass.members += clazz.toMethod('eUnset', void.typeRef) [
 				parameters += clazz.toParameter('featureID', int.typeRef)
 				visibility=JvmVisibility.PUBLIC
 				body = '''
@@ -528,7 +619,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 					set«esf.name.toFirstUpper»(«esf.name.toUpperCase»_EDEFAULT);
 					«ELSE»
 					«IF esf.upperBound <= 1»
-					set«esf.name.toFirstUpper»((«esf.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax)») null);
+					set«esf.name.toFirstUpper»((«esf.EGenericType.ERawType.scopedTypeRef(compileTarget, abstractSyntax, true)») null);
 					«ELSE»
 					throw new RuntimeException("Not Implemented");
 					«ENDIF»
@@ -540,7 +631,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				'''
 			]
 			
-			members += clazz.toMethod('eGet', Object.typeRef) [
+			createdClass.members += clazz.toMethod('eGet', Object.typeRef) [
 				parameters += clazz.toParameter('featureID', int.typeRef)
 				parameters += clazz.toParameter('resolve', boolean.typeRef)
 				parameters += clazz.toParameter('coreType', boolean.typeRef)
@@ -556,7 +647,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				'''
 			]
 			
-			members += clazz.toMethod('eIsSet', boolean.typeRef) [
+			createdClass.members += clazz.toMethod('eIsSet', boolean.typeRef) [
 				parameters += clazz.toParameter('featureID', int.typeRef)
 				visibility=JvmVisibility.PUBLIC
 				body = '''
@@ -578,7 +669,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				'''
 			]
 			
-			members += alexClass.methods.filter[method | method instanceof ConcreteMethod].map[method | method.toMethod('''«method.name»''', method.type) [
+			createdClass.members += alexClass.methods.filter[method | method instanceof ConcreteMethod].map[method | method.toMethod('''«method.name»''', method.type) [
 				val m = method as ConcreteMethod
 				val block = m.block
 				body = block
@@ -588,11 +679,16 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 	}
 	
 
-	def dispatch scopedTypeRef(EDataType edt, CompileTarget compileTarget, EPackage abstractSyntax) {
-		edt.instanceClass.typeRef
+	
+	def dispatch scopedTypeRef(EDataType edt, CompileTarget compileTarget, EPackage abstractSyntax, boolean toUpper) {
+		if(toUpper) edt.instanceTypeName.toFirstUpper.typeRef
+		else edt.instanceTypeName.typeRef
+		//edt.instanceClass
 	}
+	
+	
 
-	def dispatch scopedTypeRef(EClass clazz, CompileTarget compileTarget, EPackage abstractSyntax) {
+	def dispatch scopedTypeRef(EClass clazz, CompileTarget compileTarget, EPackage abstractSyntax, boolean toUpper) {
 		clazz.classFQN(compileTarget).typeRef
 	}
 

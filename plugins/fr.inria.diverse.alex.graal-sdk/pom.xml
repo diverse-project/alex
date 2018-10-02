@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.inria.diverse.alex.truffle</groupId>
+	<artifactId>fr.inria.diverse.alex.truffle</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<tycho-version>1.2.0</tycho-version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<graalvm.version>1.0.0-rc6</graalvm.version>
+	</properties>
+
+	<dependencies>
+		<!-- <dependency>
+			<groupId>com.oracle.truffle</groupId>
+			<artifactId>truffle-api</artifactId>
+			<version>${graalvm.version}</version>
+		</dependency> -->
+		<!-- <dependency> <groupId>com.oracle.truffle</groupId> <artifactId>truffle-dsl-processor</artifactId> 
+			<version>${graalvm.version}</version> <scope>provided</scope> </dependency> -->
+		<dependency>
+			<groupId>org.graalvm</groupId>
+			<artifactId>graal-sdk</artifactId>
+			<version>${graalvm.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<outputDirectory>${project.basedir}/mvn</outputDirectory>
+					<prependGroupId>true</prependGroupId>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
