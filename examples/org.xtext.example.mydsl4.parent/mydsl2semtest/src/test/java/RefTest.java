@@ -1,8 +1,10 @@
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-
+import com.google.inject.Injector;
+import compilA.CompilAFactory;
+import compilA.CompilAPackage;
+import compilA.Expression;
+import compilA.impl.LiteralImpl;
+import compilA.impl.SumImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -13,66 +15,63 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xtext.example.mydsl4.MyDslStandaloneSetup;
 
-import com.google.inject.Injector;
-
-import compilA.CompilAFactory;
-import compilA.CompilAPackage;
-import compilA.Expression;
-import compilA.impl.LiteralImpl;
-import compilA.impl.SumImpl;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class RefTest {
 
-	@Test
-	public void parse() throws Exception {
-		final CompilAFactory einstance = CompilAFactory.eINSTANCE;
-		final CompilAPackage einstance2 = CompilAPackage.eINSTANCE;
 
-		final Injector injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();
-		final XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
-		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-		final Resource resource = resourceSet.createResource(URI.createURI("dummy:/example.mydsl4"));
+    @Test
+    public void parse() throws Exception {
+        final CompilAFactory einstance = CompilAFactory.eINSTANCE;
+        final CompilAPackage einstance2 = CompilAPackage.eINSTANCE;
 
-		final InputStream stream = new ByteArrayInputStream("1+1".getBytes(StandardCharsets.UTF_8));
-		resource.load(stream, resourceSet.getLoadOptions());
-		final Expression result = (Expression) resource.getContents().get(0);
+        final Injector injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();
+        final XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
+        resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
+        final Resource resource = resourceSet.createResource(URI.createURI("dummy:/example.mydsl4"));
 
-		Assert.assertNotNull(result);
+        final InputStream stream = new ByteArrayInputStream("1+1".getBytes(StandardCharsets.UTF_8));
+        resource.load(stream, resourceSet.getLoadOptions());
+        final Expression result = (Expression) resource.getContents().get(0);
 
-		final EList<Diagnostic> errors = result.eResource().getErrors();
+        Assert.assertNotNull(result);
 
-		Assert.assertTrue(errors.isEmpty());
-	}
+        final EList<Diagnostic> errors = result.eResource().getErrors();
 
-	@Test
-	public void parseAndEval() throws Exception {
+        Assert.assertTrue(errors.isEmpty());
+    }
 
-		final CompilAFactory einstance = CompilAFactory.eINSTANCE;
-		final CompilAPackage einstance2 = CompilAPackage.eINSTANCE;
+    @Test
+    public void parseAndEval() throws Exception {
 
-		final Injector injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();
-		final XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
-		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-		final Resource resource = resourceSet.createResource(URI.createURI("dummy:/example.mydsl4"));
+        final CompilAFactory einstance = CompilAFactory.eINSTANCE;
+        final CompilAPackage einstance2 = CompilAPackage.eINSTANCE;
 
-		final InputStream stream = new ByteArrayInputStream("1+2*3".getBytes(StandardCharsets.UTF_8));
-		resource.load(stream, resourceSet.getLoadOptions());
-		final Expression result = (Expression) resource.getContents().get(0);
+        final Injector injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();
+        final XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
+        resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
+        final Resource resource = resourceSet.createResource(URI.createURI("dummy:/example.mydsl4"));
 
-		Assert.assertEquals(7, result.eval());
-	}
+        final InputStream stream = new ByteArrayInputStream("(1+2*3)".getBytes(StandardCharsets.UTF_8));
+        resource.load(stream, resourceSet.getLoadOptions());
+        final Expression result = (Expression) resource.getContents().get(0);
 
-	@Test
-	public void factorialOf5() throws Exception {
-		final SumImpl sum = new SumImpl();
-		final LiteralImpl lhs = new LiteralImpl();
-		lhs.setValue(1);
-		sum.setLhs(lhs);
-		final LiteralImpl rhs = new LiteralImpl();
-		rhs.setValue(2);
-		sum.setRhs(rhs);
+        Assert.assertEquals(7, result.eval());
+    }
 
-		System.out.println(sum.eval());
-	}
+    @Test
+    public void factorialOf5() throws Exception {
+        final SumImpl sum = new SumImpl();
+        final LiteralImpl lhs = new LiteralImpl();
+        lhs.setValue(1);
+        sum.setLhs(lhs);
+        final LiteralImpl rhs = new LiteralImpl();
+        rhs.setValue(2);
+        sum.setRhs(rhs);
+
+        System.out.println(sum.eval());
+    }
 
 }

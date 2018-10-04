@@ -2,8 +2,11 @@ package mydsl2semtest.compilA;
 
 import com.google.inject.Injector;
 import com.oracle.truffle.api.CallTarget;
+import com.oracle.truffle.api.Truffle;
 import com.oracle.truffle.api.TruffleLanguage;
 import com.oracle.truffle.api.TruffleLanguage.ContextPolicy;
+import com.oracle.truffle.api.frame.VirtualFrame;
+import com.oracle.truffle.api.nodes.RootNode;
 import compilA.CompilAFactory;
 import compilA.CompilAPackage;
 import compilA.Expression;
@@ -14,53 +17,51 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.xtext.example.mydsl4.MyDslStandaloneSetup;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
 @TruffleLanguage.Registration(id = "compilA", name = "compilA", mimeType = "application/compilA", contextPolicy = ContextPolicy.SHARED)
 @SuppressWarnings("all")
 public class CompilALanguage extends com.oracle.truffle.api.TruffleLanguage<Void> {
 
-	public CompilALanguage() {
-		System.out.println("CompilALanguage constructor");
-	}
+    public CompilALanguage() {
 
-	@Override
-	public Void createContext(final TruffleLanguage.Env env) {
-		System.out.println(env);
-		return null;
-	}
+    }
 
-	@Override
-	public boolean isObjectOfLanguage(final Object object) {
-		if (object instanceof EObject) {
-			final EObject eObject = (EObject) object;
-			return "http://compilA.test.mod".equals(eObject.eClass().getEPackage().getNsURI());
-		}
+    @Override
+    public Void createContext(final TruffleLanguage.Env env) {
+        return null;
+    }
 
-		return false;
-	}
+    @Override
+    public boolean isObjectOfLanguage(final Object object) {
+        if (object instanceof EObject) {
+            final EObject eObject = (EObject) object;
+            return "http://compilA.test.mod".equals(eObject.eClass().getEPackage().getNsURI());
+        }
 
-	@Override
-	public CallTarget parse(final com.oracle.truffle.api.TruffleLanguage.ParsingRequest request) throws Exception {
-		final CompilAFactory einstance = CompilAFactory.eINSTANCE;
-		final CompilAPackage einstance2 = CompilAPackage.eINSTANCE;
+        return false;
+    }
 
-		final Injector injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();
-		final XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
-		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-		final Resource resource = resourceSet.createResource(URI.createURI("dummy:/example.mydsl4"));
+    @Override
+    public CallTarget parse(final com.oracle.truffle.api.TruffleLanguage.ParsingRequest request) throws Exception {
+        final CompilAFactory einstance = CompilAFactory.eINSTANCE;
+        final CompilAPackage einstance2 = CompilAPackage.eINSTANCE;
 
-		final InputStream stream = request.getSource().getInputStream();
-		resource.load(stream, resourceSet.getLoadOptions());
-		final Expression model = (Expression) resource.getContents().get(0);
+        final Injector injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();
+        final XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
+        resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
+        final Resource resource = resourceSet.createResource(URI.createURI("dummy:/example.mydsl4"));
 
-		return new CallTarget() {
-			@Override
-			public Object call(final Object... arguments) {
-				return model.main(); // by convension
-			}
-		};
-	}
+        final InputStream stream = request.getSource().getInputStream();
+        resource.load(stream, resourceSet.getLoadOptions());
+        final Expression model = (Expression) resource.getContents().get(0);
+
+        return Truffle.getRuntime().createCallTarget(new RootNode(CompilALanguage.this) {
+            @Override
+            public Object execute(VirtualFrame frame) {
+                return model.main();
+            }
+        });
+
+    }
 }
