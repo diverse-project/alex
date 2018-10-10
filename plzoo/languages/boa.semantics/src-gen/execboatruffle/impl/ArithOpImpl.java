@@ -1,5 +1,6 @@
 package execboatruffle.impl;
 
+import com.oracle.truffle.api.nodes.Node;
 import com.oracle.truffle.api.nodes.NodeInfo;
 import execboatruffle.ArithOp;
 import execboatruffle.ExecboatrufflePackage;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 @NodeInfo(description = "ArithOp")
 @SuppressWarnings("all")
 public abstract class ArithOpImpl extends ExprImpl implements ArithOp {
+  @Node.Child
   private Expr lhs;
   
   public void setLhs(final Expr newLhs) {
@@ -49,6 +51,7 @@ public abstract class ArithOpImpl extends ExprImpl implements ArithOp {
     return this.lhs;
   }
   
+  @Node.Child
   private Expr rhs;
   
   public void setRhs(final Expr newRhs) {

@@ -83,9 +83,7 @@
 						<include>**/*TestSuite.java</include>
 						<include>**/*Test.java</include>
 					</includes>
-					<argLine>-XX:-UseJVMCIClassLoader</argLine><!-- -Dgraal.Dump=Truffle:1 
-						-Dgraal.TruffleBackgroundCompilation=false -Dgraal.TraceTruffleCompilation=true 
-						-Dgraal.TraceTruffleCompilationDetails=true -->
+					<argLine>-XX:-UseJVMCIClassLoader -Dgraal.Dump=Truffle:1  -Dgraal.TruffleBackgroundCompilation=false -Dgraal.TraceTruffleCompilation=true -Dgraal.TraceTruffleCompilationDetails=true -Dgraal.TraceTrufflePerformanceWarnings=true -Dgraal.TraceTruffleTransferToInterpreter=true</argLine><!-- -Dgraal.Dump=Truffle:1  -Dgraal.TruffleBackgroundCompilation=false -Dgraal.TraceTruffleCompilation=true -Dgraal.TraceTruffleCompilationDetails=true -->
 				</configuration>
 			</plugin>
 			<plugin>

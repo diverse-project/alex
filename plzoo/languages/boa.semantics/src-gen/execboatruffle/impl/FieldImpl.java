@@ -1,5 +1,6 @@
 package execboatruffle.impl;
 
+import com.oracle.truffle.api.nodes.Node;
 import com.oracle.truffle.api.nodes.NodeInfo;
 import execboatruffle.ExecboatrufflePackage;
 import execboatruffle.Expr;
@@ -27,6 +28,7 @@ public class FieldImpl extends MinimalTruffleEObjectImpl.TruffleContainer implem
     return this.name;
   }
   
+  @Node.Child
   private Expr value;
   
   public void setValue(final Expr newValue) {

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src-gen" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: tycho.demo.itp01:fr.inria.diverse.alex.emf.truffle:1.0.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: fr.inria.diverse.alex.truffle:fr.inria.diverse.alex.truffle:1.0.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.oracle.truffle:truffle-api:1.0.0-rc7" level="project" />
+    <orderEntry type="library" name="Maven: org.graalvm:graal-sdk:1.0.0-rc7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.oracle.truffle:truffle-dsl-processor:1.0.0-rc7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.oracle.truffle:truffle-tck:1.0.0-rc7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.graalvm:polyglot-tck:1.0.0-rc7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: junit:junit:4.12" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.emf:org.eclipse.emf.ecore:2.15.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.emf:org.eclipse.emf.common:2.15.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.xtext:org.eclipse.xtext.xbase.lib:2.15.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:22.0-rc1-android" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:1.3.9" level="project" />
+    <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotations:2.0.18" level="project" />
+    <orderEntry type="library" name="Maven: com.google.j2objc:j2objc-annotations:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.14" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.xtext:org.eclipse.xtext:2.15.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.xtext:org.eclipse.xtext.util:2.15.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.xtend:org.eclipse.xtend.lib:2.15.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.xtend:org.eclipse.xtend.lib.macro:2.15.0" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.platform:org.eclipse.equinox.common:3.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.platform:org.eclipse.osgi:3.12.100" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.12.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.inject:guice:3.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:antlr-runtime:3.2" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:fr.inria.diverse.alex.truffle:mvn/com.oracle.truffle.truffle-api-1.0.0-rc7.jar:1.0.0.201810051600">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/.cache/tycho/fr.inria.diverse.alex.truffle-1.0.0-SNAPSHOT.jar/mvn/com.oracle.truffle.truffle-api-1.0.0-rc7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.emf.ecore:2.14.0.v20180529-1144">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.emf.ecore/2.14.0.v20180529-1144/org.eclipse.emf.ecore-2.14.0.v20180529-1144.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.xtext.xbase.lib:2.14.0.v20180522-1629">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.xtext.xbase.lib/2.14.0.v20180522-1629/org.eclipse.xtext.xbase.lib-2.14.0.v20180522-1629.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:fr.inria.diverse.alex.emf.truffle:1.0.0.201810051600">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/tycho/demo/itp01/fr.inria.diverse.alex.emf.truffle/1.0.0-SNAPSHOT/fr.inria.diverse.alex.emf.truffle-1.0.0-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:com.google.guava:21.0.0.v20170206-1425">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/com.google.guava/21.0.0.v20170206-1425/com.google.guava-21.0.0.v20170206-1425.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.osgi:3.13.0.v20180409-1500">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.osgi/3.13.0.v20180409-1500/org.eclipse.osgi-3.13.0.v20180409-1500.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.core.contenttype:3.7.0.v20180426-1644">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.core.contenttype/3.7.0.v20180426-1644/org.eclipse.core.contenttype-3.7.0.v20180426-1644.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.equinox.preferences:3.7.100.v20180510-1129">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.equinox.preferences/3.7.100.v20180510-1129/org.eclipse.equinox.preferences-3.7.100.v20180510-1129.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.equinox.registry:3.8.0.v20180426-1327">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.equinox.registry/3.8.0.v20180426-1327/org.eclipse.equinox.registry-3.8.0.v20180426-1327.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.equinox.common:3.10.0.v20180412-1130">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.equinox.common/3.10.0.v20180412-1130/org.eclipse.equinox.common-3.10.0.v20180412-1130.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.core.jobs:3.10.0.v20180427-1454">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.core.jobs/3.10.0.v20180427-1454/org.eclipse.core.jobs-3.10.0.v20180427-1454.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.core.runtime:3.14.0.v20180417-0825">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.core.runtime/3.14.0.v20180417-0825/org.eclipse.core.runtime-3.14.0.v20180417-0825.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.equinox.app:1.3.500.v20171221-2204">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.equinox.app/1.3.500.v20171221-2204/org.eclipse.equinox.app-1.3.500.v20171221-2204.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: p2.eclipse-plugin:org.eclipse.emf.common:2.14.0.v20180527-1134">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/p2/osgi/bundle/org.eclipse.emf.common/2.14.0.v20180527-1134/org.eclipse.emf.common-2.14.0.v20180527-1134.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

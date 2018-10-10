@@ -1,5 +1,6 @@
 package execboatruffle.impl;
 
+import com.oracle.truffle.api.nodes.Node;
 import com.oracle.truffle.api.nodes.NodeInfo;
 import execboatruffle.CmpOp;
 import execboatruffle.ExecboatrufflePackage;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 @NodeInfo(description = "CmpOp")
 @SuppressWarnings("all")
 public abstract class CmpOpImpl extends ExprImpl implements CmpOp {
+  @Node.Child
   private Expr lhs;
   
   public void setLhs(final Expr newLhs) {
@@ -49,6 +51,7 @@ public abstract class CmpOpImpl extends ExprImpl implements CmpOp {
     return this.lhs;
   }
   
+  @Node.Child
   private Expr rhs;
   
   public void setRhs(final Expr newRhs) {
