@@ -3,14 +3,20 @@
 package boa.model.boa.impl;
 
 import boa.model.boa.BoaPackage;
-import boa.model.boa.Expr;
 import boa.model.boa.Project;
+import boa.model.boa.Var;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,42 +26,21 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link boa.model.boa.impl.ProjectImpl#getName <em>Name</em>}</li>
- *   <li>{@link boa.model.boa.impl.ProjectImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link boa.model.boa.impl.ProjectImpl#getVars <em>Vars</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ProjectImpl extends ExprImpl implements Project {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getVars() <em>Vars</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getVars()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expr project;
+	protected EList<Var> vars;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,69 +66,11 @@ public class ProjectImpl extends ExprImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BoaPackage.PROJECT__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expr getProject() {
-		return project;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetProject(Expr newProject, NotificationChain msgs) {
-		Expr oldProject = project;
-		project = newProject;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BoaPackage.PROJECT__PROJECT,
-					oldProject, newProject);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<Var> getVars() {
+		if (vars == null) {
+			vars = new EObjectContainmentEList<Var>(Var.class, this, BoaPackage.PROJECT__VARS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setProject(Expr newProject) {
-		if (newProject != project) {
-			NotificationChain msgs = null;
-			if (project != null)
-				msgs = ((InternalEObject) project).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - BoaPackage.PROJECT__PROJECT, null, msgs);
-			if (newProject != null)
-				msgs = ((InternalEObject) newProject).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - BoaPackage.PROJECT__PROJECT, null, msgs);
-			msgs = basicSetProject(newProject, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BoaPackage.PROJECT__PROJECT, newProject, newProject));
+		return vars;
 	}
 
 	/**
@@ -154,8 +81,8 @@ public class ProjectImpl extends ExprImpl implements Project {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case BoaPackage.PROJECT__PROJECT:
-			return basicSetProject(null, msgs);
+		case BoaPackage.PROJECT__VARS:
+			return ((InternalEList<?>) getVars()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -168,10 +95,8 @@ public class ProjectImpl extends ExprImpl implements Project {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case BoaPackage.PROJECT__NAME:
-			return getName();
-		case BoaPackage.PROJECT__PROJECT:
-			return getProject();
+		case BoaPackage.PROJECT__VARS:
+			return getVars();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -181,14 +106,13 @@ public class ProjectImpl extends ExprImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case BoaPackage.PROJECT__NAME:
-			setName((String) newValue);
-			return;
-		case BoaPackage.PROJECT__PROJECT:
-			setProject((Expr) newValue);
+		case BoaPackage.PROJECT__VARS:
+			getVars().clear();
+			getVars().addAll((Collection<? extends Var>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -202,11 +126,8 @@ public class ProjectImpl extends ExprImpl implements Project {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case BoaPackage.PROJECT__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case BoaPackage.PROJECT__PROJECT:
-			setProject((Expr) null);
+		case BoaPackage.PROJECT__VARS:
+			getVars().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -220,29 +141,10 @@ public class ProjectImpl extends ExprImpl implements Project {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case BoaPackage.PROJECT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case BoaPackage.PROJECT__PROJECT:
-			return project != null;
+		case BoaPackage.PROJECT__VARS:
+			return vars != null && !vars.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ProjectImpl

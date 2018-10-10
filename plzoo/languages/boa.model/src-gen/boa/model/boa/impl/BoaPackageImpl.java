@@ -16,12 +16,11 @@ import boa.model.boa.BoaPackage;
 import boa.model.boa.Bool;
 import boa.model.boa.BoolOp;
 import boa.model.boa.BoolOpAnd;
-import boa.model.boa.BoolOpEqual;
-import boa.model.boa.BoolOpLess;
-import boa.model.boa.BoolOpNot;
 import boa.model.boa.BoolOpOr;
-import boa.model.boa.BoolOpUnequal;
 import boa.model.boa.CmpOp;
+import boa.model.boa.CmpOpEqual;
+import boa.model.boa.CmpOpLess;
+import boa.model.boa.CmpOpUnequal;
 import boa.model.boa.Copy;
 import boa.model.boa.Def;
 import boa.model.boa.Expr;
@@ -38,8 +37,8 @@ import boa.model.boa.Skip;
 import boa.model.boa.This;
 import boa.model.boa.TopLevelCmd;
 import boa.model.boa.Var;
-
 import boa.model.boa.With;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -255,34 +254,6 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass boolOpNotEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass boolOpLessEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass boolOpEqualEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass boolOpUnequalEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass boolOpAndEClass = null;
 
 	/**
@@ -298,6 +269,27 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 	 * @generated
 	 */
 	private EClass seqEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cmpOpEqualEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cmpOpUnequalEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cmpOpLessEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -440,8 +432,17 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getApp_Apps() {
+	public EReference getApp_Lhs() {
 		return (EReference) appEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getApp_Rhs() {
+		return (EReference) appEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -530,17 +531,8 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_Name() {
-		return (EAttribute) projectEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProject_Project() {
-		return (EReference) projectEClass.getEStructuralFeatures().get(1);
+	public EReference getProject_Vars() {
+		return (EReference) projectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -746,7 +738,7 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIf_Else() {
+	public EReference getIf_Els() {
 		return (EReference) ifEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -890,105 +882,6 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBoolOpNot() {
-		return boolOpNotEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBoolOpNot_Expr() {
-		return (EReference) boolOpNotEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBoolOpLess() {
-		return boolOpLessEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBoolOpLess_Lhs() {
-		return (EReference) boolOpLessEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBoolOpLess_Rhs() {
-		return (EReference) boolOpLessEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBoolOpEqual() {
-		return boolOpEqualEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBoolOpEqual_Lhs() {
-		return (EReference) boolOpEqualEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBoolOpEqual_Rhs() {
-		return (EReference) boolOpEqualEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBoolOpUnequal() {
-		return boolOpUnequalEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBoolOpUnequal_Lhs() {
-		return (EReference) boolOpUnequalEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBoolOpUnequal_Rhs() {
-		return (EReference) boolOpUnequalEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getBoolOpAnd() {
 		return boolOpAndEClass;
 	}
@@ -1070,6 +963,33 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCmpOpEqual() {
+		return cmpOpEqualEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCmpOpUnequal() {
+		return cmpOpUnequalEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCmpOpLess() {
+		return cmpOpLessEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public BoaFactory getBoaFactory() {
 		return (BoaFactory) getEFactoryInstance();
 	}
@@ -1106,7 +1026,8 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		createEReference(defEClass, DEF__EXPR);
 
 		appEClass = createEClass(APP);
-		createEReference(appEClass, APP__APPS);
+		createEReference(appEClass, APP__LHS);
+		createEReference(appEClass, APP__RHS);
 
 		varEClass = createEClass(VAR);
 		createEAttribute(varEClass, VAR__NAME);
@@ -1122,8 +1043,7 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		skipEClass = createEClass(SKIP);
 
 		projectEClass = createEClass(PROJECT);
-		createEAttribute(projectEClass, PROJECT__NAME);
-		createEReference(projectEClass, PROJECT__PROJECT);
+		createEReference(projectEClass, PROJECT__VARS);
 
 		bObjectEClass = createEClass(BOBJECT);
 		createEReference(bObjectEClass, BOBJECT__FIELDS);
@@ -1155,7 +1075,7 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		ifEClass = createEClass(IF);
 		createEReference(ifEClass, IF__COND);
 		createEReference(ifEClass, IF__THEN);
-		createEReference(ifEClass, IF__ELSE);
+		createEReference(ifEClass, IF__ELS);
 
 		letEClass = createEClass(LET);
 		createEAttribute(letEClass, LET__NAME);
@@ -1180,21 +1100,6 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 
 		arithOpRemainderEClass = createEClass(ARITH_OP_REMAINDER);
 
-		boolOpNotEClass = createEClass(BOOL_OP_NOT);
-		createEReference(boolOpNotEClass, BOOL_OP_NOT__EXPR);
-
-		boolOpLessEClass = createEClass(BOOL_OP_LESS);
-		createEReference(boolOpLessEClass, BOOL_OP_LESS__LHS);
-		createEReference(boolOpLessEClass, BOOL_OP_LESS__RHS);
-
-		boolOpEqualEClass = createEClass(BOOL_OP_EQUAL);
-		createEReference(boolOpEqualEClass, BOOL_OP_EQUAL__LHS);
-		createEReference(boolOpEqualEClass, BOOL_OP_EQUAL__RHS);
-
-		boolOpUnequalEClass = createEClass(BOOL_OP_UNEQUAL);
-		createEReference(boolOpUnequalEClass, BOOL_OP_UNEQUAL__LHS);
-		createEReference(boolOpUnequalEClass, BOOL_OP_UNEQUAL__RHS);
-
 		boolOpAndEClass = createEClass(BOOL_OP_AND);
 		createEReference(boolOpAndEClass, BOOL_OP_AND__LHS);
 		createEReference(boolOpAndEClass, BOOL_OP_AND__RHS);
@@ -1206,6 +1111,12 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		seqEClass = createEClass(SEQ);
 		createEReference(seqEClass, SEQ__LHS);
 		createEReference(seqEClass, SEQ__RHS);
+
+		cmpOpEqualEClass = createEClass(CMP_OP_EQUAL);
+
+		cmpOpUnequalEClass = createEClass(CMP_OP_UNEQUAL);
+
+		cmpOpLessEClass = createEClass(CMP_OP_LESS);
 	}
 
 	/**
@@ -1262,13 +1173,12 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		arithOpTimesEClass.getESuperTypes().add(this.getArithOp());
 		arithOpDivideEClass.getESuperTypes().add(this.getArithOp());
 		arithOpRemainderEClass.getESuperTypes().add(this.getArithOp());
-		boolOpNotEClass.getESuperTypes().add(this.getBoolOp());
-		boolOpLessEClass.getESuperTypes().add(this.getBoolOp());
-		boolOpEqualEClass.getESuperTypes().add(this.getBoolOp());
-		boolOpUnequalEClass.getESuperTypes().add(this.getBoolOp());
 		boolOpAndEClass.getESuperTypes().add(this.getBoolOp());
 		boolOpOrEClass.getESuperTypes().add(this.getBoolOp());
 		seqEClass.getESuperTypes().add(this.getExpr());
+		cmpOpEqualEClass.getESuperTypes().add(this.getCmpOp());
+		cmpOpUnequalEClass.getESuperTypes().add(this.getCmpOp());
+		cmpOpLessEClass.getESuperTypes().add(this.getCmpOp());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1288,7 +1198,9 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(appEClass, App.class, "App", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getApp_Apps(), this.getExpr(), null, "apps", null, 1, -1, App.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getApp_Lhs(), this.getExpr(), null, "lhs", null, 1, 1, App.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getApp_Rhs(), this.getExpr(), null, "rhs", null, 1, 1, App.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(varEClass, Var.class, "Var", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1308,9 +1220,7 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		initEClass(skipEClass, Skip.class, "Skip", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProject_Name(), ecorePackage.getEString(), "name", null, 0, 1, Project.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_Project(), this.getExpr(), null, "project", null, 1, 1, Project.class, !IS_TRANSIENT,
+		initEReference(getProject_Vars(), this.getVar(), null, "vars", null, 0, -1, Project.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
@@ -1350,7 +1260,7 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
-		initEClass(cmpOpEClass, CmpOp.class, "CmpOp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(cmpOpEClass, CmpOp.class, "CmpOp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCmpOp_Lhs(), this.getExpr(), null, "lhs", null, 1, 1, CmpOp.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
@@ -1358,14 +1268,14 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
-		initEClass(boolOpEClass, BoolOp.class, "BoolOp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(boolOpEClass, BoolOp.class, "BoolOp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(ifEClass, If.class, "If", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIf_Cond(), this.getExpr(), null, "cond", null, 1, 1, If.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIf_Then(), this.getExpr(), null, "then", null, 1, 1, If.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIf_Else(), this.getExpr(), null, "else", null, 1, 1, If.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getIf_Els(), this.getExpr(), null, "els", null, 1, 1, If.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(letEClass, Let.class, "Let", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1405,39 +1315,6 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		initEClass(arithOpRemainderEClass, ArithOpRemainder.class, "ArithOpRemainder", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(boolOpNotEClass, BoolOpNot.class, "BoolOpNot", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBoolOpNot_Expr(), this.getExpr(), null, "expr", null, 1, 1, BoolOpNot.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(boolOpLessEClass, BoolOpLess.class, "BoolOpLess", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBoolOpLess_Lhs(), this.getExpr(), null, "lhs", null, 1, 1, BoolOpLess.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getBoolOpLess_Rhs(), this.getExpr(), null, "rhs", null, 1, 1, BoolOpLess.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(boolOpEqualEClass, BoolOpEqual.class, "BoolOpEqual", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBoolOpEqual_Lhs(), this.getExpr(), null, "lhs", null, 1, 1, BoolOpEqual.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getBoolOpEqual_Rhs(), this.getExpr(), null, "rhs", null, 1, 1, BoolOpEqual.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(boolOpUnequalEClass, BoolOpUnequal.class, "BoolOpUnequal", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBoolOpUnequal_Lhs(), this.getExpr(), null, "lhs", null, 1, 1, BoolOpUnequal.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBoolOpUnequal_Rhs(), this.getExpr(), null, "rhs", null, 1, 1, BoolOpUnequal.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(boolOpAndEClass, BoolOpAnd.class, "BoolOpAnd", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBoolOpAnd_Lhs(), this.getExpr(), null, "lhs", null, 1, 1, BoolOpAnd.class, !IS_TRANSIENT,
@@ -1461,6 +1338,15 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSeq_Rhs(), this.getExpr(), null, "rhs", null, 1, 1, Seq.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cmpOpEqualEClass, CmpOpEqual.class, "CmpOpEqual", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cmpOpUnequalEClass, CmpOpUnequal.class, "CmpOpUnequal", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cmpOpLessEClass, CmpOpLess.class, "CmpOpLess", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

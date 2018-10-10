@@ -148,24 +148,6 @@ public interface BoaFactory extends EFactory {
 	Not createNot();
 
 	/**
-	 * Returns a new object of class '<em>Cmp Op</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Cmp Op</em>'.
-	 * @generated
-	 */
-	CmpOp createCmpOp();
-
-	/**
-	 * Returns a new object of class '<em>Bool Op</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bool Op</em>'.
-	 * @generated
-	 */
-	BoolOp createBoolOp();
-
-	/**
 	 * Returns a new object of class '<em>If</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -247,42 +229,6 @@ public interface BoaFactory extends EFactory {
 	ArithOpRemainder createArithOpRemainder();
 
 	/**
-	 * Returns a new object of class '<em>Bool Op Not</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bool Op Not</em>'.
-	 * @generated
-	 */
-	BoolOpNot createBoolOpNot();
-
-	/**
-	 * Returns a new object of class '<em>Bool Op Less</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bool Op Less</em>'.
-	 * @generated
-	 */
-	BoolOpLess createBoolOpLess();
-
-	/**
-	 * Returns a new object of class '<em>Bool Op Equal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bool Op Equal</em>'.
-	 * @generated
-	 */
-	BoolOpEqual createBoolOpEqual();
-
-	/**
-	 * Returns a new object of class '<em>Bool Op Unequal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bool Op Unequal</em>'.
-	 * @generated
-	 */
-	BoolOpUnequal createBoolOpUnequal();
-
-	/**
 	 * Returns a new object of class '<em>Bool Op And</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -308,6 +254,33 @@ public interface BoaFactory extends EFactory {
 	 * @generated
 	 */
 	Seq createSeq();
+
+	/**
+	 * Returns a new object of class '<em>Cmp Op Equal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cmp Op Equal</em>'.
+	 * @generated
+	 */
+	CmpOpEqual createCmpOpEqual();
+
+	/**
+	 * Returns a new object of class '<em>Cmp Op Unequal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cmp Op Unequal</em>'.
+	 * @generated
+	 */
+	CmpOpUnequal createCmpOpUnequal();
+
+	/**
+	 * Returns a new object of class '<em>Cmp Op Less</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cmp Op Less</em>'.
+	 * @generated
+	 */
+	CmpOpLess createCmpOpLess();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -207,26 +207,6 @@ public class BoaAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseBoolOpNot(BoolOpNot object) {
-			return createBoolOpNotAdapter();
-		}
-
-		@Override
-		public Adapter caseBoolOpLess(BoolOpLess object) {
-			return createBoolOpLessAdapter();
-		}
-
-		@Override
-		public Adapter caseBoolOpEqual(BoolOpEqual object) {
-			return createBoolOpEqualAdapter();
-		}
-
-		@Override
-		public Adapter caseBoolOpUnequal(BoolOpUnequal object) {
-			return createBoolOpUnequalAdapter();
-		}
-
-		@Override
 		public Adapter caseBoolOpAnd(BoolOpAnd object) {
 			return createBoolOpAndAdapter();
 		}
@@ -239,6 +219,21 @@ public class BoaAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseSeq(Seq object) {
 			return createSeqAdapter();
+		}
+
+		@Override
+		public Adapter caseCmpOpEqual(CmpOpEqual object) {
+			return createCmpOpEqualAdapter();
+		}
+
+		@Override
+		public Adapter caseCmpOpUnequal(CmpOpUnequal object) {
+			return createCmpOpUnequalAdapter();
+		}
+
+		@Override
+		public Adapter caseCmpOpLess(CmpOpLess object) {
+			return createCmpOpLessAdapter();
 		}
 
 		@Override
@@ -653,62 +648,6 @@ public class BoaAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link boa.model.boa.BoolOpNot <em>Bool Op Not</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see boa.model.boa.BoolOpNot
-	 * @generated
-	 */
-	public Adapter createBoolOpNotAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link boa.model.boa.BoolOpLess <em>Bool Op Less</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see boa.model.boa.BoolOpLess
-	 * @generated
-	 */
-	public Adapter createBoolOpLessAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link boa.model.boa.BoolOpEqual <em>Bool Op Equal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see boa.model.boa.BoolOpEqual
-	 * @generated
-	 */
-	public Adapter createBoolOpEqualAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link boa.model.boa.BoolOpUnequal <em>Bool Op Unequal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see boa.model.boa.BoolOpUnequal
-	 * @generated
-	 */
-	public Adapter createBoolOpUnequalAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link boa.model.boa.BoolOpAnd <em>Bool Op And</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -747,6 +686,48 @@ public class BoaAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSeqAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link boa.model.boa.CmpOpEqual <em>Cmp Op Equal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see boa.model.boa.CmpOpEqual
+	 * @generated
+	 */
+	public Adapter createCmpOpEqualAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link boa.model.boa.CmpOpUnequal <em>Cmp Op Unequal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see boa.model.boa.CmpOpUnequal
+	 * @generated
+	 */
+	public Adapter createCmpOpUnequalAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link boa.model.boa.CmpOpLess <em>Cmp Op Less</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see boa.model.boa.CmpOpLess
+	 * @generated
+	 */
+	public Adapter createCmpOpLessAdapter() {
 		return null;
 	}
 

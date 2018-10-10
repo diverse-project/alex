@@ -9,7 +9,7 @@ package boa.model.boa;
  *
  *
  * @see boa.model.boa.BoaPackage#getBoolOp()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface BoolOp extends Expr {

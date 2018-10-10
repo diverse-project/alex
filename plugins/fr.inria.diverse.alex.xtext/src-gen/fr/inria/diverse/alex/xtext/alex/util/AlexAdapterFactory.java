@@ -101,6 +101,11 @@ public class AlexAdapterFactory extends AdapterFactoryImpl
         return createAlexClassAdapter();
       }
       @Override
+      public Adapter caseMutableRef(MutableRef object)
+      {
+        return createMutableRefAdapter();
+      }
+      @Override
       public Adapter caseAlexMethod(AlexMethod object)
       {
         return createAlexMethodAdapter();
@@ -218,6 +223,21 @@ public class AlexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAlexClassAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link fr.inria.diverse.alex.xtext.alex.MutableRef <em>Mutable Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see fr.inria.diverse.alex.xtext.alex.MutableRef
+   * @generated
+   */
+  public Adapter createMutableRefAdapter()
   {
     return null;
   }

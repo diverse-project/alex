@@ -25,4 +25,4 @@ Export-Package: com.oracle.truffle.api,
  com.oracle.truffle.object.basic,
  com.oracle.truffle.polyglot
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: mvn/com.oracle.truffle.truffle-api-1.0.0-rc6.jar
+Bundle-ClassPath: mvn/com.oracle.truffle.truffle-api-1.0.0-rc7.jar

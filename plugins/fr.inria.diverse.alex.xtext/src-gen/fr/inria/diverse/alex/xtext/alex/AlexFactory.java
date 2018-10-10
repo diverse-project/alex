@@ -69,6 +69,15 @@ public interface AlexFactory extends EFactory
   AlexClass createAlexClass();
 
   /**
+   * Returns a new object of class '<em>Mutable Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mutable Ref</em>'.
+   * @generated
+   */
+  MutableRef createMutableRef();
+
+  /**
    * Returns a new object of class '<em>Method</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

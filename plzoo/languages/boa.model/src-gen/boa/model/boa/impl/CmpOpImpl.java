@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class CmpOpImpl extends ExprImpl implements CmpOp {
+public abstract class CmpOpImpl extends ExprImpl implements CmpOp {
 	/**
 	 * The cached value of the '{@link #getLhs() <em>Lhs</em>}' containment reference.
 	 * <!-- begin-user-doc -->

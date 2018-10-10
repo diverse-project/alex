@@ -3,24 +3,24 @@
 package boa.model.boa.impl;
 
 import boa.model.boa.BoaPackage;
-import boa.model.boa.BoolOp;
+import boa.model.boa.CmpOpUnequal;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Bool Op</b></em>'.
+ * An implementation of the model object '<em><b>Cmp Op Unequal</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public abstract class BoolOpImpl extends ExprImpl implements BoolOp {
+public class CmpOpUnequalImpl extends CmpOpImpl implements CmpOpUnequal {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BoolOpImpl() {
+	protected CmpOpUnequalImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public abstract class BoolOpImpl extends ExprImpl implements BoolOp {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BoaPackage.Literals.BOOL_OP;
+		return BoaPackage.Literals.CMP_OP_UNEQUAL;
 	}
 
-} //BoolOpImpl
+} //CmpOpUnequalImpl

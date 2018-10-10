@@ -368,58 +368,6 @@ public class BoaSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BoaPackage.BOOL_OP_NOT: {
-			BoolOpNot boolOpNot = (BoolOpNot) theEObject;
-			T result = caseBoolOpNot(boolOpNot);
-			if (result == null)
-				result = caseBoolOp(boolOpNot);
-			if (result == null)
-				result = caseExpr(boolOpNot);
-			if (result == null)
-				result = caseTopLevelCmd(boolOpNot);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case BoaPackage.BOOL_OP_LESS: {
-			BoolOpLess boolOpLess = (BoolOpLess) theEObject;
-			T result = caseBoolOpLess(boolOpLess);
-			if (result == null)
-				result = caseBoolOp(boolOpLess);
-			if (result == null)
-				result = caseExpr(boolOpLess);
-			if (result == null)
-				result = caseTopLevelCmd(boolOpLess);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case BoaPackage.BOOL_OP_EQUAL: {
-			BoolOpEqual boolOpEqual = (BoolOpEqual) theEObject;
-			T result = caseBoolOpEqual(boolOpEqual);
-			if (result == null)
-				result = caseBoolOp(boolOpEqual);
-			if (result == null)
-				result = caseExpr(boolOpEqual);
-			if (result == null)
-				result = caseTopLevelCmd(boolOpEqual);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case BoaPackage.BOOL_OP_UNEQUAL: {
-			BoolOpUnequal boolOpUnequal = (BoolOpUnequal) theEObject;
-			T result = caseBoolOpUnequal(boolOpUnequal);
-			if (result == null)
-				result = caseBoolOp(boolOpUnequal);
-			if (result == null)
-				result = caseExpr(boolOpUnequal);
-			if (result == null)
-				result = caseTopLevelCmd(boolOpUnequal);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case BoaPackage.BOOL_OP_AND: {
 			BoolOpAnd boolOpAnd = (BoolOpAnd) theEObject;
 			T result = caseBoolOpAnd(boolOpAnd);
@@ -453,6 +401,45 @@ public class BoaSwitch<T> extends Switch<T> {
 				result = caseExpr(seq);
 			if (result == null)
 				result = caseTopLevelCmd(seq);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BoaPackage.CMP_OP_EQUAL: {
+			CmpOpEqual cmpOpEqual = (CmpOpEqual) theEObject;
+			T result = caseCmpOpEqual(cmpOpEqual);
+			if (result == null)
+				result = caseCmpOp(cmpOpEqual);
+			if (result == null)
+				result = caseExpr(cmpOpEqual);
+			if (result == null)
+				result = caseTopLevelCmd(cmpOpEqual);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BoaPackage.CMP_OP_UNEQUAL: {
+			CmpOpUnequal cmpOpUnequal = (CmpOpUnequal) theEObject;
+			T result = caseCmpOpUnequal(cmpOpUnequal);
+			if (result == null)
+				result = caseCmpOp(cmpOpUnequal);
+			if (result == null)
+				result = caseExpr(cmpOpUnequal);
+			if (result == null)
+				result = caseTopLevelCmd(cmpOpUnequal);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BoaPackage.CMP_OP_LESS: {
+			CmpOpLess cmpOpLess = (CmpOpLess) theEObject;
+			T result = caseCmpOpLess(cmpOpLess);
+			if (result == null)
+				result = caseCmpOp(cmpOpLess);
+			if (result == null)
+				result = caseExpr(cmpOpLess);
+			if (result == null)
+				result = caseTopLevelCmd(cmpOpLess);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -883,66 +870,6 @@ public class BoaSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bool Op Not</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bool Op Not</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBoolOpNot(BoolOpNot object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bool Op Less</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bool Op Less</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBoolOpLess(BoolOpLess object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bool Op Equal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bool Op Equal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBoolOpEqual(BoolOpEqual object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bool Op Unequal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bool Op Unequal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBoolOpUnequal(BoolOpUnequal object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Bool Op And</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -984,6 +911,51 @@ public class BoaSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSeq(Seq object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cmp Op Equal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cmp Op Equal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCmpOpEqual(CmpOpEqual object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cmp Op Unequal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cmp Op Unequal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCmpOpUnequal(CmpOpUnequal object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cmp Op Less</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cmp Op Less</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCmpOpLess(CmpOpLess object) {
 		return null;
 	}
 

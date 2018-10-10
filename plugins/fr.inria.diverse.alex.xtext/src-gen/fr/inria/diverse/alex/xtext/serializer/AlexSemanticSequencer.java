@@ -12,6 +12,7 @@ import fr.inria.diverse.alex.xtext.alex.AlexRoot;
 import fr.inria.diverse.alex.xtext.alex.CompileTarget;
 import fr.inria.diverse.alex.xtext.alex.DefMethod;
 import fr.inria.diverse.alex.xtext.alex.EcoreImport;
+import fr.inria.diverse.alex.xtext.alex.MutableRef;
 import fr.inria.diverse.alex.xtext.alex.OverrideMethod;
 import fr.inria.diverse.alex.xtext.services.AlexGrammarAccess;
 import java.util.Set;
@@ -104,6 +105,9 @@ public class AlexSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case AlexPackage.ECORE_IMPORT:
 				sequence_EcoreImport(context, (EcoreImport) semanticObject); 
+				return; 
+			case AlexPackage.MUTABLE_REF:
+				sequence_MutableRef(context, (MutableRef) semanticObject); 
 				return; 
 			case AlexPackage.OVERRIDE_METHOD:
 				sequence_OverrideMethod(context, (OverrideMethod) semanticObject); 
@@ -370,7 +374,7 @@ public class AlexSemanticSequencer extends XbaseSemanticSequencer {
 	 *     AlexClass returns AlexClass
 	 *
 	 * Constraint:
-	 *     (abstract?='abstract'? name=ValidID methods+=AlexMethod*)
+	 *     (abstract?='abstract'? name=ValidID mutables+=MutableRef* methods+=AlexMethod*)
 	 */
 	protected void sequence_AlexClass(ISerializationContext context, AlexClass semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -454,6 +458,24 @@ public class AlexSemanticSequencer extends XbaseSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEcoreImportAccess().getUriSTRINGTerminalRuleCall_2_0(), semanticObject.getUri());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MutableRef returns MutableRef
+	 *
+	 * Constraint:
+	 *     name=ValidID
+	 */
+	protected void sequence_MutableRef(ISerializationContext context, MutableRef semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlexPackage.Literals.MUTABLE_REF__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlexPackage.Literals.MUTABLE_REF__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMutableRefAccess().getNameValidIDParserRuleCall_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	

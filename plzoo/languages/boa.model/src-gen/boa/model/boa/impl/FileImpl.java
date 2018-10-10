@@ -4,8 +4,8 @@ package boa.model.boa.impl;
 
 import boa.model.boa.BoaPackage;
 import boa.model.boa.File;
-
 import boa.model.boa.TopLevelCmd;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;

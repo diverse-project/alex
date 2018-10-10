@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject
 import org.eclipse.emf.ecore.impl.EFactoryImpl
 import org.eclipse.emf.ecore.impl.ENotificationImpl
 import org.eclipse.emf.ecore.impl.EPackageImpl
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl
 import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.emf.ecore.util.EObjectContainmentEList
 import org.eclipse.emf.ecore.util.InternalEList
@@ -43,129 +44,32 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension NamingUtils
 	@Inject extension AlexUtils
 
-	override infer(EObject e, IJvmDeclaredTypeAcceptor acceptor, boolean preIndexingPhase) {
-		if (!preIndexingPhase) {
-			val alexRoot = e as AlexRoot
-			alexRoot.compileTarget.compile(alexRoot, acceptor)
-		}
+	def dispatch void infer(AlexRoot alexRoot, IJvmDeclaredTypeAcceptor acceptor, boolean preIndexingPhase) {
+		alexRoot.compileTarget.compile(alexRoot, acceptor)
 	}
 
-/**
- * FIXME change generation order to have first the interfaces and the the implementations, should resolve some odd generation issues !
- */
 	def compile(CompileTarget compileTarget, AlexRoot alexRoot, IJvmDeclaredTypeAcceptor acceptor) {
 		val abstractSyntax = alexRoot.ecoreImport.uri.loadGenmodel.EPackage
 
 		compileTarget.compileFactoryInterface(acceptor, abstractSyntax)
 		compileTarget.compilePackageInterface(acceptor, abstractSyntax, alexRoot)
-		abstractSyntax.allClasses.forEach [ clazz |
+		for(EClass clazz: abstractSyntax.allClasses) {
 			val alexClass = alexRoot.allAlexClasses.filter[alexClass | alexClass.name == clazz.name].head
 			clazz.compileEClassInterface(acceptor, compileTarget, abstractSyntax, alexClass)
-		]
+		}
 		
 		compileTarget.compileFactoryImplementation(acceptor, abstractSyntax)
 		compileTarget.compilePackageImplementation(acceptor, abstractSyntax, alexRoot)
 
-		abstractSyntax.allClasses.forEach [ clazz |
+		for(EClass clazz: abstractSyntax.allClasses) {
 			val alexClass = alexRoot.allAlexClasses.filter[alexClass | alexClass.name == clazz.name].head
 			clazz.compileEClassImplementation(acceptor, compileTarget, abstractSyntax, alexClass)
-		]
+		}
 		
-//		acceptor.accept(compileTarget.toClass('''«compileTarget.name».impl.«compileTarget.name.toFirstUpper»Language''')) [clazz|
-//			clazz.superTypes += TruffleLanguage.typeRef(Void.typeRef)
-//			
-////			annotations += 'com.oracle.truffle.api.nodes.NodeInfo'.annotationRef => [annot|
-////					annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
-////						values += clazz.name
-////						val tmp = annot.annotation.members.filter(JvmOperation).filter[simpleName == "description"].head
-////						operation = tmp
-////					]
-////				]
-//			
-//			clazz.annotations += 'com.oracle.truffle.api.TruffleLanguage$Registration'.annotationRef => [annot|
-//				annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
-//					values += compileTarget.name
-//					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "id"].head
-//				]
-//				
-//				annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
-//					values += compileTarget.name
-//					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "name"].head
-//				]
-//				
-//				annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
-//					values += '''application/«compileTarget.name»'''
-//					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "defaultMimeType"].head
-//				]
-//				
-//				annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
-//					values += '''application/«compileTarget.name»'''
-//					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "characterMimeTypes"].head
-//				]
-//				
-////				annot.explicitValues += TypesFactory::eINSTANCE.createJvm => [
-////					values += '''com.oracle.truffle.api.TruffleLanguage.ContextPolicy.SHARED'''.typeRef
-////					operation = annot.annotation.members.filter(JvmOperation).filter[simpleName == "contextPolicy"].head
-////				]
-//			] 
-//			
-//			clazz.members += compileTarget.toMethod('createContext', Void.typeRef) [
-//				parameters += compileTarget.toParameter('env', Env.typeRef)
-//				body = '''return null;'''
-//			]
-//			
-//			clazz.members += compileTarget.toMethod('isObjectOfLanguage', boolean.typeRef) [
-//				parameters += compileTarget.toParameter('object', Object.typeRef)
-//				body = '''
-//				if(object instanceof «EObject.typeRef») {
-//					«EObject.typeRef» eObject = («EObject.typeRef») object;
-//					return "http://«compileTarget.name».«alexRoot.name».«abstractSyntax.name»".equals(eObject.eClass().getEPackage().getNsURI());
-//				}
-//				
-//				return false;
-//				'''
-//			]
-//			
-//			/*
-//			 * import org.eclipse.emf.common.util.URI;
-//import org.eclipse.emf.ecore.EObject;
-//import org.eclipse.emf.ecore.resource.Resource;
-//import org.eclipse.xtext.resource.XtextResourceSet;
-//
-//import com.oracle.truffle.api.CallTarget;
-//import com.oracle.truffle.api.TruffleLanguage;
-//
-//import compilA.Expression;
-//			 */
-//			// protected CallTarget parse(ParsingRequest request) throws Exception {
-//			
-//			val rootEClass = abstractSyntax.allClasses.head
-//			
-//			clazz.members +=compileTarget.toMethod('parse', 'com.oracle.truffle.api.CallTarget'.typeRef) [
-//				parameters += compileTarget.toParameter('request', 'com.oracle.truffle.api.TruffleLanguage.ParsingRequest'.typeRef)
-//				exceptions += Exception.typeRef
-//				body = '''
-//				final «XtextResourceSet.typeRef» rs = new «XtextResourceSet.typeRef»();
-//				final «Resource.typeRef» resource = rs.createResource(«URI.typeRef()».createURI("dummy:/truffle.«compileTarget.name»"));
-//				final «InputStream.typeRef» in = request.getSource().getInputStream();
-//				resource.load(in, rs.getLoadOptions());
-//				final «compileTarget.name».«rootEClass.name» model = («compileTarget.name».«rootEClass.name») resource.getContents().get(0);
-//
-//				return new CallTarget() {
-//					@Override
-//					public Object call(Object... arguments) {
-//						return model.main(); // by convension
-//					}
-//				};
-//				'''
-//			] 
-//			
-//			
-//		]
 	}
 	
 	def compileFactoryInterface(CompileTarget compileTarget, IJvmDeclaredTypeAcceptor acceptor, EPackage abstractSyntax) {
-		acceptor.accept(abstractSyntax.toInterface(compileTarget.factoryInterfaceName, [
+		acceptor.accept(abstractSyntax.toInterface(compileTarget.factoryInterfaceName, null)) [
 			
 			superTypes += EFactory.typeRef
 			members += abstractSyntax.toField('eINSTANCE', compileTarget.factoryInterfaceName.typeRef) [
@@ -179,12 +83,12 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 					abstract = true
 				]
 			]
-		]))
+		]
 		
 	}
 	
 	def compileFactoryImplementation(CompileTarget compileTarget, IJvmDeclaredTypeAcceptor acceptor, EPackage abstractSyntax) {
-		acceptor.accept(abstractSyntax.toClass(compileTarget.factoryImplementationName) [
+		acceptor.accept(abstractSyntax.toClass(compileTarget.factoryImplementationName)) [
 			
 			superTypes += EFactoryImpl.typeRef
 			superTypes += compileTarget.factoryInterfaceName.typeRef
@@ -218,7 +122,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				body = '''
 				switch (eClass.getClassifierID()) {
 				«FOR eClass: abstractSyntax.allClasses.filter[!it.abstract]»
-				case «compileTarget.packageInterfaceFQN.typeRef».«eClass.name.toUpperCase»:
+				case «compileTarget.packageInterfaceFQN.typeRef».«eClass.name.normalizeUpperField»:
 					return create«eClass.name»();
 				«ENDFOR»
 				default:
@@ -237,12 +141,12 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				]
 				
 			]
-		])
+		]
 	}
 	
 	def compilePackageInterface(CompileTarget compileTarget, IJvmDeclaredTypeAcceptor acceptor, EPackage abstractSyntax, AlexRoot alexRoot) {
 		val packageInterfaceFQN = compileTarget.packageInterfaceFQN
-		acceptor.accept(abstractSyntax.toInterface(packageInterfaceFQN, [
+		acceptor.accept(abstractSyntax.toInterface(packageInterfaceFQN, null)) [
 
 			superTypes += EPackage.typeRef
 			members += abstractSyntax.toField('eINSTANCE', packageInterfaceFQN.typeRef) [
@@ -275,7 +179,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 			var cptr = 0;
 			for (EClass clazz : abstractSyntax.allClasses) {
 				val s = cptr
-				members += clazz.toField('''«clazz.name.toUpperCase»''', int.typeRef) [
+				members += clazz.toField('''«clazz.name.normalizeUpperField»''', int.typeRef) [
 					static = true
 					visibility = JvmVisibility.PUBLIC
 					it.initializer = '''«s»'''
@@ -335,7 +239,17 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 			members += abstractSyntax.allClasses.map[clazz|
 				val ret = newArrayList
 				var cptrI = 0
-				for(EStructuralFeature esf: clazz.EStructuralFeatures) {
+				for(EStructuralFeature esf: clazz.EAttributes) {
+					val cptrIF = cptrI
+					ret += esf.toField('''«esf.name.normalizeUpperField(clazz.name)»''', int.typeRef) [
+						visibility = JvmVisibility.DEFAULT
+						initializer = '''«compileTarget.name.toUpperCase»_FEATURE_COUNT + «cptrIF»'''
+					]
+					
+					cptrI = cptrI + 1
+				}
+				
+				for(EStructuralFeature esf: clazz.EReferences) {
 					val cptrIF = cptrI
 					ret += esf.toField('''«esf.name.normalizeUpperField(clazz.name)»''', int.typeRef) [
 						visibility = JvmVisibility.DEFAULT
@@ -347,7 +261,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				
 				ret
 			].flatten
-		]))
+		]
 	}
 	
 	def compilePackageImplementation(CompileTarget compileTarget, IJvmDeclaredTypeAcceptor acceptor, EPackage abstractSyntax, AlexRoot alexRoot) {
@@ -414,7 +328,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				isCreated = true;
 				
 				«FOR eClass: abstractSyntax.allClasses»
-				«eClass.name.toFirstLower»EClass = createEClass(«eClass.name.toUpperCase»);
+				«eClass.name.toFirstLower»EClass = createEClass(«eClass.name.normalizeUpperField»);
 				«FOR eAttr: eClass.EAttributes»
 				createEAttribute(«eClass.name.toFirstLower»EClass, «eAttr.name.normalizeUpperField(eClass.name)»);
 				«ENDFOR»
@@ -477,7 +391,16 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				var cptrI = 0
 				var ret = newArrayList
 				
-				for(field: clazz.EStructuralFeatures) {
+				for(field: clazz.EAttributes) {
+					val cptrIF = cptrI
+					val rt = if(field instanceof EReference) EReference.typeRef else EAttribute.typeRef
+					ret += field.toGetter(field.name.normalizeUpperMethod(clazz.name), rt) => [
+						body = '''return «IF (field instanceof EReference)»(«EReference.typeRef»)«ELSE»(«EAttribute.typeRef»)«ENDIF» «clazz.name.toFirstLower»EClass.getEStructuralFeatures().get(«cptrIF»);'''
+					]
+					
+					cptrI = cptrI + 1
+				}
+				for(field: clazz.EReferences) {
 					val cptrIF = cptrI
 					val rt = if(field instanceof EReference) EReference.typeRef else EAttribute.typeRef
 					ret += field.toGetter(field.name.normalizeUpperMethod(clazz.name), rt) => [
@@ -498,7 +421,9 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 	
 	def compileEClassInterface(EClass clazz, IJvmDeclaredTypeAcceptor acceptor, CompileTarget compileTarget, EPackage abstractSyntax, AlexClass alexClass) {
 		val interfaceName = clazz.interfaceFQN(compileTarget)
-		acceptor.accept(clazz.toInterface(interfaceName) [
+//		println('''start compileEClassInterface\n«clazz»''')
+		acceptor.accept(clazz.toInterface(interfaceName, null)) [
+//			println('''start accept compileEClassInterface\n«clazz»''')
 				superTypes += EObject.typeRef
 				superTypes += clazz.ESuperTypes.map [
 					interfaceFQN(compileTarget).typeRef
@@ -539,17 +464,16 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				]
 				
 				members += alexClass?.methods?.map[method | method.toMethod('''«method.name»''', method.type) [
+					parameters += method.params.map[cloneWithProxies]
 					body = null as XExpression
 					abstract = true
 				]]
-			])
+			]
 	}
 	
 	def compileEClassImplementation(EClass clazz, IJvmDeclaredTypeAcceptor acceptor, CompileTarget compileTarget, EPackage abstractSyntax, AlexClass alexClass) {
 		val interfaceName = clazz.interfaceFQN(compileTarget)
-		
 		acceptor.accept(clazz.toClass(clazz.classFQN(compileTarget))) [createdClass|
-			
 			if(compileTarget.isTruffle) {
 				createdClass.annotations += 'com.oracle.truffle.api.nodes.NodeInfo'.annotationRef => [annot|
 					annot.explicitValues += TypesFactory::eINSTANCE.createJvmStringAnnotationValue => [
@@ -566,7 +490,9 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				createdClass.superTypes += clazz.ESuperTypes.head.scopedTypeRef(compileTarget, abstractSyntax, false)
 			else {
 				//extendedClass = 'fr.inria.diverse.alex.emf.truffle.MinimalTruffleEObjectImpl$TruffleContainer'.typeRef
-				createdClass.superTypes += 	MinimalTruffleEObjectImpl.TruffleContainer.typeRef
+				if(compileTarget.truffle)
+					createdClass.superTypes += 	MinimalTruffleEObjectImpl.TruffleContainer.typeRef
+				else createdClass.superTypes += MinimalEObjectImpl.Container.typeRef
 			}
 
 			createdClass.superTypes += interfaceName.typeRef
@@ -589,8 +515,11 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				val rt = field.EGenericType.ERawType.scopedInterfaceTypeRef(compileTarget, abstractSyntax)
 				val isMultiple = field.upperBound > 1 || field.upperBound < 0
 				val type = if(isMultiple) EList.typeRef(rt) else rt
+				val isMutable = alexClass === null || alexClass.mutables.exists[
+					it.name == field.name
+				]
 				createdClass.members += field.toField(field.name, type) => [
-					if(compileTarget.child && !isMultiple) {
+					if(compileTarget.child && !isMultiple && !isMutable) {
 						annotations += 'com.oracle.truffle.api.nodes.Node$Child'.annotationRef()
 					}
 				]
@@ -604,12 +533,18 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 						body = '''
 						if («newName» != «name») {
 							«NotificationChain.typeRef» msgs = null;
+							«IF field.EOpposite !== null»
 							if («name» != null)
-								msgs = ((«InternalEObject.typeRef») «name»).eInverseRemove(this, «compileTarget.packageInterfaceFQN.typeRef».«field.EOpposite.name.normalizeUpperField((field.EOpposite.eContainer as EClass).name)», «rt».class,
-										msgs);
+								msgs = ((«InternalEObject.typeRef») «name»).eInverseRemove(this, «compileTarget.packageInterfaceFQN.typeRef».«field.EOpposite.name.normalizeUpperField((field.EOpposite.eContainer as EClass).name)», «rt».class, msgs);
 							if («newName» != null)
 								msgs = ((«InternalEObject.typeRef») «newName»).eInverseAdd(this, «compileTarget.packageInterfaceFQN.typeRef».«field.EOpposite.name.normalizeUpperField((field.EOpposite.eContainer as EClass).name)», «rt».class,
 										msgs);
+							«ELSE»
+							if («name» != null)
+								msgs = ((«InternalEObject.typeRef») «name»).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - «compileTarget.packageInterfaceFQN.typeRef».«field.name.normalizeUpperField(clazz.name)», null, msgs);
+							if («newName» != null)
+								msgs = ((«InternalEObject.typeRef») «newName»).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - «compileTarget.packageInterfaceFQN.typeRef».«field.name.normalizeUpperField(clazz.name)», null, msgs);
+							«ENDIF»
 							msgs = basicSet«name.toFirstUpper»(«newName», msgs);
 							if (msgs != null)
 								msgs.dispatch();
@@ -720,7 +655,7 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 				switch (featureID) {
 				«FOR esf:clazz.EStructuralFeatures»
 				case «compileTarget.packageInterfaceFQN».«esf.name.normalizeUpperField(clazz.name)»:
-					return get«esf.name.toFirstUpper»();
+					return «IF esf.EType.name == "EBoolean"»is«ELSE»get«ENDIF»«esf.name.toFirstUpper»();
 				«ENDFOR»
 				}
 				return super.eGet(featureID, resolve, coreType);
@@ -780,14 +715,16 @@ class AlexJvmModelInferrer extends AbstractModelInferrer {
 			}
 			
 			val res = alexClass?.methods?.filter[method | method instanceof ConcreteMethod]?.map[method | method.toMethod('''«method.name»''', method.type) [
+				parameters += method.params.map[cloneWithProxies]				
 				val m = method as ConcreteMethod
 				val block = m.block
 				body = block
 			]]
 			
 			if(res !== null && createdClass !== null && createdClass.members !== null) createdClass.members += res
-			
+//		println('''end accept  compileEClassImplementation «clazz»''')	
 		]
+//		println('''end compileEClassImplementation «clazz»''')
 	}
 	
 

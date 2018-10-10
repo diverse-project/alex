@@ -206,13 +206,22 @@ public interface BoaPackage extends EPackage {
 	int APP = 4;
 
 	/**
-	 * The feature id for the '<em><b>Apps</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APP__APPS = EXPR_FEATURE_COUNT + 0;
+	int APP__LHS = EXPR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APP__RHS = EXPR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>App</em>' class.
@@ -221,7 +230,7 @@ public interface BoaPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APP_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
+	int APP_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>App</em>' class.
@@ -410,22 +419,13 @@ public interface BoaPackage extends EPackage {
 	int PROJECT = 10;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Vars</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__NAME = EXPR_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Project</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT__PROJECT = EXPR_FEATURE_COUNT + 1;
+	int PROJECT__VARS = EXPR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Project</em>' class.
@@ -434,7 +434,7 @@ public interface BoaPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
+	int PROJECT_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Project</em>' class.
@@ -797,13 +797,13 @@ public interface BoaPackage extends EPackage {
 	int IF__THEN = EXPR_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Else</b></em>' containment reference.
+	 * The feature id for the '<em><b>Els</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF__ELSE = EXPR_FEATURE_COUNT + 2;
+	int IF__ELS = EXPR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>If</em>' class.
@@ -1201,181 +1201,6 @@ public interface BoaPackage extends EPackage {
 	int ARITH_OP_REMAINDER_OPERATION_COUNT = ARITH_OP_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link boa.model.boa.impl.BoolOpNotImpl <em>Bool Op Not</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see boa.model.boa.impl.BoolOpNotImpl
-	 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpNot()
-	 * @generated
-	 */
-	int BOOL_OP_NOT = 28;
-
-	/**
-	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_NOT__EXPR = BOOL_OP_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Bool Op Not</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_NOT_FEATURE_COUNT = BOOL_OP_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Bool Op Not</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_NOT_OPERATION_COUNT = BOOL_OP_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link boa.model.boa.impl.BoolOpLessImpl <em>Bool Op Less</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see boa.model.boa.impl.BoolOpLessImpl
-	 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpLess()
-	 * @generated
-	 */
-	int BOOL_OP_LESS = 29;
-
-	/**
-	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_LESS__LHS = BOOL_OP_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_LESS__RHS = BOOL_OP_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Bool Op Less</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_LESS_FEATURE_COUNT = BOOL_OP_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Bool Op Less</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_LESS_OPERATION_COUNT = BOOL_OP_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link boa.model.boa.impl.BoolOpEqualImpl <em>Bool Op Equal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see boa.model.boa.impl.BoolOpEqualImpl
-	 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpEqual()
-	 * @generated
-	 */
-	int BOOL_OP_EQUAL = 30;
-
-	/**
-	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_EQUAL__LHS = BOOL_OP_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_EQUAL__RHS = BOOL_OP_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Bool Op Equal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_EQUAL_FEATURE_COUNT = BOOL_OP_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Bool Op Equal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_EQUAL_OPERATION_COUNT = BOOL_OP_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link boa.model.boa.impl.BoolOpUnequalImpl <em>Bool Op Unequal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see boa.model.boa.impl.BoolOpUnequalImpl
-	 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpUnequal()
-	 * @generated
-	 */
-	int BOOL_OP_UNEQUAL = 31;
-
-	/**
-	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_UNEQUAL__LHS = BOOL_OP_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_UNEQUAL__RHS = BOOL_OP_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Bool Op Unequal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_UNEQUAL_FEATURE_COUNT = BOOL_OP_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Bool Op Unequal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOL_OP_UNEQUAL_OPERATION_COUNT = BOOL_OP_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link boa.model.boa.impl.BoolOpAndImpl <em>Bool Op And</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1383,7 +1208,7 @@ public interface BoaPackage extends EPackage {
 	 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpAnd()
 	 * @generated
 	 */
-	int BOOL_OP_AND = 32;
+	int BOOL_OP_AND = 28;
 
 	/**
 	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1429,7 +1254,7 @@ public interface BoaPackage extends EPackage {
 	 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpOr()
 	 * @generated
 	 */
-	int BOOL_OP_OR = 33;
+	int BOOL_OP_OR = 29;
 
 	/**
 	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1475,7 +1300,7 @@ public interface BoaPackage extends EPackage {
 	 * @see boa.model.boa.impl.BoaPackageImpl#getSeq()
 	 * @generated
 	 */
-	int SEQ = 34;
+	int SEQ = 30;
 
 	/**
 	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1512,6 +1337,144 @@ public interface BoaPackage extends EPackage {
 	 * @ordered
 	 */
 	int SEQ_OPERATION_COUNT = EXPR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link boa.model.boa.impl.CmpOpEqualImpl <em>Cmp Op Equal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see boa.model.boa.impl.CmpOpEqualImpl
+	 * @see boa.model.boa.impl.BoaPackageImpl#getCmpOpEqual()
+	 * @generated
+	 */
+	int CMP_OP_EQUAL = 31;
+
+	/**
+	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_EQUAL__LHS = CMP_OP__LHS;
+
+	/**
+	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_EQUAL__RHS = CMP_OP__RHS;
+
+	/**
+	 * The number of structural features of the '<em>Cmp Op Equal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_EQUAL_FEATURE_COUNT = CMP_OP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Cmp Op Equal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_EQUAL_OPERATION_COUNT = CMP_OP_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link boa.model.boa.impl.CmpOpUnequalImpl <em>Cmp Op Unequal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see boa.model.boa.impl.CmpOpUnequalImpl
+	 * @see boa.model.boa.impl.BoaPackageImpl#getCmpOpUnequal()
+	 * @generated
+	 */
+	int CMP_OP_UNEQUAL = 32;
+
+	/**
+	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_UNEQUAL__LHS = CMP_OP__LHS;
+
+	/**
+	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_UNEQUAL__RHS = CMP_OP__RHS;
+
+	/**
+	 * The number of structural features of the '<em>Cmp Op Unequal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_UNEQUAL_FEATURE_COUNT = CMP_OP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Cmp Op Unequal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_UNEQUAL_OPERATION_COUNT = CMP_OP_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link boa.model.boa.impl.CmpOpLessImpl <em>Cmp Op Less</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see boa.model.boa.impl.CmpOpLessImpl
+	 * @see boa.model.boa.impl.BoaPackageImpl#getCmpOpLess()
+	 * @generated
+	 */
+	int CMP_OP_LESS = 33;
+
+	/**
+	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_LESS__LHS = CMP_OP__LHS;
+
+	/**
+	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_LESS__RHS = CMP_OP__RHS;
+
+	/**
+	 * The number of structural features of the '<em>Cmp Op Less</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_LESS_FEATURE_COUNT = CMP_OP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Cmp Op Less</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CMP_OP_LESS_OPERATION_COUNT = CMP_OP_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link boa.model.boa.File <em>File</em>}'.
@@ -1597,15 +1560,26 @@ public interface BoaPackage extends EPackage {
 	EClass getApp();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link boa.model.boa.App#getApps <em>Apps</em>}'.
+	 * Returns the meta object for the containment reference '{@link boa.model.boa.App#getLhs <em>Lhs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Apps</em>'.
-	 * @see boa.model.boa.App#getApps()
+	 * @return the meta object for the containment reference '<em>Lhs</em>'.
+	 * @see boa.model.boa.App#getLhs()
 	 * @see #getApp()
 	 * @generated
 	 */
-	EReference getApp_Apps();
+	EReference getApp_Lhs();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link boa.model.boa.App#getRhs <em>Rhs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Rhs</em>'.
+	 * @see boa.model.boa.App#getRhs()
+	 * @see #getApp()
+	 * @generated
+	 */
+	EReference getApp_Rhs();
 
 	/**
 	 * Returns the meta object for class '{@link boa.model.boa.Var <em>Var</em>}'.
@@ -1701,26 +1675,15 @@ public interface BoaPackage extends EPackage {
 	EClass getProject();
 
 	/**
-	 * Returns the meta object for the attribute '{@link boa.model.boa.Project#getName <em>Name</em>}'.
+	 * Returns the meta object for the containment reference list '{@link boa.model.boa.Project#getVars <em>Vars</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see boa.model.boa.Project#getName()
+	 * @return the meta object for the containment reference list '<em>Vars</em>'.
+	 * @see boa.model.boa.Project#getVars()
 	 * @see #getProject()
 	 * @generated
 	 */
-	EAttribute getProject_Name();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link boa.model.boa.Project#getProject <em>Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Project</em>'.
-	 * @see boa.model.boa.Project#getProject()
-	 * @see #getProject()
-	 * @generated
-	 */
-	EReference getProject_Project();
+	EReference getProject_Vars();
 
 	/**
 	 * Returns the meta object for class '{@link boa.model.boa.BObject <em>BObject</em>}'.
@@ -1956,15 +1919,15 @@ public interface BoaPackage extends EPackage {
 	EReference getIf_Then();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link boa.model.boa.If#getElse <em>Else</em>}'.
+	 * Returns the meta object for the containment reference '{@link boa.model.boa.If#getEls <em>Els</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Else</em>'.
-	 * @see boa.model.boa.If#getElse()
+	 * @return the meta object for the containment reference '<em>Els</em>'.
+	 * @see boa.model.boa.If#getEls()
 	 * @see #getIf()
 	 * @generated
 	 */
-	EReference getIf_Else();
+	EReference getIf_Els();
 
 	/**
 	 * Returns the meta object for class '{@link boa.model.boa.Let <em>Let</em>}'.
@@ -2124,123 +2087,6 @@ public interface BoaPackage extends EPackage {
 	EClass getArithOpRemainder();
 
 	/**
-	 * Returns the meta object for class '{@link boa.model.boa.BoolOpNot <em>Bool Op Not</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Bool Op Not</em>'.
-	 * @see boa.model.boa.BoolOpNot
-	 * @generated
-	 */
-	EClass getBoolOpNot();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link boa.model.boa.BoolOpNot#getExpr <em>Expr</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Expr</em>'.
-	 * @see boa.model.boa.BoolOpNot#getExpr()
-	 * @see #getBoolOpNot()
-	 * @generated
-	 */
-	EReference getBoolOpNot_Expr();
-
-	/**
-	 * Returns the meta object for class '{@link boa.model.boa.BoolOpLess <em>Bool Op Less</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Bool Op Less</em>'.
-	 * @see boa.model.boa.BoolOpLess
-	 * @generated
-	 */
-	EClass getBoolOpLess();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link boa.model.boa.BoolOpLess#getLhs <em>Lhs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Lhs</em>'.
-	 * @see boa.model.boa.BoolOpLess#getLhs()
-	 * @see #getBoolOpLess()
-	 * @generated
-	 */
-	EReference getBoolOpLess_Lhs();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link boa.model.boa.BoolOpLess#getRhs <em>Rhs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Rhs</em>'.
-	 * @see boa.model.boa.BoolOpLess#getRhs()
-	 * @see #getBoolOpLess()
-	 * @generated
-	 */
-	EReference getBoolOpLess_Rhs();
-
-	/**
-	 * Returns the meta object for class '{@link boa.model.boa.BoolOpEqual <em>Bool Op Equal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Bool Op Equal</em>'.
-	 * @see boa.model.boa.BoolOpEqual
-	 * @generated
-	 */
-	EClass getBoolOpEqual();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link boa.model.boa.BoolOpEqual#getLhs <em>Lhs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Lhs</em>'.
-	 * @see boa.model.boa.BoolOpEqual#getLhs()
-	 * @see #getBoolOpEqual()
-	 * @generated
-	 */
-	EReference getBoolOpEqual_Lhs();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link boa.model.boa.BoolOpEqual#getRhs <em>Rhs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Rhs</em>'.
-	 * @see boa.model.boa.BoolOpEqual#getRhs()
-	 * @see #getBoolOpEqual()
-	 * @generated
-	 */
-	EReference getBoolOpEqual_Rhs();
-
-	/**
-	 * Returns the meta object for class '{@link boa.model.boa.BoolOpUnequal <em>Bool Op Unequal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Bool Op Unequal</em>'.
-	 * @see boa.model.boa.BoolOpUnequal
-	 * @generated
-	 */
-	EClass getBoolOpUnequal();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link boa.model.boa.BoolOpUnequal#getLhs <em>Lhs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Lhs</em>'.
-	 * @see boa.model.boa.BoolOpUnequal#getLhs()
-	 * @see #getBoolOpUnequal()
-	 * @generated
-	 */
-	EReference getBoolOpUnequal_Lhs();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link boa.model.boa.BoolOpUnequal#getRhs <em>Rhs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Rhs</em>'.
-	 * @see boa.model.boa.BoolOpUnequal#getRhs()
-	 * @see #getBoolOpUnequal()
-	 * @generated
-	 */
-	EReference getBoolOpUnequal_Rhs();
-
-	/**
 	 * Returns the meta object for class '{@link boa.model.boa.BoolOpAnd <em>Bool Op And</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2335,6 +2181,36 @@ public interface BoaPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSeq_Rhs();
+
+	/**
+	 * Returns the meta object for class '{@link boa.model.boa.CmpOpEqual <em>Cmp Op Equal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cmp Op Equal</em>'.
+	 * @see boa.model.boa.CmpOpEqual
+	 * @generated
+	 */
+	EClass getCmpOpEqual();
+
+	/**
+	 * Returns the meta object for class '{@link boa.model.boa.CmpOpUnequal <em>Cmp Op Unequal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cmp Op Unequal</em>'.
+	 * @see boa.model.boa.CmpOpUnequal
+	 * @generated
+	 */
+	EClass getCmpOpUnequal();
+
+	/**
+	 * Returns the meta object for class '{@link boa.model.boa.CmpOpLess <em>Cmp Op Less</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cmp Op Less</em>'.
+	 * @see boa.model.boa.CmpOpLess
+	 * @generated
+	 */
+	EClass getCmpOpLess();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2434,12 +2310,20 @@ public interface BoaPackage extends EPackage {
 		EClass APP = eINSTANCE.getApp();
 
 		/**
-		 * The meta object literal for the '<em><b>Apps</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference APP__APPS = eINSTANCE.getApp_Apps();
+		EReference APP__LHS = eINSTANCE.getApp_Lhs();
+
+		/**
+		 * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference APP__RHS = eINSTANCE.getApp_Rhs();
 
 		/**
 		 * The meta object literal for the '{@link boa.model.boa.impl.VarImpl <em>Var</em>}' class.
@@ -2526,20 +2410,12 @@ public interface BoaPackage extends EPackage {
 		EClass PROJECT = eINSTANCE.getProject();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Vars</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PROJECT__NAME = eINSTANCE.getProject_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Project</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROJECT__PROJECT = eINSTANCE.getProject_Project();
+		EReference PROJECT__VARS = eINSTANCE.getProject_Vars();
 
 		/**
 		 * The meta object literal for the '{@link boa.model.boa.impl.BObjectImpl <em>BObject</em>}' class.
@@ -2736,12 +2612,12 @@ public interface BoaPackage extends EPackage {
 		EReference IF__THEN = eINSTANCE.getIf_Then();
 
 		/**
-		 * The meta object literal for the '<em><b>Else</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Els</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IF__ELSE = eINSTANCE.getIf_Else();
+		EReference IF__ELS = eINSTANCE.getIf_Els();
 
 		/**
 		 * The meta object literal for the '{@link boa.model.boa.impl.LetImpl <em>Let</em>}' class.
@@ -2880,102 +2756,6 @@ public interface BoaPackage extends EPackage {
 		EClass ARITH_OP_REMAINDER = eINSTANCE.getArithOpRemainder();
 
 		/**
-		 * The meta object literal for the '{@link boa.model.boa.impl.BoolOpNotImpl <em>Bool Op Not</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see boa.model.boa.impl.BoolOpNotImpl
-		 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpNot()
-		 * @generated
-		 */
-		EClass BOOL_OP_NOT = eINSTANCE.getBoolOpNot();
-
-		/**
-		 * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOL_OP_NOT__EXPR = eINSTANCE.getBoolOpNot_Expr();
-
-		/**
-		 * The meta object literal for the '{@link boa.model.boa.impl.BoolOpLessImpl <em>Bool Op Less</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see boa.model.boa.impl.BoolOpLessImpl
-		 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpLess()
-		 * @generated
-		 */
-		EClass BOOL_OP_LESS = eINSTANCE.getBoolOpLess();
-
-		/**
-		 * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOL_OP_LESS__LHS = eINSTANCE.getBoolOpLess_Lhs();
-
-		/**
-		 * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOL_OP_LESS__RHS = eINSTANCE.getBoolOpLess_Rhs();
-
-		/**
-		 * The meta object literal for the '{@link boa.model.boa.impl.BoolOpEqualImpl <em>Bool Op Equal</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see boa.model.boa.impl.BoolOpEqualImpl
-		 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpEqual()
-		 * @generated
-		 */
-		EClass BOOL_OP_EQUAL = eINSTANCE.getBoolOpEqual();
-
-		/**
-		 * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOL_OP_EQUAL__LHS = eINSTANCE.getBoolOpEqual_Lhs();
-
-		/**
-		 * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOL_OP_EQUAL__RHS = eINSTANCE.getBoolOpEqual_Rhs();
-
-		/**
-		 * The meta object literal for the '{@link boa.model.boa.impl.BoolOpUnequalImpl <em>Bool Op Unequal</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see boa.model.boa.impl.BoolOpUnequalImpl
-		 * @see boa.model.boa.impl.BoaPackageImpl#getBoolOpUnequal()
-		 * @generated
-		 */
-		EClass BOOL_OP_UNEQUAL = eINSTANCE.getBoolOpUnequal();
-
-		/**
-		 * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOL_OP_UNEQUAL__LHS = eINSTANCE.getBoolOpUnequal_Lhs();
-
-		/**
-		 * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOL_OP_UNEQUAL__RHS = eINSTANCE.getBoolOpUnequal_Rhs();
-
-		/**
 		 * The meta object literal for the '{@link boa.model.boa.impl.BoolOpAndImpl <em>Bool Op And</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3052,6 +2832,36 @@ public interface BoaPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEQ__RHS = eINSTANCE.getSeq_Rhs();
+
+		/**
+		 * The meta object literal for the '{@link boa.model.boa.impl.CmpOpEqualImpl <em>Cmp Op Equal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see boa.model.boa.impl.CmpOpEqualImpl
+		 * @see boa.model.boa.impl.BoaPackageImpl#getCmpOpEqual()
+		 * @generated
+		 */
+		EClass CMP_OP_EQUAL = eINSTANCE.getCmpOpEqual();
+
+		/**
+		 * The meta object literal for the '{@link boa.model.boa.impl.CmpOpUnequalImpl <em>Cmp Op Unequal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see boa.model.boa.impl.CmpOpUnequalImpl
+		 * @see boa.model.boa.impl.BoaPackageImpl#getCmpOpUnequal()
+		 * @generated
+		 */
+		EClass CMP_OP_UNEQUAL = eINSTANCE.getCmpOpUnequal();
+
+		/**
+		 * The meta object literal for the '{@link boa.model.boa.impl.CmpOpLessImpl <em>Cmp Op Less</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see boa.model.boa.impl.CmpOpLessImpl
+		 * @see boa.model.boa.impl.BoaPackageImpl#getCmpOpLess()
+		 * @generated
+		 */
+		EClass CMP_OP_LESS = eINSTANCE.getCmpOpLess();
 
 	}
 

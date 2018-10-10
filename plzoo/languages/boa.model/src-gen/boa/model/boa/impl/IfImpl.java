@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link boa.model.boa.impl.IfImpl#getCond <em>Cond</em>}</li>
  *   <li>{@link boa.model.boa.impl.IfImpl#getThen <em>Then</em>}</li>
- *   <li>{@link boa.model.boa.impl.IfImpl#getElse <em>Else</em>}</li>
+ *   <li>{@link boa.model.boa.impl.IfImpl#getEls <em>Els</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,14 +51,14 @@ public class IfImpl extends ExprImpl implements If {
 	protected Expr then;
 
 	/**
-	 * The cached value of the '{@link #getElse() <em>Else</em>}' containment reference.
+	 * The cached value of the '{@link #getEls() <em>Els</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElse()
+	 * @see #getEls()
 	 * @generated
 	 * @ordered
 	 */
-	protected Expr else_;
+	protected Expr els;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -182,8 +182,8 @@ public class IfImpl extends ExprImpl implements If {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expr getElse() {
-		return else_;
+	public Expr getEls() {
+		return els;
 	}
 
 	/**
@@ -191,12 +191,12 @@ public class IfImpl extends ExprImpl implements If {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetElse(Expr newElse, NotificationChain msgs) {
-		Expr oldElse = else_;
-		else_ = newElse;
+	public NotificationChain basicSetEls(Expr newEls, NotificationChain msgs) {
+		Expr oldEls = els;
+		els = newEls;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BoaPackage.IF__ELSE, oldElse,
-					newElse);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BoaPackage.IF__ELS, oldEls,
+					newEls);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -210,20 +210,20 @@ public class IfImpl extends ExprImpl implements If {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElse(Expr newElse) {
-		if (newElse != else_) {
+	public void setEls(Expr newEls) {
+		if (newEls != els) {
 			NotificationChain msgs = null;
-			if (else_ != null)
-				msgs = ((InternalEObject) else_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BoaPackage.IF__ELSE,
-						null, msgs);
-			if (newElse != null)
-				msgs = ((InternalEObject) newElse).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BoaPackage.IF__ELSE, null,
+			if (els != null)
+				msgs = ((InternalEObject) els).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BoaPackage.IF__ELS, null,
 						msgs);
-			msgs = basicSetElse(newElse, msgs);
+			if (newEls != null)
+				msgs = ((InternalEObject) newEls).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BoaPackage.IF__ELS, null,
+						msgs);
+			msgs = basicSetEls(newEls, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BoaPackage.IF__ELSE, newElse, newElse));
+			eNotify(new ENotificationImpl(this, Notification.SET, BoaPackage.IF__ELS, newEls, newEls));
 	}
 
 	/**
@@ -238,8 +238,8 @@ public class IfImpl extends ExprImpl implements If {
 			return basicSetCond(null, msgs);
 		case BoaPackage.IF__THEN:
 			return basicSetThen(null, msgs);
-		case BoaPackage.IF__ELSE:
-			return basicSetElse(null, msgs);
+		case BoaPackage.IF__ELS:
+			return basicSetEls(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -256,8 +256,8 @@ public class IfImpl extends ExprImpl implements If {
 			return getCond();
 		case BoaPackage.IF__THEN:
 			return getThen();
-		case BoaPackage.IF__ELSE:
-			return getElse();
+		case BoaPackage.IF__ELS:
+			return getEls();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -276,8 +276,8 @@ public class IfImpl extends ExprImpl implements If {
 		case BoaPackage.IF__THEN:
 			setThen((Expr) newValue);
 			return;
-		case BoaPackage.IF__ELSE:
-			setElse((Expr) newValue);
+		case BoaPackage.IF__ELS:
+			setEls((Expr) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -297,8 +297,8 @@ public class IfImpl extends ExprImpl implements If {
 		case BoaPackage.IF__THEN:
 			setThen((Expr) null);
 			return;
-		case BoaPackage.IF__ELSE:
-			setElse((Expr) null);
+		case BoaPackage.IF__ELS:
+			setEls((Expr) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -316,8 +316,8 @@ public class IfImpl extends ExprImpl implements If {
 			return cond != null;
 		case BoaPackage.IF__THEN:
 			return then != null;
-		case BoaPackage.IF__ELSE:
-			return else_ != null;
+		case BoaPackage.IF__ELS:
+			return els != null;
 		}
 		return super.eIsSet(featureID);
 	}

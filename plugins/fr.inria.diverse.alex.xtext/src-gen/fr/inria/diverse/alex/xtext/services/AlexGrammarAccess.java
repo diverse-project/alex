@@ -209,15 +209,21 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNameValidIDParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cMethodsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cMethodsAlexMethodParserRuleCall_5_0 = (RuleCall)cMethodsAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cMutableKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cMutablesAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cMutablesMutableRefParserRuleCall_5_1_0 = (RuleCall)cMutablesAssignment_5_1.eContents().get(0);
+		private final Assignment cMethodsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cMethodsAlexMethodParserRuleCall_6_0 = (RuleCall)cMethodsAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//AlexClass:
-		//	'open' abstract?='abstract'? 'class' name=ValidID '{' methods+=AlexMethod* '}';
+		//	'open' abstract?='abstract'? 'class' name=ValidID '{' ('mutable' mutables+=MutableRef*)?
+		//	methods+=AlexMethod*
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'open' abstract?='abstract'? 'class' name=ValidID '{' methods+=AlexMethod* '}'
+		//'open' abstract?='abstract'? 'class' name=ValidID '{' ('mutable' mutables+=MutableRef*)? methods+=AlexMethod* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'open'
@@ -241,14 +247,41 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
+		//('mutable' mutables+=MutableRef*)?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//'mutable'
+		public Keyword getMutableKeyword_5_0() { return cMutableKeyword_5_0; }
+		
+		//mutables+=MutableRef*
+		public Assignment getMutablesAssignment_5_1() { return cMutablesAssignment_5_1; }
+		
+		//MutableRef
+		public RuleCall getMutablesMutableRefParserRuleCall_5_1_0() { return cMutablesMutableRefParserRuleCall_5_1_0; }
+		
 		//methods+=AlexMethod*
-		public Assignment getMethodsAssignment_5() { return cMethodsAssignment_5; }
+		public Assignment getMethodsAssignment_6() { return cMethodsAssignment_6; }
 		
 		//AlexMethod
-		public RuleCall getMethodsAlexMethodParserRuleCall_5_0() { return cMethodsAlexMethodParserRuleCall_5_0; }
+		public RuleCall getMethodsAlexMethodParserRuleCall_6_0() { return cMethodsAlexMethodParserRuleCall_6_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+	}
+	public class MutableRefElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.inria.diverse.alex.xtext.Alex.MutableRef");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameValidIDParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//MutableRef:
+		//	name=ValidID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=ValidID
+		public Assignment getNameAssignment() { return cNameAssignment; }
+		
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_0() { return cNameValidIDParserRuleCall_0; }
 	}
 	public class AlexMethodElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.inria.diverse.alex.xtext.Alex.AlexMethod");
@@ -522,6 +555,7 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 	private final EcoreImportElements pEcoreImport;
 	private final AlexImportElements pAlexImport;
 	private final AlexClassElements pAlexClass;
+	private final MutableRefElements pMutableRef;
 	private final AlexMethodElements pAlexMethod;
 	private final ConcreteMethodElements pConcreteMethod;
 	private final AbstractMethodElements pAbstractMethod;
@@ -546,6 +580,7 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 		this.pEcoreImport = new EcoreImportElements();
 		this.pAlexImport = new AlexImportElements();
 		this.pAlexClass = new AlexClassElements();
+		this.pMutableRef = new MutableRefElements();
 		this.pAlexMethod = new AlexMethodElements();
 		this.pConcreteMethod = new ConcreteMethodElements();
 		this.pAbstractMethod = new AbstractMethodElements();
@@ -627,13 +662,25 @@ public class AlexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AlexClass:
-	//	'open' abstract?='abstract'? 'class' name=ValidID '{' methods+=AlexMethod* '}';
+	//	'open' abstract?='abstract'? 'class' name=ValidID '{' ('mutable' mutables+=MutableRef*)?
+	//	methods+=AlexMethod*
+	//	'}';
 	public AlexClassElements getAlexClassAccess() {
 		return pAlexClass;
 	}
 	
 	public ParserRule getAlexClassRule() {
 		return getAlexClassAccess().getRule();
+	}
+	
+	//MutableRef:
+	//	name=ValidID;
+	public MutableRefElements getMutableRefAccess() {
+		return pMutableRef;
+	}
+	
+	public ParserRule getMutableRefRule() {
+		return getMutableRefAccess().getRule();
 	}
 	
 	//AlexMethod:

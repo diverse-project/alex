@@ -13,7 +13,7 @@ package boa.model.boa;
  * <ul>
  *   <li>{@link boa.model.boa.If#getCond <em>Cond</em>}</li>
  *   <li>{@link boa.model.boa.If#getThen <em>Then</em>}</li>
- *   <li>{@link boa.model.boa.If#getElse <em>Else</em>}</li>
+ *   <li>{@link boa.model.boa.If#getEls <em>Els</em>}</li>
  * </ul>
  *
  * @see boa.model.boa.BoaPackage#getIf()
@@ -74,29 +74,29 @@ public interface If extends Expr {
 	void setThen(Expr value);
 
 	/**
-	 * Returns the value of the '<em><b>Else</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Els</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Else</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Els</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Else</em>' containment reference.
-	 * @see #setElse(Expr)
-	 * @see boa.model.boa.BoaPackage#getIf_Else()
+	 * @return the value of the '<em>Els</em>' containment reference.
+	 * @see #setEls(Expr)
+	 * @see boa.model.boa.BoaPackage#getIf_Els()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	Expr getElse();
+	Expr getEls();
 
 	/**
-	 * Sets the value of the '{@link boa.model.boa.If#getElse <em>Else</em>}' containment reference.
+	 * Sets the value of the '{@link boa.model.boa.If#getEls <em>Els</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Else</em>' containment reference.
-	 * @see #getElse()
+	 * @param value the new value of the '<em>Els</em>' containment reference.
+	 * @see #getEls()
 	 * @generated
 	 */
-	void setElse(Expr value);
+	void setEls(Expr value);
 
 } // If

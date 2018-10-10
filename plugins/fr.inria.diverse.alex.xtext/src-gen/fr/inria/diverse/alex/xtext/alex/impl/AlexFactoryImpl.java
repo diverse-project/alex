@@ -70,6 +70,7 @@ public class AlexFactoryImpl extends EFactoryImpl implements AlexFactory
       case AlexPackage.ECORE_IMPORT: return createEcoreImport();
       case AlexPackage.ALEX_IMPORT: return createAlexImport();
       case AlexPackage.ALEX_CLASS: return createAlexClass();
+      case AlexPackage.MUTABLE_REF: return createMutableRef();
       case AlexPackage.ALEX_METHOD: return createAlexMethod();
       case AlexPackage.CONCRETE_METHOD: return createConcreteMethod();
       case AlexPackage.ABSTRACT_METHOD: return createAbstractMethod();
@@ -133,6 +134,17 @@ public class AlexFactoryImpl extends EFactoryImpl implements AlexFactory
   {
     AlexClassImpl alexClass = new AlexClassImpl();
     return alexClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MutableRef createMutableRef()
+  {
+    MutableRefImpl mutableRef = new MutableRefImpl();
+    return mutableRef;
   }
 
   /**

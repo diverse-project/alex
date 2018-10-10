@@ -14,6 +14,7 @@ import fr.inria.diverse.alex.xtext.alex.CompileTarget;
 import fr.inria.diverse.alex.xtext.alex.ConcreteMethod;
 import fr.inria.diverse.alex.xtext.alex.DefMethod;
 import fr.inria.diverse.alex.xtext.alex.EcoreImport;
+import fr.inria.diverse.alex.xtext.alex.MutableRef;
 import fr.inria.diverse.alex.xtext.alex.OverrideMethod;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -71,6 +72,13 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
    * @generated
    */
   private EClass alexClassEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mutableRefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -360,9 +368,39 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAlexClass_Methods()
+  public EReference getAlexClass_Mutables()
   {
     return (EReference)alexClassEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAlexClass_Methods()
+  {
+    return (EReference)alexClassEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMutableRef()
+  {
+    return mutableRefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMutableRef_Name()
+  {
+    return (EAttribute)mutableRefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -507,7 +545,11 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
     alexClassEClass = createEClass(ALEX_CLASS);
     createEAttribute(alexClassEClass, ALEX_CLASS__ABSTRACT);
     createEAttribute(alexClassEClass, ALEX_CLASS__NAME);
+    createEReference(alexClassEClass, ALEX_CLASS__MUTABLES);
     createEReference(alexClassEClass, ALEX_CLASS__METHODS);
+
+    mutableRefEClass = createEClass(MUTABLE_REF);
+    createEAttribute(mutableRefEClass, MUTABLE_REF__NAME);
 
     alexMethodEClass = createEClass(ALEX_METHOD);
     createEReference(alexMethodEClass, ALEX_METHOD__TYPE);
@@ -586,7 +628,11 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
     initEClass(alexClassEClass, AlexClass.class, "AlexClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAlexClass_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, AlexClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAlexClass_Name(), ecorePackage.getEString(), "name", null, 0, 1, AlexClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAlexClass_Mutables(), this.getMutableRef(), null, "mutables", null, 0, -1, AlexClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAlexClass_Methods(), this.getAlexMethod(), null, "methods", null, 0, -1, AlexClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mutableRefEClass, MutableRef.class, "MutableRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMutableRef_Name(), ecorePackage.getEString(), "name", null, 0, 1, MutableRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(alexMethodEClass, AlexMethod.class, "AlexMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAlexMethod_Type(), theTypesPackage.getJvmTypeReference(), null, "type", null, 0, 1, AlexMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

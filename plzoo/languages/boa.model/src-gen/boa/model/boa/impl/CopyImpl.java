@@ -5,6 +5,7 @@ package boa.model.boa.impl;
 import boa.model.boa.BoaPackage;
 import boa.model.boa.Copy;
 import boa.model.boa.Expr;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 

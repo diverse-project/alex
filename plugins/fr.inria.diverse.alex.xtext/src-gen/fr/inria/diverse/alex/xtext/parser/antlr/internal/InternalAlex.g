@@ -423,11 +423,36 @@ ruleAlexClass returns [EObject current=null]
 			newLeafNode(otherlv_4, grammarAccess.getAlexClassAccess().getLeftCurlyBracketKeyword_4());
 		}
 		(
+			otherlv_5='mutable'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getAlexClassAccess().getMutableKeyword_5_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAlexClassAccess().getMutablesMutableRefParserRuleCall_5_1_0());
+					}
+					lv_mutables_6_0=ruleMutableRef
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAlexClassRule());
+						}
+						add(
+							$current,
+							"mutables",
+							lv_mutables_6_0,
+							"fr.inria.diverse.alex.xtext.Alex.MutableRef");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)*
+		)?
+		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAlexClassAccess().getMethodsAlexMethodParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getAlexClassAccess().getMethodsAlexMethodParserRuleCall_6_0());
 				}
-				lv_methods_5_0=ruleAlexMethod
+				lv_methods_7_0=ruleAlexMethod
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAlexClassRule());
@@ -435,16 +460,52 @@ ruleAlexClass returns [EObject current=null]
 					add(
 						$current,
 						"methods",
-						lv_methods_5_0,
+						lv_methods_7_0,
 						"fr.inria.diverse.alex.xtext.Alex.AlexMethod");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_6='}'
+		otherlv_8='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getAlexClassAccess().getRightCurlyBracketKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getAlexClassAccess().getRightCurlyBracketKeyword_7());
 		}
+	)
+;
+
+// Entry rule entryRuleMutableRef
+entryRuleMutableRef returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMutableRefRule()); }
+	iv_ruleMutableRef=ruleMutableRef
+	{ $current=$iv_ruleMutableRef.current; }
+	EOF;
+
+// Rule MutableRef
+ruleMutableRef returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getMutableRefAccess().getNameValidIDParserRuleCall_0());
+			}
+			lv_name_0_0=ruleValidID
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getMutableRefRule());
+				}
+				set(
+					$current,
+					"name",
+					lv_name_0_0,
+					"org.eclipse.xtext.xbase.Xtype.ValidID");
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

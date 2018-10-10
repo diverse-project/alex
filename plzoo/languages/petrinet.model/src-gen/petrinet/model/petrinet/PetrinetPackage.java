@@ -241,31 +241,13 @@ public interface PetrinetPackage extends EPackage {
 	int TRANSITION__INCOMMING = NODE__INCOMMING;
 
 	/**
-	 * The feature id for the '<em><b>Min Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__MIN_TIME = NODE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Max Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__MAX_TIME = NODE_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
+	int TRANSITION_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Transition</em>' class.
@@ -458,28 +440,6 @@ public interface PetrinetPackage extends EPackage {
 	EClass getTransition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link petrinet.model.petrinet.Transition#getMinTime <em>Min Time</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Min Time</em>'.
-	 * @see petrinet.model.petrinet.Transition#getMinTime()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EAttribute getTransition_MinTime();
-
-	/**
-	 * Returns the meta object for the attribute '{@link petrinet.model.petrinet.Transition#getMaxTime <em>Max Time</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Max Time</em>'.
-	 * @see petrinet.model.petrinet.Transition#getMaxTime()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EAttribute getTransition_MaxTime();
-
-	/**
 	 * Returns the meta object for class '{@link petrinet.model.petrinet.Place <em>Place</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -618,22 +578,6 @@ public interface PetrinetPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TRANSITION = eINSTANCE.getTransition();
-
-		/**
-		 * The meta object literal for the '<em><b>Min Time</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSITION__MIN_TIME = eINSTANCE.getTransition_MinTime();
-
-		/**
-		 * The meta object literal for the '<em><b>Max Time</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSITION__MAX_TIME = eINSTANCE.getTransition_MaxTime();
 
 		/**
 		 * The meta object literal for the '{@link petrinet.model.petrinet.impl.PlaceImpl <em>Place</em>}' class.

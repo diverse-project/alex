@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexClass#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexClass#getName <em>Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexClass#getMutables <em>Mutables</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.AlexClass#getMethods <em>Methods</em>}</li>
  * </ul>
  *
@@ -78,6 +79,22 @@ public interface AlexClass extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Mutables</b></em>' containment reference list.
+   * The list contents are of type {@link fr.inria.diverse.alex.xtext.alex.MutableRef}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Mutables</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Mutables</em>' containment reference list.
+   * @see fr.inria.diverse.alex.xtext.alex.AlexPackage#getAlexClass_Mutables()
+   * @model containment="true"
+   * @generated
+   */
+  EList<MutableRef> getMutables();
 
   /**
    * Returns the value of the '<em><b>Methods</b></em>' containment reference list.

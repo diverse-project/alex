@@ -28,7 +28,11 @@
     <genClasses ecoreClass="Alex.ecore#//AlexClass">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alex.ecore#//AlexClass/abstract"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alex.ecore#//AlexClass/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alex.ecore#//AlexClass/mutables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alex.ecore#//AlexClass/methods"/>
+    </genClasses>
+    <genClasses ecoreClass="Alex.ecore#//MutableRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alex.ecore#//MutableRef/name"/>
     </genClasses>
     <genClasses ecoreClass="Alex.ecore#//AlexMethod">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alex.ecore#//AlexMethod/type"/>

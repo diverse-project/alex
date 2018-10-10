@@ -108,6 +108,13 @@ public class AlexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AlexPackage.MUTABLE_REF:
+      {
+        MutableRef mutableRef = (MutableRef)theEObject;
+        T result = caseMutableRef(mutableRef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AlexPackage.ALEX_METHOD:
       {
         AlexMethod alexMethod = (AlexMethod)theEObject;
@@ -229,6 +236,22 @@ public class AlexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAlexClass(AlexClass object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Mutable Ref</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Mutable Ref</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMutableRef(MutableRef object)
   {
     return null;
   }

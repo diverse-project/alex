@@ -227,24 +227,6 @@ public class PetrinetPackageImpl extends EPackageImpl implements PetrinetPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransition_MinTime() {
-		return (EAttribute) transitionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTransition_MaxTime() {
-		return (EAttribute) transitionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPlace() {
 		return placeEClass;
 	}
@@ -301,8 +283,6 @@ public class PetrinetPackageImpl extends EPackageImpl implements PetrinetPackage
 		createEReference(arcEClass, ARC__TARGET);
 
 		transitionEClass = createEClass(TRANSITION);
-		createEAttribute(transitionEClass, TRANSITION__MIN_TIME);
-		createEAttribute(transitionEClass, TRANSITION__MAX_TIME);
 
 		placeEClass = createEClass(PLACE);
 		createEAttribute(placeEClass, PLACE__TOKEN_NB);
@@ -370,10 +350,6 @@ public class PetrinetPackageImpl extends EPackageImpl implements PetrinetPackage
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransition_MinTime(), ecorePackage.getEInt(), "minTime", null, 0, 1, Transition.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTransition_MaxTime(), ecorePackage.getEInt(), "maxTime", null, 0, 1, Transition.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(placeEClass, Place.class, "Place", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPlace_TokenNb(), ecorePackage.getEInt(), "tokenNb", null, 0, 1, Place.class, !IS_TRANSIENT,

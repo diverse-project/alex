@@ -16,7 +16,7 @@ package boa.model.boa;
  * </ul>
  *
  * @see boa.model.boa.BoaPackage#getCmpOp()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface CmpOp extends Expr {

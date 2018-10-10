@@ -18,7 +18,14 @@ AlexImport:
 	'import' 'alex' ref=[AlexRoot];
 
 AlexClass:
-	'open' (abstract?='abstract')? 'class' name=ValidID '{' methods+=AlexMethod* '}';
+	'open' (abstract?='abstract')? 'class' name=ValidID '{'
+		('mutable' mutables+=MutableRef*)? 
+		methods+=AlexMethod*
+	'}';
+	
+MutableRef:
+	name=ValidID
+;
 
 AlexMethod:
 	AbstractMethod | ConcreteMethod;

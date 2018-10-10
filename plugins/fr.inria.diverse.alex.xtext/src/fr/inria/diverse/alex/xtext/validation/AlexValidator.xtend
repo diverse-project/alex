@@ -27,6 +27,7 @@ class AlexValidator extends AbstractAlexValidator {
 	public static final String OVERRIDE_MISSING = "OVERRIDE_MISSING"
 	public static final String SUPERFLUOUS_OVERRIDE = "SUPERFLUOUS_OVERRIDE"
 	public static final String NO_CONCRETE_IN_REQUIRED = "NO_CONCRETE_IN_REQUIRED"
+	public static final String MUT_REF_DOES_NOT_EXIST = "MUT_REF_DOES_NOT_EXIST"
 	public val CONCRETE_CLASS_WITH_ABSTRACT_METHODS = "CONCRETE_CLASS_WITH_ABSTRACT_METHODS"
 
 	@Check
@@ -75,7 +76,7 @@ class AlexValidator extends AbstractAlexValidator {
 			error(
 				"Cannot find corresponding concept " + alexClass.name,
 				alexClass,
-				AlexPackage.Literals.ALEX_CLASS__NAME, 
+				AlexPackage.Literals.ALEX_CLASS__NAME,
 				UNKNOWN_OPENCLASS
 			)
 	}
@@ -86,8 +87,9 @@ class AlexValidator extends AbstractAlexValidator {
 		val eCls = alexCls.getMatchingEClass
 
 		if (!alexCls.abstract && !eCls.hasRequiredAnnotation && !root.allEClasses.exists[ESuperTypes.contains(eCls)]) {
-			alexCls.methods.filter(AbstractMethod).forEach[m |
-				error('''The method «m.name» cannot be abstract as there are no subclasses to implement it.''',
+			alexCls.methods.filter(AbstractMethod).forEach [ m |
+				error(
+					'''The method «m.name» cannot be abstract as there are no subclasses to implement it.''',
 					m,
 					AlexPackage.Literals.ALEX_METHOD__NAME,
 					NO_ABSTRACT_METHOD_IF_NO_SUBCLASS
@@ -99,7 +101,8 @@ class AlexValidator extends AbstractAlexValidator {
 	@Check
 	def void checkAlexClassUniqueness(AlexClass alexCls) {
 		if (alexCls.root.classes.exists[alexCls != it && name == alexCls.name])
-			error("Duplicate open-class " + alexCls.name + " in " + alexCls.root.name,
+			error(
+				"Duplicate open-class " + alexCls.name + " in " + alexCls.root.name,
 				alexCls,
 				AlexPackage.Literals.ALEX_CLASS__NAME,
 				fr.inria.diverse.alex.xtext.validation.AlexValidator.ALEXCLASS_NAME_UNIQUENESS
@@ -114,15 +117,13 @@ class AlexValidator extends AbstractAlexValidator {
 		if (!alexCls.abstract && !eCls.hasRequiredAnnotation && !root.allEClasses.exists[ESuperTypes.contains(eCls)]) {
 			val abst = alexCls.getAllMethods(true).filter(AbstractMethod)
 
-			val notImpl =
-				abst.filter[am |
-					!alexCls.getAllMethods(true)
-					.filter(ConcreteMethod)
-					.exists[cm | cm != am && cm.overrides(am)]
-				]
+			val notImpl = abst.filter [ am |
+				!alexCls.getAllMethods(true).filter(ConcreteMethod).exists[cm|cm != am && cm.overrides(am)]
+			]
 
 			if (!notImpl.empty)
-				error('''«alexCls.name» must implement the following inherited abstract methods: «notImpl.map[name].join(", ")»''',
+				error(
+					'''«alexCls.name» must implement the following inherited abstract methods: «notImpl.map[name].join(", ")»''',
 					alexCls,
 					AlexPackage.Literals.ALEX_CLASS__NAME,
 					ABSTRACT_METHOD_NOT_IMPL
@@ -165,11 +166,31 @@ class AlexValidator extends AbstractAlexValidator {
 				NO_CONCRETE_IN_REQUIRED
 			)
 	}
-	
+
 	@Check
 	def void concreteClassWithAbstractMethods(AlexClass alexClass) {
-		if(!alexClass.abstract && !alexClass.methods.filter(AbstractMethod).empty) {
-			error('''A class with abstract methods must be declared abstract''', alexClass, AlexPackage.Literals::ALEX_CLASS__NAME, CONCRETE_CLASS_WITH_ABSTRACT_METHODS)
-		}		
+		if (!alexClass.abstract && !alexClass.methods.filter(AbstractMethod).empty) {
+			error('''A class with abstract methods must be declared abstract''', alexClass,
+				AlexPackage.Literals::ALEX_CLASS__NAME, CONCRETE_CLASS_WITH_ABSTRACT_METHODS)
+		}
+	}
+
+	@Check
+	def void checkMutable(AlexClass alexClass) {
+		val eClass = alexClass.root.allEClasses.filter[name == alexClass.name].head
+		if (eClass !== null) {
+			alexClass.mutables.forEach [ mut |
+				if (!eClass.EStructuralFeatures.exists [
+					it.name == mut.name
+				]) {
+					error(
+						'''Field «mut.name» does not exist in class «eClass»''',
+						mut,
+						AlexPackage.Literals::MUTABLE_REF__NAME,
+						MUT_REF_DOES_NOT_EXIST
+					)
+				}
+			]
+		}
 	}
 }

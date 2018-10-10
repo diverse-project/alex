@@ -115,7 +115,11 @@ def String interfaceFQN(EClass clazz, CompileTarget compileTarget) {
 	def String packageImplName(CompileTarget compileTarget) {
 		'''«compileTarget.basePackage».impl.«compileTarget.name.toFirstUpper»PackageImpl'''
 	}
-	
+
+
+	def String normalizeUpperField(String input) {
+		'''«CodeGenUtil.format(input, '_', '', false, false)»'''.toString.toUpperCase
+	}	
 	
 	def String normalizeUpperField(String input, String className) {
 		'''«CodeGenUtil.format(className, '_', '', false, false)»__«CodeGenUtil.format(input, '_', '', false, false)»'''.toString.toUpperCase

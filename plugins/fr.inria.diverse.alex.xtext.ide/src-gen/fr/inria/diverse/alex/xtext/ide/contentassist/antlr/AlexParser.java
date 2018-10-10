@@ -78,6 +78,7 @@ public class AlexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEcoreImportAccess().getGroup(), "rule__EcoreImport__Group__0");
 			builder.put(grammarAccess.getAlexImportAccess().getGroup(), "rule__AlexImport__Group__0");
 			builder.put(grammarAccess.getAlexClassAccess().getGroup(), "rule__AlexClass__Group__0");
+			builder.put(grammarAccess.getAlexClassAccess().getGroup_5(), "rule__AlexClass__Group_5__0");
 			builder.put(grammarAccess.getAbstractMethodAccess().getGroup(), "rule__AbstractMethod__Group__0");
 			builder.put(grammarAccess.getAbstractMethodAccess().getGroup_5(), "rule__AbstractMethod__Group_5__0");
 			builder.put(grammarAccess.getAbstractMethodAccess().getGroup_5_1(), "rule__AbstractMethod__Group_5_1__0");
@@ -279,7 +280,9 @@ public class AlexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAlexImportAccess().getRefAssignment_2(), "rule__AlexImport__RefAssignment_2");
 			builder.put(grammarAccess.getAlexClassAccess().getAbstractAssignment_1(), "rule__AlexClass__AbstractAssignment_1");
 			builder.put(grammarAccess.getAlexClassAccess().getNameAssignment_3(), "rule__AlexClass__NameAssignment_3");
-			builder.put(grammarAccess.getAlexClassAccess().getMethodsAssignment_5(), "rule__AlexClass__MethodsAssignment_5");
+			builder.put(grammarAccess.getAlexClassAccess().getMutablesAssignment_5_1(), "rule__AlexClass__MutablesAssignment_5_1");
+			builder.put(grammarAccess.getAlexClassAccess().getMethodsAssignment_6(), "rule__AlexClass__MethodsAssignment_6");
+			builder.put(grammarAccess.getMutableRefAccess().getNameAssignment(), "rule__MutableRef__NameAssignment");
 			builder.put(grammarAccess.getAbstractMethodAccess().getTypeAssignment_2(), "rule__AbstractMethod__TypeAssignment_2");
 			builder.put(grammarAccess.getAbstractMethodAccess().getNameAssignment_3(), "rule__AbstractMethod__NameAssignment_3");
 			builder.put(grammarAccess.getAbstractMethodAccess().getParamsAssignment_5_0(), "rule__AbstractMethod__ParamsAssignment_5_0");

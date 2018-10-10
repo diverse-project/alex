@@ -261,13 +261,22 @@ public interface AlexPackage extends EPackage
   int ALEX_CLASS__NAME = 1;
 
   /**
+   * The feature id for the '<em><b>Mutables</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ALEX_CLASS__MUTABLES = 2;
+
+  /**
    * The feature id for the '<em><b>Methods</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ALEX_CLASS__METHODS = 2;
+  int ALEX_CLASS__METHODS = 3;
 
   /**
    * The number of structural features of the '<em>Class</em>' class.
@@ -276,7 +285,35 @@ public interface AlexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ALEX_CLASS_FEATURE_COUNT = 3;
+  int ALEX_CLASS_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link fr.inria.diverse.alex.xtext.alex.impl.MutableRefImpl <em>Mutable Ref</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see fr.inria.diverse.alex.xtext.alex.impl.MutableRefImpl
+   * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getMutableRef()
+   * @generated
+   */
+  int MUTABLE_REF = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MUTABLE_REF__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Mutable Ref</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MUTABLE_REF_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link fr.inria.diverse.alex.xtext.alex.impl.AlexMethodImpl <em>Method</em>}' class.
@@ -286,7 +323,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getAlexMethod()
    * @generated
    */
-  int ALEX_METHOD = 5;
+  int ALEX_METHOD = 6;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -332,7 +369,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getConcreteMethod()
    * @generated
    */
-  int CONCRETE_METHOD = 6;
+  int CONCRETE_METHOD = 7;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -387,7 +424,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getAbstractMethod()
    * @generated
    */
-  int ABSTRACT_METHOD = 7;
+  int ABSTRACT_METHOD = 8;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -433,7 +470,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getDefMethod()
    * @generated
    */
-  int DEF_METHOD = 8;
+  int DEF_METHOD = 9;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -488,7 +525,7 @@ public interface AlexPackage extends EPackage
    * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getOverrideMethod()
    * @generated
    */
-  int OVERRIDE_METHOD = 9;
+  int OVERRIDE_METHOD = 10;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -730,6 +767,17 @@ public interface AlexPackage extends EPackage
   EAttribute getAlexClass_Name();
 
   /**
+   * Returns the meta object for the containment reference list '{@link fr.inria.diverse.alex.xtext.alex.AlexClass#getMutables <em>Mutables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Mutables</em>'.
+   * @see fr.inria.diverse.alex.xtext.alex.AlexClass#getMutables()
+   * @see #getAlexClass()
+   * @generated
+   */
+  EReference getAlexClass_Mutables();
+
+  /**
    * Returns the meta object for the containment reference list '{@link fr.inria.diverse.alex.xtext.alex.AlexClass#getMethods <em>Methods</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -739,6 +787,27 @@ public interface AlexPackage extends EPackage
    * @generated
    */
   EReference getAlexClass_Methods();
+
+  /**
+   * Returns the meta object for class '{@link fr.inria.diverse.alex.xtext.alex.MutableRef <em>Mutable Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mutable Ref</em>'.
+   * @see fr.inria.diverse.alex.xtext.alex.MutableRef
+   * @generated
+   */
+  EClass getMutableRef();
+
+  /**
+   * Returns the meta object for the attribute '{@link fr.inria.diverse.alex.xtext.alex.MutableRef#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see fr.inria.diverse.alex.xtext.alex.MutableRef#getName()
+   * @see #getMutableRef()
+   * @generated
+   */
+  EAttribute getMutableRef_Name();
 
   /**
    * Returns the meta object for class '{@link fr.inria.diverse.alex.xtext.alex.AlexMethod <em>Method</em>}'.
@@ -1012,12 +1081,38 @@ public interface AlexPackage extends EPackage
     EAttribute ALEX_CLASS__NAME = eINSTANCE.getAlexClass_Name();
 
     /**
+     * The meta object literal for the '<em><b>Mutables</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ALEX_CLASS__MUTABLES = eINSTANCE.getAlexClass_Mutables();
+
+    /**
      * The meta object literal for the '<em><b>Methods</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference ALEX_CLASS__METHODS = eINSTANCE.getAlexClass_Methods();
+
+    /**
+     * The meta object literal for the '{@link fr.inria.diverse.alex.xtext.alex.impl.MutableRefImpl <em>Mutable Ref</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see fr.inria.diverse.alex.xtext.alex.impl.MutableRefImpl
+     * @see fr.inria.diverse.alex.xtext.alex.impl.AlexPackageImpl#getMutableRef()
+     * @generated
+     */
+    EClass MUTABLE_REF = eINSTANCE.getMutableRef();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MUTABLE_REF__NAME = eINSTANCE.getMutableRef_Name();
 
     /**
      * The meta object literal for the '{@link fr.inria.diverse.alex.xtext.alex.impl.AlexMethodImpl <em>Method</em>}' class.

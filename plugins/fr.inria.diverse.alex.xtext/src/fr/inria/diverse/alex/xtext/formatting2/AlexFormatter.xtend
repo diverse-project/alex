@@ -14,11 +14,10 @@ import org.eclipse.xtext.formatting2.IFormattableDocument
 import org.eclipse.xtext.xbase.formatting2.XbaseFormatter
 
 class AlexFormatter extends XbaseFormatter {
-	
+
 	@Inject extension AlexGrammarAccess
 
 	def dispatch void format(AlexRoot alexRoot, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
 		alexRoot.getJavaImports.format;
 		alexRoot.getEcoreImport.format;
 		for (AlexImport alexImport : alexRoot.getAlexImports()) {
@@ -30,21 +29,19 @@ class AlexFormatter extends XbaseFormatter {
 	}
 
 	def dispatch void format(AlexClass alexClass, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc.
-		
 		val openBracket = alexClass.regionFor.keyword(alexClassAccess.leftCurlyBracketKeyword_4)
-		val closeBracket = alexClass.regionFor.keyword(alexClassAccess.rightCurlyBracketKeyword_6)
-		
+		val closeBracket = alexClass.regionFor.keyword(alexClassAccess.rightCurlyBracketKeyword_7)
+
 		interior(openBracket, closeBracket)[indent]
-			openBracket.append[setNewLines(1,1,2)]
-		 
+		openBracket.append[setNewLines(1, 1, 2)]
+
 		for (AlexMethod alexMethod : alexClass.getMethods()) {
 			alexMethod.format;
 		}
 	}
-	
+
 	def dispatch void format(ConcreteMethod alexMethod, extension IFormattableDocument document) {
-			alexMethod.block.format
+		alexMethod.block.format
 	}
-	
+
 }

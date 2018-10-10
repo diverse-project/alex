@@ -83,10 +83,6 @@ public class BoaFactoryImpl extends EFactoryImpl implements BoaFactory {
 			return createWith();
 		case BoaPackage.NOT:
 			return createNot();
-		case BoaPackage.CMP_OP:
-			return createCmpOp();
-		case BoaPackage.BOOL_OP:
-			return createBoolOp();
 		case BoaPackage.IF:
 			return createIf();
 		case BoaPackage.LET:
@@ -105,20 +101,18 @@ public class BoaFactoryImpl extends EFactoryImpl implements BoaFactory {
 			return createArithOpDivide();
 		case BoaPackage.ARITH_OP_REMAINDER:
 			return createArithOpRemainder();
-		case BoaPackage.BOOL_OP_NOT:
-			return createBoolOpNot();
-		case BoaPackage.BOOL_OP_LESS:
-			return createBoolOpLess();
-		case BoaPackage.BOOL_OP_EQUAL:
-			return createBoolOpEqual();
-		case BoaPackage.BOOL_OP_UNEQUAL:
-			return createBoolOpUnequal();
 		case BoaPackage.BOOL_OP_AND:
 			return createBoolOpAnd();
 		case BoaPackage.BOOL_OP_OR:
 			return createBoolOpOr();
 		case BoaPackage.SEQ:
 			return createSeq();
+		case BoaPackage.CMP_OP_EQUAL:
+			return createCmpOpEqual();
+		case BoaPackage.CMP_OP_UNEQUAL:
+			return createCmpOpUnequal();
+		case BoaPackage.CMP_OP_LESS:
+			return createCmpOpLess();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -269,26 +263,6 @@ public class BoaFactoryImpl extends EFactoryImpl implements BoaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CmpOp createCmpOp() {
-		CmpOpImpl cmpOp = new CmpOpImpl();
-		return cmpOp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BoolOp createBoolOp() {
-		BoolOpImpl boolOp = new BoolOpImpl();
-		return boolOp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public If createIf() {
 		IfImpl if_ = new IfImpl();
 		return if_;
@@ -379,46 +353,6 @@ public class BoaFactoryImpl extends EFactoryImpl implements BoaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BoolOpNot createBoolOpNot() {
-		BoolOpNotImpl boolOpNot = new BoolOpNotImpl();
-		return boolOpNot;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BoolOpLess createBoolOpLess() {
-		BoolOpLessImpl boolOpLess = new BoolOpLessImpl();
-		return boolOpLess;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BoolOpEqual createBoolOpEqual() {
-		BoolOpEqualImpl boolOpEqual = new BoolOpEqualImpl();
-		return boolOpEqual;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BoolOpUnequal createBoolOpUnequal() {
-		BoolOpUnequalImpl boolOpUnequal = new BoolOpUnequalImpl();
-		return boolOpUnequal;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BoolOpAnd createBoolOpAnd() {
 		BoolOpAndImpl boolOpAnd = new BoolOpAndImpl();
 		return boolOpAnd;
@@ -442,6 +376,36 @@ public class BoaFactoryImpl extends EFactoryImpl implements BoaFactory {
 	public Seq createSeq() {
 		SeqImpl seq = new SeqImpl();
 		return seq;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CmpOpEqual createCmpOpEqual() {
+		CmpOpEqualImpl cmpOpEqual = new CmpOpEqualImpl();
+		return cmpOpEqual;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CmpOpUnequal createCmpOpUnequal() {
+		CmpOpUnequalImpl cmpOpUnequal = new CmpOpUnequalImpl();
+		return cmpOpUnequal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CmpOpLess createCmpOpLess() {
+		CmpOpLessImpl cmpOpLess = new CmpOpLessImpl();
+		return cmpOpLess;
 	}
 
 	/**

@@ -6,6 +6,7 @@ package fr.inria.diverse.alex.xtext.alex.impl;
 import fr.inria.diverse.alex.xtext.alex.AlexClass;
 import fr.inria.diverse.alex.xtext.alex.AlexMethod;
 import fr.inria.diverse.alex.xtext.alex.AlexPackage;
+import fr.inria.diverse.alex.xtext.alex.MutableRef;
 
 import java.util.Collection;
 
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexClassImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexClassImpl#getName <em>Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexClassImpl#getMutables <em>Mutables</em>}</li>
  *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.AlexClassImpl#getMethods <em>Methods</em>}</li>
  * </ul>
  *
@@ -79,6 +81,16 @@ public class AlexClassImpl extends MinimalEObjectImpl.Container implements AlexC
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getMutables() <em>Mutables</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMutables()
+   * @generated
+   * @ordered
+   */
+  protected EList<MutableRef> mutables;
 
   /**
    * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
@@ -162,6 +174,20 @@ public class AlexClassImpl extends MinimalEObjectImpl.Container implements AlexC
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<MutableRef> getMutables()
+  {
+    if (mutables == null)
+    {
+      mutables = new EObjectContainmentEList<MutableRef>(MutableRef.class, this, AlexPackage.ALEX_CLASS__MUTABLES);
+    }
+    return mutables;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<AlexMethod> getMethods()
   {
     if (methods == null)
@@ -181,6 +207,8 @@ public class AlexClassImpl extends MinimalEObjectImpl.Container implements AlexC
   {
     switch (featureID)
     {
+      case AlexPackage.ALEX_CLASS__MUTABLES:
+        return ((InternalEList<?>)getMutables()).basicRemove(otherEnd, msgs);
       case AlexPackage.ALEX_CLASS__METHODS:
         return ((InternalEList<?>)getMethods()).basicRemove(otherEnd, msgs);
     }
@@ -201,6 +229,8 @@ public class AlexClassImpl extends MinimalEObjectImpl.Container implements AlexC
         return isAbstract();
       case AlexPackage.ALEX_CLASS__NAME:
         return getName();
+      case AlexPackage.ALEX_CLASS__MUTABLES:
+        return getMutables();
       case AlexPackage.ALEX_CLASS__METHODS:
         return getMethods();
     }
@@ -223,6 +253,10 @@ public class AlexClassImpl extends MinimalEObjectImpl.Container implements AlexC
         return;
       case AlexPackage.ALEX_CLASS__NAME:
         setName((String)newValue);
+        return;
+      case AlexPackage.ALEX_CLASS__MUTABLES:
+        getMutables().clear();
+        getMutables().addAll((Collection<? extends MutableRef>)newValue);
         return;
       case AlexPackage.ALEX_CLASS__METHODS:
         getMethods().clear();
@@ -248,6 +282,9 @@ public class AlexClassImpl extends MinimalEObjectImpl.Container implements AlexC
       case AlexPackage.ALEX_CLASS__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case AlexPackage.ALEX_CLASS__MUTABLES:
+        getMutables().clear();
+        return;
       case AlexPackage.ALEX_CLASS__METHODS:
         getMethods().clear();
         return;
@@ -269,6 +306,8 @@ public class AlexClassImpl extends MinimalEObjectImpl.Container implements AlexC
         return abstract_ != ABSTRACT_EDEFAULT;
       case AlexPackage.ALEX_CLASS__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AlexPackage.ALEX_CLASS__MUTABLES:
+        return mutables != null && !mutables.isEmpty();
       case AlexPackage.ALEX_CLASS__METHODS:
         return methods != null && !methods.isEmpty();
     }
