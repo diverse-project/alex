@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: tycho.demo.itp01:fr.inria.diverse.alex.emf.truffle:1.0.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/tycho/demo/itp01/fr.inria.diverse.alex.emf.truffle/1.0.0-SNAPSHOT/fr.inria.diverse.alex.emf.truffle-1.0.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/tycho/demo/itp01/fr.inria.diverse.alex.emf.truffle/1.0.0-SNAPSHOT/fr.inria.diverse.alex.emf.truffle-1.0.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/tycho/demo/itp01/fr.inria.diverse.alex.emf.truffle/1.0.0-SNAPSHOT/fr.inria.diverse.alex.emf.truffle-1.0.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

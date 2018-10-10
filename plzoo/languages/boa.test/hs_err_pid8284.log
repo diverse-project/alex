@@ -1,0 +1,720 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 160432128 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2640), pid=8284, tid=0x00007f701b545700
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_172-b11) (build 1.8.0_172-b11)
+# Java VM: GraalVM 1.0.0-rc7 (25.71-b01-internal-jvmci-0.48 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f7038145000):  VMThread [stack: 0x00007f701b446000,0x00007f701b546000] [id=8293]
+
+Stack: [0x00007f701b446000,0x00007f701b546000],  sp=0x00007f701b544420,  free space=1017k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xb2de61]  VMError::report_and_die()+0x151
+V  [libjvm.so+0x505647]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0x67
+V  [libjvm.so+0x9751e8]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0xd8
+V  [libjvm.so+0x96fd8f]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x1f
+V  [libjvm.so+0x9ede0b]  PSVirtualSpace::expand_by(unsigned long)+0x5b
+V  [libjvm.so+0x9ef09b]  PSYoungGen::resize(unsigned long, unsigned long)+0xdb
+V  [libjvm.so+0x9ebace]  PSScavenge::invoke_no_policy()+0x14be
+V  [libjvm.so+0x9ebd8c]  PSScavenge::invoke()+0x4c
+V  [libjvm.so+0x99db03]  ParallelScavengeHeap::failed_mem_allocate(unsigned long)+0x63
+V  [libjvm.so+0xb2f943]  VM_ParallelGCFailedAllocation::doit()+0x83
+V  [libjvm.so+0xb368f7]  VM_Operation::evaluate()+0x47
+V  [libjvm.so+0xb34f11]  VMThread::evaluate_operation(VM_Operation*)+0xb1
+V  [libjvm.so+0xb353a7]  VMThread::loop()+0x217
+V  [libjvm.so+0xb358c2]  VMThread::run()+0x72
+V  [libjvm.so+0x972692]  java_start(Thread*)+0xf2
+
+VM_Operation (0x00007f701a76f530): ParallelGCFailedAllocation, mode: safepoint, requested by thread 0x00007f7038185000
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f703860c000 JavaThread "com.google.inject.internal.util.$Finalizer" daemon [_thread_blocked, id=8304, stack(0x00007f7018dfe000,0x00007f7018eff000)]
+  0x00007f70384f7800 JavaThread "EMF Reference Cleaner" daemon [_thread_blocked, id=8303, stack(0x00007f7019b12000,0x00007f7019c13000)]
+  0x00007f6fec01a800 JavaThread "HotSpotGraalManagement Bean Registration" daemon [_thread_blocked, id=8302, stack(0x00007f701a0da000,0x00007f701a1db000)]
+  0x00007f703818c800 JavaThread "Service Thread" daemon [_thread_blocked, id=8300, stack(0x00007f701a36f000,0x00007f701a470000)]
+  0x00007f7038189800 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=8299, stack(0x00007f701a471000,0x00007f701a571000)]
+  0x00007f7038187800 JavaThread "JVMCI CompilerThread1" daemon [_thread_blocked, id=8298, stack(0x00007f701a572000,0x00007f701a672000)]
+  0x00007f7038185000 JavaThread "JVMCI CompilerThread0" daemon [_thread_blocked, id=8297, stack(0x00007f701a673000,0x00007f701a773000)]
+  0x00007f7038180800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=8296, stack(0x00007f701a773000,0x00007f701a874000)]
+  0x00007f7038151000 JavaThread "Finalizer" daemon [_thread_blocked, id=8295, stack(0x00007f701b243000,0x00007f701b344000)]
+  0x00007f703814c800 JavaThread "Reference Handler" daemon [_thread_blocked, id=8294, stack(0x00007f701b344000,0x00007f701b445000)]
+  0x00007f703800c800 JavaThread "main" [_thread_blocked, id=8288, stack(0x00007f7041513000,0x00007f7041613000)]
+
+Other Threads:
+=>0x00007f7038145000 VMThread [stack: 0x00007f701b446000,0x00007f701b546000] [id=8293]
+  0x00007f7038191800 WatcherThread [stack: 0x00007f701a26f000,0x00007f701a36f000] [id=8301]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007f70380090e0] Threads_lock - owner thread: 0x00007f7038145000
+[0x00007f70380095e0] Heap_lock - owner thread: 0x00007f7038185000
+
+Heap:
+ PSYoungGen      total 472576K, used 7993K [0x000000076f900000, 0x000000078d600000, 0x00000007c0000000)
+  eden space 457728K, 0% used [0x000000076f900000,0x000000076f900000,0x000000078b800000)
+  from space 14848K, 53% used [0x000000078b800000,0x000000078bfce6f8,0x000000078c680000)
+  to   space 15360K, 0% used [0x000000078c680000,0x000000078c680000,0x000000078d580000)
+ ParOldGen       total 169472K, used 16242K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9dc8f0,0x00000006d8f80000)
+ Metaspace       used 38858K, capacity 40500K, committed 40704K, reserved 1085440K
+  class space    used 5049K, capacity 5308K, committed 5376K, reserved 1048576K
+
+Card table byte_map: [0x00007f703d87c000,0x00007f703e008000] byte_map_base: 0x00007f703a207000
+
+Marking Bits: (ParMarkBitMap*) 0x00007f70409ba280
+ Begin Bits: [0x00007f701c750000, 0x00007f70203a8000)
+ End Bits:   [0x00007f70203a8000, 0x00007f7024000000)
+
+Polling page: 0x00007f704163a000
+
+CodeCache: size=327680Kb used=25285Kb max_used=25285Kb free=302394Kb
+ bounds [0x00007f7024000000, 0x00007f70258c0000, 0x00007f7038000000]
+ total_blobs=11054 nmethods=10467 adapters=504
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 12,228 Thread 0x00007f7038189800 nmethod 11007 0x00007f70258b8290 code [0x00007f70258b84a0, 0x00007f70258b8be8]
+Event: 12,250 Thread 0x00007f7038189800 11008       1       org.graalvm.compiler.nodes.LoopBeginNode::disableSafepoint (42 bytes)
+Event: 12,250 Thread 0x00007f7038189800 nmethod 11008 0x00007f70258ba990 code [0x00007f70258bab40, 0x00007f70258bb038]
+Event: 12,266 Thread 0x00007f7038189800 11009       1       org.graalvm.compiler.nodes.calc.FloatEqualsNode::canonical (14 bytes)
+Event: 12,266 Thread 0x00007f7038189800 nmethod 11009 0x00007f70258bb290 code [0x00007f70258bb400, 0x00007f70258bb588]
+Event: 12,266 Thread 0x00007f7038189800 11010       1       org.graalvm.compiler.nodes.calc.FloatEqualsNode::canonical (59 bytes)
+Event: 12,266 Thread 0x00007f7038189800 nmethod 11010 0x00007f70258bb650 code [0x00007f70258bb800, 0x00007f70258bbb48]
+Event: 12,388 Thread 0x00007f7038189800 11014       1       org.graalvm.compiler.replacements.DefaultJavaLoweringProvider::insertAllocationBarrier (118 bytes)
+Event: 12,392 Thread 0x00007f7038189800 nmethod 11014 0x00007f70258bbc90 code [0x00007f70258bbea0, 0x00007f70258bc3c8]
+Event: 12,525 Thread 0x00007f7038189800 11016   !   1       org.graalvm.compiler.phases.common.ExpandLogicPhase::processBinary (212 bytes)
+
+GC Heap History (10 events):
+Event: 6,997 GC heap after
+Heap after GC invocations=16 (full 2):
+ PSYoungGen      total 318464K, used 7314K [0x000000076f900000, 0x0000000784200000, 0x00000007c0000000)
+  eden space 307200K, 0% used [0x000000076f900000,0x000000076f900000,0x0000000782500000)
+  from space 11264K, 64% used [0x0000000783700000,0x0000000783e248f8,0x0000000784200000)
+  to   space 14848K, 0% used [0x0000000782500000,0x0000000782500000,0x0000000783380000)
+ ParOldGen       total 169472K, used 16210K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9d48f0,0x00000006d8f80000)
+ Metaspace       used 34960K, capacity 36334K, committed 36480K, reserved 1081344K
+  class space    used 4671K, capacity 4904K, committed 4992K, reserved 1048576K
+}
+Event: 7,587 GC heap before
+{Heap before GC invocations=17 (full 2):
+ PSYoungGen      total 318464K, used 314514K [0x000000076f900000, 0x0000000784200000, 0x00000007c0000000)
+  eden space 307200K, 100% used [0x000000076f900000,0x0000000782500000,0x0000000782500000)
+  from space 11264K, 64% used [0x0000000783700000,0x0000000783e248f8,0x0000000784200000)
+  to   space 14848K, 0% used [0x0000000782500000,0x0000000782500000,0x0000000783380000)
+ ParOldGen       total 169472K, used 16210K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9d48f0,0x00000006d8f80000)
+ Metaspace       used 35391K, capacity 36932K, committed 36992K, reserved 1081344K
+  class space    used 4713K, capacity 4981K, committed 4992K, reserved 1048576K
+Event: 7,592 GC heap after
+Heap after GC invocations=17 (full 2):
+ PSYoungGen      total 322048K, used 3646K [0x000000076f900000, 0x0000000789b00000, 0x00000007c0000000)
+  eden space 307200K, 0% used [0x000000076f900000,0x000000076f900000,0x0000000782500000)
+  from space 14848K, 24% used [0x0000000782500000,0x000000078288fbd8,0x0000000783380000)
+  to   space 14848K, 0% used [0x0000000788c80000,0x0000000788c80000,0x0000000789b00000)
+ ParOldGen       total 169472K, used 16218K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9d68f0,0x00000006d8f80000)
+ Metaspace       used 35391K, capacity 36932K, committed 36992K, reserved 1081344K
+  class space    used 4713K, capacity 4981K, committed 4992K, reserved 1048576K
+}
+Event: 8,533 GC heap before
+{Heap before GC invocations=18 (full 2):
+ PSYoungGen      total 322048K, used 310846K [0x000000076f900000, 0x0000000789b00000, 0x00000007c0000000)
+  eden space 307200K, 100% used [0x000000076f900000,0x0000000782500000,0x0000000782500000)
+  from space 14848K, 24% used [0x0000000782500000,0x000000078288fbd8,0x0000000783380000)
+  to   space 14848K, 0% used [0x0000000788c80000,0x0000000788c80000,0x0000000789b00000)
+ ParOldGen       total 169472K, used 16218K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9d68f0,0x00000006d8f80000)
+ Metaspace       used 37972K, capacity 39616K, committed 39936K, reserved 1083392K
+  class space    used 4997K, capacity 5272K, committed 5376K, reserved 1048576K
+Event: 8,541 GC heap after
+Heap after GC invocations=18 (full 2):
+ PSYoungGen      total 396288K, used 7464K [0x000000076f900000, 0x0000000789400000, 0x00000007c0000000)
+  eden space 388608K, 0% used [0x000000076f900000,0x000000076f900000,0x0000000787480000)
+  from space 7680K, 97% used [0x0000000788c80000,0x00000007893ca350,0x0000000789400000)
+  to   space 14336K, 0% used [0x0000000787800000,0x0000000787800000,0x0000000788600000)
+ ParOldGen       total 169472K, used 16226K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9d88f0,0x00000006d8f80000)
+ Metaspace       used 37972K, capacity 39616K, committed 39936K, reserved 1083392K
+  class space    used 4997K, capacity 5272K, committed 5376K, reserved 1048576K
+}
+Event: 9,292 GC heap before
+{Heap before GC invocations=19 (full 2):
+ PSYoungGen      total 396288K, used 396072K [0x000000076f900000, 0x0000000789400000, 0x00000007c0000000)
+  eden space 388608K, 100% used [0x000000076f900000,0x0000000787480000,0x0000000787480000)
+  from space 7680K, 97% used [0x0000000788c80000,0x00000007893ca350,0x0000000789400000)
+  to   space 14336K, 0% used [0x0000000787800000,0x0000000787800000,0x0000000788600000)
+ ParOldGen       total 169472K, used 16226K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9d88f0,0x00000006d8f80000)
+ Metaspace       used 38117K, capacity 39750K, committed 39936K, reserved 1083392K
+  class space    used 5004K, capacity 5273K, committed 5376K, reserved 1048576K
+Event: 9,310 GC heap after
+Heap after GC invocations=19 (full 2):
+ PSYoungGen      total 406528K, used 12238K [0x000000076f900000, 0x000000078d580000, 0x00000007c0000000)
+  eden space 392192K, 0% used [0x000000076f900000,0x000000076f900000,0x0000000787800000)
+  from space 14336K, 85% used [0x0000000787800000,0x00000007883f3b60,0x0000000788600000)
+  to   space 15360K, 0% used [0x000000078c680000,0x000000078c680000,0x000000078d580000)
+ ParOldGen       total 169472K, used 16234K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9da8f0,0x00000006d8f80000)
+ Metaspace       used 38117K, capacity 39750K, committed 39936K, reserved 1083392K
+  class space    used 5004K, capacity 5273K, committed 5376K, reserved 1048576K
+}
+Event: 10,595 GC heap before
+{Heap before GC invocations=20 (full 2):
+ PSYoungGen      total 406528K, used 404430K [0x000000076f900000, 0x000000078d580000, 0x00000007c0000000)
+  eden space 392192K, 100% used [0x000000076f900000,0x0000000787800000,0x0000000787800000)
+  from space 14336K, 85% used [0x0000000787800000,0x00000007883f3b60,0x0000000788600000)
+  to   space 15360K, 0% used [0x000000078c680000,0x000000078c680000,0x000000078d580000)
+ ParOldGen       total 169472K, used 16234K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9da8f0,0x00000006d8f80000)
+ Metaspace       used 38752K, capacity 40430K, committed 40704K, reserved 1085440K
+  class space    used 5047K, capacity 5307K, committed 5376K, reserved 1048576K
+Event: 10,641 GC heap after
+Heap after GC invocations=20 (full 2):
+ PSYoungGen      total 473088K, used 6984K [0x000000076f900000, 0x000000078d600000, 0x00000007c0000000)
+  eden space 457728K, 0% used [0x000000076f900000,0x000000076f900000,0x000000078b800000)
+  from space 15360K, 45% used [0x000000078c680000,0x000000078cd52378,0x000000078d580000)
+  to   space 14848K, 0% used [0x000000078b800000,0x000000078b800000,0x000000078c680000)
+ ParOldGen       total 169472K, used 16242K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9dc8f0,0x00000006d8f80000)
+ Metaspace       used 38752K, capacity 40430K, committed 40704K, reserved 1085440K
+  class space    used 5047K, capacity 5307K, committed 5376K, reserved 1048576K
+}
+Event: 12,933 GC heap before
+{Heap before GC invocations=21 (full 2):
+ PSYoungGen      total 473088K, used 464712K [0x000000076f900000, 0x000000078d600000, 0x00000007c0000000)
+  eden space 457728K, 100% used [0x000000076f900000,0x000000078b800000,0x000000078b800000)
+  from space 15360K, 45% used [0x000000078c680000,0x000000078cd52378,0x000000078d580000)
+  to   space 14848K, 0% used [0x000000078b800000,0x000000078b800000,0x000000078c680000)
+ ParOldGen       total 169472K, used 16242K [0x00000006cea00000, 0x00000006d8f80000, 0x000000076f900000)
+  object space 169472K, 9% used [0x00000006cea00000,0x00000006cf9dc8f0,0x00000006d8f80000)
+ Metaspace       used 38858K, capacity 40500K, committed 40704K, reserved 1085440K
+  class space    used 5049K, capacity 5308K, committed 5376K, reserved 1048576K
+
+Deoptimization events (10 events):
+Event: 8,425 Thread 0x00007f7038187800 Uncommon trap: reason=class_check action=reinterpret pc=0x00007f702566241a method=java.util.PriorityQueue.siftUpUsingComparator(ILjava/lang/Object;)V @ 0
+Event: 9,268 Thread 0x00007f7038187800 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x00007f70251f0b0f method=java.lang.Long.numberOfLeadingZeros(J)I @ 0
+Event: 9,463 Thread 0x00007f703800c800 Uncommon trap: reason=null_assert_or_unreached0 action=reinterpret pc=0x00007f702577a9dd method=com.google.inject.spi.InjectionPoint.hierarchyFor(Lcom/google/inject/TypeLiteral;)Ljava/util/List; @ 10
+Event: 9,710 Thread 0x00007f7038185000 Uncommon trap: reason=class_check action=reinterpret pc=0x00007f7025798049 method=java.util.PriorityQueue.siftDownUsingComparator(ILjava/lang/Object;)V @ 0
+Event: 10,322 Thread 0x00007f703800c800 Uncommon trap: reason=null_check action=reinterpret pc=0x00007f70257f9f3e method=com.google.inject.internal.asm.$Label.a(Lcom/google/inject/internal/asm/$MethodWriter;I[B)Z @ 18
+Event: 11,559 Thread 0x00007f7038185000 Uncommon trap: reason=class_check action=reinterpret pc=0x00007f702586edfd method=java.util.PriorityQueue.offer(Ljava/lang/Object;)Z @ 50
+Event: 11,559 Thread 0x00007f7038187800 Uncommon trap: reason=class_check action=reinterpret pc=0x00007f702586edfd method=java.util.PriorityQueue.offer(Ljava/lang/Object;)Z @ 50
+Event: 12,110 Thread 0x00007f7038185000 Uncommon trap: reason=class_check action=reinterpret pc=0x00007f70258a81bd method=java.util.TimSort.binarySort([Ljava/lang/Object;IIILjava/util/Comparator;)V @ 32
+Event: 12,110 Thread 0x00007f7038187800 Uncommon trap: reason=class_check action=reinterpret pc=0x00007f70258a81bd method=java.util.TimSort.binarySort([Ljava/lang/Object;IIILjava/util/Comparator;)V @ 32
+Event: 12,158 Thread 0x00007f703800c800 Uncommon trap: reason=intrinsic_or_type_checked_inlining action=reinterpret pc=0x00007f70258a0e85 method=com.google.inject.internal.MoreTypes.canonicalize(Ljava/lang/reflect/Type;)Ljava/lang/reflect/Type; @ 0
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 11,237 Thread 0x00007f703800c800 Exception <a 'java/lang/reflect/InvocationTargetException'> (0x000000077a3e4d08) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/runtime/reflection.cpp, line 1095]
+Event: 11,574 Thread 0x00007f703800c800 Exception <a 'java/lang/reflect/InvocationTargetException'> (0x000000077f6b8718) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/runtime/reflection.cpp, line 1095]
+Event: 11,983 Thread 0x00007f703800c800 Exception <a 'java/lang/ClassCastException': java.lang.String cannot be cast to execboatruffle.impl.ExprImpl> (0x00000007851c6b20) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/interpreter/interpreterRuntime.cpp, line 381]
+Event: 12,008 Thread 0x00007f703800c800 Exception <a 'java/lang/ClassCastException': execboatruffle.impl.IntImpl cannot be cast to java.lang.String> (0x00000007851c7c30) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/interpreter/interpreterRuntime.cpp, line 381]
+Event: 12,008 Thread 0x00007f703800c800 Exception <a 'java/lang/ClassCastException': java.lang.String cannot be cast to execboatruffle.impl.ExprImpl> (0x00000007851c9010) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/interpreter/interpreterRuntime.cpp, line 381]
+Event: 12,008 Thread 0x00007f703800c800 Exception <a 'java/lang/ClassCastException': java.lang.String cannot be cast to execboatruffle.impl.ExprImpl> (0x00000007851c9bc8) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/interpreter/interpreterRuntime.cpp, line 381]
+Event: 12,008 Thread 0x00007f703800c800 Exception <a 'java/lang/ClassCastException': execboatruffle.impl.VarImpl cannot be cast to java.lang.String> (0x00000007851caa68) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/interpreter/interpreterRuntime.cpp, line 381]
+Event: 12,008 Thread 0x00007f703800c800 Exception <a 'java/lang/ClassCastException': execboatruffle.impl.IntImpl cannot be cast to java.lang.String> (0x00000007851cb9e0) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/interpreter/interpreterRuntime.cpp, line 381]
+Event: 12,072 Thread 0x00007f703800c800 Exception <a 'java/lang/NullPointerException'> (0x00000007851cf910) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/interpreter/linkResolver.cpp, line 1268]
+Event: 12,120 Thread 0x00007f703800c800 Exception <a 'java/lang/reflect/InvocationTargetException'> (0x00000007851d6a00) thrown at [/scratch/graaluser/buildslave/e/main/graal-jvmci-8/src/share/vm/runtime/reflection.cpp, line 1095]
+
+Events (10 events):
+Event: 12,104 Thread 0x00007f7038187800 Uncommon trap: trap_request=0xffffffdd fr.pc=0x00007f70258a81bd relative=0x0000000000000cdd
+Event: 12,107 Thread 0x00007f7038185000 Uncommon trap: trap_request=0xffffffdd fr.pc=0x00007f70258a81bd relative=0x0000000000000cdd
+Event: 12,114 Thread 0x00007f7038187800 DEOPT PACKING pc=0x00007f70258a81bd sp=0x00007f701a66ecf0
+Event: 12,114 Thread 0x00007f7038185000 DEOPT PACKING pc=0x00007f70258a81bd sp=0x00007f701a76fcf0
+Event: 12,120 Thread 0x00007f7038185000 DEOPT UNPACKING pc=0x00007f7024049859 sp=0x00007f701a76fa18 mode 3
+Event: 12,120 Thread 0x00007f7038187800 DEOPT UNPACKING pc=0x00007f7024049859 sp=0x00007f701a66ea18 mode 3
+Event: 12,158 Thread 0x00007f703800c800 Uncommon trap: trap_request=0xffffffcd fr.pc=0x00007f70258a0e85 relative=0x00000000000000a5
+Event: 12,158 Thread 0x00007f703800c800 DEOPT PACKING pc=0x00007f70258a0e85 sp=0x00007f704160f1c0
+Event: 12,158 Thread 0x00007f703800c800 DEOPT UNPACKING pc=0x00007f7024049859 sp=0x00007f704160eee0 mode 3
+Event: 12,599 Executing VM operation: ParallelGCFailedAllocation
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:01 13250518                           /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/bin/java
+00600000-00601000 rw-p 00000000 08:01 13250518                           /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/bin/java
+01ce7000-01d08000 rw-p 00000000 00:00 0                                  [heap]
+6cea00000-6d8f80000 rw-p 00000000 00:00 0 
+6d8f80000-76f900000 ---p 00000000 00:00 0 
+76f900000-78d600000 rw-p 00000000 00:00 0 
+796f00000-7c0000000 ---p 00000000 00:00 0 
+7c0000000-7c0540000 rw-p 00000000 00:00 0 
+7c0540000-800000000 ---p 00000000 00:00 0 
+7f6fd4000000-7f6fd4021000 rw-p 00000000 00:00 0 
+7f6fd4021000-7f6fd8000000 ---p 00000000 00:00 0 
+7f6fdbbe9000-7f6fdbc69000 rw-p 00000000 00:00 0 
+7f6fdbc69000-7f6fdbde9000 ---p 00000000 00:00 0 
+7f6fdbde9000-7f6fdbdff000 r-xp 00000000 08:01 12206080                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libnet.so
+7f6fdbdff000-7f6fdbfff000 ---p 00016000 08:01 12206080                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libnet.so
+7f6fdbfff000-7f6fdc000000 rw-p 00016000 08:01 12206080                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libnet.so
+7f6fdc000000-7f6fdc021000 rw-p 00000000 00:00 0 
+7f6fdc021000-7f6fe0000000 ---p 00000000 00:00 0 
+7f6fe0000000-7f6fe0021000 rw-p 00000000 00:00 0 
+7f6fe0021000-7f6fe4000000 ---p 00000000 00:00 0 
+7f6fe4000000-7f6fe4021000 rw-p 00000000 00:00 0 
+7f6fe4021000-7f6fe8000000 ---p 00000000 00:00 0 
+7f6fe8000000-7f6fe8021000 rw-p 00000000 00:00 0 
+7f6fe8021000-7f6fec000000 ---p 00000000 00:00 0 
+7f6fec000000-7f6fec4da000 rw-p 00000000 00:00 0 
+7f6fec4da000-7f6ff0000000 ---p 00000000 00:00 0 
+7f6ff0000000-7f6ff0f23000 rw-p 00000000 00:00 0 
+7f6ff0f23000-7f6ff4000000 ---p 00000000 00:00 0 
+7f6ff4000000-7f6ff4021000 rw-p 00000000 00:00 0 
+7f6ff4021000-7f6ff8000000 ---p 00000000 00:00 0 
+7f6ff8000000-7f6ff8211000 rw-p 00000000 00:00 0 
+7f6ff8211000-7f6ffc000000 ---p 00000000 00:00 0 
+7f6ffc000000-7f6ffc021000 rw-p 00000000 00:00 0 
+7f6ffc021000-7f7000000000 ---p 00000000 00:00 0 
+7f7000000000-7f7000021000 rw-p 00000000 00:00 0 
+7f7000021000-7f7004000000 ---p 00000000 00:00 0 
+7f7004000000-7f7004021000 rw-p 00000000 00:00 0 
+7f7004021000-7f7008000000 ---p 00000000 00:00 0 
+7f7008000000-7f70082c0000 rw-p 00000000 00:00 0 
+7f70082c0000-7f700c000000 ---p 00000000 00:00 0 
+7f700c000000-7f700c022000 rw-p 00000000 00:00 0 
+7f700c022000-7f7010000000 ---p 00000000 00:00 0 
+7f7010000000-7f7010021000 rw-p 00000000 00:00 0 
+7f7010021000-7f7014000000 ---p 00000000 00:00 0 
+7f7014000000-7f7014021000 rw-p 00000000 00:00 0 
+7f7014021000-7f7018000000 ---p 00000000 00:00 0 
+7f701806a000-7f701806b000 r--s 00010000 08:01 13250746                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/ext/zipfs.jar
+7f701806b000-7f701807d000 r--s 004fc000 08:01 12199620                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/tools/agent-server/agent-server.jar
+7f701807d000-7f7018081000 r--s 0004c000 08:01 12200619                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/tools/profiler/truffle-profiler.jar
+7f7018081000-7f7018086000 r--s 00075000 08:01 12200622                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/tools/chromeinspector/chromeinspector.jar
+7f7018086000-7f7018087000 r--s 00009000 08:01 12200866                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/tools/agent/ws-client.jar
+7f7018087000-7f7018093000 r--s 000f7000 08:01 12200865                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/tools/agent/agent.jar
+7f7018093000-7f70180a3000 r--s 001cf000 08:01 12200862                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/tools/regex/tregex.jar
+7f70180a3000-7f70180a4000 r--s 00007000 08:01 12201288                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/js/asm-analysis-6.2.jar
+7f70180a4000-7f70180a6000 r--s 0001a000 08:01 12201286                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/js/asm-6.2.jar
+7f70180a6000-7f70180a9000 r--s 00069000 08:01 12204657                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/js/trufflenode.jar
+7f70180a9000-7f70180ab000 r--s 0000b000 08:01 12201287                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/js/asm-tree-6.2.jar
+7f70180ab000-7f7018117000 r--s 00b61000 08:01 12201285                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/js/icu4j.jar
+7f7018117000-7f7018119000 r--s 00012000 08:01 12201289                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/js/asm-commons-6.2.jar
+7f7018119000-7f701811b000 r--s 00012000 08:01 12201290                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/js/asm-util-6.2.jar
+7f701811b000-7f7018181000 r--s 00ea2000 08:01 12201284                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/js/graaljs.jar
+7f7018181000-7f70181e5000 r--s 00ad7000 08:01 12200629                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/llvm/sulong.jar
+7f70181e5000-7f70181ed000 r--s 00084000 08:01 12200635                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/languages/llvm/sulong-managed.jar
+7f70181ed000-7f70181fe000 r-xp 00000000 08:01 12206035                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libnio.so
+7f70181fe000-7f70183fd000 ---p 00011000 08:01 12206035                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libnio.so
+7f70183fd000-7f70183fe000 rw-p 00010000 08:01 12206035                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libnio.so
+7f70183fe000-7f70185fe000 rw-p 00000000 00:00 0 
+7f70185fe000-7f70187fe000 rw-p 00000000 00:00 0 
+7f70187fe000-7f70189fe000 rw-p 00000000 00:00 0 
+7f70189fe000-7f7018bfe000 rw-p 00000000 00:00 0 
+7f7018bfe000-7f7018dfe000 rw-p 00000000 00:00 0 
+7f7018dfe000-7f7018e01000 ---p 00000000 00:00 0 
+7f7018e01000-7f70190ff000 rw-p 00000000 00:00 0 
+7f70190ff000-7f70192ff000 rw-p 00000000 00:00 0 
+7f70192ff000-7f7019312000 r--s 00345000 08:01 12206027                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/resources.jar
+7f7019312000-7f7019512000 rw-p 00000000 00:00 0 
+7f7019512000-7f7019712000 rw-p 00000000 00:00 0 
+7f7019712000-7f7019912000 rw-p 00000000 00:00 0 
+7f7019912000-7f7019b12000 rw-p 00000000 00:00 0 
+7f7019b12000-7f7019b15000 ---p 00000000 00:00 0 
+7f7019b15000-7f7019e13000 rw-p 00000000 00:00 0 
+7f7019e13000-7f7019e16000 r--s 0001a000 08:01 12206021                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jce.jar
+7f7019e16000-7f701a016000 rw-p 00000000 00:00 0 
+7f701a016000-7f701a01b000 r--s 0009d000 08:01 12206025                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jsse.jar
+7f701a01b000-7f701a01d000 r--s 00007000 08:01 11016013                   /home/manuel/.m2/repository/org/apache/maven/surefire/surefire-junit4/2.9/surefire-junit4-2.9.jar
+7f701a01d000-7f701a021000 r--s 00031000 08:01 11151348                   /home/manuel/.m2/repository/commons-io/commons-io/2.6/commons-io-2.6.jar
+7f701a021000-7f701a024000 r--s 00020000 08:01 394317                     /home/manuel/.m2/repository/fr/mleduc/lang/boa/fr.mleduc.lang.boa/1.0.0-SNAPSHOT/fr.mleduc.lang.boa-1.0.0-SNAPSHOT.jar
+7f701a024000-7f701a025000 r--s 00000000 08:01 11017476                   /home/manuel/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar
+7f701a025000-7f701a027000 r--s 00001000 08:01 11017474                   /home/manuel/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar
+7f701a027000-7f701a028000 r--s 00002000 08:01 11017471                   /home/manuel/.m2/repository/com/google/errorprone/error_prone_annotations/2.0.18/error_prone_annotations-2.0.18.jar
+7f701a028000-7f701a02b000 r--s 00006000 08:01 11017467                   /home/manuel/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar
+7f701a02b000-7f701a05a000 r--s 0022e000 08:01 11146060                   /home/manuel/.m2/repository/com/google/guava/guava/22.0-rc1-android/guava-22.0-rc1-android.jar
+7f701a05a000-7f701a05e000 r--s 00023000 08:01 12859583                   /home/manuel/.m2/repository/org/eclipse/xtext/org.eclipse.xtext.xbase.lib/2.15.0/org.eclipse.xtext.xbase.lib-2.15.0.jar
+7f701a05e000-7f701a05f000 r--s 00102000 08:01 3938550                    /home/manuel/.m2/repository/fr/inria/diverse/alex/truffle/fr.inria.diverse.alex.truffle/1.0.0-SNAPSHOT/fr.inria.diverse.alex.truffle-1.0.0-SNAPSHOT.jar
+7f701a05f000-7f701a060000 r--s 00009000 08:01 11016249                   /home/manuel/.m2/repository/tycho/demo/itp01/fr.inria.diverse.alex.emf.truffle/1.0.0-SNAPSHOT/fr.inria.diverse.alex.emf.truffle-1.0.0-SNAPSHOT.jar
+7f701a060000-7f701a064000 r--s 0001b000 08:01 21510685                   /home/manuel/.m2/repository/boa/semantics/boa.semantics/1.0.0-SNAPSHOT/boa.semantics-1.0.0-SNAPSHOT.jar
+7f701a064000-7f701a068000 r--s 00022000 08:01 12858290                   /home/manuel/.m2/repository/org/antlr/antlr-runtime/3.2/antlr-runtime-3.2.jar
+7f701a068000-7f701a06a000 r--s 00000000 08:01 12858312                   /home/manuel/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar
+7f701a06a000-7f701a079000 r--s 0009f000 08:01 12858310                   /home/manuel/.m2/repository/com/google/inject/guice/3.0/guice-3.0.jar
+7f701a079000-7f701a07d000 r--s 00035000 08:01 3939792                    /home/manuel/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore.xmi/2.12.0/org.eclipse.emf.ecore.xmi-2.12.0.jar
+7f701a07d000-7f701a093000 r--s 0013d000 08:01 8787200                    /home/manuel/.m2/repository/org/eclipse/platform/org.eclipse.osgi/3.12.100/org.eclipse.osgi-3.12.100.jar
+7f701a093000-7f701a096000 r--s 0001b000 08:01 10500717                   /home/manuel/.m2/repository/org/eclipse/platform/org.eclipse.equinox.common/3.9.0/org.eclipse.equinox.common-3.9.0.jar
+7f701a096000-7f701a09f000 r--s 0006d000 08:01 12858314                   /home/manuel/.m2/repository/log4j/log4j/1.2.16/log4j-1.2.16.jar
+7f701a09f000-7f701a0a3000 r--s 0000f000 08:01 12859585                   /home/manuel/.m2/repository/org/eclipse/xtend/org.eclipse.xtend.lib.macro/2.15.0/org.eclipse.xtend.lib.macro-2.15.0.jar
+7f701a0a3000-7f701a0a9000 r--s 00041000 08:01 12859579                   /home/manuel/.m2/repository/org/eclipse/xtext/org.eclipse.xtext.util/2.15.0/org.eclipse.xtext.util-2.15.0.jar
+7f701a0a9000-7f701a0da000 r--s 00260000 08:01 12859577                   /home/manuel/.m2/repository/org/eclipse/xtext/org.eclipse.xtext/2.15.0/org.eclipse.xtext-2.15.0.jar
+7f701a0da000-7f701a0dd000 ---p 00000000 00:00 0 
+7f701a0dd000-7f701a1db000 rw-p 00000000 00:00 0 
+7f701a1db000-7f701a1e2000 r--s 00055000 08:01 3938320                    /home/manuel/.m2/repository/org/eclipse/emf/org.eclipse.emf.common/2.15.0/org.eclipse.emf.common-2.15.0.jar
+7f701a1e2000-7f701a1f6000 r--s 00144000 08:01 3938318                    /home/manuel/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.15.0/org.eclipse.emf.ecore-2.15.0.jar
+7f701a1f6000-7f701a203000 r--s 001d9000 08:01 29767888                   /home/manuel/.m2/repository/com/oracle/truffle/truffle-dsl-processor/1.0.0-rc7/truffle-dsl-processor-1.0.0-rc7.jar
+7f701a203000-7f701a209000 r--s 00057000 08:01 29767886                   /home/manuel/.m2/repository/org/graalvm/graal-sdk/1.0.0-rc7/graal-sdk-1.0.0-rc7.jar
+7f701a209000-7f701a26e000 r--s 00ea4000 08:01 12199616                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jvmci/graal.jar
+7f701a26e000-7f701a26f000 ---p 00000000 00:00 0 
+7f701a26f000-7f701a36f000 rw-p 00000000 00:00 0 
+7f701a36f000-7f701a372000 ---p 00000000 00:00 0 
+7f701a372000-7f701a470000 rw-p 00000000 00:00 0 
+7f701a470000-7f701a471000 ---p 00000000 00:00 0 
+7f701a471000-7f701a474000 ---p 00000000 00:00 0 
+7f701a474000-7f701a571000 rw-p 00000000 00:00 0 
+7f701a571000-7f701a572000 ---p 00000000 00:00 0 
+7f701a572000-7f701a575000 ---p 00000000 00:00 0 
+7f701a575000-7f701a672000 rw-p 00000000 00:00 0 
+7f701a672000-7f701a673000 ---p 00000000 00:00 0 
+7f701a673000-7f701a676000 ---p 00000000 00:00 0 
+7f701a676000-7f701a773000 rw-p 00000000 00:00 0 
+7f701a773000-7f701a776000 ---p 00000000 00:00 0 
+7f701a776000-7f701a874000 rw-p 00000000 00:00 0 
+7f701a874000-7f701b243000 r--p 00000000 08:01 21240430                   /usr/lib/locale/locale-archive
+7f701b243000-7f701b246000 ---p 00000000 00:00 0 
+7f701b246000-7f701b344000 rw-p 00000000 00:00 0 
+7f701b344000-7f701b347000 ---p 00000000 00:00 0 
+7f701b347000-7f701b445000 rw-p 00000000 00:00 0 
+7f701b445000-7f701b446000 ---p 00000000 00:00 0 
+7f701b446000-7f7024000000 rw-p 00000000 00:00 0 
+7f7024000000-7f70258c0000 rwxp 00000000 00:00 0 
+7f70258c0000-7f7038000000 ---p 00000000 00:00 0 
+7f7038000000-7f70389f7000 rw-p 00000000 00:00 0 
+7f70389f7000-7f703c000000 ---p 00000000 00:00 0 
+7f703c000000-7f703c001000 r--s 00000000 08:01 25691262                   /home/manuel/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar
+7f703c001000-7f703c003000 r--s 00018000 08:01 12859581                   /home/manuel/.m2/repository/org/eclipse/xtend/org.eclipse.xtend.lib/2.15.0/org.eclipse.xtend.lib-2.15.0.jar
+7f703c003000-7f703c005000 r--s 0001c000 08:01 29767890                   /home/manuel/.m2/repository/com/oracle/truffle/truffle-tck/1.0.0-rc7/truffle-tck-1.0.0-rc7.jar
+7f703c005000-7f703c025000 r--s 00386000 08:01 29767884                   /home/manuel/.m2/repository/com/oracle/truffle/truffle-api/1.0.0-rc7/truffle-api-1.0.0-rc7.jar
+7f703c025000-7f703c027000 r--s 00009000 08:01 11015380                   /home/manuel/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+7f703c027000-7f703c02d000 r--s 00036000 08:01 11015375                   /home/manuel/.m2/repository/junit/junit/4.11/junit-4.11.jar
+7f703c02d000-7f703c031000 r--s 00023000 08:01 11015991                   /home/manuel/.m2/repository/org/apache/maven/surefire/surefire-api/2.9/surefire-api-2.9.jar
+7f703c031000-7f703c041000 r--s 000dd000 08:01 12199615                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jvmci/enterprise-graal.jar
+7f703c041000-7f703c595000 rw-p 00000000 00:00 0 
+7f703c595000-7f703c76f000 r--s 03d6a000 08:01 12206006                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/rt.jar
+7f703c76f000-7f703cf70000 rw-p 00000000 00:00 0 
+7f703cf70000-7f703cf71000 ---p 00000000 00:00 0 
+7f703cf71000-7f703d071000 rw-p 00000000 00:00 0 
+7f703d071000-7f703d072000 ---p 00000000 00:00 0 
+7f703d072000-7f703d172000 rw-p 00000000 00:00 0 
+7f703d172000-7f703d173000 ---p 00000000 00:00 0 
+7f703d173000-7f703d273000 rw-p 00000000 00:00 0 
+7f703d273000-7f703d274000 ---p 00000000 00:00 0 
+7f703d274000-7f703d3c7000 rw-p 00000000 00:00 0 
+7f703d3c7000-7f703d87c000 ---p 00000000 00:00 0 
+7f703d87c000-7f703d8cf000 rw-p 00000000 00:00 0 
+7f703d8cf000-7f703dd83000 ---p 00000000 00:00 0 
+7f703dd83000-7f703de72000 rw-p 00000000 00:00 0 
+7f703de72000-7f703e007000 ---p 00000000 00:00 0 
+7f703e007000-7f703e06b000 rw-p 00000000 00:00 0 
+7f703e06b000-7f703e508000 ---p 00000000 00:00 0 
+7f703e508000-7f703e523000 r-xp 00000000 08:01 12206070                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libzip.so
+7f703e523000-7f703e723000 ---p 0001b000 08:01 12206070                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libzip.so
+7f703e723000-7f703e724000 rw-p 0001b000 08:01 12206070                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libzip.so
+7f703e724000-7f703e72f000 r-xp 00000000 08:01 31068822                   /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f703e72f000-7f703e92e000 ---p 0000b000 08:01 31068822                   /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f703e92e000-7f703e92f000 r--p 0000a000 08:01 31068822                   /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f703e92f000-7f703e930000 rw-p 0000b000 08:01 31068822                   /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f703e930000-7f703e936000 rw-p 00000000 00:00 0 
+7f703e936000-7f703e94d000 r-xp 00000000 08:01 31068816                   /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f703e94d000-7f703eb4c000 ---p 00017000 08:01 31068816                   /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f703eb4c000-7f703eb4d000 r--p 00016000 08:01 31068816                   /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f703eb4d000-7f703eb4e000 rw-p 00017000 08:01 31068816                   /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f703eb4e000-7f703eb50000 rw-p 00000000 00:00 0 
+7f703eb50000-7f703eb5b000 r-xp 00000000 08:01 31068833                   /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f703eb5b000-7f703ed5a000 ---p 0000b000 08:01 31068833                   /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f703ed5a000-7f703ed5b000 r--p 0000a000 08:01 31068833                   /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f703ed5b000-7f703ed5c000 rw-p 0000b000 08:01 31068833                   /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f703ed5c000-7f703ed64000 r-xp 00000000 08:01 31068818                   /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f703ed64000-7f703ef64000 ---p 00008000 08:01 31068818                   /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f703ef64000-7f703ef65000 r--p 00008000 08:01 31068818                   /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f703ef65000-7f703ef66000 rw-p 00009000 08:01 31068818                   /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f703ef66000-7f703ef91000 r-xp 00000000 08:01 12206106                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libjava.so
+7f703ef91000-7f703f190000 ---p 0002b000 08:01 12206106                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libjava.so
+7f703f190000-7f703f192000 rw-p 0002a000 08:01 12206106                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libjava.so
+7f703f192000-7f703f19f000 r-xp 00000000 08:01 12206059                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libverify.so
+7f703f19f000-7f703f39f000 ---p 0000d000 08:01 12206059                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libverify.so
+7f703f39f000-7f703f3a1000 rw-p 0000d000 08:01 12206059                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/libverify.so
+7f703f3a1000-7f703f3a8000 r-xp 00000000 08:01 31068873                   /lib/x86_64-linux-gnu/librt-2.27.so
+7f703f3a8000-7f703f5a7000 ---p 00007000 08:01 31068873                   /lib/x86_64-linux-gnu/librt-2.27.so
+7f703f5a7000-7f703f5a8000 r--p 00006000 08:01 31068873                   /lib/x86_64-linux-gnu/librt-2.27.so
+7f703f5a8000-7f703f5a9000 rw-p 00007000 08:01 31068873                   /lib/x86_64-linux-gnu/librt-2.27.so
+7f703f5a9000-7f703f746000 r-xp 00000000 08:01 31068795                   /lib/x86_64-linux-gnu/libm-2.27.so
+7f703f746000-7f703f945000 ---p 0019d000 08:01 31068795                   /lib/x86_64-linux-gnu/libm-2.27.so
+7f703f945000-7f703f946000 r--p 0019c000 08:01 31068795                   /lib/x86_64-linux-gnu/libm-2.27.so
+7f703f946000-7f703f947000 rw-p 0019d000 08:01 31068795                   /lib/x86_64-linux-gnu/libm-2.27.so
+7f703f947000-7f70406b9000 r-xp 00000000 08:01 12206111                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/server/libjvm.so
+7f70406b9000-7f70408b8000 ---p 00d72000 08:01 12206111                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/server/libjvm.so
+7f70408b8000-7f704099b000 rw-p 00d71000 08:01 12206111                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/server/libjvm.so
+7f704099b000-7f70409ea000 rw-p 00000000 00:00 0 
+7f70409ea000-7f7040bd1000 r-xp 00000000 08:01 31068732                   /lib/x86_64-linux-gnu/libc-2.27.so
+7f7040bd1000-7f7040dd1000 ---p 001e7000 08:01 31068732                   /lib/x86_64-linux-gnu/libc-2.27.so
+7f7040dd1000-7f7040dd5000 r--p 001e7000 08:01 31068732                   /lib/x86_64-linux-gnu/libc-2.27.so
+7f7040dd5000-7f7040dd7000 rw-p 001eb000 08:01 31068732                   /lib/x86_64-linux-gnu/libc-2.27.so
+7f7040dd7000-7f7040ddb000 rw-p 00000000 00:00 0 
+7f7040ddb000-7f7040dde000 r-xp 00000000 08:01 31068755                   /lib/x86_64-linux-gnu/libdl-2.27.so
+7f7040dde000-7f7040fdd000 ---p 00003000 08:01 31068755                   /lib/x86_64-linux-gnu/libdl-2.27.so
+7f7040fdd000-7f7040fde000 r--p 00002000 08:01 31068755                   /lib/x86_64-linux-gnu/libdl-2.27.so
+7f7040fde000-7f7040fdf000 rw-p 00003000 08:01 31068755                   /lib/x86_64-linux-gnu/libdl-2.27.so
+7f7040fdf000-7f7040ff5000 r-xp 00000000 08:01 13250529                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/jli/libjli.so
+7f7040ff5000-7f70411f4000 ---p 00016000 08:01 13250529                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/jli/libjli.so
+7f70411f4000-7f70411f5000 rw-p 00015000 08:01 13250529                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/amd64/jli/libjli.so
+7f70411f5000-7f704120f000 r-xp 00000000 08:01 31068865                   /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f704120f000-7f704140e000 ---p 0001a000 08:01 31068865                   /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f704140e000-7f704140f000 r--p 00019000 08:01 31068865                   /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f704140f000-7f7041410000 rw-p 0001a000 08:01 31068865                   /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f7041410000-7f7041414000 rw-p 00000000 00:00 0 
+7f7041414000-7f704143b000 r-xp 00000000 08:01 31068704                   /lib/x86_64-linux-gnu/ld-2.27.so
+7f704143b000-7f704143c000 r--s 0000f000 08:01 29767892                   /home/manuel/.m2/repository/org/graalvm/polyglot-tck/1.0.0-rc7/polyglot-tck-1.0.0-rc7.jar
+7f704143c000-7f704143e000 r--s 00007000 08:01 11015989                   /home/manuel/.m2/repository/org/apache/maven/surefire/surefire-booter/2.9/surefire-booter-2.9.jar
+7f704143e000-7f704143f000 r--s 00000000 08:01 1181037                    /home/manuel/runtime-plzoo/boa.test/target/surefire/surefirebooter7006981715508715645.jar
+7f704143f000-7f7041440000 r--s 00005000 08:01 12199617                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jvmci/graal-management.jar
+7f7041440000-7f7041444000 r--s 0004b000 08:01 12206116                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jvmci/jvmci-api.jar
+7f7041444000-7f7041447000 r--s 00076000 08:01 12206115                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jvmci/jvmci-api.src.zip
+7f7041447000-7f704144b000 r--s 00076000 08:01 12206113                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jvmci/jvmci-hotspot.jar
+7f704144b000-7f704146b000 r--s 00386000 08:01 13250434                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/truffle/truffle-api.jar
+7f704146b000-7f7041512000 rw-p 00000000 00:00 0 
+7f7041512000-7f7041513000 ---p 00000000 00:00 0 
+7f7041513000-7f7041516000 ---p 00000000 00:00 0 
+7f7041516000-7f7041617000 rw-p 00000000 00:00 0 
+7f7041617000-7f7041619000 r--s 00084000 08:01 12206114                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jvmci/jvmci-hotspot.src.zip
+7f7041619000-7f7041624000 r--s 000c7000 08:01 13250438                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/truffle/truffle-nfi.jar
+7f7041624000-7f7041625000 r--s 00005000 08:01 13250442                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/truffle/locator.jar
+7f7041625000-7f7041629000 r--s 000cd000 08:01 12201281                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/boot/graal-sdk.src.zip
+7f7041629000-7f704162f000 r--s 00057000 08:01 12201280                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/boot/graal-sdk.jar
+7f704162f000-7f7041630000 r--s 00007000 08:01 12201282                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/boot/graaljs-scriptengine.jar
+7f7041630000-7f7041631000 r--s 00003000 08:01 12205989                   /home/manuel/jdk/graalvm-ee-1.0.0-rc7/jre/lib/jvmci-services.jar
+7f7041631000-7f7041639000 rw-s 00000000 08:01 9441109                    /tmp/hsperfdata_manuel/8284
+7f7041639000-7f704163a000 rw-p 00000000 00:00 0 
+7f704163a000-7f704163b000 ---p 00000000 00:00 0 
+7f704163b000-7f704163c000 r--p 00027000 08:01 31068704                   /lib/x86_64-linux-gnu/ld-2.27.so
+7f704163c000-7f704163d000 rw-p 00028000 08:01 31068704                   /lib/x86_64-linux-gnu/ld-2.27.so
+7f704163d000-7f704163e000 rw-p 00000000 00:00 0 
+7fff467f9000-7fff4681b000 rw-p 00000000 00:00 0                          [stack]
+7fff46880000-7fff46883000 r--p 00000000 00:00 0                          [vvar]
+7fff46883000-7fff46885000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -XX:-UseJVMCIClassLoader 
+java_command: /home/manuel/runtime-plzoo/boa.test/target/surefire/surefirebooter7006981715508715645.jar /home/manuel/runtime-plzoo/boa.test/target/surefire/surefire8257425990728033774tmp /home/manuel/runtime-plzoo/boa.test/target/surefire/surefire5512757593614296751tmp
+java_class_path (initial): /home/manuel/runtime-plzoo/boa.test/target/surefire/surefirebooter7006981715508715645.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/usr/lib/jvm/default-java
+PATH=/home/manuel/.cargo/bin:/home/manuel/.opam/system/bin:/home/manuel/.nix-profile/bin:/home/manuel/.nvm/versions/node/v10.10.0/bin:/home/manuel/.local/bin:/home/manuel/bin:/home/manuel/.cargo/bin:/home/manuel/.nix-profile/bin:/home/manuel/.local/bin:/home/manuel/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/manuel/dev/java/mx
+USERNAME=manuel
+SHELL=/usr/bin/zsh
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xb2e9c0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xb2e9c0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x970ef0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x970ef0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x970ef0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x970ef0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x970dc0], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x970fb0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x970fb0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x970fb0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x970fb0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION="Ubuntu 18.04.1 LTS"
+
+uname:Linux 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018 x86_64
+libc:glibc 2.27 NPTL 2.27 
+rlimit: STACK 8192k, CORE 0k, NPROC 61525, NOFILE 4096, AS infinity
+load average:15,75 6,54 4,57
+
+/proc/meminfo:
+MemTotal:       15814520 kB
+MemFree:          141368 kB
+MemAvailable:      31008 kB
+Buffers:             700 kB
+Cached:          1730136 kB
+SwapCached:         8768 kB
+Active:         13820444 kB
+Inactive:        1299976 kB
+Active(anon):   13806452 kB
+Inactive(anon):  1284048 kB
+Active(file):      13992 kB
+Inactive(file):    15928 kB
+Unevictable:         112 kB
+Mlocked:             112 kB
+SwapTotal:       2097148 kB
+SwapFree:              0 kB
+Dirty:                96 kB
+Writeback:             0 kB
+AnonPages:      13382448 kB
+Mapped:          1135340 kB
+Shmem:           1700548 kB
+Slab:             250388 kB
+SReclaimable:      89944 kB
+SUnreclaim:       160444 kB
+KernelStack:       27184 kB
+PageTables:       141484 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    10004408 kB
+Committed_AS:   36256960 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      595456 kB
+DirectMap2M:    15562752 kB
+DirectMap1G:     1048576 kB
+
+
+CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 61 stepping 4, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, rtm, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 61
+model name	: Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+stepping	: 4
+microcode	: 0x2b
+cpu MHz		: 3092.971
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 20
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap intel_pt xsaveopt dtherm ida arat pln pts flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf
+bogomips	: 5188.21
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 61
+model name	: Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+stepping	: 4
+microcode	: 0x2b
+cpu MHz		: 3092.973
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 20
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap intel_pt xsaveopt dtherm ida arat pln pts flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf
+bogomips	: 5188.21
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 61
+model name	: Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+stepping	: 4
+microcode	: 0x2b
+cpu MHz		: 3092.973
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 20
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap intel_pt xsaveopt dtherm ida arat pln pts flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf
+bogomips	: 5188.21
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 61
+model name	: Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+stepping	: 4
+microcode	: 0x2b
+cpu MHz		: 3092.970
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 20
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap intel_pt xsaveopt dtherm ida arat pln pts flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf
+bogomips	: 5188.21
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 15814520k(139548k free), swap 2097148k(0k free)
+
+vm_info: GraalVM 1.0.0-rc7 (25.71-b01-internal-jvmci-0.48) for linux-amd64 JRE (1.8.0), built on Sep 18 2018 07:22:00 by "graaluser" with gcc 4.9.1
+
+time: Wed Oct 10 12:04:43 2018
+elapsed time: 28 seconds (0d 0h 0m 28s)
+

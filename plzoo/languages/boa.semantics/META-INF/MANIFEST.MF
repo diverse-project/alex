@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Semantics
+Bundle-SymbolicName: boa.semantics;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Export-Package: execboatruffle;uses:="org.eclipse.emf.ecore,org.eclipse.emf.common.util",
+ execboatruffle.impl;
+  uses:="org.eclipse.emf.ecore,
+   org.eclipse.emf.ecore.impl,
+   org.eclipse.emf.common.util,
+   fr.inria.diverse.alex.emf.truffle,
+   execboatruffle,
+   org.eclipse.emf.common.notify"
+Require-Bundle: fr.inria.diverse.alex.truffle;bundle-version="1.0.0",
+ org.eclipse.emf.ecore;bundle-version="2.14.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ fr.inria.diverse.alex.emf.truffle;bundle-version="1.0.0"

@@ -1,0 +1,304 @@
+behavior execboa
+
+compile as execboatruffle truffle child;
+import execboatruffle.EvalCtx
+import execboatruffle.Func
+import execboatruffle.TopLevelCmd
+import execboatruffle.BoundFunc
+import execboatruffle.Sideeffects
+
+import java.util.Map
+import java.util.HashMap
+import java.util.Optional
+
+
+import ecore "platform:/resource/boa.model/model/boa.genmodel"
+
+open class File {
+	def void eval() {
+		
+		var ctx = new EvalCtx(Optional.empty, new HashMap)
+		
+		for(TopLevelCmd tlc: commands) {
+			tlc.nextLine(ctx)
+		}
+	}
+}
+
+open abstract class TopLevelCmd {
+	abstract def void nextLine(EvalCtx ctx)
+}
+
+open class Def {
+	override void nextLine(EvalCtx ctx) {
+		val e = expr.eval(ctx)
+		Sideeffects.println(name + ' = ' + e)
+		ctx.env.put(name, e)
+	}
+} 
+
+open abstract class Expr {
+	
+	abstract def Object eval(EvalCtx ctx)
+	
+	override void nextLine(EvalCtx ctx) {
+		Sideeffects.println(eval(ctx))
+	} 
+
+	def Integer asInt(Object v) {
+		if(v instanceof Integer) v
+		else throw new RuntimeException("integer expected")
+	}
+	
+	def Boolean asBool(Object v) {
+		if(v instanceof Boolean) v
+		else throw new RuntimeException("boolean expected")
+	}
+}
+
+open class Var {
+	override Object eval(EvalCtx ctx) {
+		if(ctx.env.containsKey(name)) {
+			ctx.env.get(name)
+		} else {
+			throw new RuntimeException("no such variable " + name)
+		}
+	}
+}
+
+// Object
+open class BObject {
+	override Object eval(EvalCtx ctx) {
+		if(fields !== null) {
+			val ret = new HashMap<String, Object>
+			//fields.toMap([Field t|t.name], [Field t|t.value.eval(new EvalCtx())])
+			fields.forEach[
+				ret.put(it.name, it.value.eval(new EvalCtx(ctx.th, ctx.env)))
+			]
+			ret
+		}
+		else new HashMap<String, Object>
+	}
+}
+
+open class App {
+	override Object eval(EvalCtx ctx) {
+		val fct = lhs.eval(ctx) 
+		val v2 = rhs.eval(ctx)
+		if(fct instanceof BoundFunc) { 		
+			
+			val ret = fct.func.expr.eval(new EvalCtx(Optional.of(fct.th), new HashMap() => [
+				it.putAll(fct.func.ctx.env)
+				it.put(fct.func.name, v2)
+			]))
+			
+			if(ret instanceof Func) {
+				new BoundFunc(ret, fct.th)
+			} else {
+				ret
+			}
+		} else if (fct instanceof Func) {
+			fct.expr.eval(new EvalCtx(ctx.th, new HashMap() => [
+				it.putAll(fct.ctx.env)
+				it.put(fct.name, v2)
+			]))
+		}
+	}
+}
+
+open class ArithOpDivide {
+	override Integer eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		asInt(vlhs) / asInt(vrhs)
+	}
+}
+
+open class ArithOpMinus {
+	override Integer eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		asInt(vlhs) - asInt(vrhs)
+	}
+}
+
+open class ArithOpPlus {
+	override Integer eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		asInt(vlhs) + asInt(vrhs)
+	}
+}
+
+open class ArithOpRemainder {
+	override Integer eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		asInt(vlhs) % asInt(vrhs)
+	}
+}
+
+open class ArithOpTimes {
+	override Integer eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		asInt(vlhs) * asInt(vrhs)
+	}
+}
+
+open class Assign {
+	override Object eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx) as Map<String, Object>
+		val vrhs = rhs.eval(ctx)
+		if(vlhs.containsKey(name)) {
+			vlhs.put(name, vrhs)
+			vrhs
+		} else {
+			throw new RuntimeException("no such field " + name)
+		}
+	}
+}
+
+
+open class Bool {
+	override Object eval(EvalCtx ctx) {
+		value
+	}
+}
+
+open class BoolOpAnd {
+	override Boolean eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		asBool(vlhs) && asBool(vrhs)
+	}
+}
+
+open class BoolOpOr {
+	override Object eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		asBool(vlhs) || asBool(vrhs)
+	}
+}
+
+open class CmpOpEqual {
+	override Boolean eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		vlhs ==  vrhs
+	}
+}
+
+open class CmpOpUnequal {
+	override Boolean eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		vlhs !=  vrhs
+	}
+}
+
+open class CmpOpLess {
+	override Boolean eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		val vrhs = rhs.eval(ctx)
+		asInt(vlhs) <  asInt(vrhs)
+	}
+}
+
+open class Copy {
+	override Object eval(EvalCtx ctx) {
+		val vcopy = copy.eval(ctx) as Map<String,Object>
+		new HashMap<String,Object>(vcopy)
+	}
+}
+
+open class Fun {
+	override Object eval(EvalCtx ctx) {
+		new Func(name, ctx, body)
+	}
+}
+
+open class If {
+	override Object eval(EvalCtx ctx) {
+		val c = asBool(cond.eval(ctx))
+		if(c) {
+			then.eval(ctx)
+		} else {
+			els.eval(ctx)
+		}
+	}
+}
+
+open class Int {
+	override Object eval(EvalCtx ctx) {
+		value
+	}
+}
+
+open class Let {
+	override Object eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx)
+		rhs.eval(new EvalCtx(ctx.th, new HashMap => [
+			it.putAll(ctx.env)
+			it.put(name, vlhs)
+		]))
+	}
+}
+
+open class Not {
+	override Object eval(EvalCtx ctx) {
+		!asBool(value.eval(ctx))
+	}
+}
+
+open class Project {
+	override Object eval(EvalCtx ctx) {
+		val u = exp.eval(ctx) as Map<String, Object>
+		if(u.containsKey(name)) {
+			val x = u.get(name)
+			if(x instanceof Func) {
+				new BoundFunc(x, u)
+			} else {
+				x
+			}
+		} else {
+			throw new RuntimeException("no such field " + name)
+		}
+	}
+}
+
+open class Seq {
+	override Object eval(EvalCtx ctx) {
+		lhs.eval(ctx)
+		rhs.eval(ctx)
+	}
+}
+
+open class Skip {
+	override Object eval(EvalCtx ctx) {
+		new HashMap<String,Object>();
+	}
+}
+
+open class This {
+	override Object eval(EvalCtx ctx) {
+		if(ctx.th.present) {
+			ctx.th.get
+		} else {
+			throw new RuntimeException("invalid use of 'this'")
+		}
+	}
+}
+open class With {
+	override Object eval(EvalCtx ctx) {
+		val vlhs = lhs.eval(ctx) as Map<String, Object>
+		val vrhs = rhs.eval(ctx) as Map<String, Object>
+		
+		//vlhs.putAll(vrhs)
+		new HashMap<String, Object> => [
+			it.putAll(vlhs)
+			it.putAll(vrhs)
+		]
+	}
+}

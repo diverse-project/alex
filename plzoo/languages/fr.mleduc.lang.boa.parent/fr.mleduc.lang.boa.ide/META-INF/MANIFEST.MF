@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: fr.mleduc.lang.boa.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.mleduc.lang.boa.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.mleduc.lang.boa.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: fr.mleduc.lang.boa,
+ boa.semantics,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.mleduc.lang.boa.ide.contentassist.antlr,
+ fr.mleduc.lang.boa.ide.contentassist.antlr.internal
+
