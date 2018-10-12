@@ -43,7 +43,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alex.ecore#//ConcreteMethod/block"/>
     </genClasses>
     <genClasses ecoreClass="Alex.ecore#//AbstractMethod"/>
-    <genClasses ecoreClass="Alex.ecore#//DefMethod"/>
+    <genClasses ecoreClass="Alex.ecore#//DefMethod">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alex.ecore#//DefMethod/dispatch"/>
+    </genClasses>
     <genClasses ecoreClass="Alex.ecore#//OverrideMethod"/>
   </genPackages>
 </genmodel:GenModel>

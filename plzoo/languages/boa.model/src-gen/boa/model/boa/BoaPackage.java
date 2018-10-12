@@ -419,13 +419,22 @@ public interface BoaPackage extends EPackage {
 	int PROJECT = 10;
 
 	/**
-	 * The feature id for the '<em><b>Vars</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Exp</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__VARS = EXPR_FEATURE_COUNT + 0;
+	int PROJECT__EXP = EXPR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__NAME = EXPR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Project</em>' class.
@@ -434,7 +443,7 @@ public interface BoaPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
+	int PROJECT_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Project</em>' class.
@@ -953,13 +962,22 @@ public interface BoaPackage extends EPackage {
 	int ASSIGN__RHS = EXPR_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGN__NAME = EXPR_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Assign</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGN_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
+	int ASSIGN_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Assign</em>' class.
@@ -1487,11 +1505,11 @@ public interface BoaPackage extends EPackage {
 	EClass getFile();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link boa.model.boa.File#getCommands <em>Commands</em>}'.
+	 * Returns the meta object for the containment reference list '{@link boa.model.boa.File#getCommandsList <em>Commands</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Commands</em>'.
-	 * @see boa.model.boa.File#getCommands()
+	 * @see boa.model.boa.File#getCommandsList()
 	 * @see #getFile()
 	 * @generated
 	 */
@@ -1675,15 +1693,26 @@ public interface BoaPackage extends EPackage {
 	EClass getProject();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link boa.model.boa.Project#getVars <em>Vars</em>}'.
+	 * Returns the meta object for the containment reference '{@link boa.model.boa.Project#getExp <em>Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Vars</em>'.
-	 * @see boa.model.boa.Project#getVars()
+	 * @return the meta object for the containment reference '<em>Exp</em>'.
+	 * @see boa.model.boa.Project#getExp()
 	 * @see #getProject()
 	 * @generated
 	 */
-	EReference getProject_Vars();
+	EReference getProject_Exp();
+
+	/**
+	 * Returns the meta object for the attribute '{@link boa.model.boa.Project#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see boa.model.boa.Project#getName()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_Name();
 
 	/**
 	 * Returns the meta object for class '{@link boa.model.boa.BObject <em>BObject</em>}'.
@@ -1696,11 +1725,11 @@ public interface BoaPackage extends EPackage {
 	EClass getBObject();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link boa.model.boa.BObject#getFields <em>Fields</em>}'.
+	 * Returns the meta object for the containment reference list '{@link boa.model.boa.BObject#getFieldsList <em>Fields</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Fields</em>'.
-	 * @see boa.model.boa.BObject#getFields()
+	 * @see boa.model.boa.BObject#getFieldsList()
 	 * @see #getBObject()
 	 * @generated
 	 */
@@ -2035,6 +2064,17 @@ public interface BoaPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAssign_Rhs();
+
+	/**
+	 * Returns the meta object for the attribute '{@link boa.model.boa.Assign#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see boa.model.boa.Assign#getName()
+	 * @see #getAssign()
+	 * @generated
+	 */
+	EAttribute getAssign_Name();
 
 	/**
 	 * Returns the meta object for class '{@link boa.model.boa.ArithOpPlus <em>Arith Op Plus</em>}'.
@@ -2410,12 +2450,20 @@ public interface BoaPackage extends EPackage {
 		EClass PROJECT = eINSTANCE.getProject();
 
 		/**
-		 * The meta object literal for the '<em><b>Vars</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROJECT__VARS = eINSTANCE.getProject_Vars();
+		EReference PROJECT__EXP = eINSTANCE.getProject_Exp();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__NAME = eINSTANCE.getProject_Name();
 
 		/**
 		 * The meta object literal for the '{@link boa.model.boa.impl.BObjectImpl <em>BObject</em>}' class.
@@ -2704,6 +2752,14 @@ public interface BoaPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASSIGN__RHS = eINSTANCE.getAssign_Rhs();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSIGN__NAME = eINSTANCE.getAssign_Name();
 
 		/**
 		 * The meta object literal for the '{@link boa.model.boa.impl.ArithOpPlusImpl <em>Arith Op Plus</em>}' class.

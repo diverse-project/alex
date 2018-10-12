@@ -531,8 +531,17 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_Vars() {
+	public EReference getProject_Exp() {
 		return (EReference) projectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProject_Name() {
+		return (EAttribute) projectEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -837,6 +846,15 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAssign_Name() {
+		return (EAttribute) assignEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getArithOpPlus() {
 		return arithOpPlusEClass;
 	}
@@ -1043,7 +1061,8 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		skipEClass = createEClass(SKIP);
 
 		projectEClass = createEClass(PROJECT);
-		createEReference(projectEClass, PROJECT__VARS);
+		createEReference(projectEClass, PROJECT__EXP);
+		createEAttribute(projectEClass, PROJECT__NAME);
 
 		bObjectEClass = createEClass(BOBJECT);
 		createEReference(bObjectEClass, BOBJECT__FIELDS);
@@ -1089,6 +1108,7 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		assignEClass = createEClass(ASSIGN);
 		createEReference(assignEClass, ASSIGN__LHS);
 		createEReference(assignEClass, ASSIGN__RHS);
+		createEAttribute(assignEClass, ASSIGN__NAME);
 
 		arithOpPlusEClass = createEClass(ARITH_OP_PLUS);
 
@@ -1220,9 +1240,11 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		initEClass(skipEClass, Skip.class, "Skip", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProject_Vars(), this.getVar(), null, "vars", null, 0, -1, Project.class, !IS_TRANSIENT,
+		initEReference(getProject_Exp(), this.getExpr(), null, "exp", null, 1, 1, Project.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getProject_Name(), ecorePackage.getEString(), "name", null, 0, 1, Project.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bObjectEClass, BObject.class, "BObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBObject_Fields(), this.getField(), null, "fields", null, 0, -1, BObject.class, !IS_TRANSIENT,
@@ -1299,6 +1321,8 @@ public class BoaPackageImpl extends EPackageImpl implements BoaPackage {
 		initEReference(getAssign_Rhs(), this.getExpr(), null, "rhs", null, 1, 1, Assign.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getAssign_Name(), ecorePackage.getEString(), "name", null, 0, 1, Assign.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(arithOpPlusEClass, ArithOpPlus.class, "ArithOpPlus", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

@@ -3,9 +3,11 @@
  */
 package fr.inria.diverse.alex.xtext
 
+import fr.inria.diverse.alex.xtext.compiler.AlexCompiler
 import fr.inria.diverse.alex.xtext.compiler.AlexJvmModelGenerator
 import fr.inria.diverse.alex.xtext.emf.EcoreFragmentProvider
 import fr.inria.diverse.alex.xtext.typesystem.computation.AlexTypeComputer
+import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer
 
 /**
@@ -14,6 +16,10 @@ import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer
 class AlexRuntimeModule extends AbstractAlexRuntimeModule {
 	def Class<? extends ITypeComputer> bindITypeComputer() {
 		AlexTypeComputer
+	}
+	
+	def Class<? extends XbaseCompiler> bindXbaseCompiler() {
+		AlexCompiler
 	}
 
 	override bindIGenerator() {

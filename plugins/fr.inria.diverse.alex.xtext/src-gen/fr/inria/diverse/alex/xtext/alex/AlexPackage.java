@@ -509,13 +509,22 @@ public interface AlexPackage extends EPackage
   int DEF_METHOD__BLOCK = CONCRETE_METHOD__BLOCK;
 
   /**
+   * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEF_METHOD__DISPATCH = CONCRETE_METHOD_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Def Method</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEF_METHOD_FEATURE_COUNT = CONCRETE_METHOD_FEATURE_COUNT + 0;
+  int DEF_METHOD_FEATURE_COUNT = CONCRETE_METHOD_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link fr.inria.diverse.alex.xtext.alex.impl.OverrideMethodImpl <em>Override Method</em>}' class.
@@ -894,6 +903,17 @@ public interface AlexPackage extends EPackage
   EClass getDefMethod();
 
   /**
+   * Returns the meta object for the attribute '{@link fr.inria.diverse.alex.xtext.alex.DefMethod#isDispatch <em>Dispatch</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Dispatch</em>'.
+   * @see fr.inria.diverse.alex.xtext.alex.DefMethod#isDispatch()
+   * @see #getDefMethod()
+   * @generated
+   */
+  EAttribute getDefMethod_Dispatch();
+
+  /**
    * Returns the meta object for class '{@link fr.inria.diverse.alex.xtext.alex.OverrideMethod <em>Override Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1185,6 +1205,14 @@ public interface AlexPackage extends EPackage
      * @generated
      */
     EClass DEF_METHOD = eINSTANCE.getDefMethod();
+
+    /**
+     * The meta object literal for the '<em><b>Dispatch</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DEF_METHOD__DISPATCH = eINSTANCE.getDefMethod_Dispatch();
 
     /**
      * The meta object literal for the '{@link fr.inria.diverse.alex.xtext.alex.impl.OverrideMethodImpl <em>Override Method</em>}' class.

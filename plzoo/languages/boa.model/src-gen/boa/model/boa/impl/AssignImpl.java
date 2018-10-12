@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link boa.model.boa.impl.AssignImpl#getLhs <em>Lhs</em>}</li>
  *   <li>{@link boa.model.boa.impl.AssignImpl#getRhs <em>Rhs</em>}</li>
+ *   <li>{@link boa.model.boa.impl.AssignImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,6 +49,26 @@ public class AssignImpl extends ExprImpl implements Assign {
 	 * @ordered
 	 */
 	protected Expr rhs;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -171,6 +192,27 @@ public class AssignImpl extends ExprImpl implements Assign {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BoaPackage.ASSIGN__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -194,6 +236,8 @@ public class AssignImpl extends ExprImpl implements Assign {
 			return getLhs();
 		case BoaPackage.ASSIGN__RHS:
 			return getRhs();
+		case BoaPackage.ASSIGN__NAME:
+			return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -211,6 +255,9 @@ public class AssignImpl extends ExprImpl implements Assign {
 			return;
 		case BoaPackage.ASSIGN__RHS:
 			setRhs((Expr) newValue);
+			return;
+		case BoaPackage.ASSIGN__NAME:
+			setName((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -230,6 +277,9 @@ public class AssignImpl extends ExprImpl implements Assign {
 		case BoaPackage.ASSIGN__RHS:
 			setRhs((Expr) null);
 			return;
+		case BoaPackage.ASSIGN__NAME:
+			setName(NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -246,8 +296,27 @@ public class AssignImpl extends ExprImpl implements Assign {
 			return lhs != null;
 		case BoaPackage.ASSIGN__RHS:
 			return rhs != null;
+		case BoaPackage.ASSIGN__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //AssignImpl

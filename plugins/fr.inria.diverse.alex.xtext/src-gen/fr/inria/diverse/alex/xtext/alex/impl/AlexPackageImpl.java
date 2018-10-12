@@ -488,6 +488,16 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getDefMethod_Dispatch()
+  {
+    return (EAttribute)defMethodEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getOverrideMethod()
   {
     return overrideMethodEClass;
@@ -562,6 +572,7 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
     abstractMethodEClass = createEClass(ABSTRACT_METHOD);
 
     defMethodEClass = createEClass(DEF_METHOD);
+    createEAttribute(defMethodEClass, DEF_METHOD__DISPATCH);
 
     overrideMethodEClass = createEClass(OVERRIDE_METHOD);
   }
@@ -645,6 +656,7 @@ public class AlexPackageImpl extends EPackageImpl implements AlexPackage
     initEClass(abstractMethodEClass, AbstractMethod.class, "AbstractMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(defMethodEClass, DefMethod.class, "DefMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDefMethod_Dispatch(), ecorePackage.getEBoolean(), "dispatch", null, 0, 1, DefMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(overrideMethodEClass, OverrideMethod.class, "OverrideMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

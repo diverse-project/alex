@@ -5,11 +5,10 @@ package boa.model.boa.impl;
 import boa.model.boa.BoaPackage;
 import boa.model.boa.File;
 import boa.model.boa.TopLevelCmd;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -28,21 +27,31 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link boa.model.boa.impl.FileImpl#getCommands <em>Commands</em>}</li>
+ *   <li>{@link boa.model.boa.impl.FileImpl#getCommandsList <em>Commands</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FileImpl extends MinimalEObjectImpl.Container implements File {
 	/**
-	 * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
+	 * The cached value of the '{@link #getCommandsList() <em>Commands</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommandsList()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TopLevelCmd> commands;
+
+	/**
+	 * The empty value for the '{@link #getCommands() <em>Commands</em>}' array accessor.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCommands()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TopLevelCmd> commands;
+	protected static final TopLevelCmd[] COMMANDS_EEMPTY_ARRAY = new TopLevelCmd[0];
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,7 +77,56 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TopLevelCmd> getCommands() {
+	public TopLevelCmd[] getCommands() {
+		if (commands == null || commands.isEmpty())
+			return COMMANDS_EEMPTY_ARRAY;
+		BasicEList<TopLevelCmd> list = (BasicEList<TopLevelCmd>) commands;
+		list.shrink();
+		return (TopLevelCmd[]) list.data();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TopLevelCmd getCommands(int index) {
+		return getCommandsList().get(index);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getCommandsLength() {
+		return commands == null ? 0 : commands.size();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommands(TopLevelCmd[] newCommands) {
+		((BasicEList<TopLevelCmd>) getCommandsList()).setData(newCommands.length, newCommands);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommands(int index, TopLevelCmd element) {
+		getCommandsList().set(index, element);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TopLevelCmd> getCommandsList() {
 		if (commands == null) {
 			commands = new EObjectContainmentEList<TopLevelCmd>(TopLevelCmd.class, this, BoaPackage.FILE__COMMANDS);
 		}
@@ -84,7 +142,7 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case BoaPackage.FILE__COMMANDS:
-			return ((InternalEList<?>) getCommands()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getCommandsList()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -98,7 +156,7 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case BoaPackage.FILE__COMMANDS:
-			return getCommands();
+			return getCommandsList();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,8 +171,8 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case BoaPackage.FILE__COMMANDS:
-			getCommands().clear();
-			getCommands().addAll((Collection<? extends TopLevelCmd>) newValue);
+			getCommandsList().clear();
+			getCommandsList().addAll((Collection<? extends TopLevelCmd>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -129,7 +187,7 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case BoaPackage.FILE__COMMANDS:
-			getCommands().clear();
+			getCommandsList().clear();
 			return;
 		}
 		super.eUnset(featureID);

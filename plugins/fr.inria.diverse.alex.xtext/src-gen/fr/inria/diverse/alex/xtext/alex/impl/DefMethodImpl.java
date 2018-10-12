@@ -6,17 +6,47 @@ package fr.inria.diverse.alex.xtext.alex.impl;
 import fr.inria.diverse.alex.xtext.alex.AlexPackage;
 import fr.inria.diverse.alex.xtext.alex.DefMethod;
 
+import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Def Method</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link fr.inria.diverse.alex.xtext.alex.impl.DefMethodImpl#isDispatch <em>Dispatch</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class DefMethodImpl extends ConcreteMethodImpl implements DefMethod
 {
+  /**
+   * The default value of the '{@link #isDispatch() <em>Dispatch</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDispatch()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean DISPATCH_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isDispatch() <em>Dispatch</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDispatch()
+   * @generated
+   * @ordered
+   */
+  protected boolean dispatch = DISPATCH_EDEFAULT;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -36,6 +66,112 @@ public class DefMethodImpl extends ConcreteMethodImpl implements DefMethod
   protected EClass eStaticClass()
   {
     return AlexPackage.Literals.DEF_METHOD;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isDispatch()
+  {
+    return dispatch;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDispatch(boolean newDispatch)
+  {
+    boolean oldDispatch = dispatch;
+    dispatch = newDispatch;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AlexPackage.DEF_METHOD__DISPATCH, oldDispatch, dispatch));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case AlexPackage.DEF_METHOD__DISPATCH:
+        return isDispatch();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case AlexPackage.DEF_METHOD__DISPATCH:
+        setDispatch((Boolean)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case AlexPackage.DEF_METHOD__DISPATCH:
+        setDispatch(DISPATCH_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case AlexPackage.DEF_METHOD__DISPATCH:
+        return dispatch != DISPATCH_EDEFAULT;
+    }
+    return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (dispatch: ");
+    result.append(dispatch);
+    result.append(')');
+    return result.toString();
   }
 
 } //DefMethodImpl

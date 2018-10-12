@@ -61,16 +61,12 @@ public class BoaLang extends com.oracle.truffle.api.TruffleLanguage<Void> {
 
         final EList<Diagnostic> errors = result.eResource().getErrors();
 
+        Holder.setCallSite(result, this);
 
         return Truffle.getRuntime().createCallTarget(new RootNode(BoaLang.this) {
             @Override
             public Object execute(VirtualFrame frame) {
-                try {
-                    result.eval();
-                } catch (RuntimeException e) {
-                    throw new RuntimeException(Sideeffects.SB.toString() + e.getMessage());
-                }
-                return Sideeffects.SB.toString();
+                return 42;
             }
         });
 

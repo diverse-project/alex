@@ -83,8 +83,8 @@ public class AlexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAbstractMethodAccess().getGroup_5(), "rule__AbstractMethod__Group_5__0");
 			builder.put(grammarAccess.getAbstractMethodAccess().getGroup_5_1(), "rule__AbstractMethod__Group_5_1__0");
 			builder.put(grammarAccess.getDefMethodAccess().getGroup(), "rule__DefMethod__Group__0");
-			builder.put(grammarAccess.getDefMethodAccess().getGroup_4(), "rule__DefMethod__Group_4__0");
-			builder.put(grammarAccess.getDefMethodAccess().getGroup_4_1(), "rule__DefMethod__Group_4_1__0");
+			builder.put(grammarAccess.getDefMethodAccess().getGroup_5(), "rule__DefMethod__Group_5__0");
+			builder.put(grammarAccess.getDefMethodAccess().getGroup_5_1(), "rule__DefMethod__Group_5_1__0");
 			builder.put(grammarAccess.getOverrideMethodAccess().getGroup(), "rule__OverrideMethod__Group__0");
 			builder.put(grammarAccess.getOverrideMethodAccess().getGroup_4(), "rule__OverrideMethod__Group_4__0");
 			builder.put(grammarAccess.getOverrideMethodAccess().getGroup_4_1(), "rule__OverrideMethod__Group_4_1__0");
@@ -287,11 +287,12 @@ public class AlexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAbstractMethodAccess().getNameAssignment_3(), "rule__AbstractMethod__NameAssignment_3");
 			builder.put(grammarAccess.getAbstractMethodAccess().getParamsAssignment_5_0(), "rule__AbstractMethod__ParamsAssignment_5_0");
 			builder.put(grammarAccess.getAbstractMethodAccess().getParamsAssignment_5_1_1(), "rule__AbstractMethod__ParamsAssignment_5_1_1");
-			builder.put(grammarAccess.getDefMethodAccess().getTypeAssignment_1(), "rule__DefMethod__TypeAssignment_1");
-			builder.put(grammarAccess.getDefMethodAccess().getNameAssignment_2(), "rule__DefMethod__NameAssignment_2");
-			builder.put(grammarAccess.getDefMethodAccess().getParamsAssignment_4_0(), "rule__DefMethod__ParamsAssignment_4_0");
-			builder.put(grammarAccess.getDefMethodAccess().getParamsAssignment_4_1_1(), "rule__DefMethod__ParamsAssignment_4_1_1");
-			builder.put(grammarAccess.getDefMethodAccess().getBlockAssignment_6(), "rule__DefMethod__BlockAssignment_6");
+			builder.put(grammarAccess.getDefMethodAccess().getDispatchAssignment_1(), "rule__DefMethod__DispatchAssignment_1");
+			builder.put(grammarAccess.getDefMethodAccess().getTypeAssignment_2(), "rule__DefMethod__TypeAssignment_2");
+			builder.put(grammarAccess.getDefMethodAccess().getNameAssignment_3(), "rule__DefMethod__NameAssignment_3");
+			builder.put(grammarAccess.getDefMethodAccess().getParamsAssignment_5_0(), "rule__DefMethod__ParamsAssignment_5_0");
+			builder.put(grammarAccess.getDefMethodAccess().getParamsAssignment_5_1_1(), "rule__DefMethod__ParamsAssignment_5_1_1");
+			builder.put(grammarAccess.getDefMethodAccess().getBlockAssignment_7(), "rule__DefMethod__BlockAssignment_7");
 			builder.put(grammarAccess.getOverrideMethodAccess().getTypeAssignment_1(), "rule__OverrideMethod__TypeAssignment_1");
 			builder.put(grammarAccess.getOverrideMethodAccess().getNameAssignment_2(), "rule__OverrideMethod__NameAssignment_2");
 			builder.put(grammarAccess.getOverrideMethodAccess().getParamsAssignment_4_0(), "rule__OverrideMethod__ParamsAssignment_4_0");

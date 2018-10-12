@@ -2,8 +2,6 @@
  */
 package boa.model.boa;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Project</b></em>'.
@@ -13,7 +11,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link boa.model.boa.Project#getVars <em>Vars</em>}</li>
+ *   <li>{@link boa.model.boa.Project#getExp <em>Exp</em>}</li>
+ *   <li>{@link boa.model.boa.Project#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see boa.model.boa.BoaPackage#getProject()
@@ -22,19 +21,55 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Project extends Expr {
 	/**
-	 * Returns the value of the '<em><b>Vars</b></em>' containment reference list.
-	 * The list contents are of type {@link boa.model.boa.Var}.
+	 * Returns the value of the '<em><b>Exp</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Vars</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Exp</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vars</em>' containment reference list.
-	 * @see boa.model.boa.BoaPackage#getProject_Vars()
-	 * @model containment="true"
+	 * @return the value of the '<em>Exp</em>' containment reference.
+	 * @see #setExp(Expr)
+	 * @see boa.model.boa.BoaPackage#getProject_Exp()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Var> getVars();
+	Expr getExp();
+
+	/**
+	 * Sets the value of the '{@link boa.model.boa.Project#getExp <em>Exp</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Exp</em>' containment reference.
+	 * @see #getExp()
+	 * @generated
+	 */
+	void setExp(Expr value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see boa.model.boa.BoaPackage#getProject_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link boa.model.boa.Project#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // Project

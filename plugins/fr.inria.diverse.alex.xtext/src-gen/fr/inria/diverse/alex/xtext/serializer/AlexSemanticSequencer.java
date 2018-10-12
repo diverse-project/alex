@@ -437,7 +437,13 @@ public class AlexSemanticSequencer extends XbaseSemanticSequencer {
 	 *     DefMethod returns DefMethod
 	 *
 	 * Constraint:
-	 *     (type=JvmTypeReference name=ValidID (params+=FullJvmFormalParameter params+=FullJvmFormalParameter*)? block=XBlockExpression)
+	 *     (
+	 *         dispatch?='dispatch'? 
+	 *         type=JvmTypeReference 
+	 *         name=ValidID 
+	 *         (params+=FullJvmFormalParameter params+=FullJvmFormalParameter*)? 
+	 *         block=XBlockExpression
+	 *     )
 	 */
 	protected void sequence_DefMethod(ISerializationContext context, DefMethod semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

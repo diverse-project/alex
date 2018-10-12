@@ -49,6 +49,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractMethod" eSuperTypes="#//AlexMethod"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DefMethod" eSuperTypes="#//ConcreteMethod"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DefMethod" eSuperTypes="#//ConcreteMethod">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dispatch" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OverrideMethod" eSuperTypes="#//ConcreteMethod"/>
 </ecore:EPackage>

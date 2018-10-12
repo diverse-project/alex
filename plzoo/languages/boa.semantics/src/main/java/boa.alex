@@ -16,11 +16,11 @@ import ecore "platform:/resource/boa.model/model/boa.genmodel"
 
 open class File {
 	def void eval() {
-		
+
 		var ctx = new EvalCtx(Optional.empty, new HashMap)
-		
+
 		for(TopLevelCmd tlc: commands) {
-			tlc.nextLine(ctx)
+			tlc.nextLine(ctx) // could be specialized between the two subclasses ?
 		}
 	}
 }
@@ -35,21 +35,21 @@ open class Def {
 		Sideeffects.println(name + ' = ' + e)
 		ctx.env.put(name, e)
 	}
-} 
+}
 
 open abstract class Expr {
-	
+
 	abstract def Object eval(EvalCtx ctx)
-	
+
 	override void nextLine(EvalCtx ctx) {
 		Sideeffects.println(eval(ctx))
-	} 
+	}
 
 	def Integer asInt(Object v) {
 		if(v instanceof Integer) v
 		else throw new RuntimeException("integer expected")
 	}
-	
+
 	def Boolean asBool(Object v) {
 		if(v instanceof Boolean) v
 		else throw new RuntimeException("boolean expected")
@@ -83,26 +83,27 @@ open class BObject {
 
 open class App {
 	override Object eval(EvalCtx ctx) {
-		val fct = lhs.eval(ctx) 
+		val fct = lhs.eval(ctx) as Func
 		val v2 = rhs.eval(ctx)
-		if(fct instanceof BoundFunc) { 		
-			
-			val ret = fct.func.expr.eval(new EvalCtx(Optional.of(fct.th), new HashMap() => [
-				it.putAll(fct.func.ctx.env)
-				it.put(fct.func.name, v2)
-			]))
-			
-			if(ret instanceof Func) {
-				new BoundFunc(ret, fct.th)
-			} else {
-				ret
-			}
-		} else if (fct instanceof Func) {
-			fct.expr.eval(new EvalCtx(ctx.th, new HashMap() => [
-				it.putAll(fct.ctx.env)
-				it.put(fct.name, v2)
-			]))
+
+		val isBoundFunc = fct instanceof BoundFunc
+
+		val th = if (isBoundFunc) Optional.of((fct as BoundFunc).th) else ctx.th
+
+		val ret = this.callFunc(fct, th, v2)
+
+		if(ret instanceof Func) {
+			new BoundFunc(ret, th.get)
+		} else {
+			ret
 		}
+	}
+	
+	def dispatch Object callFunc(Func fct, Optional<Map<String,Object>> th, Object param) {
+		fct.expr.eval(new EvalCtx(th, new HashMap() => [
+			it.putAll(fct.ctx.env)
+			it.put(fct.name, param)
+		]))
 	}
 }
 
@@ -294,8 +295,7 @@ open class With {
 	override Object eval(EvalCtx ctx) {
 		val vlhs = lhs.eval(ctx) as Map<String, Object>
 		val vrhs = rhs.eval(ctx) as Map<String, Object>
-		
-		//vlhs.putAll(vrhs)
+
 		new HashMap<String, Object> => [
 			it.putAll(vlhs)
 			it.putAll(vrhs)

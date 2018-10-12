@@ -13,6 +13,7 @@ package boa.model.boa;
  * <ul>
  *   <li>{@link boa.model.boa.Assign#getLhs <em>Lhs</em>}</li>
  *   <li>{@link boa.model.boa.Assign#getRhs <em>Rhs</em>}</li>
+ *   <li>{@link boa.model.boa.Assign#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see boa.model.boa.BoaPackage#getAssign()
@@ -71,5 +72,31 @@ public interface Assign extends Expr {
 	 * @generated
 	 */
 	void setRhs(Expr value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see boa.model.boa.BoaPackage#getAssign_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link boa.model.boa.Assign#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // Assign

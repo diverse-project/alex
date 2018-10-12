@@ -9,7 +9,6 @@ import execboatruffle.ExecboatrufflePackage;
 import execboatruffle.Expr;
 import execboatruffle.Func;
 import execboatruffle.impl.ExprImpl;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import org.eclipse.emf.common.notify.Notification;
@@ -17,8 +16,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @NodeInfo(description = "App")
 @SuppressWarnings("all")
@@ -143,49 +140,36 @@ public class AppImpl extends ExprImpl implements App {
     return super.eIsSet(featureID);
   }
   
+  private Object dispatchCallFunc;
+  
   public Object eval(final EvalCtx ctx) {
     Object _xblockexpression = null;
     {
-      final Object fct = this.lhs.eval(ctx);
+      Object _eval = this.lhs.eval(ctx);
+      final Func fct = ((Func) _eval);
       final Object v2 = this.rhs.eval(ctx);
-      Object _xifexpression = null;
-      if ((fct instanceof BoundFunc)) {
-        Object _xblockexpression_1 = null;
-        {
-          Optional<Map<String, Object>> _of = Optional.<Map<String, Object>>of(((BoundFunc)fct).th);
-          HashMap<String, Object> _hashMap = new HashMap<String, Object>();
-          final Procedure1<HashMap<String, Object>> _function = (HashMap<String, Object> it) -> {
-            it.putAll(((BoundFunc)fct).func.ctx.env);
-            it.put(((BoundFunc)fct).func.name, v2);
-          };
-          HashMap<String, Object> _doubleArrow = ObjectExtensions.<HashMap<String, Object>>operator_doubleArrow(_hashMap, _function);
-          EvalCtx _evalCtx = new EvalCtx(_of, _doubleArrow);
-          final Object ret = ((BoundFunc)fct).func.expr.eval(_evalCtx);
-          Object _xifexpression_1 = null;
-          if ((ret instanceof Func)) {
-            _xifexpression_1 = new BoundFunc(((Func)ret), ((BoundFunc)fct).th);
-          } else {
-            _xifexpression_1 = ret;
-          }
-          _xblockexpression_1 = _xifexpression_1;
-        }
-        _xifexpression = _xblockexpression_1;
+      final boolean isBoundFunc = (fct instanceof BoundFunc);
+      Optional<Map<String, Object>> _xifexpression = null;
+      if (isBoundFunc) {
+        _xifexpression = Optional.<Map<String, Object>>of(((BoundFunc) fct).th);
       } else {
-        Object _xifexpression_1 = null;
-        if ((fct instanceof Func)) {
-          HashMap<String, Object> _hashMap = new HashMap<String, Object>();
-          final Procedure1<HashMap<String, Object>> _function = (HashMap<String, Object> it) -> {
-            it.putAll(((Func)fct).ctx.env);
-            it.put(((Func)fct).name, v2);
-          };
-          HashMap<String, Object> _doubleArrow = ObjectExtensions.<HashMap<String, Object>>operator_doubleArrow(_hashMap, _function);
-          EvalCtx _evalCtx = new EvalCtx(ctx.th, _doubleArrow);
-          _xifexpression_1 = ((Func)fct).expr.eval(_evalCtx);
-        }
-        _xifexpression = _xifexpression_1;
+        _xifexpression = ctx.th;
       }
-      _xblockexpression = _xifexpression;
+      final Optional<Map<String, Object>> th = _xifexpression;
+      final Object ret = this.callFunc(fct, th, v2);
+      Object _xifexpression_1 = null;
+      if ((ret instanceof Func)) {
+        Map<String, Object> _get = th.get();
+        _xifexpression_1 = new BoundFunc(((Func)ret), _get);
+      } else {
+        _xifexpression_1 = ret;
+      }
+      _xblockexpression = _xifexpression_1;
     }
     return _xblockexpression;
+  }
+  
+  private Object callFunc(final Func fct, final Optional<Map<String, Object>> th, final Object param) {
+    return null;
   }
 }

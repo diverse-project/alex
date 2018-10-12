@@ -4,8 +4,8 @@
     modelDirectory="/boa.semantics/src-gen" creationIcons="false" editDirectory="/boa.model.edit/src-gen"
     editorDirectory="/boa.model.editor/src-gen" modelPluginID="boa.semantics" modelName="Execboatruffle"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="10.0" copyrightFields="false"
-    operationReflection="true" importOrganizing="true">
+    importerID="org.eclipse.emf.importer.ecore" arrayAccessors="true" complianceLevel="10.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>./execboatruffle.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="Execboatruffle" disposableProviderFactory="true" ecorePackage="execboatruffle.ecore#/">

@@ -38,8 +38,9 @@ AbstractMethod:
 	params+=FullJvmFormalParameter)*)? ')';
 
 DefMethod:
-	'def' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)?
+	'def' (dispatch?='dispatch')? type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)?
 	')' block=XBlockExpression;
+	
 
 OverrideMethod:
 	'override' type=JvmTypeReference name=ValidID '(' (params+=FullJvmFormalParameter (','
